@@ -1,0 +1,61 @@
+@import "scss/variables.scss";
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
+}
+
+a {
+  text-decoration: none;
+}
+
+//////////////////////////////////////////////////////////////////
+////////////////             HEADINGS             ////////////////
+//////////////////////////////////////////////////////////////////
+
+.heading-large {
+  font-size: 4.5rem;
+  color: $color-grey-dark-1;
+}
+
+.heading-small {
+  font-size: 3.3rem;
+  color: $color-grey-dark-2;
+}
+
+//////////////////////////////////////////////////////////////////
+////////////////             MARGINS             ////////////////
+//////////////////////////////////////////////////////////////////
+.margin-l-large {
+  margin-left: 5rem;
+}
+
+.margin-r-huge {
+  margin-right: 12rem;
+}
+
+//////////////////////////////////////////////////////////////////
+////////////////             Buttons             ////////////////
+//////////////////////////////////////////////////////////////////
+.btn {
+  color: $color-light-1;
+  text-align: center;
+  background-color: $color-blue;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &--large {
+    font-size: 2.6rem;
+    width: 50rem;
+    padding: 1rem 0;
+  }
+}

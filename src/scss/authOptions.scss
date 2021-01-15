@@ -1,0 +1,48 @@
+.authLinks {
+    font-size: 1.9rem;
+    color: $color-grey-dark-1;
+    
+    &--blue {
+        color: $color-blue;
+    }
+}
+
+.otherAuthOptions {
+    text-align: center;
+
+    &__text {
+        font-size: 1.9rem;
+        color: $color-grey-dark-1;
+        margin-bottom: 3rem;
+
+        &:before,
+        &:after {
+            content: '';
+            width: 16.2rem;
+            height: 2px;
+            display: inline-block;
+            background-color: $color-grey-light-1;
+            vertical-align: middle;
+        }
+
+        &::before {
+            margin-right: 2rem;
+        }
+
+        &::after {
+            margin-left: 2rem;
+        }
+    }
+
+    &__icons {
+        font-size: 3rem;
+        color: $color-blue;
+        padding: .5rem 1rem;
+        border: 1px solid $color-blue;
+        border-radius: 50%;
+
+        &:not(:last-child) {
+            margin-right: 2.5rem;
+        }
+    }
+}
