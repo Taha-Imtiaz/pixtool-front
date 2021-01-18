@@ -26,7 +26,7 @@ const SignIn = () => {
                     </div>
 
                     <div className="resetSignupTexts">
-                        <span className="authLinks">Don't have an account?&nbsp;<Link to="/signUp" className="authLinks"><strong>Sign Up</strong></Link></span>
+                        <span className="authLinks">Don't have an account?&nbsp;<Link to="/sign-up" className="authLinks"><strong>Sign Up</strong></Link></span>
                         <a href="" className="authLinks authLinks--blue margin-l-large"><strong>Forgot Passsword</strong></a>
                     </div>
 
