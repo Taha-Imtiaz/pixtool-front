@@ -1,0 +1,99 @@
+@import "../../scss/variables.scss";
+
+.header {
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search {
+    font-size: 2.5rem;
+    color: $color-grey-dark-3;
+    border: 2px solid $color-light-2;
+    background-color: $color-light-2;
+    border-radius: 100px;
+    width: fit-content;
+    margin-left: 5rem;
+
+    &>* {
+        margin-left: 3rem;
+    }
+
+    &__icon {
+        font-size: inherit;
+        color: inherit;
+    }
+
+    &__input {
+        font-size: inherit;
+        font-weight: 600;
+        background-color: transparent;
+        border: none;
+        padding: .5rem 1rem;
+        width: 35rem;
+
+        &:placeholder-shown {
+            font-size: inherit;
+            color: inherit;
+        }
+
+        &:focus {
+            outline: none;
+            color: inherit;
+        }
+
+    }
+}
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50rem;
+    padding-right: 5rem;
+
+    &__text {
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: $color-blue;
+    }
+
+    &__picture {
+        &>img {
+            width: 5.2rem;
+            height: 5.2rem;
+            border-radius: 50%;
+        }
+    }
+
+    &__icon {
+        font-size: 2rem;
+        color: $color-grey-dark-3;
+        padding: .5rem;
+    }
+
+    &__notification {
+        font-size: 3rem;
+        color: $color-grey-dark-3;
+        position: relative;
+    }
+}
+
+.countNotification {
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+    padding: .2rem;
+    font-size: 1rem;
+    text-align: center;
+    color: $color-white;
+    background-color: $color-red;
+    border-color: $color-red;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+}

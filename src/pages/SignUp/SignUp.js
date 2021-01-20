@@ -10,7 +10,7 @@ const SignUp = () => {
         var x = document.getElementById("showPass");
         var y = document.getElementById("hidePass");
 
-        if (input.type == 'password' || inputC.type == 'password'){
+        if (input.type === 'password' || inputC.type === 'password'){
             input.type = "text";
             inputC.type = "text";
             x.style.display = 'none';
@@ -25,7 +25,7 @@ const SignUp = () => {
         var x = document.getElementById("showPass");
         var y = document.getElementById("hidePass");
 
-        if (input.type == 'text' || inputC.type == 'text'){
+        if (input.type === 'text' || inputC.type === 'text'){
             input.type = "password";
             inputC.type = "password";
             x.style.display = 'inline-block';
