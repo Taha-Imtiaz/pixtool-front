@@ -1,38 +1,50 @@
 .form {
     text-align: center;
-    margin-top: 4rem;
-    margin-bottom: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 
     &__group {
+        position: relative;
 
         &:not(:last-child) {
-            margin-top: 1.5rem;
-            margin-bottom: 2.5rem;
+            margin-top: 3.5rem;
         }
 
         &:last-child {
-            margin-top: 5rem;
+            margin-top: 4rem;
+            margin-bottom: 3rem;
         }
     }
 
     &__input {
-        font-size: 2.5rem;
-        padding: 1rem 2rem;
+        font-size: 2rem;
+        padding: 1rem 2rem 1rem 5rem;
         border: 2px;
         border: none;
         border-bottom: 3px solid $color-dark-2;
-        width: 50rem;
+        width: 45rem;
         transition: all .3s;
 
         &:focus {
             outline: none;
-            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            /* box-shadow: 0 1rem 2rem rgba($color-black, .1); */
             border-bottom: 3px solid $color-blue;
         }
 
         &::-webkit-input-placeholder {
             color: $color-dark-1;
-            font-size: 2.5rem;
+            font-size: 2rem;
+        }
+    }
+
+    &__absolute-icon{
+        position: absolute;
+        top: 1rem;
+        color: $color-blue;
+        font-size: 2rem;
+
+        &--eye {
+            right: 17.5rem;
         }
     }
 }

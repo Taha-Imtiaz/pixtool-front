@@ -39,23 +39,9 @@ a {
 }
 
 .margin-r-huge {
-  margin-right: 12rem;
+  margin-right: 11rem;
 }
 
-//////////////////////////////////////////////////////////////////
-////////////////             Buttons             ////////////////
-//////////////////////////////////////////////////////////////////
-.btn {
-  color: $color-light-1;
-  text-align: center;
-  background-color: $color-blue;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-
-  &--large {
-    font-size: 2.6rem;
-    width: 50rem;
-    padding: 1rem 0;
-  }
+.dis-none {
+  display: none;
 }

@@ -4,6 +4,32 @@ import SignInBG from '../../images/signIn.png'
 import { Link } from 'react-router-dom';
 
 const SignIn = () => {
+
+    const showPassword = () => {
+        var input = document.getElementById("password");
+        var x = document.getElementById("showPass");
+        var y = document.getElementById("hidePass");
+
+        if (input.type == 'password'){
+            input.type = "text";
+            x.style.display = 'none';
+            y.style.display = 'inline-block';
+        }
+        
+    }
+
+    const hidePassword = () => {
+        var input = document.getElementById("password");
+        var x = document.getElementById("showPass");
+        var y = document.getElementById("hidePass");
+
+        if (input.type == 'text'){
+            input.type = "password";
+            x.style.display = 'inline-block';
+            y.style.display = 'none';
+        }
+    }
+
     return (
         <div className="signIn">
             <div className="signIn__image-box">
@@ -18,11 +44,15 @@ const SignIn = () => {
 
                 <form className="form">
                     <div className="form__group">
+                        <i class="fas fa-user form__absolute-icon"></i>
                         <input type="email" className="form__input" placeholder="Email" id="email" required></input>
                     </div>
 
                     <div className="form__group">
-                        <input type="text" className="form__input" placeholder="Password" id="password" required></input>
+                        <i class="fas fa-lock form__absolute-icon"></i>
+                        <input id="password" type="password" className="form__input" placeholder="Password" id="password" required></input>
+                        <i id="showPass" class="fas fa-eye form__absolute-icon form__absolute-icon--eye" title="Show Password" onClick={showPassword}></i>
+                        <i id="hidePass" class="fas fa-eye-slash form__absolute-icon form__absolute-icon--eye dis-none" title="Hide Password" onClick={hidePassword}></i>
                     </div>
 
                     <div className="resetSignupTexts">

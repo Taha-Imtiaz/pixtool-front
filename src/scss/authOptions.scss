@@ -1,7 +1,7 @@
 .authLinks {
-    font-size: 1.9rem;
+    font-size: 1.7rem;
     color: $color-grey-dark-1;
-    
+
     &--blue {
         color: $color-blue;
     }
@@ -11,14 +11,14 @@
     text-align: center;
 
     &__text {
-        font-size: 1.9rem;
+        font-size: 1.7rem;
         color: $color-grey-dark-1;
         margin-bottom: 3rem;
 
         &:before,
         &:after {
             content: '';
-            width: 16.2rem;
+            width: 14.6rem;
             height: 2px;
             display: inline-block;
             background-color: $color-grey-light-1;
@@ -35,14 +35,19 @@
     }
 
     &__icons {
-        font-size: 3rem;
-        color: $color-blue;
-        padding: .5rem 1rem;
-        border: 1px solid $color-blue;
+        font-size: 2.5rem;
         border-radius: 50%;
+        border: 2px solid $color-blue;
+        color: $color-blue;
+        line-height: 4.5rem;
+        width: 5rem;
+        height: 5rem;
+        text-align: center;
+        display: inline-block;
+        cursor: pointer;
 
         &:not(:last-child) {
-            margin-right: 2.5rem;
+            margin-right: 1.5rem;
         }
     }
 }
