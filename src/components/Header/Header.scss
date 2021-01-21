@@ -66,6 +66,7 @@
             width: 5.2rem;
             height: 5.2rem;
             border-radius: 50%;
+            cursor: pointer;
         }
     }
 
@@ -73,12 +74,14 @@
         font-size: 2rem;
         color: $color-grey-dark-3;
         padding: .5rem;
+        cursor: pointer;
     }
 
     &__notification {
         font-size: 3rem;
         color: $color-grey-dark-3;
         position: relative;
+        cursor: pointer;
     }
 }
 
