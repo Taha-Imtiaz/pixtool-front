@@ -16,9 +16,7 @@ function Home() {
     const openModalHandler = () => {
         setShow(true)
     }
-    const createNew = () => {
-        
-    }
+    const createNew = () => {}
 
     return (
         <div>
@@ -43,7 +41,7 @@ function Home() {
 
                                     <div className="library__head__buttons">
                                         <Button text="Share" click={openModalHandler} />
-                                        <Button text="Create New" click={createNew}/>
+                                        <Button text="Create New" click={createNew} />
                                     </div>
                                 </div>
                             </div>

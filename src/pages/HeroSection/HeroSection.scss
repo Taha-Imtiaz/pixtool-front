@@ -1,0 +1,112 @@
+@import '../../scss/variables.scss';
+
+.heroSec {
+    display: grid;
+    grid-template-rows: min-content 90vh 500px;
+
+    &__header {
+        background-color: orange;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 4rem;
+    }
+
+    &__logo {
+        display: inline-block;
+
+        .logo-img {
+            width: auto;
+            max-width: 100%;
+            max-height: 70px;
+        }
+    }
+
+    &__billBoard {
+    }
+
+    &__features {
+        background-color: orange;
+    }
+}
+
+.navigation {
+
+    &__list {
+        display: flex;
+        gap: 3rem;
+        list-style: none;
+    }
+
+    &__link {
+        font-size: 2rem;
+        font-family: 'Poppins', sans-serif;
+        color: $color-grey-light-4;
+        padding: .5rem 2.5rem;
+        transition: all .3s;
+
+        &:focus,
+        &:active,
+        &:hover {
+            outline: none;
+            color: $color-white;
+            background-color: $color-blue;
+        }
+
+        &--blue {
+            color: $color-white;
+            background-color: $color-blue;
+            border-radius: 100px;
+
+            &:focus,
+            &:active,
+            &:hover {
+                outline: none;
+                color: $color-white;
+                background-color: rgba($color-blue, .8);
+            }
+        }
+
+    }
+}
+
+.billBoard {
+    display: grid;
+    grid-template-columns: 40% 60%;
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 90vh;
+    }
+
+    &__text {
+        color: $color-grey-dark-5;
+        font-size: 5rem;
+        font-weight: bold;
+        font-family: 'Open Sans', 'Segoe UI', sans-serif;
+        padding: 1rem;
+        margin: auto 0;
+        display: inline-block;
+        width: 36.5rem;
+
+        /* -webkit-box-decoration-break: clone;
+        box-decoration-break: clone; */
+
+        &--blue {
+            color: $color-blue;
+        }
+    }
+
+    &__right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+    }
+
+    &__img {
+        width: 80%;
+    }
+}
