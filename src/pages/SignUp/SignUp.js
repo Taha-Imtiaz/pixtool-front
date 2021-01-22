@@ -1,8 +1,10 @@
 import React from 'react'
 import './SignUp.scss'
 import SignUpBG from '../../images/signUp.png'
+import { useHistory } from 'react-router-dom';
 
 const SignUp = () => {
+    const history = useHistory();
 
     const showPassword = () => {
         var input = document.getElementById("password");
@@ -10,13 +12,13 @@ const SignUp = () => {
         var x = document.getElementById("showPass");
         var y = document.getElementById("hidePass");
 
-        if (input.type === 'password' || inputC.type === 'password'){
+        if (input.type === 'password' || inputC.type === 'password') {
             input.type = "text";
             inputC.type = "text";
             x.style.display = 'none';
             y.style.display = 'inline-block';
         }
-        
+
     }
 
     const hidePassword = () => {
@@ -25,7 +27,7 @@ const SignUp = () => {
         var x = document.getElementById("showPass");
         var y = document.getElementById("hidePass");
 
-        if (input.type === 'text' || inputC.type === 'text'){
+        if (input.type === 'text' || inputC.type === 'text') {
             input.type = "password";
             inputC.type = "password";
             x.style.display = 'inline-block';
@@ -79,7 +81,7 @@ const SignUp = () => {
                     </div>
 
                     <div class="form__group">
-                        <button class="btn btn--large">Sign Up</button>
+                        <button class="btn btn--large" onClick={() => history.push('/home')}>Sign Up</button>
                     </div>
                 </form>
 

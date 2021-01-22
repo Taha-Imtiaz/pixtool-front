@@ -2,20 +2,22 @@ import React from 'react'
 import './SignIn.scss'
 import SignInBG from '../../images/signIn.png';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const SignIn = () => {
+    const history = useHistory();
 
     const showPassword = () => {
         var input = document.getElementById("password");
         var x = document.getElementById("showPass");
         var y = document.getElementById("hidePass");
 
-        if (input.type === 'password'){
+        if (input.type === 'password') {
             input.type = "text";
             x.style.display = 'none';
             y.style.display = 'inline-block';
         }
-        
+
     }
 
     const hidePassword = () => {
@@ -23,7 +25,7 @@ const SignIn = () => {
         var x = document.getElementById("showPass");
         var y = document.getElementById("hidePass");
 
-        if (input.type === 'text'){
+        if (input.type === 'text') {
             input.type = "password";
             x.style.display = 'inline-block';
             y.style.display = 'none';
@@ -61,7 +63,7 @@ const SignIn = () => {
                     </div>
 
                     <div class="form__group">
-                        <button class="btn btn--large">Sign In</button>
+                        <button class="btn btn--large" onClick={() => history.push('/home')}>Sign In</button>
                     </div>
                 </form>
 
