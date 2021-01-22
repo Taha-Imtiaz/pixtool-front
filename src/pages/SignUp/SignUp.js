@@ -2,9 +2,12 @@ import React from 'react'
 import './SignUp.scss'
 import SignUpBG from '../../images/signUp.png'
 import { useHistory } from 'react-router-dom';
+import ButtonLarge from '../../components/Button/ButtonLarge';
 
 const SignUp = () => {
     const history = useHistory();
+
+    const createNew = () => {}
 
     const showPassword = () => {
         var input = document.getElementById("password");
@@ -81,7 +84,8 @@ const SignUp = () => {
                     </div>
 
                     <div class="form__group">
-                        <button class="btn btn--large" onClick={() => history.push('/home')}>Sign Up</button>
+                        {/* <button class="btn btn--large btn--blue" onClick={() => history.push('/home')}>Sign Up</button> */}
+                        <ButtonLarge text="Sign Up" click={createNew, () => history.push('/home')}/>
                     </div>
                 </form>
 

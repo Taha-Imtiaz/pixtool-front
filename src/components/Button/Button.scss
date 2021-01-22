@@ -1,13 +1,16 @@
 @import "../../scss/variables.scss";
 
 .btn {
-    color: $color-light-1;
-    background-color: $color-blue;
     text-align: center;
     border: none;
     cursor: pointer;
 
-    &--normal{
+    &--blue {
+        color: $color-light-1;
+        background-color: $color-blue;
+    }
+
+    &--normal {
         font-family: 'Segoe UI', 'Open Sans', sans-serif;
         font-size: 1.8rem;
         width: 13rem;
@@ -16,8 +19,10 @@
     }
 
     &--large {
+        font-family: 'Open Sans', 'Segoe UI', sans-serif;
         font-size: 2.6rem;
         width: 45rem;
         padding: 1rem 0;
+        border-radius: 10px;
     }
 }
