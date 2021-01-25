@@ -1,11 +1,11 @@
 @import '../../scss/variables.scss';
+@import '../../scss/fonts.scss';
 
 .heroSec {
     display: grid;
-    grid-template-rows: min-content 90vh 500px;
+    grid-template-rows: 10vh 90vh minmax(100vh, min-content);
 
     &__header {
-        background-color: orange;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -26,7 +26,6 @@
     }
 
     &__features {
-        background-color: orange;
     }
 }
 
@@ -62,7 +61,6 @@
             &:active,
             &:hover {
                 outline: none;
-                color: $color-white;
                 background-color: rgba($color-blue, .8);
             }
         }
@@ -83,13 +81,14 @@
 
     &__text {
         color: $color-grey-dark-5;
-        font-size: 5rem;
+        font-size: 7rem;
         font-weight: bold;
-        font-family: 'Open Sans', 'Segoe UI', sans-serif;
+        font-family: 'Metropolis', 'Open Sans', 'Segoe UI', sans-serif;
+        text-transform: capitalize;
         padding: 1rem;
         margin: auto 0;
         display: inline-block;
-        width: 36.5rem;
+        width: 48rem;
 
         /* -webkit-box-decoration-break: clone;
         box-decoration-break: clone; */
@@ -108,5 +107,25 @@
 
     &__img {
         width: 80%;
+    }
+}
+
+.features {
+
+    &__heading {
+        color: $color-blue;
+        font-family: 'Open Sans', 'Segoe UI', sans-serif;
+        font-size: 6rem;
+        font-weight: 600;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 6rem 2rem;
+    }
+
+    &__content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12rem;
     }
 }

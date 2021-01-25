@@ -8,12 +8,27 @@
     &--blue {
         color: $color-light-1;
         background-color: $color-blue;
+
+        &:focus,
+        &:active,
+        &:hover {
+            outline: none;
+            background-color: rgba($color-blue, .8);
+        }
     }
 
     &--normal {
         font-family: 'Segoe UI', 'Open Sans', sans-serif;
         font-size: 1.8rem;
         width: 13rem;
+        padding: .8rem .5rem;
+        border-radius: 5px;
+    }
+
+    &--poppins {
+        font-family: 'Poppins', 'Segoe UI', 'Open Sans', sans-serif;
+        font-size: 2.2rem;
+        width: 18rem;
         padding: .8rem .5rem;
         border-radius: 5px;
     }
