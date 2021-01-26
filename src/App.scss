@@ -1,4 +1,5 @@
 @import "scss/variables.scss";
+@import "scss/fonts.scss";
 
 *,
 *::before,
@@ -29,6 +30,16 @@ a {
 .heading-small {
   font-size: 3.3rem;
   color: $color-grey-dark-2;
+}
+
+.heading-features {
+  color: $color-blue;
+  font-family: 'Open Sans', 'Segoe UI', sans-serif;
+  font-size: 6rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0 2rem 8rem 2rem;
 }
 
 //////////////////////////////////////////////////////////////////
