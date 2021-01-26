@@ -3,7 +3,7 @@
 
 .heroSec {
     display: grid;
-    grid-template-rows: 10vh 90vh minmax(100vh, min-content);
+    grid-template-rows: 10vh 90vh min-content min-content;
 
     &__header {
         display: flex;
@@ -22,10 +22,8 @@
         }
     }
 
-    &__billBoard {
-    }
-
     &__features {
+        padding: 8rem 0;
     }
 }
 
@@ -88,10 +86,7 @@
         padding: 1rem;
         margin: auto 0;
         display: inline-block;
-        width: 48rem;
-
-        /* -webkit-box-decoration-break: clone;
-        box-decoration-break: clone; */
+        width: 50rem;
 
         &--blue {
             color: $color-blue;
@@ -112,20 +107,53 @@
 
 .features {
 
-    &__heading {
-        color: $color-blue;
-        font-family: 'Open Sans', 'Segoe UI', sans-serif;
-        font-size: 6rem;
-        font-weight: 600;
-        text-align: center;
-        text-transform: uppercase;
-        padding: 6rem 2rem;
-    }
-
     &__content {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 12rem;
+    }
+}
+
+.stories {
+    height: 80vh;
+    padding: 8rem 0;
+
+    &__content {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5rem;
+    }
+
+    &__img {
+        &--1 {
+            max-width: 100%;
+        }
+
+        &--2 {
+            max-width: 65%;
+        }
+    }
+
+    &__text {
+        color: $color-grey-dark-6;
+        font-family: 'Metropolis', 'Open Sans', 'Segoe UI', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        padding: 1rem 2rem;
+        padding-bottom: 2rem;
+
+        &--1 {
+            max-width: 60rem;
+        }
+
+        &--2 {
+            padding: 4rem 20rem 8rem 20rem;
+        }
+
+        /* -webkit-box-decoration-break: clone;
+        box-decoration-break: clone; */
     }
 }
