@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Tab from './Tab';
-import './NavigationTabs.scss';
+import InnerTab from './InnerTab';
+import './InnerNav.scss';
 
-class Tabs extends Component {
+class InnerTabs extends Component {
     static propTypes = {
         children: PropTypes.instanceOf(Array).isRequired,
     }
@@ -32,13 +32,13 @@ class Tabs extends Component {
         } = this;
 
         return (
-            <div className="tabs">
-                <ol className="tab-list">
+            <div className="inner-tabs">
+                <ol className="inner-tab-list">
                     {children.map((child) => {
                         const { label } = child.props;
 
                         return (
-                            <Tab
+                            <InnerTab
                                 activeTab={activeTab}
                                 key={label}
                                 label={label}
@@ -47,7 +47,7 @@ class Tabs extends Component {
                         );
                     })}
                 </ol>
-                <div className="tab-content">
+                <div className="inner-tab-content">
                     {children.map((child) => {
                         if (child.props.label !== activeTab) return undefined;
                         return child.props.children;
@@ -58,4 +58,4 @@ class Tabs extends Component {
     }
 }
 
-export default Tabs;
+export default InnerTabs;

@@ -5,7 +5,7 @@ import Logo from '../../images/logo-black.png';
 import OnePlatform from '../../images/one-platform-for-all.jpg';
 import MoreGraphics from '../../images/more-graphics.jpg';
 import ButtonPoppins from "../../components/Button/ButtonPoppins";
-import FeaturesCard from '../../components/Cards/FeaturesCard';
+import FeaturesCard from '../../components/Cards/FeaturesCard/FeaturesCard';
 import { Link } from 'react-router-dom';
 
 function HeroSection() {
@@ -29,7 +29,7 @@ function HeroSection() {
                             <li className="navigation__links"><a href="" className="navigation__link">About us</a></li>
                             <li className="navigation__links">
                                 {/* <a href="" className="navigation__link navigation__link--blue">Login</a> */}
-                                <Link to="/sign-in" className="navigation__link navigation__link--blue">Sign In</Link>
+                                <Link to="/sign-in" className="navigation__link navigation__link--blue">Login</Link>
                             </li>
                         </ul>
                     </nav>

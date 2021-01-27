@@ -1,8 +1,8 @@
 import React from 'react';
-import './Cards.scss'
-import VideoCam2x from '../../images/video-cam-2x.png';
-import VideoPlayer2x from '../../images/video-player-2x.png';
-import Stage2x from '../../images/stage-2x.png';
+import './FeaturesCard.scss'
+import VideoCam2x from '../../../images/video-cam-2x.png';
+import VideoPlayer2x from '../../../images/video-player-2x.png';
+import Stage2x from '../../../images/stage-2x.png';
 
 function FeaturesCard() {
     return (

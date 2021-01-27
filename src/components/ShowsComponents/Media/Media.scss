@@ -1,0 +1,9 @@
+.media {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6rem;
+
+    padding: 3rem 2rem;
+    height: 50rem;
+    overflow-y: scroll;
+}

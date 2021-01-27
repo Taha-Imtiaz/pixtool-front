@@ -1,6 +1,6 @@
 import React from 'react';
-import './Cards.scss';
-import Thumbnail from '../../images/thumbnail.jpg'
+import './ThumbnailCard.scss';
+import Thumbnail from '../../../images/thumbnail.jpg'
 
 function ThumbnailCard() {
     return (

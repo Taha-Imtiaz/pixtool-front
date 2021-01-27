@@ -6,7 +6,7 @@ const Modal = ({ show, close }) => {
     return (
         <div className="modal-wrapper"
             style={{
-                transform: show ? 'translate(32%, 50%)' : 'translateY(-100vh)',
+                transform: show ? 'translate(30%, 50%)' : 'translateY(-30%, -100vh)',
                 opacity: show ? '1' : '0'
             }}
         >

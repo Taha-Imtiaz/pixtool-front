@@ -1,0 +1,62 @@
+@import '../../../scss/variables.scss';
+
+.stagesThumbnailCard {
+    width: 52rem;
+    height: 18rem   ;
+    box-shadow: 2px 3px 6px $color-dark-3;
+    border-radius: 12px;
+
+    &__text {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Segoe UI', 'Open Sans', sans-serif;
+        padding: 2rem;
+        margin-bottom: 1rem;
+
+        &--title {
+            color: $color-grey-dark-3;
+            font-size: 2rem;
+            font-weight: bold;
+            font-family: inherit;
+        }
+
+        &--export {
+            color: $color-green;
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-family: inherit;
+        }
+    }
+
+    &__img {
+        display: flex;
+        gap: 2rem;
+        padding: 0 2rem;
+        
+        
+    }
+}
+
+.stagesCardThumbnail {
+        width: 8rem;
+        height: 8rem;
+        border-radius: 5px;
+        background-color: $color-grey-light-7;
+        transition: all .2s;
+
+        &:hover,
+        &:focus {
+            transform: scale(.9);
+            font-size: 3rem;
+        }
+
+        &--addBtn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $color-green;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+}

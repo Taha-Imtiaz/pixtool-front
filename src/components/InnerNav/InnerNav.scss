@@ -1,0 +1,26 @@
+@import "../../scss/variables.scss";
+
+.inner-tab-list {
+    font-family: 'Segoe UI', sans-serif;
+
+    &-item {
+        display: inline-block;
+        color: $color-grey-light-8;
+        font-size: 2rem;
+        font-weight: bold;
+        padding: 1rem 3rem;
+        border: none;
+        cursor: pointer;
+        transition: all .3s;
+
+        &:first-child {
+            padding-left: 2rem;
+        }
+    }
+
+    &-active,
+    &-focus {
+        outline: none;
+        color: $color-blue;
+    }
+}

@@ -1,22 +1,7 @@
 @import "../../scss/variables.scss";
 
-.home {
-    display: grid;
-    grid-template-columns: min-content 1fr;
-
-    background-color: $color-light-2;
-}
-
-.header {
-    grid-column: 2 / 3;
-}
-
-.tabs {
-    grid-column: 2 / 3;
-}
-
-.library {
-
+/* .library {
+    
     &__head {
         display: flex;
         justify-content: space-between;
@@ -28,11 +13,11 @@
             gap: 2rem;
         }
     }
-
+    
     &__head-right {
         display: flex;
         gap: 2rem;
-    }
+    } 
 
     &__main {
         margin: 1.5rem;
@@ -64,4 +49,4 @@
     padding: 4rem;
     display: flex;
     gap: 2.5rem;
-}
+} */
