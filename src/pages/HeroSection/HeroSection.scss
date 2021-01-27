@@ -3,7 +3,7 @@
 
 .heroSec {
     display: grid;
-    grid-template-rows: 10vh 90vh min-content min-content;
+    grid-template-rows: 10vh 90vh min-content min-content min-content;
 
     &__header {
         display: flex;
@@ -116,7 +116,7 @@
 }
 
 .stories {
-    height: 80vh;
+    // height: 80vh;
     padding: 8rem 0;
 
     &__content {
@@ -155,5 +155,62 @@
 
         /* -webkit-box-decoration-break: clone;
         box-decoration-break: clone; */
+    }
+}
+
+.footer {
+    height: 25rem;
+    background-color: $color-blue;
+    font-family: 'Metropolis', 'Open Sans', 'Segoe UI', sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    &__social {
+
+        &--icons {
+            &:not(:last-child) {
+                margin-right: 1.5rem;
+            }
+        }
+
+        &--links {
+            text-decoration: none;
+            font-size: 2.5rem;
+            border-radius: 50%;
+            border: 2px solid $color-white;
+            background-color: $color-white;
+            color: $color-blue;
+            line-height: 5.1rem;
+            width: 5rem;
+            height: 5rem;
+            text-align: center;
+            display: inline-block;
+        }
+    }
+
+    &__list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.8rem;
+
+        &--item {
+            list-style: none;
+
+            & > a {
+                text-decoration: none;
+                font-size: 1.8rem;
+                color: $color-white;
+            }
+        }
+    }
+
+    &__copyright {
+        font-size: 1.8rem;
+        color: $color-white;
     }
 }
