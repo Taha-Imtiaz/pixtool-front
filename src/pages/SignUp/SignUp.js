@@ -7,7 +7,9 @@ import ButtonLarge from '../../components/Button/ButtonLarge';
 const SignUp = () => {
     const history = useHistory();
 
-    const createNew = () => {}
+    const createNew = () => {
+        history.push('/home') 
+    }
 
     const showPassword = () => {
         var input = document.getElementById("password");
@@ -77,7 +79,7 @@ const SignUp = () => {
                         <input type="checkbox"></input>
                         <span className="authLinks">
                             &nbsp; I, agree with all the
-                            <a href="" className="authLinks authLinks--blue">
+                            <a href="./#" className="authLinks authLinks--blue">
                                 <strong>&nbsp;Terms & Conditions</strong>
                             </a>
                         </span>
@@ -85,7 +87,7 @@ const SignUp = () => {
 
                     <div class="form__group">
                         {/* <button class="btn btn--large btn--blue" onClick={() => history.push('/home')}>Sign Up</button> */}
-                        <ButtonLarge text="Sign Up" click={createNew, () => history.push('/home')}/>
+                        <ButtonLarge text="Sign Up" click={createNew}/>
                     </div>
                 </form>
 

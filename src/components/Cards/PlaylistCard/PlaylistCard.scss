@@ -1,0 +1,53 @@
+@import '../../../scss/variables.scss';
+@import '../../../scss/fonts.scss';
+
+.playlistCard {
+    display: grid;
+    grid-template-columns: 42% 40% 15%;
+    align-items: center;
+    gap: 1rem;
+
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
+    font-weight: 600;
+    padding: 1.5rem 0;
+
+    &__text {
+        font-family: inherit;
+        font-size: 2rem;
+        font-weight: inherit;
+        color: $color-grey-dark-7;
+    }
+
+    &__img {
+        display: flex;
+        gap: 2rem;
+    }
+
+    &__Thumbnail {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 5px;
+        background-color: $color-grey-light-7;
+        transition: all .2s;
+
+        &:hover,
+        &:focus {
+            transform: scale(.9);
+            font-size: 3rem;
+        }
+    }
+
+    &__allMedia {
+        font-family: inherit;
+        font-size: 1.6rem;
+        font-weight: inherit;
+        color: $color-green;
+        cursor: pointer;
+        transition: all .2s;
+
+        &:hover,
+        &:focus {
+            transform: scale(.95);
+        }
+    }
+}

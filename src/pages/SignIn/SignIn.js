@@ -8,7 +8,9 @@ import ButtonLarge from '../../components/Button/ButtonLarge';
 const SignIn = () => {
     const history = useHistory();
 
-    const createNew = () => {}
+    const createNew = () => {
+        history.push('/home')
+    }
 
     const showPassword = () => {
         var input = document.getElementById("password");
@@ -67,7 +69,7 @@ const SignIn = () => {
 
                     <div class="form__group">
                         {/* <button class="btn btn--large btn--blue" onClick={() => history.push('/home')}>Sign In</button> */}
-                        <ButtonLarge text="Sign In" click={createNew, () => history.push('/home')} />
+                        <ButtonLarge text="Sign In" click={createNew} />
                     </div>
                 </form>
 

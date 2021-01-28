@@ -12,25 +12,25 @@ function Sidebar() {
             <nav className="sidebar__nav">
                 <ul className="sidebar__list">
                     <li className="sidebar__link">
-                        <a href="">
+                        <a href="./#">
                             <i class="far fa-user"></i>
                             <span>Team Management</span>
                         </a>
                     </li>
                     <li className="sidebar__link">
-                        <a href="">
+                        <a href="./#">
                             <i class="far fa-user"></i>
                             <span>Account Management</span>
                         </a>
                     </li>
                     <li className="sidebar__link">
-                        <a href="">
+                        <a href="./#">
                             <i class="far fa-user"></i>
                             <span>Join Requests</span>
                         </a>
                     </li>
                     <li className="sidebar__link">
-                        <a href="">
+                        <a href="./#">
                             <i class="far fa-user"></i>
                             <span>Settings</span>
                         </a>

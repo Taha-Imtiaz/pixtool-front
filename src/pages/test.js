@@ -1,11 +1,12 @@
 import React from 'react'
-import StagesThumbnailCard from '../components/Cards/StagesThumbnailCard/StagesThumbnailCard';
+// import StagesThumbnailCard from '../components/Cards/StagesThumbnailCard/StagesThumbnailCard';
+import Playlist from '../components/Playlist/Playlist';
 
 function test() {
     return (
-        <div style={{margin: "5rem", display: "flex", gap: "2rem"}}>
-            <StagesThumbnailCard />
-            <StagesThumbnailCard />
+        <div style={{padding: "5rem", backgroundColor: "orange"}}>
+            {/* <StagesThumbnailCard /> */}
+            <Playlist />
         </div>
     )
 }
