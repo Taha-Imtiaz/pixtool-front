@@ -23,10 +23,10 @@ function HeroSection() {
                 <div className="heroSec__nav">
                     <nav className="navigation">
                         <ul className="navigation__list">
-                            <li className="navigation__links"><a href="" className="navigation__link">Home</a></li>
-                            <li className="navigation__links"><a href="" className="navigation__link">Partners</a></li>
-                            <li className="navigation__links"><a href="" className="navigation__link">Services</a></li>
-                            <li className="navigation__links"><a href="" className="navigation__link">About us</a></li>
+                            <li className="navigation__links"><a href="./#" className="navigation__link">Home</a></li>
+                            <li className="navigation__links"><a href="./#" className="navigation__link">Partners</a></li>
+                            <li className="navigation__links"><a href="./#" className="navigation__link">Services</a></li>
+                            <li className="navigation__links"><a href="./#" className="navigation__link">About us</a></li>
                             <li className="navigation__links">
                                 {/* <a href="" className="navigation__link navigation__link--blue">Login</a> */}
                                 <Link to="/sign-in" className="navigation__link navigation__link--blue">Login</Link>
@@ -45,7 +45,7 @@ function HeroSection() {
                         </span>
                     </div>
                     <div className="billBoard__right">
-                        <img src={billboardBG} alt="An image showing video editing" className="billBoard__img" />
+                        <img src={billboardBG} alt="An illustration showing video editing" className="billBoard__img" />
                     </div>
                 </div>
             </div>
@@ -84,17 +84,17 @@ function HeroSection() {
             <div className="heroSec__footer">
                 <div className="footer">
                     <div className="footer__social">
-                        <span className="footer__social--icons"><a href="#" className="footer__social--links"><i class="fab fa-facebook-f"></i></a></span>
-                        <span className="footer__social--icons"><a href="#" className="footer__social--links"><i class="fab fa-twitter"></i></a></span>
-                        <span className="footer__social--icons"><a href="#" className="footer__social--links"><i class="fab fa-whatsapp"></i></a></span>
-                        <span className="footer__social--icons"><a href="#" className="footer__social--links"><i class="fab fa-instagram"></i></a></span>
-                        <span className="footer__social--icons"><a href="#" className="footer__social--links"><i class="fab fa-linkedin-in"></i></a></span>
+                        <span className="footer__social--icons"><a href="./#" className="footer__social--links"><i class="fab fa-facebook-f"></i></a></span>
+                        <span className="footer__social--icons"><a href="./#" className="footer__social--links"><i class="fab fa-twitter"></i></a></span>
+                        <span className="footer__social--icons"><a href="./#" className="footer__social--links"><i class="fab fa-whatsapp"></i></a></span>
+                        <span className="footer__social--icons"><a href="./#" className="footer__social--links"><i class="fab fa-instagram"></i></a></span>
+                        <span className="footer__social--icons"><a href="./#" className="footer__social--links"><i class="fab fa-linkedin-in"></i></a></span>
                     </div>
 
                     <div className="footer__links">
                         <ul className="footer__list">
-                            <li className="footer__list--item"><a href="#">Terms of Use</a></li>
-                            <li className="footer__list--item"><a href="#">Privacy Policy</a></li>
+                            <li className="footer__list--item"><a href="./#">Terms of Use</a></li>
+                            <li className="footer__list--item"><a href="./#">Privacy Policy</a></li>
                         </ul>
                     </div>
 

@@ -6,6 +6,7 @@ import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Library from '../../components/Library/Library';
 import Media from '../../components/ShowsComponents/Media/Media';
+import Settings from '../../components/ShowsComponents/Settings/Settings';
 
 function Home() {
 
@@ -25,7 +26,7 @@ function Home() {
 
                     {/* Shows Tab Content */}
                     <div label="Shows">
-                        <InnerTabs className="">
+                        <InnerTabs>
 
                             {/* Shows - Overview Tab Content */}
                             <div label="Overview">
@@ -34,7 +35,7 @@ function Home() {
 
                             {/* Shows - Settings Tab Content */}
                             <div label="Settings">
-                                Settings
+                                <Settings />
                             </div>
 
                             {/*Shows - Media Tab Content */}
