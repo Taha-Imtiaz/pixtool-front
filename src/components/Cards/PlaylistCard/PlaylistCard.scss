@@ -3,7 +3,7 @@
 
 .playlistCard {
     display: grid;
-    grid-template-columns: 42% 40% 15%;
+    grid-template-columns: 40% 40% 15%;
     align-items: center;
     gap: 1rem;
 
@@ -13,7 +13,7 @@
 
     &__text {
         font-family: inherit;
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: inherit;
         color: $color-grey-dark-7;
     }

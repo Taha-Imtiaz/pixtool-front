@@ -1,0 +1,51 @@
+@import '../../../scss/variables.scss';
+
+.settings {
+    padding: 2rem 4rem;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    .settings__stage {
+        width: 100%;
+        font-family: 'Segoe UI', 'Open Sans', sans-serif;
+        padding: 2rem;
+        background-color: $color-white;
+        border-radius: 20px;
+
+        &--title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: $color-grey-dark-3;
+        }
+
+        &--cards {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            padding: 2rem;
+        }
+    }
+
+    &__notes {
+        width: 48rem;
+        padding: 2rem;
+        background-color: $color-white;
+        border-radius: 20px;
+        overflow: auto;
+
+        &--title {
+            font-size: 2.5rem;
+            color: $color-grey-dark-3;
+            padding-bottom: 2rem;
+        }
+
+        &--text {
+            font-family: inherit;
+            font-size: 1.6rem;
+            color: $color-grey-dark-7;
+        }
+    }
+
+}
