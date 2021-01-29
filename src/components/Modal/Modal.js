@@ -7,7 +7,8 @@ const Modal = ({ show, close }) => {
         <div className="modal-wrapper"
             style={{
                 transform: show ? 'translate(30%, 50%)' : 'translateY(-30%, -100vh)',
-                opacity: show ? '1' : '0'
+                opacity: show ? '1' : '0',
+                zIndex: show ? '1000' : '-1',
             }}
         >
             <div className="modal-header">
