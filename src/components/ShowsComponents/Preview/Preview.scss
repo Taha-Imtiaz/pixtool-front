@@ -1,5 +1,21 @@
 @import '../../../scss/variables.scss';
 
-/* .preview {
+.preview {
 
-} */
+    &__content {
+
+        &--1 {
+            width: 96rem;
+            height: 52rem;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        &--2 {
+            display: flex;
+            justify-content: center;
+            gap: 8rem;
+            padding: 2rem 0 4rem;
+        }
+    }
+}
