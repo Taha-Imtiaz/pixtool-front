@@ -7,6 +7,8 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Library from '../../components/Library/Library';
 import Media from '../../components/ShowsComponents/Media/Media';
 import Settings from '../../components/ShowsComponents/Settings/Settings';
+import Overview from '../../components/ShowsComponents/Overview/Overview';
+import Preview from '../../components/ShowsComponents/Preview/Preview';
 
 function Home() {
 
@@ -30,7 +32,7 @@ function Home() {
 
                             {/* Shows - Overview Tab Content */}
                             <div label="Overview">
-                                Overview
+                                <Overview />
                             </div>
 
                             {/* Shows - Settings Tab Content */}
@@ -45,7 +47,7 @@ function Home() {
 
                             {/*Shows -  Preview Tab Content */}
                             <div label="Preview">
-                                Preview
+                                <Preview />
                             </div>
 
                             {/*Shows - Export Tab Content */}

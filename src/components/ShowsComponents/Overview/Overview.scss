@@ -1,0 +1,46 @@
+@import '../../../scss/variables.scss';
+
+.overview {
+    margin: 2rem;
+    padding: 2rem 4rem;
+    background-color: $color-white;
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Segoe UI', 'Open Sans', sans-serif;
+    }
+
+    &__label {
+        font-family: inherit;
+        font-size: 2.3rem;
+        font-weight: 600;
+        color: $color-grey-light-9;
+        padding: 2rem 0;
+    }
+
+    &__input {
+        width: 115rem;
+        height: 5rem;
+        font-family: inherit;
+        font-size: 1.8rem;
+        color: $color-grey-dark-7;
+        padding: 1rem 2rem;
+        border: none;
+        background-color: $color-light-3;
+        transition: all .3s;
+
+        &--textArea {
+            width: 115rem;
+            max-width: 115rem;
+            height: 15rem;
+            max-height: 50rem;
+        }
+
+        &:focus,
+        &:active {
+            outline: none;
+            box-shadow: 1px 1px 3px $color-grey-light-5;
+        }
+    }
+}
