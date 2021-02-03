@@ -1,0 +1,99 @@
+@import '../../../scss/variables.scss';
+
+.export {
+    position: relative;
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
+
+    &__buttons {
+        display: flex;
+        gap: 2rem;
+
+        position: absolute;
+        top: -6.5rem;
+        right: 2rem;
+    }
+
+    &__details {
+        margin: 2rem;
+        padding: 2rem;
+        font-family: inherit;
+        border-radius: 1.2rem;
+        background-color: $color-white;
+        box-shadow: 1px 2px 4px $color-dark-3;
+
+        display: flex;
+    }
+
+    &__title {
+        min-width: 15rem;
+        color: $color-grey-dark-3;
+        font-size: 2.5rem;
+        font-weight: 600;
+        font-family: inherit;
+    }
+
+    &__content {
+        min-width: 25rem;
+        color: $color-grey-light-8;
+        font-size: 1.8rem;
+        font-family: inherit;
+    }
+
+    &__flex {
+
+        &--1 {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        &--2 {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem;
+        }
+
+        &--3 {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+    }
+
+    &__wallStageLargeCard {
+        max-width: 60%;
+
+        & .splide {
+            width: 630px;
+        }
+
+        /* & .splide__slide {
+            width: 150px !important;
+        } */
+    }
+
+    &__show-notes {
+        padding: 2rem;
+        border-radius: 1.2rem;
+        background-color: $color-white;
+        box-shadow: 1px 2px 4px $color-dark-3;
+        font-family: 'Segoe UI', 'Open Sans', sans-serif;
+
+        .show-notes {
+            &__title {
+                font-family: inherit;
+                font-weight: bold;
+                font-size: 2rem;
+                color: $color-grey-dark-3;
+                padding: 2rem 0;
+            }
+    
+            &__content {
+                font-family: inherit;
+                font-weight: normal;
+                font-size: 1.6rem;
+                color: $color-grey-dark-7;
+            }
+        }
+    }
+}

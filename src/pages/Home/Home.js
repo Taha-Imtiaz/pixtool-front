@@ -9,6 +9,7 @@ import Media from '../../components/ShowsComponents/Media/Media';
 import Settings from '../../components/ShowsComponents/Settings/Settings';
 import Overview from '../../components/ShowsComponents/Overview/Overview';
 import Preview from '../../components/ShowsComponents/Preview/Preview';
+import Export from '../../components/ShowsComponents/Export/Export';
 
 function Home() {
 
@@ -52,7 +53,7 @@ function Home() {
 
                             {/*Shows - Export Tab Content */}
                             <div label="Export">
-                                Export
+                                <Export />
                             </div>
                         </InnerTabs>
                     </div>

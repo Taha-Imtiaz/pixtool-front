@@ -6,7 +6,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 // import { createSlides } from "../utils/slides";
 
-function WallStageLargeCard() {
+function WallStageLargeCard(props) {
 
     /* const createSlides = () => {} */
 
@@ -27,7 +27,7 @@ function WallStageLargeCard() {
                             autoWidth: true,
                             width: 780,
                             gap: '1rem', */
-                            perPage: 5,
+                            perPage: props.perPage,
                             perMove: 1,
                             rewind: true,
 

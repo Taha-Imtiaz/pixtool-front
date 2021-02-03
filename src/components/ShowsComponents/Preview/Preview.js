@@ -7,7 +7,7 @@ function Preview() {
     return (
         <div className="preview">
             <div className="preview__content--1">
-                <WallStageLargeCard />
+                <WallStageLargeCard perPage={5}/>
             </div>
             <div className="preview__content--2">
                 <StagesThumbnailCardV2 />

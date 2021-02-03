@@ -7,6 +7,7 @@ a {
 .sidebar {
     background-color: $color-blue;
     width: 20vw;
+    position: relative;
     // height: 100vh;
 
     display: grid;
@@ -54,6 +55,26 @@ a {
         &:active,
         &:focus {
             background-color: $color-grey-light-2;
+        }
+    }
+
+    &__drawer {
+        font-size: 6rem;
+        font-weight: bold;
+        color: $color-white;
+        
+        position: absolute;
+        top: -1rem;
+        right: 1rem;
+        transition: color .3s, cursor .3s;
+
+        &:hover {
+            cursor: pointer;
+            color: $color-grey-light-7;
+        }
+
+        &--opener {
+            display: none;
         }
     }
 }
