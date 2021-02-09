@@ -5,7 +5,9 @@
 .thumbnailCard {
     width: 30rem;
     height: 22rem;
-    border-radius: 5px;
+    // border-radius: 5px;
+    border-top-right-radius: 3rem;
+    border-bottom-left-radius: 3rem;
     background-color: $color-grey-dark-4;
     position: relative;
 
@@ -19,13 +21,18 @@
         font-size: 1.2rem;
         background-color: $color-red;
         padding: .5rem 1rem;
+        z-index: 1;
+        transition: filter .3s;
     }
 
     &__img>img {
         width: 30rem;
         height: 15rem;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        /* border-top-left-radius: 5px;
+        border-top-right-radius: 5px; */
+        border-top-right-radius: 3rem;
+        // border-bottom-left-radius: 3rem;
+        transition: filter .3s;
     }
 
     &__text {
@@ -44,6 +51,17 @@
         color: inherit;
         font-size: 1.4rem;
         margin-top: 5px;
+    }
+
+    &:hover {
+        cursor: pointer
+    }
+
+    &:hover &__img > img,
+    &:focus &__img > img,
+    &:hover &__status,
+    &:focus &__status {
+        filter: brightness(.65)
     }
 }
 

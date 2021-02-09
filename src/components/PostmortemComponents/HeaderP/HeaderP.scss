@@ -1,0 +1,84 @@
+@import '../../../scss/variables.scss';
+
+.headerP {
+    height: 6rem;
+    border-bottom: 1px solid $color-light-2;
+    background-color: $color-blue;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: .5rem;
+    padding-right: 2rem;
+
+    &__left-box {
+        display: flex;
+        align-items: center;
+
+        font-size: 2rem;
+        font-weight: 100;
+        padding: 0.5rem 1rem;
+        color: $color-white;
+
+    }
+
+    &__back-btn {
+
+        &:hover {
+            cursor: pointer;
+            color: $color-grey-light-6;
+        }
+    }
+
+    &__title {
+        padding-left: 2rem;
+    }
+
+    &__logo .logo-img {
+        width: 16rem;
+    }
+
+    &__right-box {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    &__notification {
+        font-size: 2.5rem;
+        color: $color-white;
+        padding-right: 1rem;
+        position: relative;
+        cursor: pointer;
+    }
+
+    &__help-icon {
+        font-size: 2rem;
+        border-radius: 50%;
+        border: 2px solid $color-white;
+        color: $color-white;
+        line-height: 3.5rem;
+        width: 4rem;
+        height: 4rem;
+        text-align: center;
+        display: inline-block;
+        cursor: pointer;
+    }
+}
+
+.notificationCount {
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+    padding: .2rem;
+    font-size: 1rem;
+    text-align: center;
+    color: $color-white;
+    background-color: $color-red;
+    border-color: $color-red;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 1.5rem;
+    left: 1.8rem;
+}

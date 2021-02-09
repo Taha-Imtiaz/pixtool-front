@@ -56,3 +56,35 @@ a {
 .dis-none {
   display: none;
 }
+
+// To truncate the text and include '...' at the end when overflowed
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+//Text-decoration: none for anchor tags
+.txt-dec-none {
+  text-decoration: none;
+  color: inherit;
+}
+
+//For All the dropdowns 
+.dropdown {
+  font-family: 'Segoe UI', 'Open Sans', sans-serif;
+  font-size: 2rem;
+  width: 13rem;
+  padding: .5rem;
+  border-radius: 5px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+
+  &:focus,
+  &:active,
+  &:hover {
+    outline: none;
+    background-color: rgba($color-light-1, .8);
+  }
+}

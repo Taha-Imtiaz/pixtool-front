@@ -1,0 +1,17 @@
+@import '../../scss/variables.scss';
+
+.postmortem {
+    display: grid;
+    grid-template-columns: .75fr .25fr;
+
+    background-color: $color-light-2;
+
+    &__header {
+        grid-column: 1 / -1;
+    }
+
+    &__sidebar {
+        grid-column: 2 / 3;
+        grid-row: 2 span 1
+    }
+}

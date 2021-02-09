@@ -1,0 +1,6 @@
+@import '../../../scss/variables.scss';
+
+.sidebarP {
+    height: calc(100vh - 6rem);
+    background-color: $color-blue;
+}

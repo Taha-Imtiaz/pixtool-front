@@ -3,8 +3,13 @@ import './ThumbnailCard.scss';
 import Thumbnail from '../../../images/thumbnail.jpg'
 
 function ThumbnailCard() {
+
+    const linkToPost = ()=> {
+        window.location.assign('/postmortem')
+    }
+
     return (
-        <div class="thumbnailCard">
+        <div class="thumbnailCard" onClick={linkToPost}>
             <div className="thumbnailCard__status">
                 Needs Approval
             </div>
