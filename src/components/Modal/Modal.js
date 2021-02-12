@@ -2,7 +2,7 @@ import React from 'react';
 import './Modal.scss';
 
 const Modal = ({ show, close }) => {
-    console.log(show, close);
+    
     return (
         <div className="modal-wrapper"
             style={{

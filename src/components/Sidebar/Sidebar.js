@@ -31,25 +31,25 @@ function Sidebar() {
                 <ul className="sidebar__list">
                     <li className="sidebar__link">
                         <a href="./#">
-                            <i class="far fa-user"></i>
+                            <i className="far fa-user"></i>
                             <span>Team Management</span>
                         </a>
                     </li>
                     <li className="sidebar__link">
                         <a href="./#">
-                            <i class="far fa-user"></i>
+                            <i className="far fa-user"></i>
                             <span>Account Management</span>
                         </a>
                     </li>
                     <li className="sidebar__link">
                         <a href="./#">
-                            <i class="far fa-user"></i>
+                            <i className="far fa-user"></i>
                             <span>Join Requests</span>
                         </a>
                     </li>
                     <li className="sidebar__link">
                         <a href="./#">
-                            <i class="far fa-user"></i>
+                            <i className="far fa-user"></i>
                             <span>Settings</span>
                         </a>
                     </li>

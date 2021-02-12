@@ -5,7 +5,7 @@ function Filter() {
     return (
         <div className="filter">
             <div className="filter__icon">
-                <i class="fas fa-filter"></i>
+                <i className="fas fa-filter"></i>
             </div>
             <select className="filter__dropdown" name="cars">
                 <option value="" default>Filter by position</option>

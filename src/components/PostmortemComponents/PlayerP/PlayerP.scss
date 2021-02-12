@@ -11,7 +11,9 @@
         object-fit: cover;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-        box-shadow: 0px 0px 3px 0px rgba($color-black, .2);
+        box-shadow: 1px 1px 5px 0px rgba($color-black, .2);
+        user-select: none;
+        pointer-events: none;
 
     }
 
@@ -20,7 +22,34 @@
         grid-template-rows: .5fr .5fr;
 
         height: 7rem;
-        box-shadow: 0px 0px 3px 0px rgba($color-black, .2);
+        box-shadow: 1px 1px 5px 0px rgba($color-black, .2);
+    }
+
+    &__control-area {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+
+        &--left,
+        &--right {
+            display: flex;
+            gap: 2.5rem;
+        }
+    }
+
+    &__icons {
+        height: 2rem;
+        width: 2rem;
+        font-size: 1.7rem;
+        font-weight: bold;
+
+        &:active,
+        &:focus,
+        &:hover {
+            color: rgba($color-white, .6);
+            cursor: pointer;
+        }
     }
 
     &__timestrip {
@@ -134,7 +163,7 @@
         position: absolute;
         width: 5rem;
         top: -42vh;
-        right:15rem;
+        right: 15rem;
     }
 }
 
@@ -144,5 +173,8 @@
 
 .emoji-mart {
     width: 30rem !important;
-    &-preview {display: none;}
+
+    &-preview {
+        display: none;
+    }
 }

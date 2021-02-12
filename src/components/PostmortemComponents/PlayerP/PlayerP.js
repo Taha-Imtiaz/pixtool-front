@@ -1,11 +1,19 @@
 import { React, useState } from 'react';
 import './PlayerP.scss';
-import Video from '../../../images/mov_bbb.mp4'
+import Video from '../../../images/mov_bbb.mp4';
 import Test1 from '../../../images/test1.jpg'
 import Avatar from '../../Avatar/Avatar';
 import ButtonSmall from '../../Button/ButtonSmall';
-import 'emoji-mart/css/emoji-mart.css'
-import { Picker } from 'emoji-mart'
+import 'emoji-mart/css/emoji-mart.css';
+import { Picker } from 'emoji-mart';
+// import PlayerControls from '../../../images/player-controls.svg';
+import FullScreen from '../../../images/full-screen.svg';
+// import Mute from '../../../images/mute.svg';
+import Play from '../../../images/play-button.svg';
+// import Pause from '../../../images/pause.svg';
+import Guides from '../../../images/guides.svg';
+import Loop from '../../../images/loop.svg';
+import Volume from '../../../images/volume.svg';
 
 function PlayerP() {
     const createNew = () => { }
@@ -44,7 +52,22 @@ function PlayerP() {
                 </div>
 
                 <div className="playerP__control-area">
+                    <div className="playerP__control-area--left">
+                        <img src={Play} alt="Play" title="Play" className="playerP__icons" />
+                        {/* <img src={Pause} alt="Pause" title="Pause" className="playerP__icons"/> */}
+                        <span className="playerP__icons" >1x</span>
+                        <img src={Loop} alt="Loop" title="Loop" className="playerP__icons" />
+                        <img src={Volume} alt="Volume" title="Volume" className="playerP__icons" />
+                        {/* <img src={Mute} alt="Mute" title="Mute" className="playerP__icons"/> */}
+                    </div>
 
+                    <div className="playerP__control-area--right">
+                        <img src={Guides} alt="Guides" title="Guides" className="playerP__icons" />
+                        <img src={FullScreen} alt="Full Screen" title="Full Screen" className="playerP__icons" />
+                    </div>
+                    {/* <svg className="playerP__icons">
+                        <use className="playerP__icons" href={PlayerControls + "#fullscreen"} />
+                    </svg> */}
                 </div>
             </div>
 
@@ -54,7 +77,7 @@ function PlayerP() {
                         <Avatar />
                     </div>
 
-                    <textarea className="playerP__text-area" placeholder="Leave your comment here..." name = "textValue" onChange={textAreaChangeHandle} value={textValue}></textarea>
+                    <textarea className="playerP__text-area" placeholder="Leave your comment here..." name="textValue" onChange={textAreaChangeHandle} value={textValue}></textarea>
                 </div>
 
                 <div className="playerP__comment-box--bottom">
@@ -79,14 +102,6 @@ function PlayerP() {
 
                 </div>
             </div>
-
-            {/* <div>
-                        <Picker set='apple' />
-                        <Picker onSelect={addEmoji} />
-                        <Picker title='Pick your emoji…' emoji='point_up' />
-                        <Picker style={{ position: 'absolute', bottom: '20px', right: '20px' }} />
-                        <Picker i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />
-                    </div> */}
         </div>
     )
 }

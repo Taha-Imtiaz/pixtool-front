@@ -5,11 +5,11 @@ import Thumbnail from '../../../images/thumbnail.jpg'
 function ThumbnailCard() {
 
     const linkToPost = ()=> {
-        window.location.assign('/postmortem')
+        window.location.assign('/player')
     }
 
     return (
-        <div class="thumbnailCard" onClick={linkToPost}>
+        <div className="thumbnailCard" onClick={linkToPost}>
             <div className="thumbnailCard__status">
                 Needs Approval
             </div>

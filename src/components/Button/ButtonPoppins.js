@@ -4,7 +4,7 @@ import './Button.scss'
 function ButtonPoppins(props) {
     return (
         <div>
-            <button class="btn btn--poppins btn--blue" onClick = {() => props.click()}>{props.text}</button>
+            <button className="btn btn--poppins btn--blue" onClick = {() => props.click()}>{props.text}</button>
         </div>
     )
 }

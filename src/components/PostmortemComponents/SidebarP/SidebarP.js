@@ -1,9 +1,12 @@
-import React from 'react';
+import { React, useState } from 'react';
 import './SidebarP.scss';
 import TabsP from '../NavigationTabsP/TabsP';
 import CommentP from '../../PostmortemComponents/CommentP/CommentP';
 
 function SidebarP() {
+    //For Video Description On Player Sidebar 
+    const [description, setDescription] = useState('a');
+
     return (
         <div className="sidebarP">
             <div className="sidebarP__head">
@@ -13,8 +16,34 @@ function SidebarP() {
                 </div>
 
                 <div className="sidebarP__description">
-                    <a href="./#" className="sidebarP__description--add-btn txt-dec-none"><i class="fas fa-plus-square"></i></a>
-                    <label className="sidebarP__description--add-label">Add Description</label>
+                    {description === ''
+                        ?
+                        <div className="sidebarP__description--1">
+                            <a href="./#" className="sidebarP__description--add-btn txt-dec-none"><i class="fas fa-plus-square"></i></a>
+                            <label className="sidebarP__description--add-label">Add Description</label>
+                        </div>
+                        :
+                        <div className="sidebarP__description--2">
+                            {/* <textarea className="description__text-area  description__text-area--1" name="descriptionValue"></textarea>
+                            <span className="description__buttons">
+                                <span className="description__button">Cancel</span>
+                                <span className="description__button">Save</span>
+                            </span> */}
+
+                            <textarea className="description__text-area" name="descriptionValue"></textarea>
+                            <span className="description__buttons">
+                                <span className="description__button">Cancel</span>
+                                <span className="description__button">Save</span>
+                            </span>
+                        </div>
+                    }
+                    {/* <div className="sidebarP__description--3">
+                        <textarea className="description__text-area" name="descriptionValue"></textarea>
+                        <span className="description__buttons">
+                            <span className="description__button">Cancel</span>
+                            <span className="description__button">Save</span>
+                        </span>
+                    </div> */}
                 </div>
             </div>
 

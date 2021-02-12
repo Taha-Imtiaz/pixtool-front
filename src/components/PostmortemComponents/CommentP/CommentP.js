@@ -7,7 +7,7 @@ function CommentP() {
         <div className="comment">
             <div className="comment__head">
                 <span className="comment__check">
-                    <input type="checkBox" class="checkbox" />
+                    <input type="checkBox" className="checkbox" />
                 </span>
                 <Avatar />
                 <span className="comment__name">John Doe</span>
@@ -22,11 +22,11 @@ function CommentP() {
             <div className="comment__bottom">
                 <div className="comment__bottom--left">
                     <span className="comment__reply">Reply</span>
-                    <span className="comment__icons"><a href="./#" className="txt-dec-none"><i class="far fa-thumbs-up"></i></a></span>
+                    <span className="comment__icons"><a href="./#" className="txt-dec-none"><i className="far fa-thumbs-up"></i></a></span>
                 </div>
                 <div className="comment__bottom--right">
-                    <span className="comment__icons"><a href="./#" className="txt-dec-none"><i class="far fa-edit"></i></a></span>
-                    <span className="comment__icons"><a href="./#" className="txt-dec-none"><i class="far fa-trash-alt"></i></a></span>
+                    <span className="comment__icons"><a href="./#" className="txt-dec-none"><i className="far fa-edit"></i></a></span>
+                    <span className="comment__icons"><a href="./#" className="txt-dec-none"><i className="far fa-trash-alt"></i></a></span>
                 </div>
             </div>
         </div>

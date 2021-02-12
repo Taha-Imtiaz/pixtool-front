@@ -4,10 +4,14 @@ import Logo from '../../../images/logo.png'
 import ButtonLight from '../../Button/ButtonLight'
 
 function HeaderP() {
+
+    const goBack = () => {
+        window.history.back(1);
+    }
     return (
         <div className="headerP">
             <div className="headerP__left-box">
-                <span className="headerP__back-btn"><a href="./#" className="txt-dec-none"><i class="fas fa-less-than"></i></a></span>
+                <span className="headerP__back-btn" onClick={goBack}><i class="fas fa-less-than"></i></span>
                 <span className="headerP__title .truncate">Best Samsung Mobile.mp4</span>
             </div>
             <div className="headerP__logo">
@@ -33,7 +37,7 @@ function HeaderP() {
 
                 <ButtonLight text="Share" />
 
-                <span className="headerP__notification"><i class="fas fa-bell"></i> <span className="notificationCount">1</span></span>
+                <span className="headerP__notification"><i className="fas fa-bell"></i> <span className="notificationCount">1</span></span>
 
                 <span className="headerP__help-icon">
                     <a href="./#" className="txt-dec-none"><i class="fas fa-question"></i></a>

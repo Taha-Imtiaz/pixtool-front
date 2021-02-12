@@ -23,7 +23,7 @@ function Library() {
                     <div className="library__head-right">
                         <div className="avatar__container">
                             <div className="avatar">
-                                <i class="fas fa-user-plus"></i>
+                                <i className="fas fa-user-plus"></i>
                             </div>
                             <Avatar />
                             <Avatar />

@@ -51,15 +51,15 @@ const SignIn = () => {
 
                 <form className="form">
                     <div className="form__group">
-                        <i class="fas fa-user form__absolute-icon"></i>
+                        <i className="fas fa-user form__absolute-icon"></i>
                         <input type="email" className="form__input" placeholder="Email" id="email" required></input>
                     </div>
 
                     <div className="form__group">
-                        <i class="fas fa-lock form__absolute-icon"></i>
+                        <i className="fas fa-lock form__absolute-icon"></i>
                         <input id="password" type="password" className="form__input" placeholder="Password" required></input>
-                        <i id="showPass" class="fas fa-eye form__absolute-icon form__absolute-icon--eye" title="Show Password" onClick={showPassword}></i>
-                        <i id="hidePass" class="fas fa-eye-slash form__absolute-icon form__absolute-icon--eye dis-none" title="Hide Password" onClick={hidePassword}></i>
+                        <i id="showPass" className="fas fa-eye form__absolute-icon form__absolute-icon--eye" title="Show Password" onClick={showPassword}></i>
+                        <i id="hidePass" className="fas fa-eye-slash form__absolute-icon form__absolute-icon--eye dis-none" title="Hide Password" onClick={hidePassword}></i>
                     </div>
 
                     <div className="resetSignupTexts">
@@ -67,7 +67,7 @@ const SignIn = () => {
                         <a href="./#" className="authLinks authLinks--blue margin-l-large"><strong>Forgot Passsword</strong></a>
                     </div>
 
-                    <div class="form__group">
+                    <div className="form__group">
                         {/* <button class="btn btn--large btn--blue" onClick={() => history.push('/home')}>Sign In</button> */}
                         <ButtonLarge text="Sign In" click={createNew} />
                     </div>
@@ -76,8 +76,8 @@ const SignIn = () => {
                 <div className="otherAuthOptions">
                     <p className="otherAuthOptions__text">Or Sign In with</p>
                     <div>
-                        <span className="otherAuthOptions__icons"><i class="fab fa-google"></i></span>
-                        <span className="otherAuthOptions__icons"><i class="fab fa-apple"></i></span>
+                        <span className="otherAuthOptions__icons"><i className="fab fa-google"></i></span>
+                        <span className="otherAuthOptions__icons"><i className="fab fa-apple"></i></span>
                     </div>
                 </div>
             </div>
