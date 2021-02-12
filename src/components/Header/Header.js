@@ -11,7 +11,7 @@ function Header() {
             </div>
 
             <div className="profile">
-                <span className="profile__text">Muhammad Usama Zuberi</span>
+                <span className="profile__text">John Doe</span>
                 <span className="profile__picture">
                     <img src={Profile} alt="Profile" />
                     <i class="fas fa-angle-down profile__icon"></i>

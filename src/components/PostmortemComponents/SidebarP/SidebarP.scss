@@ -1,6 +1,49 @@
 @import '../../../scss/variables.scss';
 
 .sidebarP {
+    width: 25vw;
     height: calc(100vh - 6rem);
-    background-color: $color-blue;
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
+    background-color: $color-light-2;
+    background-color: rgba($color-blue, .95);
+
+    &__head {
+        padding: 2rem 2rem 0 2rem;
+    }
+
+    &__info {
+
+        &--name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: $color-white;
+        }
+
+        &--time {
+            font-size: 1.4rem;
+            color: rgba($color-white, .6);
+            padding-left: .8rem;
+        }
+    }
+
+    &__description {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 3rem 0;
+        font-size: 2rem;
+        color: rgba($color-white, .8);
+    }
+}
+
+.comments {
+    &__head {
+        height: 5rem;
+        border-bottom: 2px solid $color-blue;
+    }
+
+    &__body {
+        max-height: 66vh;
+        overflow: auto;
+    }
 }

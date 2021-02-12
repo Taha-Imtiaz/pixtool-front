@@ -1,0 +1,29 @@
+@import "../../../scss/variables.scss";
+
+.tab-listP {
+    border-bottom: 2px solid $color-blue;
+    font-family: 'Segoe UI', sans-serif;
+
+    &-item {
+        display: inline-block;
+        color: $color-white;
+        font-size: 1.8rem;
+        font-weight: normal;
+        padding: 1rem 2rem;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: all .3s;
+
+        &:not(:first-child) {
+            margin-left: 0;
+        }
+    }
+
+    &-active,
+    &-focus {
+        outline: none;
+        border: none;
+        border-bottom: 2px solid $color-light-2
+    }
+}

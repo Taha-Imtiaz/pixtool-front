@@ -2,7 +2,7 @@
 
 .postmortem {
     display: grid;
-    grid-template-columns: .75fr .25fr;
+    grid-template-columns: 1fr min-content;
 
     background-color: $color-light-2;
 
@@ -12,6 +12,14 @@
 
     &__sidebar {
         grid-column: 2 / 3;
-        grid-row: 2 span 1
+        grid-row: 2 / span 1;
+    }
+
+    &__body {
+        grid-column-start: 1;
+        grid-row: 2 / 3;
+
+        // text-align: center;
+        padding: 2rem;
     }
 }

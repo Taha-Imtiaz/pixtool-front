@@ -17,30 +17,6 @@
         }
     }
 
-    &--normal {
-        font-family: 'Segoe UI', 'Open Sans', sans-serif;
-        font-size: 1.8rem;
-        width: 13rem;
-        padding: .8rem .5rem;
-        border-radius: 5px;
-    }
-
-    &--poppins {
-        font-family: 'Poppins', 'Segoe UI', 'Open Sans', sans-serif;
-        font-size: 2.2rem;
-        width: 18rem;
-        padding: .8rem .5rem;
-        border-radius: 5px;
-    }
-
-    &--large {
-        font-family: 'Open Sans', 'Segoe UI', sans-serif;
-        font-size: 2.6rem;
-        width: 45rem;
-        padding: 1rem 0;
-        border-radius: 1rem;
-    }
-
     &--light {
         font-family: 'Segoe UI', 'Open Sans', sans-serif;
         font-size: 2rem;
@@ -56,5 +32,37 @@
             outline: none;
             background-color: rgba($color-light-1, .8);
         }
+    }
+
+    &--normal {
+        font-family: 'Segoe UI', 'Open Sans', sans-serif;
+        font-size: 1.8rem;
+        width: 13rem;
+        padding: .8rem .5rem;
+        border-radius: 5px;
+    }
+
+    &--large {
+        font-family: 'Open Sans', 'Segoe UI', sans-serif;
+        font-size: 2.6rem;
+        width: 45rem;
+        padding: 1rem 0;
+        border-radius: 1rem;
+    }
+
+    &--small {
+        font-family: 'Open Sans', 'Segoe UI', sans-serif;
+        font-size: 1.5rem;
+        width: 8rem;
+        padding: .5rem 0;
+        border-radius: 3px;
+    }
+
+    &--poppins {
+        font-family: 'Poppins', 'Segoe UI', 'Open Sans', sans-serif;
+        font-size: 2.2rem;
+        width: 18rem;
+        padding: .8rem .5rem;
+        border-radius: 5px;
     }
 }

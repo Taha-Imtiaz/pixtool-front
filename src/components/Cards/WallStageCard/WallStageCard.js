@@ -6,7 +6,7 @@ function WallStageCard() {
     return (
         <div className="wallStageCard">
             <span className="wallStageCard__check">
-                <input type="checkBox" id="checkbox-1-1" class="wallStageCard__checkbox" />
+                <input type="checkBox" class="checkbox" />
             </span>
             <div className="wallStageCard__img">
                 <img src={WallStage} alt="Wall Stage" />

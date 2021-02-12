@@ -1,0 +1,108 @@
+@import '../../../scss/variables.scss';
+
+.comment {
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
+    color: $color-white;
+    border-bottom: 2px solid $color-blue;
+
+    &__check {
+        position: absolute;
+        top: 1.5rem;
+        right: 2rem;
+        z-index: 1;
+    }
+
+    &__head {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
+        position: relative;
+    }
+
+    &__time {
+        font-size: 1.4rem;
+        color: rgba($color-white, .6);
+    }
+
+    &__main {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 2rem;
+    }
+
+    &__timespan {
+        align-self: flex-start;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: rgba($color-white, .6);
+
+    }
+
+    &__text {
+        font-size: 1.4rem;
+        font-family: 'Open Sans', 'Segoe UI', sans-serif;
+    }
+
+    &__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem;
+        font-size: 1.6rem;
+
+        &--left,
+        &--right {
+            display: flex;
+            gap: 1.5rem;
+        }
+    }
+
+    &__reply {
+        transition: color .3s cursor .3s;
+
+        &:hover {
+            cursor: pointer;
+            color: rgba($color-white, .6);
+        }
+    }
+
+    &__icons {
+        transition: color .3s cursor .3s;
+
+        &:hover {
+            cursor: pointer;
+            color: rgba($color-white, .6);
+        }
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: $color-blue;
+    }
+}
+
+.file-info {
+
+    &__table {
+        color: $color-white;
+        font-size: 1.5rem;
+        padding: 2rem;
+        width: 100%;
+
+        &--name,
+        &--content {
+            width: 50%;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid $color-blue;
+        }
+
+        &--name {
+            color: rgba($color-white, .6);
+        }
+    }
+}
