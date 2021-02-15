@@ -45,6 +45,10 @@ a {
 //////////////////////////////////////////////////////////////////
 ////////////////             MARGINS             ////////////////
 //////////////////////////////////////////////////////////////////
+.margin-0 {
+  margin: 0 !important;
+}
+
 .margin-l-large {
   margin-left: 5rem;
 }
@@ -53,8 +57,11 @@ a {
   margin-right: 11rem;
 }
 
-.dis-none {
-  display: none;
+//////////////////////////////////////////////////////////////////
+////////////////             PADDINGS             ////////////////
+//////////////////////////////////////////////////////////////////
+.pd-l-3 {
+  padding-left: 3rem;
 }
 
 // To truncate the text and include '...' at the end when overflowed
@@ -63,6 +70,21 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+//Display None 
+.dis-none {
+  display: none;
+}
+// To justify content center
+.just-cont-cen {
+  justify-content: center !important;
+
+}
+// To Align Text Center
+.txt-align-cen {
+  text-align: center;
+}
+
 
 //Text-decoration: none for anchor tags
 .txt-dec-none {
