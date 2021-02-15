@@ -34,9 +34,8 @@ a {
 
     &__link {
         color: $color-white;
-        font-size: 2rem;
+        font-size: 2.7rem;
         font-weight: 600;
-        cursor: pointer;
         padding: 1rem 1.5rem;
 
         &>a {
@@ -54,6 +53,7 @@ a {
         &:hover,
         &:active,
         &:focus {
+            cursor: pointer;
             background-color: $color-grey-light-2;
         }
     }
@@ -62,7 +62,7 @@ a {
         font-size: 6rem;
         font-weight: bold;
         color: $color-white;
-        
+
         position: absolute;
         top: -1rem;
         right: 1rem;

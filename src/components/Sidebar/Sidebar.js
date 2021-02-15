@@ -5,7 +5,7 @@ import Logo from '../../images/logo.png';
 function Sidebar() {
 
     const [drawer, setDrawer] = useState(0)
-    
+
     const drawerClose = () => {
         console.log('Clicked')
         if (drawer) {
@@ -18,7 +18,7 @@ function Sidebar() {
         }
     }
 
-    const drawerOpen = () => {}
+    const drawerOpen = () => { }
 
 
     return (
@@ -31,25 +31,25 @@ function Sidebar() {
                 <ul className="sidebar__list">
                     <li className="sidebar__link">
                         <a href="./#">
-                            <i className="far fa-user"></i>
-                            <span>Team Management</span>
+                            <i class="fas fa-book"></i>
+                            <span>My Library</span>
                         </a>
                     </li>
-                    <li className="sidebar__link">
+                    {/* <li className="sidebar__link">
                         <a href="./#">
                             <i className="far fa-user"></i>
                             <span>Account Management</span>
                         </a>
-                    </li>
+                    </li> */}
                     <li className="sidebar__link">
                         <a href="./#">
-                            <i className="far fa-user"></i>
-                            <span>Join Requests</span>
+                            <i class="far fa-file-alt"></i>
+                            <span>Shared with me</span>
                         </a>
                     </li>
                     <li className="sidebar__link">
                         <a href="./#">
-                            <i className="far fa-user"></i>
+                            <i class="fas fa-cog"></i>
                             <span>Settings</span>
                         </a>
                     </li>

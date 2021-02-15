@@ -5,8 +5,24 @@ import CommentP from '../../PostmortemComponents/CommentP/CommentP';
 
 function SidebarP() {
     //For Video Description On Player Sidebar 
-    const [description, setDescription] = useState('a');
+    const [editEnabled, setEditEnabled] = useState(false);
+    const [description, setDescription] = useState('asass');
+    const [tempDescription, setTempDescription] = useState('');
 
+    // Description TextArea Change Handler 
+    const textAreaChangeHandler = (event) => {
+        const value = event.target.value;
+        setTempDescription(value);
+    }
+    const setEditEnabledHandler = () => {
+        setEditEnabled(true)
+        setTempDescription(description)
+    }
+
+    const hanldeSaveDescription = () => {
+        setEditEnabled(false)
+        setDescription(tempDescription)
+    }
     return (
         <div className="sidebarP">
             <div className="sidebarP__head">
@@ -16,34 +32,32 @@ function SidebarP() {
                 </div>
 
                 <div className="sidebarP__description">
-                    {description === ''
-                        ?
-                        <div className="sidebarP__description--1">
-                            <a href="./#" className="sidebarP__description--add-btn txt-dec-none"><i class="fas fa-plus-square"></i></a>
-                            <label className="sidebarP__description--add-label">Add Description</label>
+                    {editEnabled ?
+                        <div>
+                            <div className="sidebarP__description--3">
+                                <textarea className="description__text-area" name="descriptiontext" onChange={(e) => textAreaChangeHandler(e)} value={tempDescription}></textarea>
+                                <span className="description__buttons">
+                                    <span className="description__button" onClick={() => setEditEnabled(false)}>Cancel</span>
+                                    <span className="description__button"  onClick={() => hanldeSaveDescription()}>Save</span>
+                                </span>
+                            </div>
                         </div>
                         :
-                        <div className="sidebarP__description--2">
-                            {/* <textarea className="description__text-area  description__text-area--1" name="descriptionValue"></textarea>
-                            <span className="description__buttons">
-                                <span className="description__button">Cancel</span>
-                                <span className="description__button">Save</span>
-                            </span> */}
-
-                            <textarea className="description__text-area" name="descriptionValue"></textarea>
-                            <span className="description__buttons">
-                                <span className="description__button">Cancel</span>
-                                <span className="description__button">Save</span>
-                            </span>
+                        <div>
+                            {description === ''
+                                ?
+                                <div className="sidebarP__description--1">
+                                    <span className="sidebarP__description--add" onClick={() => setEditEnabledHandler()}><i class="fas fa-plus-square"></i></span>
+                                    <label className="sidebarP__description--add" onClick={() => setEditEnabledHandler()}>Add Description</label>
+                                </div>
+                                :
+                                <div className="sidebarP__description--2">
+                                    <div className="description__text">{description}</div>
+                                    <span className="description__edit-icon" onClick={() => setEditEnabledHandler()}><i className="far fa-edit"></i></span>
+                                </div>
+                            }
                         </div>
                     }
-                    {/* <div className="sidebarP__description--3">
-                        <textarea className="description__text-area" name="descriptionValue"></textarea>
-                        <span className="description__buttons">
-                            <span className="description__button">Cancel</span>
-                            <span className="description__button">Save</span>
-                        </span>
-                    </div> */}
                 </div>
             </div>
 
@@ -125,7 +139,7 @@ function SidebarP() {
                     </div>
                 </div>
             </TabsP>
-        </div>
+        </div >
     )
 }
 
