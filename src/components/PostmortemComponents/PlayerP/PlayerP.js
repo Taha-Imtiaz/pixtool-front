@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import './PlayerP.scss';
 import Video from '../../../images/mov_bbb.mp4';
 import Test1 from '../../../images/test1.jpg'
@@ -17,11 +17,29 @@ import Volume from '../../../images/volume.svg';
 
 function PlayerP() {
     const createNew = () => { }
-
     // State For Comment TextArea
     const [textValue, setTextValue] = useState('');
     // State For Emojibox
     const [emojiBox, setEmojiBox] = useState(false);
+
+    useEffect(() => {
+
+        function handleClickEvent(event) {
+
+            if (event.target.className === 'far fa-laugh' || !emojiBox) {
+            } else {
+                // Get parent element and check if click happened outside parent only
+                const parent = document.querySelector(".emoji-picker__box");
+                if (emojiBox && parent && !parent.contains(event.target)) {
+                    showEmojiBox();
+                }
+            }
+        }
+        document.querySelector(".postmortem").addEventListener("click", handleClickEvent);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [emojiBox])
+
+
 
     // Function To Add & Append Emojis To Comments TextArea
     const addEmoji = (e) => {
@@ -95,7 +113,7 @@ function PlayerP() {
                                 </div>
                                 : null
                             };
-                            <span className="emoji-picker__icon" onClick={showEmojiBox}><i class="far fa-laugh"></i></span>
+                            <span className="emoji-picker__icon" onClick={showEmojiBox}><i className="far fa-laugh"></i></span>
                             <ButtonSmall className="sendBtn" text="Send" click={createNew} />
                         </div>
                     </div>

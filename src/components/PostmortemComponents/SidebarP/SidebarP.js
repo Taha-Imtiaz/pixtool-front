@@ -49,7 +49,7 @@ function SidebarP(props) {
                             {description === ''
                                 ?
                                 <div className="sidebarP__description--1">
-                                    <span className="sidebarP__description--add" onClick={() => setEditEnabledHandler()}><i class="fas fa-plus-square"></i></span>
+                                    <span className="sidebarP__description--add" onClick={() => setEditEnabledHandler()}><i className="fas fa-plus-square"></i></span>
                                     <label className="sidebarP__description--add" onClick={() => setEditEnabledHandler()}>Add Description</label>
                                 </div>
                                 :
