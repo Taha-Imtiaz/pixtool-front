@@ -3,10 +3,10 @@ import './SidebarP.scss';
 import TabsP from '../NavigationTabsP/TabsP';
 import CommentP from '../../PostmortemComponents/CommentP/CommentP';
 
-function SidebarP() {
+function SidebarP(props) {
     //For Video Description On Player Sidebar 
     const [editEnabled, setEditEnabled] = useState(false);
-    const [description, setDescription] = useState('asass');
+    const [description, setDescription] = useState('');
     const [tempDescription, setTempDescription] = useState('');
 
     // Description TextArea Change Handler 
@@ -23,8 +23,10 @@ function SidebarP() {
         setEditEnabled(false)
         setDescription(tempDescription)
     }
+
     return (
-        <div className="sidebarP">
+        <div className={props.open ? 'sidebarP' : 'sidebarPCollapse'}>
+            <div className={props.open ? '' : 'sidebarP__overlay'}></div>
             <div className="sidebarP__head">
                 <div className="sidebarP__info">
                     <span className="sidebarP__info--name">John</span>
@@ -38,7 +40,7 @@ function SidebarP() {
                                 <textarea className="description__text-area" name="descriptiontext" onChange={(e) => textAreaChangeHandler(e)} value={tempDescription}></textarea>
                                 <span className="description__buttons">
                                     <span className="description__button" onClick={() => setEditEnabled(false)}>Cancel</span>
-                                    <span className="description__button"  onClick={() => hanldeSaveDescription()}>Save</span>
+                                    <span className="description__button" onClick={() => hanldeSaveDescription()}>Save</span>
                                 </span>
                             </div>
                         </div>

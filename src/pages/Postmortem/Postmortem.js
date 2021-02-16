@@ -1,22 +1,28 @@
-import React from 'react';
+import { React, useState } from 'react';
 import './Postmortem.scss';
 import HeaderP from '../../components/PostmortemComponents/HeaderP/HeaderP';
 import SidebarP from '../../components/PostmortemComponents/SidebarP/SidebarP';
 import PlayerP from '../../components/PostmortemComponents/PlayerP/PlayerP';
 
 function Postmortem() {
+    // This state is responsible for toggling sidebar
+    const [drawer, setDrawer] = useState(true)
+
+    const toggle = () => {
+        setDrawer(!drawer)
+    }
     return (
         <div className="postmortem">
             <div className="postmortem__header">
-                <HeaderP />
+                <HeaderP toggle={toggle}/>
             </div>
             <div className="postmortem__sidebar">
-                <SidebarP />
+                <SidebarP open={drawer}/>
             </div>
             <div className="postmortem__body">
                 <PlayerP />
             </div>
-            
+
         </div>
     )
 }

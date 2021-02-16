@@ -2,8 +2,20 @@ import React from 'react';
 import './HeaderP.scss';
 import Logo from '../../../images/logo.png'
 import ButtonLight from '../../Button/ButtonLight'
+import NavIcon from '../../NavIcon/NavIcon'
 
-function HeaderP() {
+function HeaderP(props) {
+
+
+    //This function is responsible for toggling sidebar
+    const toggleSidebar = (e) => {
+        // e.stopPropagation()
+        // e.preventDefault()
+        // setDrawer(!drawer)
+        // console.log(drawer)
+
+        props.toggle()
+    }
 
     const goBack = () => {
         window.history.back(1);
@@ -42,6 +54,8 @@ function HeaderP() {
                 <span className="headerP__help-icon">
                     <a href="./#" className="txt-dec-none"><i class="fas fa-question"></i></a>
                 </span>
+
+                <NavIcon toggle={(e) => toggleSidebar(e)} />
             </div>
         </div>
     )

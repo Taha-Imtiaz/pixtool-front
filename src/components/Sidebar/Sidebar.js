@@ -16,25 +16,13 @@ function Sidebar() {
         console.log(drawer)
     }
 
-    /* const drawerClose = () => {
-        console.log('Clicked')
-        if (drawer) {
-            alert('Drawer Opening')
-            setDrawer(1);
-        }
-        else {
-            alert('Drawer Closing')
-            setDrawer(0);
-        }
-    }
-
-    const drawerOpen = () => { } */
-
-
     return (
         <div className={drawer ? 'sidebar' : 'sidebarCollapse'}>
             <div className={drawer ? 'sidebar__top' : 'sidebar__top just-cont-cen'}>
-                <NavIcon toggle={(e) => toggleSidebar(e)} />
+
+                <div className="pd-t-1-5" >
+                    <NavIcon toggle={(e) => toggleSidebar(e)} />
+                </div>
 
                 <div className={drawer ? 'sidebar__logo' : 'dis-none'}>
                     <img src={Logo} alt="Logo" className="logo-img" />

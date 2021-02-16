@@ -62,7 +62,7 @@
     }
 
     &__reply {
-        transition: color .3s cursor .3s;
+        transition: color .3s, cursor .3s;
 
         &:hover {
             cursor: pointer;
@@ -71,7 +71,7 @@
     }
 
     &__icons {
-        transition: color .3s cursor .3s;
+        transition: color .3s, cursor .3s;
 
         &:hover {
             cursor: pointer;
