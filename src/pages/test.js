@@ -1,14 +1,10 @@
 import React from 'react'
-// import StagesThumbnailCard from '../components/Cards/StagesThumbnailCard/StagesThumbnailCard';
-// import Playlist from '../components/Playlist/Playlist';
-import WallStageCard from '../components/Cards/WallStageCard/WallStageCard';
+import Dropdown from '../components/DropdownMenus/Dropdown';
 
 function test() {
     return (
-        <div style={{padding: "5rem", backgroundColor: "orange"}}>
-            {/* <StagesThumbnailCard /> */}
-            {/* <Playlist /> */}
-            <WallStageCard />
+        <div style={{display:"flex", justifyContent:"center", alignItems:"center", backgroundColor:"#aaa"}}>
+            <Dropdown text="Hello"/>
         </div>
     )
 }

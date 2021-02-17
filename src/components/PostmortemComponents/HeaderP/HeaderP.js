@@ -31,7 +31,7 @@ function HeaderP(props) {
             </div>
 
             <div className="headerP__right-box">
-                <select className="dropdown" name="cars">
+                <select className="dropdowns" name="cars">
                     <option disabled value="" default>Approved</option>
                     <option value="volvo">Volvo</option>
                     <option value="saab">Saab</option>
@@ -39,7 +39,7 @@ function HeaderP(props) {
                     <option value="audi">Audi</option>
                 </select>
 
-                <select className="dropdown" name="cars">
+                <select className="dropdowns" name="cars">
                     <option disabled value="" default>...</option>
                     <option value="volvo">Volvo</option>
                     <option value="saab">Saab</option>
