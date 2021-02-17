@@ -1,8 +1,9 @@
 import React from 'react';
 import './HeaderP.scss';
-import Logo from '../../../images/logo.png'
-import ButtonLight from '../../Button/ButtonLight'
-import NavIcon from '../../NavIcon/NavIcon'
+import Logo from '../../../images/logo.png';
+import ButtonLight from '../../Button/ButtonLight';
+import NavIcon from '../../NavIcon/NavIcon';
+import Dropdown from '../../Dropdown/Dropdown';
 
 function HeaderP(props) {
 
@@ -20,6 +21,8 @@ function HeaderP(props) {
     const goBack = () => {
         window.history.back(1);
     }
+
+    let status = ['In progress', 'Approved']
     return (
         <div className="headerP">
             <div className="headerP__left-box">
@@ -31,13 +34,15 @@ function HeaderP(props) {
             </div>
 
             <div className="headerP__right-box">
-                <select className="dropdowns" name="cars">
+                {/* <select className="dropdowns" name="cars">
                     <option disabled value="" default>Approved</option>
                     <option value="volvo">Volvo</option>
                     <option value="saab">Saab</option>
                     <option value="mercedes">Mercedes</option>
                     <option value="audi">Audi</option>
-                </select>
+                </select> */}
+
+                <Dropdown text="Status" menuItems ={status}/>
 
                 <select className="dropdowns" name="cars">
                     <option disabled value="" default>...</option>

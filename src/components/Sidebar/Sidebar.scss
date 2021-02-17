@@ -6,7 +6,7 @@ a {
 
 // For Normal Sidebar
 .sidebar {
-    background-color: $color-blue;
+    background-color: $color-secondary-dark;
     width: 20vw;
     position: relative;
     // height: 100vh;
@@ -75,7 +75,7 @@ a {
 //For Collapsed Sidebar
 
 .sidebarCollapse {
-    background-color: $color-blue;
+    background-color: $color-secondary-dark;
     width: 6vw;
     position: relative;
     transition: all .3s;

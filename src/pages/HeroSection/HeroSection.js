@@ -1,7 +1,7 @@
 import React from 'react'
 import './HeroSection.scss'
-import billboardBG from '../../images/billboardBG.png';
-import Logo from '../../images/logo-black.png';
+import billboardBG from '../../images/billboardBG-trans.png';
+import Logo from '../../images/logo.png';
 import OnePlatform from '../../images/one-platform-for-all.jpg';
 import MoreGraphics from '../../images/more-graphics.jpg';
 import ButtonPoppins from "../../components/Button/ButtonPoppins";
@@ -12,10 +12,19 @@ function HeroSection() {
 
     const createNew = () => { }
 
+    // Below Code Changes The Header Bg Color On Page Scroll
+    window.onscroll = function () { scrollFunction() };
+    function scrollFunction() {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            document.getElementById("header").style.backgroundColor = "#000000";
+        } else {
+            document.getElementById("header").style.backgroundColor = "#191919";
+        }
+    }
 
     return (
         <div className="heroSec">
-            <div className="heroSec__header">
+            <div className="heroSec__header" id="header">
                 <div className="heroSec__logo">
                     <img src={Logo} alt="Logo" className="logo-img" />
                 </div>
@@ -28,8 +37,8 @@ function HeroSection() {
                             <li className="navigation__links"><a href="./#" className="navigation__link">Services</a></li>
                             <li className="navigation__links"><a href="./#" className="navigation__link">About us</a></li>
                             <li className="navigation__links">
-                                {/* <a href="" className="navigation__link navigation__link--blue">Login</a> */}
-                                <Link to="/sign-in" className="navigation__link navigation__link--blue">Login</Link>
+                                {/* <a href="" className="navigation__link navigation__link--primary">Login</a> */}
+                                <Link to="/sign-in" className="navigation__link navigation__link--primary">Login</Link>
                             </li>
                         </ul>
                     </nav>
@@ -40,7 +49,7 @@ function HeroSection() {
                 <div className="billBoard">
                     <div className="billBoard__left">
                         <span className="billBoard__text">
-                            Best Video 3D <span className="billBoard__text--blue">Editing</span> Tool
+                            Best Video 3D <span className="billBoard__text--primary">Editing</span> Tool
                             <ButtonPoppins text="Explore" click={createNew} />
                         </span>
                     </div>
@@ -52,7 +61,7 @@ function HeroSection() {
 
             <div className="heroSec__features">
                 <div className="features">
-                    <h2 className="heading-features">
+                    <h2 className="features__heading">
                         Platform Features
                     </h2>
 
@@ -66,14 +75,14 @@ function HeroSection() {
 
             <div className="heroSec__stories">
                 <div className="stories">
-                    <h2 className="heading-features">One platform to manage them all</h2>
+                    <h2 className="features__heading">One platform to manage them all</h2>
                     <div className="stories__content">
                         <img src={OnePlatform} alt="One of Pixtool's tab screenshot" className="stories__img stories__img--1" />
                         <p className="stories__text stories__text--1">As designers, we know inspiration can make the difference between success and failure. Switching programs, converting files, waiting on hardware - these tasks can get in the way of a great idea. With pixtool you have all the tools you need to design, adjust and manage every element -  LED surfaces to stage layouts, weekend events to world tours. Pixtool has you covered.</p>
                     </div>
                 </div>
                 <div className="stories">
-                    <h2 className="heading-features">One platform to manage them all</h2>
+                    <h2 className="features__heading">One platform to manage them all</h2>
                     <div className="stories__content">
                         <img src={MoreGraphics} alt="A girl's face" className="stories__img stories__img--2" />
                         <p className="stories__text stories__text--2">As designers, we know inspiration can make the difference between success and failure. Switching programs, converting files, waiting on hardware - these tasks can get in the way of a great idea. With pixtool you have all the tools you need to design, adjust and manage every element -  LED surfaces to stage layouts, weekend events to world tours. Pixtool has you covered.</p>

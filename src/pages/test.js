@@ -1,5 +1,5 @@
 import React from 'react'
-import Dropdown from '../components/DropdownMenus/Dropdown';
+import Dropdown from '../components/Dropdown/Dropdown';
 
 function test() {
     return (

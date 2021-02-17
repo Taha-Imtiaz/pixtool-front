@@ -3,13 +3,23 @@
 
 .heroSec {
     display: grid;
-    grid-template-rows: 15vh 85vh min-content min-content min-content;
+    grid-template-rows: 12vh 88vh min-content min-content min-content;
+
+    background-color: $color-secondary;
 
     &__header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0 4rem;
+        background-color: $color-secondary;
+
+        & .active {
+            background-color: $color-secondary-dark;
+        }
     }
 
     &__logo {
@@ -38,28 +48,32 @@
     &__link {
         font-size: 2rem;
         font-family: 'Poppins', sans-serif;
-        color: $color-grey-light-4;
+        color: $color-primary;
         padding: .5rem 2.5rem;
-        transition: all .3s;
+        border-radius: 1rem;
+        transition: color .3s, background-color .3s;
 
         &:focus,
         &:active,
         &:hover {
             outline: none;
-            color: $color-white;
-            background-color: $color-blue;
+            color: rgba($color-white, .8);
+            background-color: $color-primary;
         }
 
-        &--blue {
-            color: $color-white;
-            background-color: $color-blue;
-            border-radius: 10rem;
+        &--primary {
+            color: rgba($color-white, .8);
+            background-color: $color-primary;
+            border-radius: 1rem;
+            transition: color .3s, background-color .3s, box-shadow .3s;
 
             &:focus,
             &:active,
             &:hover {
                 outline: none;
-                background-color: rgba($color-blue, .8);
+                color: $color-primary;
+                background-color: $color-secondary-dark;
+                box-shadow: 0px 0px 15px rgba($color-primary, 1);
             }
         }
 
@@ -78,7 +92,7 @@
     }
 
     &__text {
-        color: $color-grey-dark-5;
+        color: rgba($color-white, .8);
         font-size: 7rem;
         font-weight: bold;
         font-family: 'Metropolis', 'Open Sans', 'Segoe UI', sans-serif;
@@ -88,8 +102,8 @@
         display: inline-block;
         width: 50rem;
 
-        &--blue {
-            color: $color-blue;
+        &--primary {
+            color: $color-primary;
         }
     }
 
@@ -112,6 +126,16 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 12rem;
+    }
+
+    &__heading {
+        color: $color-primary;
+        font-family: 'Open Sans', 'Segoe UI', sans-serif;
+        font-size: 6rem;
+        font-weight: 600;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 0 2rem 8rem 2rem;
     }
 }
 
@@ -137,7 +161,7 @@
     }
 
     &__text {
-        color: $color-grey-dark-6;
+        color: rgba($color-white, .6);
         font-family: 'Metropolis', 'Open Sans', 'Segoe UI', sans-serif;
         font-size: 2.5rem;
         font-weight: 500;
@@ -152,15 +176,12 @@
         &--2 {
             padding: 4rem 20rem 8rem 20rem;
         }
-
-        /* -webkit-box-decoration-break: clone;
-        box-decoration-break: clone; */
     }
 }
 
 .footer {
     height: 25rem;
-    background-color: $color-blue;
+    background-color: $color-secondary-dark;
     font-family: 'Metropolis', 'Open Sans', 'Segoe UI', sans-serif;
 
     display: flex;
@@ -181,14 +202,23 @@
             text-decoration: none;
             font-size: 2.5rem;
             border-radius: 50%;
-            border: 2px solid $color-white;
-            background-color: $color-white;
-            color: $color-blue;
-            line-height: 5.1rem;
+            border: 3px solid $color-primary;
+            background-color: $color-primary;
+            color: rgba($color-white, .9);
+            line-height: 5rem;
             width: 5rem;
             height: 5rem;
             text-align: center;
             display: inline-block;
+            transition: border .3s, background-color .3s, color .3s;
+
+            &:active,
+            &:focus,
+            &:hover {
+                border: 3px solid $color-primary;
+                background-color: rgba($color-white, .9);
+                color: $color-primary;
+            }
         }
     }
 
@@ -200,17 +230,28 @@
 
         &--item {
             list-style: none;
+            font-size: 1.8rem;
+            padding: .5rem 1rem;
+            color: rgba($color-white, .8);
+            transition: cursor .3s, border-radius .3s, background-color .3s;
 
-            & > a {
+            &:active,
+            &:focus,
+            &:hover {
+                cursor: pointer;
+                border-radius: 5px;
+                background-color: $color-primary-dark;
+            }
+
+            &>a {
                 text-decoration: none;
-                font-size: 1.8rem;
-                color: $color-white;
+                color: currentColor;
             }
         }
     }
 
     &__copyright {
         font-size: 1.8rem;
-        color: $color-white;
+        color: rgba($color-white, .8);
     }
 }

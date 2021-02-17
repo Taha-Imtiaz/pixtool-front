@@ -3,7 +3,7 @@
 .comment {
     font-family: 'Segoe UI', 'Open Sans', sans-serif;
     color: $color-white;
-    border-bottom: 2px solid $color-blue;
+    border-bottom: 2px solid $color-secondary-dark;
 
     &__check {
         position: absolute;
@@ -82,7 +82,7 @@
     &:active,
     &:focus,
     &:hover {
-        background-color: $color-blue;
+        background-color: $color-secondary-dark;
     }
 }
 
@@ -98,7 +98,7 @@
         &--content {
             width: 50%;
             padding: 1.2rem 0;
-            border-bottom: 1px solid $color-blue;
+            border-bottom: 1px solid $color-secondary-dark;
         }
 
         &--name {

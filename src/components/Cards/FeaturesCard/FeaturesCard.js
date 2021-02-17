@@ -1,6 +1,6 @@
 import React from 'react';
 import './FeaturesCard.scss'
-import VideoCam2x from '../../../images/video-cam-2x.png';
+import VideoCam2x from '../../../images/camera icon-green.png';
 // import VideoPlayer2x from '../../../images/video-player-2x.png';
 // import Stage2x from '../../../images/stage-2x.png';
 

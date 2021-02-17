@@ -3,8 +3,8 @@
 .headerP {
     height: 6rem;
     border-bottom: 1px solid $color-light-2;
-    background-color: $color-blue;
-    // background-color: rgba($color-blue, .95);
+    background-color: $color-secondary-dark;
+    // background-color: rgba($color-secondary-dark, .95);
 
     display: flex;
     justify-content: space-between;
@@ -56,9 +56,9 @@
     &__help-icon {
         font-size: 2rem;
         border-radius: 50%;
-        border: 2px solid $color-white;
+        border: 3px solid $color-white;
         color: $color-white;
-        line-height: 3.8rem;
+        line-height: 3.5rem;
         width: 4rem;
         height: 4rem;
         text-align: center;

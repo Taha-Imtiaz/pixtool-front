@@ -28,7 +28,7 @@
         &:focus {
             outline: none;
             /* box-shadow: 0 1rem 2rem rgba($color-black, .1); */
-            border-bottom: 3px solid $color-blue;
+            border-bottom: 3px solid $color-secondary-dark;
         }
 
         &::-webkit-input-placeholder {
@@ -40,7 +40,7 @@
     &__absolute-icon{
         position: absolute;
         top: 1rem;
-        color: $color-blue;
+        color: $color-secondary-dark;
         font-size: 2rem;
 
         &--eye {
