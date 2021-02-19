@@ -3,8 +3,8 @@
 .stagesThumbnailCardV2 {
     width: 52rem;
     height: 18rem   ;
-    background-color: $color-secondary;
-    box-shadow: 2px 3px 6px $color-secondary-dark;
+    background-color: $color-secondary-dark;
+    box-shadow: 2px 3px 6px $color-secondary;
     border-radius: 1.2rem;
 
     &__text {

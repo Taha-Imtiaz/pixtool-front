@@ -18,15 +18,15 @@
         padding: 2rem;
         font-family: inherit;
         border-radius: 1.2rem;
-        background-color: $color-white;
-        box-shadow: 1px 2px 4px $color-dark-3;
+        background-color: $color-secondary-dark;
+        box-shadow: 1px 2px 4px $color-secondary;
 
         display: flex;
     }
 
     &__title {
         min-width: 15rem;
-        color: $color-grey-dark-3;
+        color: rgba($color-white, .8);
         font-size: 2.5rem;
         font-weight: 600;
         font-family: inherit;
@@ -34,7 +34,7 @@
 
     &__content {
         min-width: 25rem;
-        color: $color-grey-light-8;
+        color: $color-secondary-light;
         font-size: 1.8rem;
         font-family: inherit;
     }
@@ -72,10 +72,14 @@
         } */
     }
 
+    &__stagesThumbnailCardV2 {
+        align-self: center;
+    }
+
     &__show-notes {
         padding: 2rem;
         border-radius: 1.2rem;
-        background-color: $color-white;
+        background-color: $color-secondary-dark;
         box-shadow: 1px 2px 4px $color-dark-3;
         font-family: 'Segoe UI', 'Open Sans', sans-serif;
 
@@ -84,7 +88,7 @@
                 font-family: inherit;
                 font-weight: bold;
                 font-size: 2rem;
-                color: $color-grey-dark-3;
+                color: rgba($color-white, .8);
                 padding: 2rem 0;
             }
     
@@ -92,7 +96,7 @@
                 font-family: inherit;
                 font-weight: normal;
                 font-size: 1.6rem;
-                color: $color-grey-dark-7;
+                color: $color-secondary-light;
             }
         }
     }
