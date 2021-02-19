@@ -6,7 +6,7 @@ function StagesThumbnailCardV2() {
     return (
         <div className="stagesThumbnailCardV2">
             <div className="stagesThumbnailCardV2__text">
-                <span className="stagesThumbnailCardV2__text--title">Love Me Like You Do</span>
+                <span className="stagesThumbnailCardV2__text--title">Faded by Alan Walker</span>
             </div>
 
             <div className="stagesThumbnailCardV2__img">

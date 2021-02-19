@@ -7,7 +7,7 @@ function PlaylistCard() {
         <div className="playlistCard">
             <div className="playlistCard__text">
                 <span className="playlistCard__text--count">1. &nbsp;</span>
-                <span className="playlistCard__text--title">Love Me Like You Do</span>
+                <span className="playlistCard__text--title">Faded by Alan Walker</span>
             </div>
 
             <div className="playlistCard__img">

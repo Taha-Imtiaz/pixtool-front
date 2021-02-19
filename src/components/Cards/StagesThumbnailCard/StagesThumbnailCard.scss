@@ -2,9 +2,10 @@
 
 .stagesThumbnailCard {
     width: 52rem;
-    height: 18rem   ;
-    box-shadow: 2px 3px 6px $color-dark-3;
+    height: 18rem;
+    background-color: $color-secondary;
     border-radius: 1.2rem;
+    // box-shadow: 0px 0px 5px $color-secondary-light;
 
     &__text {
         display: flex;
@@ -15,14 +16,14 @@
         margin-bottom: 1rem;
 
         &--title {
-            color: $color-grey-dark-3;
+            color: rgba($color-white, .8);
             font-size: 2rem;
             font-weight: bold;
             font-family: inherit;
         }
 
         &--export {
-            color: $color-green;
+            color: $color-primary;
             font-size: 1.5rem;
             font-weight: 600;
             font-family: inherit;
@@ -37,24 +38,25 @@
 }
 
 .stagesCardThumbnail {
-        width: 8rem;
-        height: 8rem;
-        border-radius: 5px;
-        background-color: $color-grey-light-7;
-        transition: all .2s;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 5px;
+    background-color: rgba($color-white, .8);
+    transition: font-size .3s, transform .3s, cursor .3s;
 
-        &:hover,
-        &:focus {
-            transform: scale(.9);
-            font-size: 3rem;
-        }
+    &:focus,
+    &:hover {
+        font-size: 3rem;
+        transform: scale(.9);
+        cursor: pointer;
+    }
 
-        &--addBtn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: $color-green;
-            font-size: 2.5rem;
-            cursor: pointer;
-        }
+    &--addBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: $color-primary;
+        font-size: 2.5rem;
+    }
 }

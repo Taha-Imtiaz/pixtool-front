@@ -1,9 +1,14 @@
+@import '../../../scss/variables.scss';
+
 .media {
     display: flex;
     flex-wrap: wrap;
     gap: 6rem;
 
+    height: 53rem;
+    margin: 2rem;
     padding: 3rem 2rem;
-    height: 50rem;
-    overflow-y: scroll;
+    background-color: $color-secondary-dark;
+    border-radius: 1.2rem;
+    overflow: auto;
 }
