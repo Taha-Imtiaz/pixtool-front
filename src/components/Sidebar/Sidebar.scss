@@ -1,4 +1,5 @@
 @import "../../scss/variables.scss";
+@import "../../scss/animations.scss";
 
 a {
     text-decoration: none;
@@ -6,15 +7,14 @@ a {
 
 // For Normal Sidebar
 .sidebar {
-    background-color: $color-secondary-dark;
-    width: 20vw;
-    position: relative;
-    // height: 100vh;
-
     display: grid;
     grid-template-rows: 25vh 35vh 40vh;
 
-    transition: width .3s;
+    position: relative;
+    width: 20vw;
+    // height: 100vh;
+    background-color: $color-secondary-dark;
+    transition: width .3s ease-in;
 
     &__top {
         display: flex;
@@ -24,10 +24,6 @@ a {
     }
 
     &__logo {
-        transition: all .3s;
-        /* display: flex;
-        justify-content: center;
-        align-items: center; */
 
         .logo-img {
             width: auto;
@@ -41,15 +37,21 @@ a {
         flex-direction: column;
 
         list-style: none;
-        transition: all .3s;
+        
     }
 
     &__link {
-        color: $color-white;
+        color: rgba($color-white, .8);
         font-size: 2.7rem;
         font-weight: 600;
         padding: 1rem 1.5rem;
-        transition: all .3s;
+        transition: cursor .3s, background-color, color .3s ease-in, .3s text-align .3s;
+
+        &--name {
+            display: inline-block;
+            transition: .3s display ease-in 0s;
+            animation: goLeft-right .8s;
+        }
 
         &>a {
             color: inherit;
@@ -67,20 +69,14 @@ a {
         &:active,
         &:focus {
             cursor: pointer;
-            background-color: $color-grey-light-2;
+            color: $color-white;
+            background-color: $color-secondary-light;
         }
     }
 }
 
 //For Collapsed Sidebar
-
 .sidebarCollapse {
-    background-color: $color-secondary-dark;
     width: 6vw;
-    position: relative;
-    transition: all .3s;
-    // height: 100vh;
-
-    display: grid;
-    grid-template-rows: 25vh 35vh 40vh;
+    transition: width .3s ease-in;
 }

@@ -1,21 +1,26 @@
 @import "../../scss/variables.scss";
 
 .tab-list {
-    border-bottom: 2px solid $color-grey-dark-3;
+    border-bottom: 2px solid rgba($color-white, .8);
     font-family: 'Segoe UI', sans-serif;
+    transition: color .3s, border-bottom .3s;
 
     &-item {
         display: inline-block;
-        color: $color-grey-dark-3;
+        color: rgba($color-white, .8);
         font-size: 2.5rem;
         font-weight: 600;
-        // margin-left: 2rem;
         margin-bottom: -2px;
         padding: 1rem 2rem;
         border: none;
         border-bottom: 4px solid transparent;
-        cursor: pointer;
-        transition: all .3s;
+        transition: cursor .3s;
+
+        &:active,
+        &:focus,
+        &:hover {
+            cursor: pointer;
+        }
 
         &:not(:first-child) {
             margin-left: 5rem;
@@ -26,6 +31,6 @@
     &-focus {
         outline: none;
         border: none;
-        border-bottom: 4px solid $color-secondary-dark;
+        border-bottom: 4px solid $color-primary;
     }
 }

@@ -12,10 +12,10 @@
     padding: 1.5rem 0;
 
     &__text {
+        color: $color-secondary-light;
         font-family: inherit;
         font-size: 1.8rem;
         font-weight: inherit;
-        color: $color-grey-dark-7;
     }
 
     &__img {
@@ -27,7 +27,6 @@
         width: 4rem;
         height: 4rem;
         border-radius: 5px;
-        background-color: $color-grey-light-7;
         transition: all .2s;
 
         &:hover,
@@ -41,12 +40,13 @@
         font-family: inherit;
         font-size: 1.6rem;
         font-weight: inherit;
-        color: $color-green;
-        cursor: pointer;
-        transition: all .2s;
+        color: $color-primary;
+        transition: cursor .3s, color .3s, transform .15s;
 
         &:hover,
         &:focus {
+            cursor: pointer;
+            color: $color-primary-dark;
             transform: scale(.95);
         }
     }

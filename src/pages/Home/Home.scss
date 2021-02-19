@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: min-content 1fr;
 
-    background-color: $color-light-2;
+    background-color: $color-secondary;
 }
 
 .header {
@@ -13,55 +13,4 @@
 
 .tabs {
     grid-column: 2 / 3;
-}
-
-.library {
-
-    &__head {
-        display: flex;
-        justify-content: space-between;
-        padding: 2rem 5rem 2rem 5rem;
-        background-color: $color-light-2;
-
-        &__buttons {
-            display: flex;
-            gap: 2rem;
-        }
-    }
-
-    &__head-right {
-        display: flex;
-        gap: 2rem;
-    }
-
-    &__main {
-        margin: 1.5rem;
-        height: 63vh;
-        border-radius: 2rem 2rem 2rem 0;
-        background-color: $color-white;
-    }
-}
-
-.avatar {
-    font-size: 1.5rem;
-    width: 3.8rem;
-    height: 3.8rem;
-    display: block;
-    text-align: center;
-    line-height: 3.5rem;
-    background-color: $color-secondary-dark;
-    color: $color-white;
-    border: 1px solid $color-secondary-dark;
-    border-radius: 50%;
-
-    &__container {
-        display: flex;
-        justify-content: center;
-    }
-}
-
-.thumbnail-container {
-    padding: 4rem;
-    display: flex;
-    gap: 2.5rem;
 }

@@ -1,0 +1,14 @@
+@keyframes goLeft-right {
+    0% {
+        // position: absolute;
+        transform: translateX(-200%);
+    }
+
+    50% {
+        transform: translateX(-200%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

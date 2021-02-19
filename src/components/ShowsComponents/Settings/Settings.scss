@@ -11,13 +11,13 @@
         width: 100%;
         font-family: 'Segoe UI', 'Open Sans', sans-serif;
         padding: 2rem;
-        background-color: $color-white;
+        background-color: $color-secondary-dark;
         border-radius: 2rem;
 
         &--title {
             font-size: 2.5rem;
             font-weight: bold;
-            color: $color-grey-dark-3;
+            color: rgba($color-white, .8);
         }
 
         &--cards {
@@ -31,20 +31,20 @@
     &__notes {
         width: 48rem;
         padding: 2rem;
-        background-color: $color-white;
+        background-color: $color-secondary-dark;
         border-radius: 2rem;
         overflow: auto;
 
         &--title {
             font-size: 2.5rem;
-            color: $color-grey-dark-3;
+            color: rgba($color-white, .8);
             padding-bottom: 2rem;
         }
 
         &--text {
             font-family: inherit;
             font-size: 1.6rem;
-            color: $color-grey-dark-7;
+            color: $color-secondary-light;
         }
     }
 

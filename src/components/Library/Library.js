@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Library.scss';
 import Filter from "../../components/Filter/Filter";
 import Avatar from "../../components/Avatar/Avatar";
 import Button from "../../components/Button/Button";
@@ -10,7 +11,7 @@ function Library() {
     const [show, setShow] = useState(false);
     const closeModalHandler = () => setShow(false);
     const openModalHandler = () => setShow(true);
-    const createNew = () => {}
+    const createNew = () => { }
 
     return (
         <div>

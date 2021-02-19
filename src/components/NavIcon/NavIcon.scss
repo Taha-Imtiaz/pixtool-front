@@ -10,7 +10,7 @@
     }
 
     &__button {
-        background-color: $color-white;
+        background-color: rgba($color-white, .8);
         height: 4.2rem;
         width: 4.2rem;
         position: absolute;
@@ -21,16 +21,6 @@
         // box-shadow: 0 1rem 3rem rgba($color-black, .1);
         text-align: center;
         cursor: pointer;
-
-        /* @include respond(tab-port) {
-            top: 4rem;
-            right: 4rem;
-        }
-
-        @include respond(phone) {
-            top: 3rem;
-            right: 3rem;
-        } */
     }
 
     //ICON
@@ -44,7 +34,7 @@
             display: inline-block;
             width: 2rem;
             height: 2px;
-            background-color: $color-grey-dark-3;
+            background-color: $color-secondary;
         }
 
         &::before,

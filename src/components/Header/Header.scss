@@ -6,14 +6,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $color-white;
+    background-color: $color-secondary;
+    // border-bottom: 1px solid $color-secondary-dark;
+    // box-shadow: 0px 2px 5px rgba($color-secondary-dark, .8);
 }
 
 .search {
     font-size: 2.5rem;
-    color: $color-grey-dark-3;
-    border: 2px solid $color-light-2;
-    background-color: $color-light-2;
+    color: rgba($color-white, .8);
+    border: 2px solid $color-secondary-dark;
+    background-color: $color-secondary-dark;
     border-radius: 10rem;
     width: fit-content;
     margin-left: 5rem;
@@ -28,21 +30,22 @@
     }
 
     &__input {
-        font-size: inherit;
-        font-weight: 600;
-        background-color: transparent;
-        border: none;
-        padding: .5rem 1rem;
         width: 35rem;
+        font-size: inherit;
+        font-weight: 400;
+        color: rgba($color-white, .8);
+        padding: .5rem 1rem;
+        border: none;
+        background-color: transparent;
 
-        &:placeholder-shown {
+        &::placeholder {
             font-size: inherit;
-            color: inherit;
+            font-weight: 600;
+            color: rgba($color-white, .8);
         }
 
         &:focus {
             outline: none;
-            color: inherit;
         }
 
     }
@@ -59,7 +62,7 @@
     &__text {
         font-size: 2.2rem;
         font-weight: 600;
-        color: $color-secondary-dark;
+        color: $color-primary;
         padding-right: 1.5rem;
     }
 
@@ -70,22 +73,35 @@
             width: 5.2rem;
             height: 5.2rem;
             border-radius: 50%;
-            cursor: pointer;
+            transition: cursor .3s, box-shadow .3s;
+
+            &:focus,
+            &:hover {
+                cursor: pointer;
+                box-shadow: 0px 0px 10px rgba($color-secondary-dark, 1);
+            }
         }
     }
 
     &__icon {
         font-size: 2rem;
-        color: $color-grey-dark-3;
+        color: rgba($color-white, .8);
         padding: .5rem;
         cursor: pointer;
     }
 
     &__notification {
         font-size: 3rem;
-        color: $color-grey-dark-3;
+        color: rgba($color-white, .8);
         position: relative;
-        cursor: pointer;
+        transition: cursor .3s, color .3s;
+
+        &:focus,
+        &:hover {
+            cursor: pointer;
+            color: $color-primary;
+
+        }
     }
 }
 

@@ -16,9 +16,9 @@ function HeroSection() {
     window.onscroll = function () { scrollFunction() };
     function scrollFunction() {
         if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-            document.getElementById("header").style.backgroundColor = "#000000";
+            document.getElementById("header").style.backgroundColor = "#121212";
         } else {
-            document.getElementById("header").style.backgroundColor = "#191919";
+            document.getElementById("header").style.backgroundColor = "#292929";
         }
     }
 

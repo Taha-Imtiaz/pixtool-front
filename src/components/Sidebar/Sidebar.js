@@ -10,14 +10,14 @@ function Sidebar() {
 
     //This function is responsible for toggling sidebar
     const toggleSidebar = (e) => {
-        e.stopPropagation()
-        e.preventDefault()
+        // e.stopPropagation()
+        // e.preventDefault()
         setDrawer(!drawer)
-        console.log(drawer)
+        // console.log(drawer)
     }
 
     return (
-        <div className={drawer ? 'sidebar' : 'sidebarCollapse'}>
+        <div className={drawer ? 'sidebar' : 'sidebarCollapse sidebar'}>
             <div className={drawer ? 'sidebar__top' : 'sidebar__top just-cont-cen'}>
 
                 <div className="pd-t-1-5" >
@@ -31,12 +31,12 @@ function Sidebar() {
             </div>
 
             <nav className="sidebar__nav">
-                <ul className="sidebar__list">
+                <ul className={drawer ? 'sidebar__list' : 'sidebar__list'}>
                     <li className={drawer ? 'sidebar__link' : 'sidebar__link txt-align-cen'}>
                         <a href="./#">
                             {/* <i className="fas fa-book"></i> */}
                             <i className={drawer ? 'fas fa-book' : 'fas fa-book margin-0'}></i>
-                            <span className={drawer ? '' : 'dis-none'}>My Library</span>
+                            <span className={drawer ? 'sidebar__link--name' : 'dis-none'}>My Library</span>
                         </a>
                     </li>
                     {/* <li className="sidebar__link">
@@ -49,14 +49,14 @@ function Sidebar() {
                         <a href="./#">
                             {/* <i className="far fa-file-alt"></i> */}
                             <i className={drawer ? 'far fa-file-alt' : 'far fa-file-alt margin-0'}></i>
-                            <span className={drawer ? '' : 'dis-none'}>Shared with me</span>
+                            <span className={drawer ? 'sidebar__link--name' : 'dis-none'}>Shared with me</span>
                         </a>
                     </li>
                     <li className={drawer ? 'sidebar__link' : 'sidebar__link txt-align-cen'}>
                         <a href="./#">
                             {/* <i class="fas fa-cog"></i> */}
                             <i className={drawer ? 'fas fa-cog' : 'fas fa-cog margin-0'}></i>
-                            <span className={drawer ? '' : 'dis-none'}>Settings</span>
+                            <span className={drawer ? 'sidebar__link--name' : 'dis-none'}>Settings</span>
                         </a>
                     </li>
                 </ul>
