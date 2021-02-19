@@ -1,0 +1,151 @@
+@import "../../scss/variables.scss";
+
+.auth {
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+    grid-template-rows: 100vh;
+
+    font-family: 'Open Sans', sans-serif;
+    background-color: $color-secondary;
+
+    &__image-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+
+        .authBg {
+            width: 80%;
+        }
+    }
+
+    &__main-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &--head {
+            text-align: center;
+        }
+    }
+}
+
+.form {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    &__group {
+        position: relative;
+
+        &:not(:last-child) {
+            margin-top: 3.5rem;
+        }
+
+        &:last-child {
+            margin-top: 4rem;
+            margin-bottom: 3rem;
+        }
+    }
+
+    &__input {
+        width: 45rem;
+        font-size: 2rem;
+        color: rgba($color-white, .8);
+        padding: 1rem 2rem 1rem 5rem;
+        background-color: $color-secondary;
+        border: 2px;
+        border: none;
+        border-bottom: 3px solid rgba($color-white, .8);
+        transition: border-bottom .3s;
+
+        &:focus,
+        &:hover {
+            outline: none;
+            border-bottom: 3px solid $color-primary;
+        }
+
+        &::-webkit-input-placeholder {
+            color: rgba($color-white, .8);
+            font-size: 2rem;
+        }
+    }
+
+    &__absolute-icon {
+        position: absolute;
+        top: 1rem;
+        color: $color-primary;
+        font-size: 2rem;
+
+        &--eye {
+            margin-left: -2.5rem;
+            transition: color .3s, cursor .3s;
+
+            &:active,
+            &:focus,
+            &:hover {
+                color: $color-primary-dark;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.resetSignupTexts {
+    display: inline-block;
+    margin-top: 2rem;
+}
+
+.authLinks {
+    font-size: 1.7rem;
+    color: rgba($color-white, .8);
+
+    &--primary {
+        color: $color-primary;
+    }
+}
+
+.otherAuthOptions {
+    text-align: center;
+
+    &__text {
+        font-size: 1.7rem;
+        color: rgba($color-white, .8);
+        margin-bottom: 3rem;
+
+        &:before,
+        &:after {
+            content: '';
+            width: 14.6rem;
+            height: 2px;
+            display: inline-block;
+            background-color: rgba($color-white, .8);
+            vertical-align: middle;
+        }
+
+        &::before {
+            margin-right: 2rem;
+        }
+
+        &::after {
+            margin-left: 2rem;
+        }
+    }
+
+    &__icons {
+        font-size: 2.5rem;
+        border-radius: 50%;
+        border: 2px solid $color-primary;
+        color: $color-primary;
+        line-height: 4.5rem;
+        width: 5rem;
+        height: 5rem;
+        text-align: center;
+        display: inline-block;
+        cursor: pointer;
+
+        &:not(:last-child) {
+            margin-right: 1.5rem;
+        }
+    }
+}

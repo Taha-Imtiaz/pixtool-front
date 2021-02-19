@@ -1,5 +1,5 @@
 import React from 'react'
-import './SignIn.scss'
+import './Authentication.scss'
 import SignInBG from '../../images/signIn.png';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
@@ -38,13 +38,13 @@ const SignIn = () => {
     }
 
     return (
-        <div className="signIn">
-            <div className="signIn__image-box">
+        <div className="auth">
+            <div className="auth__image-box">
                 <img src={SignInBG} alt="" className="authBg" />
             </div>
 
-            <div className="signIn__main-box">
-                <div className="signIn__main-box--head">
+            <div className="auth__main-box">
+                <div className="auth__main-box--head">
                     <h1 className="heading-large">Welcome!</h1>
                     <h2 className="heading-small">Sign In to Video Editing</h2>
                 </div>
@@ -64,11 +64,11 @@ const SignIn = () => {
 
                     <div className="resetSignupTexts">
                         <span className="authLinks">Don't have an account?&nbsp;<Link to="/sign-up" className="authLinks"><strong>Sign Up</strong></Link></span>
-                        <a href="./#" className="authLinks authLinks--blue margin-l-large"><strong>Forgot Passsword</strong></a>
+                        <a href="./#" className="authLinks authLinks--primary margin-l-large"><strong>Forgot Passsword</strong></a>
                     </div>
 
                     <div className="form__group">
-                        {/* <button class="btn btn--large btn--blue" onClick={() => history.push('/home')}>Sign In</button> */}
+                        {/* <button class="btn btn--large btn--primary" onClick={() => history.push('/home')}>Sign In</button> */}
                         <ButtonLarge text="Sign In" click={createNew} />
                     </div>
                 </form>

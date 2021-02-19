@@ -1,5 +1,5 @@
 import React from 'react'
-import './SignUp.scss'
+import './Authentication.scss'
 import SignUpBG from '../../images/signUp.png'
 import { useHistory } from 'react-router-dom';
 import ButtonLarge from '../../components/Button/ButtonLarge';
@@ -41,13 +41,13 @@ const SignUp = () => {
     }
 
     return (
-        <div className="signIn">
-            <div className="signIn__image-box">
+        <div className="auth">
+            <div className="auth__image-box">
                 <img src={SignUpBG} alt="" className="authBg" />
             </div>
 
-            <div className="signIn__main-box">
-                <div className="signIn__main-box--head">
+            <div className="auth__main-box">
+                <div className="auth__main-box--head">
                     <h1 className="heading-large">Welcome!</h1>
                     <h2 className="heading-small">Create an Account</h2>
                 </div>
