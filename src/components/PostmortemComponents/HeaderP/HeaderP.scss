@@ -2,9 +2,8 @@
 
 .headerP {
     height: 6rem;
-    border-bottom: 1px solid $color-light-2;
+    border-bottom: 1px solid $color-primary;
     background-color: $color-secondary-dark;
-    // background-color: rgba($color-secondary-dark, .95);
 
     display: flex;
     justify-content: space-between;
@@ -19,7 +18,7 @@
         font-size: 2rem;
         font-weight: 100;
         padding: 0.5rem 1rem;
-        color: $color-white;
+        color: rgba($color-white, .8);
 
     }
 
@@ -27,11 +26,12 @@
 
         &:hover {
             cursor: pointer;
-            color: $color-grey-light-6;
+            color: $color-secondary-light;
         }
     }
 
     &__title {
+        color: rgba($color-white, .8);
         padding-left: 2rem;
     }
 
@@ -47,7 +47,7 @@
     
     &__notification {
         font-size: 2.5rem;
-        color: $color-white;
+        color: rgba($color-white, .8);
         padding-right: 1rem;
         position: relative;
         cursor: pointer;
@@ -56,8 +56,8 @@
     &__help-icon {
         font-size: 2rem;
         border-radius: 50%;
-        border: 3px solid $color-white;
-        color: $color-white;
+        border: 3px solid rgba($color-white, .8);
+        color: rgba($color-white, .8);
         line-height: 3.5rem;
         width: 4rem;
         height: 4rem;
@@ -74,7 +74,7 @@
     padding: .2rem;
     font-size: 1rem;
     text-align: center;
-    color: $color-white;
+    color: rgba($color-white, .8);
     background-color: $color-red;
     border-color: $color-red;
     border-radius: 50%;
