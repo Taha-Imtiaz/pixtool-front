@@ -1,9 +1,10 @@
 import React from 'react';
 import './HeaderP.scss';
 import Logo from '../../../images/logo.png';
-import ButtonLight from '../../Button/ButtonLight';
+import Button from '../../Button/Button';
 import NavIcon from '../../NavIcon/NavIcon';
 import Dropdown from '../../Dropdown/Dropdown';
+import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
 
 function HeaderP(props) {
 
@@ -22,7 +23,26 @@ function HeaderP(props) {
         window.history.back(1);
     }
 
-    let status = ['In progress', 'Approved']
+    // Dropdown Option Values
+    let status = [
+        { rightIcon: '', leftIcon: '', value: 'Needs Review', goToMenu: '' },
+        { rightIcon: '', leftIcon: '', value: 'In Progress', goToMenu: '' },
+        { rightIcon: '', leftIcon: '', value: 'Approved', goToMenu: '' },
+        { rightIcon: '', leftIcon: '', value: 'No Status', goToMenu: '' }];
+
+    let options = [
+        {
+            rightIcon: <ChevronIcon />, leftIcon: '', value: 'Download', goToMenu: 'download',
+            child: [
+                { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' },
+                { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' },
+                { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' },
+                { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' }]
+        },
+        { rightIcon: '', leftIcon: '', value: 'Make Private', goToMenu: '' },
+        { rightIcon: '', leftIcon: '', value: 'Reveal in project', goToMenu: '' },
+        { rightIcon: '', leftIcon: '', value: 'Delete', goToMenu: '' }];
+
     return (
         <div className="headerP">
             <div className="headerP__left-box">
@@ -34,25 +54,11 @@ function HeaderP(props) {
             </div>
 
             <div className="headerP__right-box">
-                {/* <select className="dropdowns" name="cars">
-                    <option disabled value="" default>Approved</option>
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
-                </select> */}
+                <Dropdown text="Status" menuItems={status} />
 
-                <Dropdown text="Status" menuItems ={status}/>
+                <Dropdown text="---" menuItems={options} />
 
-                <select className="dropdowns" name="cars">
-                    <option disabled value="" default>...</option>
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
-                </select>
-
-                <ButtonLight text="Share" />
+                <Button text="Share" />
 
                 <span className="headerP__notification"><i className="fas fa-bell"></i> <span className="notificationCount">1</span></span>
 

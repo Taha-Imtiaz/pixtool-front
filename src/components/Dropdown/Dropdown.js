@@ -4,11 +4,10 @@ import { CSSTransition } from 'react-transition-group';
 import './DropdownMenus.scss';
 
 import { ReactComponent as CaretIcon } from '../../icons/caret.svg';
-import { ReactComponent as ChevronIcon } from '../../icons/chevron.svg';
+// import { ReactComponent as ChevronIcon } from '../../icons/chevron.svg';
 import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 
 function Dropdown(props) {
-
     return (
         <Navbar text={props.text}>
             <NavItem icon={<CaretIcon />}>
@@ -43,6 +42,7 @@ function NavItem(props) {
 function DropdownMenu(props) {
     console.log(props)
     const [activeMenu, setActiveMenu] = useState('main');
+    // eslint-disable-next-line
     const [menuHeight, setMenuHeight] = useState(null);
     const dropdownRef = useRef(null);
 
@@ -50,10 +50,10 @@ function DropdownMenu(props) {
         setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
     }, [])
 
-    function calcHeight(el) {
+    /* function calcHeight(el) {
         const height = el.offSetHeight;
         setMenuHeight(height);
-    }
+    } */
 
     function DropdownItem(props) {
         console.log(props.children)
@@ -68,40 +68,61 @@ function DropdownMenu(props) {
 
     return (
         <div className="dropdown" /* style={{ height: menuHeight }} ref={dropdownRef} */>
-                <div>
+            <div>
                 <CSSTransition
                     in={activeMenu === 'main'}
                     unmountOnExit
                     timeout={500}
                     classNames="menu-primary"
-                    onEnter={calcHeight}
+                /* onEnter={calcHeight} */
                 >
                     <div className="menu">
-                    {props.menuItems.map((x, i) => <DropdownItem>{x}</DropdownItem>)}
+                        {props.menuItems.map((x, i) => (
+                            <DropdownItem
+                                rightIcon={x.rightIcon}
+                                leftIcon={x.leftIcon}
+                                goToMenu={x.goToMenu}>
+                                {x.value}
+                            </DropdownItem>
+                        ))}
+
                         {/* <DropdownItem
                             rightIcon={<ChevronIcon />}
                             goToMenu="settings"
                         >
                             Settings
-                    </DropdownItem> */}
+                        </DropdownItem> */}
                     </div>
                 </CSSTransition>
 
+                {props.menuItems.map((x, i) => (x.goToMenu ? <CSSTransition
+                    in={activeMenu === x.goToMenu}
+                    unmountOnExit
+                    timeout={500}
+                    classNames="menu-secondary"
+                // onEnter={calcHeight}
+                >
+                    <div className="menu">
+                        <DropdownItem leftIcon={<ArrowIcon />} goToMenu="main">Back</DropdownItem>
+                        {x.child.map((y, j) => <DropdownItem>{y.value}</DropdownItem>)} 
+                    </div>
+                </CSSTransition> : null
+                ))}
                 {/* <CSSTransition
                     in={activeMenu === 'settings'}
                     unmountOnExit
                     timeout={500}
                     classNames="menu-secondary"
-                    onEnter={calcHeight}
+                    // onEnter={calcHeight}
                 >
                     <div className="menu">
                         <DropdownItem leftIcon={<ArrowIcon />} goToMenu="main">Back</DropdownItem>
                         <DropdownItem>Settings</DropdownItem>
                     </div>
-                </CSSTransition>
-            */}
+                </CSSTransition> */}
+
             </div>
-            
+
 
         </div>
     );

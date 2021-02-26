@@ -1,6 +1,7 @@
 @import "../../scss/variables.scss";
 
 .btn {
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
     text-align: center;
     border: none;
     cursor: pointer;
@@ -20,23 +21,20 @@
     }
 
     &--light {
-        font-family: 'Segoe UI', 'Open Sans', sans-serif;
-        font-size: 2rem;
-        width: 13rem;
-        padding: .5rem .5rem;
-        border-radius: 5px;
-        color: $color-primary;
-        background-color: rgba($color-white, .8);
+        color: $color-secondary-dark;
+        background-color: $color-white-dull;
+        transition: color .3s, background-color .3s;
 
         &:focus,
         &:active,
         &:hover {
             outline: none;
+            color: $color-white-dull;
+            background-color: $color-primary;
         }
     }
 
     &--normal {
-        font-family: 'Segoe UI', 'Open Sans', sans-serif;
         font-size: 1.8rem;
         font-weight: 600;
         width: 13rem;
@@ -45,7 +43,6 @@
     }
 
     &--large {
-        font-family: 'Open Sans', 'Segoe UI', sans-serif;
         font-size: 2.6rem;
         width: 45rem;
         padding: 1rem 0;
@@ -53,11 +50,10 @@
     }
 
     &--small {
-        font-family: 'Open Sans', 'Segoe UI', sans-serif;
         font-size: 1.5rem;
         width: 8rem;
         padding: .5rem 0;
-        border-radius: 3px;
+        border-radius: 5px;
     }
 
     &--poppins {
