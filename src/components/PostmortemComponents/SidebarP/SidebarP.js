@@ -25,8 +25,8 @@ function SidebarP(props) {
     }
 
     return (
-        <div className={props.open ? 'sidebarP' : 'sidebarPCollapse'}>
-            <div className={props.open ? '' : 'sidebarP__overlay'}></div>
+        <div className={props.open ? 'sidebarP' : 'sidebarP sidebarPCollapse'}>
+            <div id="sidebar-overlay" className={props.open ? '' : 'sidebarP__overlay'}></div>
             <div className="sidebarP__head">
                 <div className="sidebarP__info">
                     <span className="sidebarP__info--name">John</span>
