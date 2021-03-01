@@ -12,7 +12,7 @@ function Postmortem() {
         setDrawer(!drawer)
     }
     return (
-        <div className="postmortem">
+        <div className="postmortem page-wrapper">                   {/* "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
             <div className="postmortem__header">
                 <HeaderP toggle={toggle}/>
             </div>

@@ -14,7 +14,7 @@ import Export from '../../components/ShowsComponents/Export/Export';
 function Home() {
 
     return (
-        <div className="home">
+        <div className="home page-wrapper">                 {/* "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
             <Sidebar />
             <div>
                 <Header className="header" />

@@ -21,8 +21,6 @@ import Guides from '../../../images/guides.svg';
 import Loop from '../../../images/loop.svg';
 import Volume from '../../../images/volume.svg';
 
-import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
-
 function PlayerP() {
     const createNew = () => { }
 
@@ -31,6 +29,7 @@ function PlayerP() {
     // State For Emojibox
     const [emojiBox, setEmojiBox] = useState(false);
 
+    // To Close the Emoji Picker whenever click outside it
     useEffect(() => {
 
         function handleClickEvent(event) {
