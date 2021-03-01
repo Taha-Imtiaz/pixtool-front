@@ -1,32 +1,85 @@
 @import "../../scss/variables.scss";
 
 .filter {
-    font-size: 2rem;
-    color: $color-grey-light-3;
-    width: fit-content;
-    // padding: auto 1rem;
     position: relative;
-    cursor: pointer;
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: rgba($color-secondary-dark, .8);
+    border: none;
+    border-radius: 1rem;
+    background-color: rgba($color-white, 1);
+    box-shadow: 0px 0px 8px $color-secondary-dark;
+    transition: color .3s, background-color .3s, box-shadow .3s;
+
+    &:active,
+    &:focus,
+    &:hover {
+        outline: none;
+        cursor: pointer;
+        color: rgba($color-white, .8);
+        background-color: rgba($color-secondary, .8);
+        box-shadow: 0px 0px 8px rgba($color-white, .5);
+    }
 
     &__icon {
-        font-size: 1.5rem;
+        font-size: inherit;
         position: absolute;
         top: 1rem;
-        left: 1.5rem;
+        left: 1.3rem;
+        pointer-events: none;
     }
 
     &__dropdown {
-        color: inherit;
-        text-align: center;
-        background-color: $color-white;
-        padding: 1rem 4rem;
-        border: 1px solid $color-dark-3;
-        border-radius: 1rem;
-        box-shadow: 1px 2px 4px $color-dark-3;
-        cursor: inherit;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
 
-        &:focus {
-            outline: none;
+        /* For IE <= 11 */
+        &::-ms-expand {
+            display: none;
         }
+
+
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        color: inherit;
+        padding: 1rem 4.5rem;
+        text-align: center;
+        border: none;
+        background-color: transparent;
+        transition: cursor .3s;
+
+        &:active,
+        &:focus,
+        &:hover {
+            outline: none;
+            cursor: pointer;
+        }
+
+        option {
+            font-family: 'Segoe UI', 'Open Sans', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: rgba($color-white, .8);
+            text-align: center;
+            background-color: rgba($color-secondary, .6);
+            
+            &:active,
+            &:focus,
+            &:checked,
+            &:hover {
+                background: $color-primary;
+            }
+        }
+    }
+
+    &__arrow-icon {
+        font-size: inherit;
+        position: absolute;
+        top: 1rem;
+        right: 1.3rem;
+        pointer-events: none;
     }
 }

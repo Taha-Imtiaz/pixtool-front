@@ -1,10 +1,10 @@
-import React from 'react'
-import Dropdown from '../components/Dropdown/Dropdown';
+import React from 'react';
+import Filter from '../components/Filter/Filter';
 
 function test() {
     return (
-        <div style={{display:"flex", justifyContent:"center", alignItems:"center", backgroundColor:"#aaa"}}>
-            <Dropdown text="Hello"/>
+        <div className="page-wrapper" style={{display:"flex", justifyContent:"center", alignItems:"center", backgroundColor:"#aaa", height: "100vh"}}>
+            <Filter />
         </div>
     )
 }
