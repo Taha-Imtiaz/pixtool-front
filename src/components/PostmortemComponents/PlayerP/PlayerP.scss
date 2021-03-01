@@ -14,7 +14,7 @@
         border-top-right-radius: 5px;
         box-shadow: 1px 1px 5px 0px rgba($color-secondary-dark, .6);
         user-select: none;
-        pointer-events: none;
+        // pointer-events: none;
 
     }
 
@@ -27,14 +27,22 @@
     }
 
     &__control-area {
+        grid-row: 2 / span 1;
+
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 2rem;
+
+        font-size: 2rem;
+        padding: 0 2.5rem;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        background-color: $color-secondary-dark;
 
         &--left,
         &--right {
             display: flex;
+            align-content: center;
             gap: 2.5rem;
         }
     }
@@ -44,11 +52,14 @@
         width: 2rem;
         font-size: 1.7rem;
         font-weight: bold;
+        color: rgba($color-white, .8);
+        transition: color .3s, cursor .3s;
 
         &:active,
         &:focus,
         &:hover {
-            color: rgba($color-white, .6);
+            outline: none;
+            color: rgba($color-white, .5);
             cursor: pointer;
         }
     }
@@ -59,15 +70,6 @@
         height: 100%;
         background-color: $color-secondary-dark;
         border-bottom: 1px solid rgba($color-primary, .8);
-    }
-
-    &__control-area {
-        grid-row: 2 / span 1;
-
-        height: 100%;
-        border-bottom-left-radius: 3px;
-        border-bottom-right-radius: 3px;
-        background-color: $color-secondary-dark;
     }
 
     &__comment-box {

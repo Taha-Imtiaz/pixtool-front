@@ -15,7 +15,7 @@ import Test1 from '../../../images/test1.jpg'
 // import PlayerControls from '../../../images/player-controls.svg';
 import FullScreen from '../../../images/full-screen.svg';
 // import Mute from '../../../images/mute.svg';
-import Play from '../../../images/play-button.svg';
+// import Play from '../../../images/play-button.svg';
 // import Pause from '../../../images/pause.svg';
 import Guides from '../../../images/guides.svg';
 import Loop from '../../../images/loop.svg';
@@ -24,10 +24,17 @@ import Volume from '../../../images/volume.svg';
 function PlayerP() {
     const createNew = () => { }
 
+
     // State For Comment TextArea
     const [textValue, setTextValue] = useState('');
     // State For Emojibox
     const [emojiBox, setEmojiBox] = useState(false);
+    // State For Video Player Controls
+    const [play, setPlay] = useState(false);
+    const [loop, setLoop] = useState(false);
+    // const [volume, setVolume] = useState(false);
+
+
 
     // To Close the Emoji Picker whenever click outside it
     useEffect(() => {
@@ -69,11 +76,56 @@ function PlayerP() {
     // Dropdown Option Values
     let commentPrivacy = [
         { rightIcon: '', leftIcon: '', value: 'Everyone can see', goToMenu: '' },
-        { rightIcon: '', leftIcon: '', value: 'Team only', goToMenu: '' }];
+        { rightIcon: '', leftIcon: '', value: 'Team only', goToMenu: '' }
+    ];
+
+    // For Video Player Controls
+    /* Play/ Pause */
+    const playPause = () => {
+        let myVideo = document.getElementById('myVideo');
+
+        if (play === false) {
+            myVideo.play();
+            setPlay(!play);
+
+        } else {
+            myVideo.pause();
+            setPlay(!play);
+        }
+    }
+
+    /* Loop Video */
+    const loopVideo = () => {
+        let myVideo = document.getElementById('myVideo');
+
+        if (loop === false) {
+            if (typeof myVideo.loop == 'boolean') { // loop supported
+                myVideo.loop = true;
+
+            } else { // loop property not supported
+                myVideo.addEventListener('ended', function () {
+                    this.currentTime = 0;
+                    this.play();
+                });
+            }
+
+        } else {
+            if (typeof myVideo.loop == 'boolean') { // loop supported
+                myVideo.loop = false;
+
+            } else { // loop property not supported
+                myVideo.addEventListener('ended', function () {
+                    this.currentTime = 0;
+                    this.pause();
+                });
+            }
+        }
+        setLoop(!loop);
+    }
 
     return (
         <div className="playerP">
-            <video className="playerP__video" poster={Test1}>
+            <video id="myVideo" className="playerP__video" poster={Test1}>
                 <source src={Video} type="video/mp4" />
                 Your browser does not support HTML video.
             </video>
@@ -84,10 +136,18 @@ function PlayerP() {
 
                 <div className="playerP__control-area">
                     <div className="playerP__control-area--left">
-                        <img src={Play} alt="Play" title="Play" className="playerP__icons" />
+                        <span className="playerP__icons" onClick={playPause}>
+                            {play ?
+                                <i className="fas fa-pause playerP__icons"></i>
+                                :
+                                <i className="fas fa-play playerP__icons"></i>
+                            }
+                        </span>
+
+                        {/* <img src={Play} alt="Play" title="Play" className="playerP__icons" /> */}
                         {/* <img src={Pause} alt="Pause" title="Pause" className="playerP__icons"/> */}
                         <span className="playerP__icons" >1x</span>
-                        <img src={Loop} alt="Loop" title="Loop" className="playerP__icons" />
+                        <img src={Loop} alt="Loop" title="Loop" className="playerP__icons" onClick={loopVideo} />
                         <img src={Volume} alt="Volume" title="Volume" className="playerP__icons" />
                         {/* <img src={Mute} alt="Mute" title="Mute" className="playerP__icons"/> */}
                     </div>
@@ -120,8 +180,8 @@ function PlayerP() {
                                 <span className="timespanBox__time">00:00</span>
                                 <span className="timespanBox__checkbox"><input type="checkBox" className="checkbox" /></span>
                             </div>
-                            
-                            <Dropdown text="Privacy" menuItems={commentPrivacy}/>
+
+                            <Dropdown text="Privacy" menuItems={commentPrivacy} />
                         </div>
 
                         <div className="playerP__comment-box--bottom-right">
