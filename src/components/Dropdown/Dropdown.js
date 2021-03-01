@@ -8,6 +8,8 @@ import { ReactComponent as CaretIcon } from '../../icons/caret.svg';
 import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 
 function Dropdown(props) {
+
+
     return (
         <Navbar text={props.text}>
             <NavItem icon={<CaretIcon />}>
@@ -27,6 +29,23 @@ function Navbar(props) {
 
 function NavItem(props) {
     const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+
+        function handleClickEvent(event) {
+
+            if (event.target.className === '' || !open) {
+            } else {
+                // Get parent element and check if click happened outside parent only
+                const parent = document.querySelector(".dropdown");
+                if (open && parent && !parent.contains(event.target)) {
+                    setOpen(!open);
+                }
+            }
+        }
+        document.querySelector('body').addEventListener("click", handleClickEvent);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [open])
 
     return (
         <li className="nav-item">
@@ -67,7 +86,7 @@ function DropdownMenu(props) {
     }
 
     return (
-        <div className="dropdown" /* style={{ height: menuHeight }} ref={dropdownRef} */>
+        <div className="dropdown" /* style={{ height: menuHeight }} ref={dropdownRef} */ style={props.style}>
             <div>
                 <CSSTransition
                     in={activeMenu === 'main'}
@@ -104,7 +123,7 @@ function DropdownMenu(props) {
                 >
                     <div className="menu">
                         <DropdownItem leftIcon={<ArrowIcon />} goToMenu="main">Back</DropdownItem>
-                        {x.child.map((y, j) => <DropdownItem>{y.value}</DropdownItem>)} 
+                        {x.child.map((y, j) => <DropdownItem>{y.value}</DropdownItem>)}
                     </div>
                 </CSSTransition> : null
                 ))}

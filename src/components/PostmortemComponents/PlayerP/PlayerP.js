@@ -1,11 +1,17 @@
 import { React, useEffect, useState } from 'react';
+
 import './PlayerP.scss';
-import Video from '../../../images/mov_bbb.mp4';
-import Test1 from '../../../images/test1.jpg'
+
+import 'emoji-mart/css/emoji-mart.css';
+
 import Avatar from '../../Avatar/Avatar';
 import ButtonSmall from '../../Button/ButtonSmall';
-import 'emoji-mart/css/emoji-mart.css';
+import Dropdown from '../../Dropdown/Dropdown';
 import { Picker } from 'emoji-mart';
+
+import Video from '../../../images/mov_bbb.mp4';
+import Test1 from '../../../images/test1.jpg'
+
 // import PlayerControls from '../../../images/player-controls.svg';
 import FullScreen from '../../../images/full-screen.svg';
 // import Mute from '../../../images/mute.svg';
@@ -15,8 +21,11 @@ import Guides from '../../../images/guides.svg';
 import Loop from '../../../images/loop.svg';
 import Volume from '../../../images/volume.svg';
 
+import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
+
 function PlayerP() {
     const createNew = () => { }
+
     // State For Comment TextArea
     const [textValue, setTextValue] = useState('');
     // State For Emojibox
@@ -57,6 +66,11 @@ function PlayerP() {
         const value = event.target.value;
         setTextValue(value);
     }
+
+    // Dropdown Option Values
+    let commentPrivacy = [
+        { rightIcon: '', leftIcon: '', value: 'Everyone can see', goToMenu: '' },
+        { rightIcon: '', leftIcon: '', value: 'Team only', goToMenu: '' }];
 
     return (
         <div className="playerP">
@@ -102,8 +116,13 @@ function PlayerP() {
                     <div></div>
                     <div className="playerP__comment-box--bottom-2">
                         <div className="playerP__comment-box--bottom-left">
-                            <ButtonSmall className="sendBtn" text="00:22" click={createNew} />
-                            <ButtonSmall className="sendBtn" text="Everyone" click={createNew} />
+                            <div className="timespanBox">
+                                <span className="timespanBox__clock"><i className="far fa-clock"></i></span>
+                                <span className="timespanBox__time">00:00</span>
+                                <span className="timespanBox__checkbox"><input type="checkBox" className="checkbox" /></span>
+                            </div>
+                            
+                            <Dropdown text="Privacy" menuItems={commentPrivacy}/>
                         </div>
 
                         <div className="playerP__comment-box--bottom-right">
@@ -114,7 +133,7 @@ function PlayerP() {
                                 : null
                             };
                             <span className="emoji-picker__icon" onClick={showEmojiBox}><i className="far fa-laugh"></i></span>
-                            <ButtonSmall className="sendBtn" text="Send" click={createNew} />
+                            <ButtonSmall text="Send" click={createNew} />
                         </div>
                     </div>
 

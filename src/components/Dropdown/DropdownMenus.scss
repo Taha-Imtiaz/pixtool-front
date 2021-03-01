@@ -20,7 +20,8 @@ ul {
 
 /* <nav> */
 .navbar {
-    height: 4rem;
+    position: relative;
+    height: 3.5rem;
     border-radius: 5px;
     background-color: $color-white-dull;
     transition: cursor .3s, background-color .3s;
@@ -36,19 +37,20 @@ ul {
 
 /* <ul> */
 .navbar-nav {
-    font-family: 'Segoe UI', 'Open Sans', sans-serif;
-    font-size: 2rem;
-    font-weight: 500;
-    padding: .5rem 1.5rem;
-    border-radius: 5px;
-    color: $color-secondary-dark;
-    background-color: transparent;
-    max-width: 100%;
-    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1.5rem;
+    
+    max-width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: $color-secondary-dark;
+    padding: .5rem 1.5rem;
+    border-radius: 5px;
+    background-color: transparent;
 }
 
 /* <li> */
@@ -60,37 +62,38 @@ ul {
 
 /* Dropdown Arrow Icon */
 .icon-arrow {
-    color: $color-white-dull;
-    background-color: $color-secondary-dark;
-    border-radius: 50%;
-    padding: .5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    color: $color-white-dull;
+    padding: .4rem;
+    border-radius: 50%;
+    background-color: $color-secondary-dark;
 }
 
 .icon-arrow svg {
-    fill: $color-white-dull;
     width: 1.5rem;
     height: 1.5rem;
+    fill: $color-white-dull;
 }
 
 /* Icon Button */
 .icon-button {
-    color: $color-white-dull;
-    // background-color: $color-secondary-dark;
-    background-color: transparent;
-    border-radius: 50%;
-    padding: .7rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    color: $color-white-dull;
+    padding: .7rem;
+    border-radius: 50%;
+    background-color: transparent;
 }
 
 .icon-button svg {
-    fill: $color-white-dull;
     width: 2rem;
     height: 2rem;
+    fill: $color-white-dull;
 }
 
 
@@ -98,9 +101,10 @@ ul {
 
 .dropdown {
     position: absolute;
-    top: 5.2rem;
-    min-width: 18rem;
-    padding: 1rem;
+    top: 4.2rem;
+    // top: -10rem;
+    min-width: 20rem;
+    padding: .8rem;
     border: 1px solid $color-secondary-dark;
     border-radius: 8px;
     background-color: $color-white-dull;
@@ -118,9 +122,10 @@ ul {
 .menu-item {
     display: flex;
     align-items: center;
+
     height: 4rem;
     padding: 0 .5rem;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: $color-secondary-dark;
     border-radius: 8px;
     background-color: rgba($color-secondary, .3);

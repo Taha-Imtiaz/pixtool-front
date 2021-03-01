@@ -7,7 +7,7 @@ import Dropdown from '../../Dropdown/Dropdown';
 import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
 
 function HeaderP(props) {
-
+    const createNew = () => { }
 
     //This function is responsible for toggling sidebar
     const toggleSidebar = (e) => {
@@ -58,7 +58,7 @@ function HeaderP(props) {
 
                 <Dropdown text="---" menuItems={options} />
 
-                <Button text="Share" />
+                <Button text="Share" click={createNew}/>
 
                 <span className="headerP__notification"><i className="fas fa-bell"></i> <span className="notificationCount">1</span></span>
 
