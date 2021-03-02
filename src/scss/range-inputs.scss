@@ -105,55 +105,55 @@ input[type=range] {
 
 // Styles For Internet Explorer
 
-input[type=range]::-ms-track {
-    width: 10rem;
-    height: .4rem;
-    background-color: transparent;
+// input[type=range]::-ms-track {
+//     width: 10rem;
+//     height: .4rem;
+//     background-color: transparent;
 
-    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
-    background-color: transparent;
+//     /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+//     background-color: transparent;
 
-    /*leave room for the larger thumb to overflow with a transparent border */
-    border-color: transparent;
-    border-width: 6px 0;
+//     /*leave room for the larger thumb to overflow with a transparent border */
+//     border-color: transparent;
+//     border-width: 6px 0;
 
-    /*remove default tick marks*/
-    color: transparent;
+//     /*remove default tick marks*/
+//     color: transparent;
 
-    &::-ms-fill-lower {
-        background-color: #777;
-        border-radius: 10px;
-    }
+//     &::-ms-fill-lower {
+//         background-color: #777;
+//         border-radius: 10px;
+//     }
 
-    &::-ms-fill-upper {
-        background-color: #ddd;
-        border-radius: .5rem;
-    }
+//     &::-ms-fill-upper {
+//         background-color: #ddd;
+//         border-radius: .5rem;
+//     }
 
-    &::-ms-thumb {
-        height: 1.5rem;
-        width: 1.5rem;
-        margin-top: -.5rem;
-        border: none;
-        border-radius: 50%;
-        background-color: $color-primary-dark;
+//     &::-ms-thumb {
+//         height: 1.5rem;
+//         width: 1.5rem;
+//         margin-top: -.5rem;
+//         border: none;
+//         border-radius: 50%;
+//         background-color: $color-primary-dark;
 
-        transition: cursor .3s, background-color .3s;
+//         transition: cursor .3s, background-color .3s;
 
-        &:active,
-        &:focus,
-        &:hover {
-            outline: none;
-            cursor: pointer;
-            background-color: $color-primary;
-        }
-    }
+//         &:active,
+//         &:focus,
+//         &:hover {
+//             outline: none;
+//             cursor: pointer;
+//             background-color: $color-primary;
+//         }
+//     }
 
-    &:focus::-ms-fill-lower {
-        background-color: #888;
-    }
+//     &:focus::-ms-fill-lower {
+//         background-color: #888;
+//     }
 
-    &:focus::-ms-fill-upper {
-        background-color: #ccc;
-    }
-}
+//     &:focus::-ms-fill-upper {
+//         background-color: #ccc;
+//     }
+// }
