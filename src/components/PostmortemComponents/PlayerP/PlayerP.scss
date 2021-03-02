@@ -15,6 +15,12 @@
         box-shadow: 1px 1px 5px 0px rgba($color-secondary-dark, .6);
         user-select: none;
         // pointer-events: none;
+        transition: cursor .3s;
+
+        &:focus,
+        &:hover {
+            cursor: pointer;
+        }
 
     }
 
@@ -44,6 +50,8 @@
             display: flex;
             align-content: center;
             gap: 2.5rem;
+
+            height: 2.2rem;
         }
     }
 
@@ -51,17 +59,33 @@
         height: 2rem;
         width: 2rem;
         font-size: 1.7rem;
-        font-weight: bold;
+        font-weight: 600;
         color: rgba($color-white, .8);
-        transition: color .3s, cursor .3s;
+        fill: rgba($color-white, .8);
+        line-height: 1.3;
+        transition: color .3s, fill .3s, cursor .3s;
 
         &:active,
         &:focus,
         &:hover {
             outline: none;
             color: rgba($color-white, .5);
+            fill: rgba($color-white, .5) !important;
             cursor: pointer;
         }
+
+        &--volumeBar {
+            margin-left: -1.5rem;
+        }
+    }
+
+    &__timeDuration {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: rgba($color-white, .8);
+        line-height: 1.5;
+        user-select: none;
+        transition: cursor .3s;
     }
 
     &__timestrip {

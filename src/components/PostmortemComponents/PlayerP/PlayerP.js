@@ -12,14 +12,7 @@ import { Picker } from 'emoji-mart';
 import Video from '../../../images/mov_bbb.mp4';
 import Test1 from '../../../images/test1.jpg'
 
-// import PlayerControls from '../../../images/player-controls.svg';
-import FullScreen from '../../../images/full-screen.svg';
-// import Mute from '../../../images/mute.svg';
-// import Play from '../../../images/play-button.svg';
-// import Pause from '../../../images/pause.svg';
-import Guides from '../../../images/guides.svg';
-import Loop from '../../../images/loop.svg';
-import Volume from '../../../images/volume.svg';
+import PlayerControls from '../../../images/player-icons/sprite.svg';
 
 function PlayerP() {
     const createNew = () => { }
@@ -32,7 +25,8 @@ function PlayerP() {
     // State For Video Player Controls
     const [play, setPlay] = useState(false);
     const [loop, setLoop] = useState(false);
-    // const [volume, setVolume] = useState(false);
+    const [volume, setVolume] = useState('medium');
+    const [volumeValue, setVolumeValue] = useState(.5);
 
 
 
@@ -80,7 +74,8 @@ function PlayerP() {
     ];
 
     // For Video Player Controls
-    /* Play/ Pause */
+
+    /* Function For Play/ Pause */
     const playPause = () => {
         let myVideo = document.getElementById('myVideo');
 
@@ -94,7 +89,7 @@ function PlayerP() {
         }
     }
 
-    /* Loop Video */
+    /* Function For Loop */
     const loopVideo = () => {
         let myVideo = document.getElementById('myVideo');
 
@@ -108,6 +103,7 @@ function PlayerP() {
                     this.play();
                 });
             }
+            document.getElementById('loop-icon').style.fill = '#37CC84';
 
         } else {
             if (typeof myVideo.loop == 'boolean') { // loop supported
@@ -119,13 +115,125 @@ function PlayerP() {
                     this.pause();
                 });
             }
+            document.getElementById('loop-icon').style.fill = 'rgba(255, 255, 255, .8)';
         }
         setLoop(!loop);
     }
 
+    /* Change Handler Function For Volume */
+    const volumeChangeHandler = (event) => {
+        console.log(event)
+        let myVideo = document.getElementById('myVideo');
+        myVideo.volume = event.target.value;
+
+
+        if (event.target.value === '0') {
+            setVolume('mute');
+
+        } else if (event.target.value > .6) {
+            setVolume('high');
+
+        } else if (event.target.value < .4) {
+            setVolume('low');
+
+        } else {
+            setVolume('medium');
+        }
+    }
+    /* Function For Volume Button/Icon Click For Mute/Unmute */
+    const mute = () => {
+
+        let myVideo = document.getElementById('myVideo');
+
+        if (volume !== 'mute') {
+            setVolumeValue(myVideo.volume);
+            document.getElementById('volume-bar').value = 0;
+            setVolume('mute');
+
+        } else {
+            if (volumeValue > .6) {
+                document.getElementById('volume-bar').value = volumeValue;
+                setVolume('high');
+
+            } else if (volumeValue < .4) {
+                document.getElementById('volume-bar').value = volumeValue;
+                setVolume('low');
+
+            } else {
+                document.getElementById('volume-bar').value = volumeValue;
+                setVolume('medium');
+
+            }
+        }
+    }
+
+    /* Function For Video Duration */
+    const seekTimeUpdate = () => {
+        let myVideo = document.getElementById('myVideo');
+        let curtimetext = document.getElementById("curtimetext");
+        let durtimetext = document.getElementById("durtimetext");
+
+        // let nt = myVideo.currentTime * (100 / myVideo.duration);
+        // seekslider.value = nt;
+        let curmins = Math.floor(myVideo.currentTime / 60);
+        let cursecs = Math.floor(myVideo.currentTime - curmins * 60);
+        let durmins = Math.floor(myVideo.duration / 60);
+        let dursecs = Math.floor(myVideo.duration - durmins * 60);
+        if (cursecs < 10) { cursecs = "0" + cursecs; }
+        if (dursecs < 10) { dursecs = "0" + dursecs; }
+        if (curmins < 10) { curmins = "0" + curmins; }
+        if (durmins < 10) { durmins = "0" + durmins; }
+        curtimetext.innerHTML = curmins + ":" + cursecs;
+        durtimetext.innerHTML = durmins + ":" + dursecs;
+    }
+
+    /* For Seeking & Updating Time Duration  */
+    useEffect(() => {
+        let myVideo = document.getElementById('myVideo');
+        myVideo.addEventListener("timeupdate", seekTimeUpdate, false);
+
+    }, [])
+
+    /* Function To Toggle the fullscreen On/Off */
+    const toggleFullScreen = () => {
+        let myVideo = document.getElementById('myVideo');
+
+        if (myVideo.requestFullscreen) {
+            if (document.fullScreenElement) {
+                document.cancelFullScreen();
+            } else {
+                myVideo.requestFullscreen();
+            }
+        }
+        else if (myVideo.msRequestFullscreen) {
+            if (document.msFullscreenElement) {
+                document.msExitFullscreen();
+            } else {
+                myVideo.msRequestFullscreen();
+            }
+        }
+        else if (myVideo.mozRequestFullScreen) {
+            if (document.mozFullScreenElement) {
+                document.mozCancelFullScreen();
+            } else {
+                myVideo.mozRequestFullScreen();
+            }
+        }
+        else if (myVideo.webkitRequestFullscreen) {
+            if (document.webkitFullscreenElement) {
+                document.webkitCancelFullScreen();
+            } else {
+                myVideo.webkitRequestFullscreen();
+            }
+        }
+        else {
+            alert("Fullscreen API is not supported");
+        }
+    }
+
     return (
         <div className="playerP">
-            <video id="myVideo" className="playerP__video" poster={Test1}>
+            <video id="myVideo" className="playerP__video" poster={Test1} onClick={playPause}>
                 <source src={Video} type="video/mp4" />
                 Your browser does not support HTML video.
             </video>
@@ -138,30 +246,69 @@ function PlayerP() {
                     <div className="playerP__control-area--left">
                         <span className="playerP__icons" onClick={playPause}>
                             {play ?
-                                <i className="fas fa-pause playerP__icons"></i>
+                                <svg className="playerP__icons">
+                                    <use href={PlayerControls + "#icon-pause2"}></use>
+                                </svg>
                                 :
-                                <i className="fas fa-play playerP__icons"></i>
+                                <svg className="playerP__icons">
+                                    <use href={PlayerControls + "#icon-play3"}></use>
+                                </svg>
                             }
                         </span>
 
-                        {/* <img src={Play} alt="Play" title="Play" className="playerP__icons" /> */}
-                        {/* <img src={Pause} alt="Pause" title="Pause" className="playerP__icons"/> */}
                         <span className="playerP__icons" >1x</span>
-                        <img src={Loop} alt="Loop" title="Loop" className="playerP__icons" onClick={loopVideo} />
-                        <img src={Volume} alt="Volume" title="Volume" className="playerP__icons" />
-                        {/* <img src={Mute} alt="Mute" title="Mute" className="playerP__icons"/> */}
+
+                        <svg id="loop-icon" className="playerP__icons" title="Loop" onClick={loopVideo}>
+                            <use href={PlayerControls + "#icon-loop"}></use>
+                        </svg>
+
+                        {/* Volume Icons */}
+                        {volume === 'mute' ?
+                            <svg className="playerP__icons playerP__icons--volume" title="Unmute" onClick={mute}>
+                                <use href={PlayerControls + "#icon-volume-mute2"}></use>
+                            </svg>
+                            :
+                            <span>
+                                {volume === 'high' ?
+                                    <svg className="playerP__icons playerP__icons--volume" title="Mute" onClick={mute}>
+                                        <use href={PlayerControls + "#icon-volume-high"}></use>
+                                    </svg>
+                                    :
+                                    <span>
+                                        {
+                                            volume === 'low' ?
+                                                <svg className="playerP__icons playerP__icons--volume" title="Mute" onClick={mute}>
+                                                    <use href={PlayerControls + "#icon-volume-low"}></use>
+                                                </svg>
+                                                :
+                                                <svg className="playerP__icons playerP__icons--volume" title="Mute" onClick={mute}>
+                                                    <use href={PlayerControls + "#icon-volume-medium"}></use>
+                                                </svg>
+                                        }
+                                    </span>
+                                }
+                            </span>
+                        }
+                        <input type='range' id='volume-bar' className="playerP__icons--volumeBar" title="Volume" min='0' max='1' step='.1' defaultValue='.5' onChange={(e) => volumeChangeHandler(e)}></input>
+
+                        <span className="playerP__timeDuration">
+                            <span id="curtimetext">00:00</span> / <span id="durtimetext">00:00</span>
+                        </span>
                     </div>
 
                     <div className="playerP__control-area--right">
-                        <img src={Guides} alt="Guides" title="Guides" className="playerP__icons" />
-                        <img src={FullScreen} alt="Full Screen" title="Full Screen" className="playerP__icons" />
+                        <svg className="playerP__icons" title="Guides">
+                            <use href={PlayerControls + "#icon-display"}></use>
+                        </svg>
+                        <svg className="playerP__icons" title="Full Screen" onClick={toggleFullScreen}>
+                            <use href={PlayerControls + "#icon-enlarge"}></use>
+                        </svg>
+                        {/* <svg className="playerP__icons" title="Exit Full Screen">
+                            <use href={PlayerControls + "#icon-shrink"}></use>
+                        </svg> */}
                     </div>
-                    {/* <svg className="playerP__icons">
-                        <use className="playerP__icons" href={PlayerControls + "#fullscreen"} />
-                    </svg> */}
                 </div>
             </div>
-
             <div className="playerP__comment-box">
                 <div className="playerP__comment-box--top">
                     <div className="playerP__avatar">
@@ -191,7 +338,9 @@ function PlayerP() {
                                 </div>
                                 : null
                             };
-                            <span className="emoji-picker__icon" onClick={showEmojiBox}><i className="far fa-laugh"></i></span>
+                                <span className="emoji-picker__icon" onClick={showEmojiBox}>
+                                <i className="far fa-laugh"></i>
+                            </span>
                             <ButtonSmall text="Send" click={createNew} />
                         </div>
                     </div>
