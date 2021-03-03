@@ -7,11 +7,7 @@ import { ReactComponent as CaretIcon } from '../../icons/caret.svg';
 // import { ReactComponent as ChevronIcon } from '../../icons/chevron.svg';
 import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 
-// import $ from 'jquery';
-
 function Dropdown(props) {
-
-
     return (
         <Navbar text={props.text}>
             <NavItem icon={<CaretIcon />}>
@@ -33,9 +29,8 @@ function NavItem(props) {
     // State For Dropdowns toggling
     const [open, setOpen] = useState(false);
 
-    // To Close the Dropdowns whenever click outside them
     useEffect(() => {
-
+        // To Close the Dropdowns whenever click outside them
         function handleClickEvent(event) {
 
             if (!open) {
@@ -49,28 +44,29 @@ function NavItem(props) {
         }
         document.querySelector('.page-wrapper').addEventListener("click", handleClickEvent);
         // eslint-disable-next-line react-hooks/exhaustive-deps
+
     }, [open])
 
-    /* useEffect(() => {
+    // Function To Position Dropdown Upwards/ Downwards w.r.t. Space Available
+    const setDropdownPosition = () => {
+        setTimeout(() => {
+            let windowHeight = window.innerHeight;
+            let myDropdown = document.querySelector('.dropdown');
+            let dropdownHeight = myDropdown.offsetHeight;
+            let dropdownTop = myDropdown.getBoundingClientRect().top;
+            let space = windowHeight - dropdownTop - dropdownHeight;
 
-        function dropdownPositionHandler(event) {
-            let windowHeight = $(window).height();
-            let dropdownOffsetTop = document.querySelector('.dropdown').offset().top;
-            let dropdownHeight = document.querySelector('.dropdown').height();
-            debugger;
+            if (space > dropdownHeight) {
+                myDropdown.style.top = '4.2rem';
 
-            if (windowHeight < (dropdownOffsetTop + dropdownHeight)) {
-                document.querySelector('.dropdown').css("top", (dropdownOffsetTop - dropdownHeight));
             } else {
-                document.querySelector('.dropdown').css("top", dropdownHeight);
+                myDropdown.style.top = '-11rem';
             }
-        }
-        document.querySelector('.nav-item').addEventListener("click", dropdownPositionHandler);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [open]) */
+        });
+    }
 
     return (
-        <li className="nav-item">
+        <li id="nav-item" className="nav-item" onClick={setDropdownPosition}>
             <span className="icon-arrow" onClick={() => setOpen(!open)}>
                 {props.icon}
             </span>
@@ -81,11 +77,9 @@ function NavItem(props) {
 }
 
 function DropdownMenu(props) {
-    console.log(props)
     const [activeMenu, setActiveMenu] = useState('main');
 
     function DropdownItem(props) {
-        console.log(props.children)
         return (
             <span className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>
@@ -96,7 +90,7 @@ function DropdownMenu(props) {
     }
 
     return (
-        <div className="dropdown">
+        <div className="dropdown ">
             <div>
                 <CSSTransition
                     in={activeMenu === 'main'}
@@ -149,8 +143,6 @@ function DropdownMenu(props) {
                 </CSSTransition> */}
 
             </div>
-
-
         </div>
     );
 }
