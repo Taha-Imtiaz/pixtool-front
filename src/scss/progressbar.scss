@@ -1,0 +1,43 @@
+@import './variables.scss';
+
+/* WEBKIT BROWSERS - CHROME, OPERA AND SAFARI */
+progress {
+    -webkit-appearance: none;
+    appearance: none;
+
+    &::-webkit-progress-bar {
+        background-color: rgba($color-secondary-light, .2);
+        // border-radius: 1rem;
+        height: .6rem;
+    }
+
+    &::-webkit-progress-value {
+        background-image:
+            -webkit-linear-gradient(-45deg,
+                transparent 33%, rgba(0, 0, 0, .1) 33%,
+                rgba(0, 0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+                rgba(255, 255, 255, .25),
+                rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left, $color-primary, $color-primary);
+
+        border-radius: 0 1rem 1rem 0;
+        background-size: 35px 20px, 100% 100%, 100% 100%;
+    }
+}
+
+/* MOZILLA FIREFOX */
+progress::-moz-progress-bar {
+    height: .6rem;
+    background-image:
+        -webkit-linear-gradient(-45deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0, 0, 0, .1) 66%, transparent 66%),
+        -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+        -webkit-linear-gradient(left, $color-primary, $color-primary);
+
+    border-radius: 0 1rem 1rem 0;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}

@@ -92,6 +92,7 @@ function PlayerP() {
     /* Function For Loop */
     const loopVideo = () => {
         let myVideo = document.getElementById('myVideo');
+        let loopIcon = document.getElementById('loop-icon');
 
         if (loop === false) {
             if (typeof myVideo.loop == 'boolean') { // loop supported
@@ -103,7 +104,7 @@ function PlayerP() {
                     this.play();
                 });
             }
-            document.getElementById('loop-icon').style.fill = '#37CC84';
+            loopIcon.style.fill = '#37CC84';
 
         } else {
             if (typeof myVideo.loop == 'boolean') { // loop supported
@@ -115,7 +116,7 @@ function PlayerP() {
                     this.pause();
                 });
             }
-            document.getElementById('loop-icon').style.fill = 'rgba(255, 255, 255, .8)';
+            loopIcon.style.fill = 'rgba(255, 255, 255, .8)';
         }
         setLoop(!loop);
     }
@@ -214,9 +215,11 @@ function PlayerP() {
         durtimetext.innerHTML = durmins + ":" + dursecs;
     }
 
-    /* For Seeking & Updating Time Duration  */
+
     useEffect(() => {
         let myVideo = document.getElementById('myVideo');
+
+        /* For Seeking & Updating Time Duration (Initially 00:00 / 00:00) */
         myVideo.addEventListener("timeupdate", seekTimeUpdate, false);
 
     }, [])
@@ -258,6 +261,28 @@ function PlayerP() {
         }
     }
 
+    /* For Video Progress Bar */
+    useEffect(() => {
+        let myVideo = document.getElementById('myVideo');
+        let progress = document.getElementById('progress');
+        // let progressBar = document.getElementById('progress-bar');
+
+        myVideo.addEventListener('loadedmetadata', function () {
+            progress.setAttribute('max', myVideo.duration);
+        });
+
+        myVideo.addEventListener('timeupdate', function () {
+            if (!progress.getAttribute('max')) progress.setAttribute('max', myVideo.duration);
+            progress.value = myVideo.currentTime;
+        });
+
+        progress.addEventListener('click', function (e) {
+            const scrubTime = (e.offsetX / progress.offsetWidth) * myVideo.duration;
+            myVideo.currentTime = scrubTime;
+        });
+
+    }, [])
+
     return (
         <div className="playerP">
             <video id="myVideo" className="playerP__video" poster={Test1} onClick={playPause}>
@@ -265,8 +290,10 @@ function PlayerP() {
                 Your browser does not support HTML video.
             </video>
             <div className="playerP__control-box">
-                <div className="playerP__timestrip">
-
+                <div className="playerP__progressBox">
+                    <progress id="progress" className="playerP__progressBar" value="0" min="0">
+                        {/* <span id="progress-bar"></span> */}
+                    </progress>
                 </div>
 
                 <div className="playerP__control-area">
