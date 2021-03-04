@@ -26,7 +26,7 @@ function PlayerP() {
     const [play, setPlay] = useState(false);
     const [loop, setLoop] = useState(false);
     const [volume, setVolume] = useState('medium');
-    const [volumeValue, setVolumeValue] = useState(.5);
+    const [volumeValue, setVolumeValue] = useState(1);
 
 
 
@@ -120,52 +120,79 @@ function PlayerP() {
         setLoop(!loop);
     }
 
-    /* Change Handler Function For Volume */
-    const volumeChangeHandler = (event) => {
-        console.log(event)
-        let myVideo = document.getElementById('myVideo');
-        myVideo.volume = event.target.value;
-
-
-        if (event.target.value === '0') {
-            setVolume('mute');
-
-        } else if (event.target.value > .6) {
-            setVolume('high');
-
-        } else if (event.target.value < .4) {
-            setVolume('low');
-
-        } else {
-            setVolume('medium');
-        }
-    }
     /* Function For Volume Button/Icon Click For Mute/Unmute */
     const mute = () => {
-
         let myVideo = document.getElementById('myVideo');
+        let volumeBar = document.getElementById('volume-bar');
 
         if (volume !== 'mute') {
             setVolumeValue(myVideo.volume);
-            document.getElementById('volume-bar').value = 0;
+            volumeBar.value = 0;
+            myVideo.muted = true;
             setVolume('mute');
 
         } else {
+            volumeBar.value = volumeValue;
+            myVideo.muted = false;
+
             if (volumeValue > .6) {
-                document.getElementById('volume-bar').value = volumeValue;
                 setVolume('high');
 
             } else if (volumeValue < .4) {
-                document.getElementById('volume-bar').value = volumeValue;
                 setVolume('low');
 
             } else {
-                document.getElementById('volume-bar').value = volumeValue;
                 setVolume('medium');
 
             }
         }
     }
+
+    /* Volume Bar Change Handler Function For Setting Volume */
+    const volumeChangeHandler = (event) => {
+        let myVideo = document.getElementById('myVideo');
+        myVideo.volume = event.target.value;
+
+        if (event.target.value === '0') {
+            setVolume('mute');
+            myVideo.muted = true;
+
+        } else if (event.target.value > .6) {
+            setVolume('high');
+            myVideo.muted = false;
+
+        } else if (event.target.value < .4) {
+            setVolume('low');
+            myVideo.muted = false;
+
+        } else {
+            setVolume('medium');
+            myVideo.muted = false;
+        }
+    }
+
+    /* For Setting Volume Bar Value From Volume Of Full Screen */
+    useEffect(() => {
+        let myVideo = document.getElementById('myVideo');
+        let volumeBar = document.getElementById('volume-bar');
+
+        myVideo.addEventListener('volumechange', function () {
+            volumeBar.value = myVideo.volume;
+            if (volumeBar.value === '0') {
+                setVolume('mute');
+
+            } else if (volumeBar.value > .6) {
+                setVolume('high');
+
+            } else if (volumeBar.value < .4) {
+                setVolume('low');
+
+            } else {
+                setVolume('medium');
+            }
+        });
+
+    }, [])
 
     /* Function For Video Duration */
     const seekTimeUpdate = () => {
