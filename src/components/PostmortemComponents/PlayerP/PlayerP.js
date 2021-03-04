@@ -122,7 +122,7 @@ function PlayerP() {
     }
 
     /* Function For Volume Button/Icon Click For Mute/Unmute */
-    const mute = () => {
+    const mute = (e) => {
         let myVideo = document.getElementById('myVideo');
         let volumeBar = document.getElementById('volume-bar');
 
@@ -131,7 +131,7 @@ function PlayerP() {
             volumeBar.value = 0;
             myVideo.muted = true;
             setVolume('mute');
-
+            console.log('Helllo', volumeBar.value, myVideo.volume, volume)
         } else {
             volumeBar.value = volumeValue;
             myVideo.muted = false;
@@ -173,27 +173,26 @@ function PlayerP() {
     }
 
     /* For Setting Volume Bar Value From Volume Of Full Screen */
-    useEffect(() => {
-        let myVideo = document.getElementById('myVideo');
-        let volumeBar = document.getElementById('volume-bar');
+    // useEffect(() => {
+    //     let myVideo = document.getElementById('myVideo');
+    //     let volumeBar = document.getElementById('volume-bar');
+    //     myVideo.addEventListener('volumechange', function () {
+    //         volumeBar.value = myVideo.volume;
+    //         if (volumeBar.value === '0') {
+    //             setVolume('mute');
 
-        myVideo.addEventListener('volumechange', function () {
-            volumeBar.value = myVideo.volume;
-            if (volumeBar.value === '0') {
-                setVolume('mute');
+    //         } else if (volumeBar.value > .6) {
+    //             setVolume('high');
 
-            } else if (volumeBar.value > .6) {
-                setVolume('high');
+    //         } else if (volumeBar.value < .4) {
+    //             setVolume('low');
 
-            } else if (volumeBar.value < .4) {
-                setVolume('low');
+    //         } else {
+    //             setVolume('medium');
+    //         }
+    //     });
 
-            } else {
-                setVolume('medium');
-            }
-        });
-
-    }, [])
+    // }, [])
 
     /* Function For Video Duration */
     const seekTimeUpdate = () => {
@@ -310,7 +309,7 @@ function PlayerP() {
                             }
                         </span>
 
-                        <span className="playerP__icons" >1x</span>
+                        {/* <span className="playerP__icons" >1x</span> */}
 
                         <svg id="loop-icon" className="playerP__icons" title="Loop" onClick={loopVideo}>
                             <use href={PlayerControls + "#icon-loop"}></use>
@@ -318,24 +317,24 @@ function PlayerP() {
 
                         {/* Volume Icons */}
                         {volume === 'mute' ?
-                            <svg className="playerP__icons playerP__icons--volume" title="Unmute" onClick={mute}>
+                            <svg className="playerP__icons playerP__icons--volume" title="Unmute" onClick={(e) => mute(e)}>
                                 <use href={PlayerControls + "#icon-volume-mute2"}></use>
                             </svg>
                             :
                             <span>
                                 {volume === 'high' ?
-                                    <svg className="playerP__icons playerP__icons--volume" title="Mute" onClick={mute}>
+                                    <svg className="playerP__icons playerP__icons--volume" title="Mute" onClick={(e) => mute(e)}>
                                         <use href={PlayerControls + "#icon-volume-high"}></use>
                                     </svg>
                                     :
                                     <span>
                                         {
                                             volume === 'low' ?
-                                                <svg className="playerP__icons playerP__icons--volume" title="Mute" onClick={mute}>
+                                                <svg className="playerP__icons playerP__icons--volume" title="Mute" onClick={(e) => mute(e)}>
                                                     <use href={PlayerControls + "#icon-volume-low"}></use>
                                                 </svg>
                                                 :
-                                                <svg className="playerP__icons playerP__icons--volume" title="Mute" onClick={mute}>
+                                                <svg className="playerP__icons playerP__icons--volume" title="Mute" onClick={(e) => mute(e)}>
                                                     <use href={PlayerControls + "#icon-volume-medium"}></use>
                                                 </svg>
                                         }
@@ -343,7 +342,7 @@ function PlayerP() {
                                 }
                             </span>
                         }
-                        <input type='range' id='volume-bar' className="playerP__icons--volumeBar" title="Volume" min='0' max='1' step='.1' defaultValue='.5' onChange={(e) => volumeChangeHandler(e)}></input>
+                        <input type='range' id='volume-bar' className="playerP__icons--volumeBar" title="Volume" min='0' max='1' step='.1' defaultValue='1' onChange={(e) => volumeChangeHandler(e)}></input>
 
                         <span className="playerP__timeDuration">
                             <span id="curtimetext">00:00</span> / <span id="durtimetext">00:00</span>
@@ -351,9 +350,9 @@ function PlayerP() {
                     </div>
 
                     <div className="playerP__control-area--right">
-                        <svg className="playerP__icons" title="Guides">
+                        {/* <svg className="playerP__icons" title="Guides">
                             <use href={PlayerControls + "#icon-display"}></use>
-                        </svg>
+                        </svg> */}
                         <svg className="playerP__icons" title="Full Screen" onClick={toggleFullScreen}>
                             <use href={PlayerControls + "#icon-enlarge"}></use>
                         </svg>

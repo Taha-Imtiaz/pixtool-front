@@ -10,6 +10,9 @@ import Settings from '../../components/ShowsComponents/Settings/Settings';
 import Overview from '../../components/ShowsComponents/Overview/Overview';
 import Preview from '../../components/ShowsComponents/Preview/Preview';
 import Export from '../../components/ShowsComponents/Export/Export';
+import Surfaces from '../../components/StagesComponents/Surfaces/Surfaces';
+import Screens from '../../components/StagesComponents/Screens/Screens';
+import Stages from '../../components/StagesComponents/Stages/Stages';
 
 function Home() {
 
@@ -30,7 +33,6 @@ function Home() {
                     {/* Shows Tab Content */}
                     <div label="Shows">
                         <InnerTabs>
-
                             {/* Shows - Overview Tab Content */}
                             <div label="Overview">
                                 <Overview />
@@ -60,7 +62,23 @@ function Home() {
 
                     {/* Stages Tab Content */}
                     <div label="Stages">
-                        Nothing to see here, this tab is <em>extinct</em>!
+                        <InnerTabs>
+                            {/* Stages - Surfaces Tab Content */}
+                            <div label="Surfaces">
+                                <Surfaces />
+                            </div>
+
+                            {/* Stages - Screens Tab Content */}
+                            <div label="Screens">
+                                <Screens />
+                            </div>
+
+                            {/*Stages - Stages Tab Content */}
+                            <div label="Stages">
+                                <Stages />
+                            </div>
+
+                        </InnerTabs>
                     </div>
                 </Tabs>
 
