@@ -2,6 +2,7 @@ import React from 'react';
 import './Tiles.scss';
 import TileImg from '../../images/tile.png';
 import ButtonSmall from '../Button/Button';
+import TwoWayArrow from '../../images/twoWayArrow.svg';
 
 function Tiles() {
     const createNew = () => { }
@@ -15,9 +16,9 @@ function Tiles() {
                         <div className="tiles__left-arrow">
                             <span className="tiles__text">
                                 Height:&nbsp;
-                            <span className="tiles__text--primary">250px</span>
+                                <span className="tiles__text--primary">250px</span>
                             </span>
-                            <span>Arrowwwwwwwwww</span>
+                            <img src={TwoWayArrow} alt="Two Way Pointing Arrow" className="tiles__arrow"></img>
                         </div>
 
                         <div className="tiles__img-box">
@@ -27,9 +28,9 @@ function Tiles() {
                         <div className="tiles__right-arrow">
                             <span className="tiles__text">
                                 Width:&nbsp;
-                            <span className="tiles__text--primary">250px</span>
+                                <span className="tiles__text--primary">250px</span>
                             </span>
-                            <span>Arrowwwwwwwwww</span>
+                            <img src={TwoWayArrow} alt="Two Way Pointing Arrow" className="tiles__arrow"></img>
                         </div>
                     </div>
                 </div>
@@ -77,7 +78,6 @@ function Tiles() {
                         </span>
                         <span className="tiles__text tiles__text--flex">
                             <img src={TileImg} alt="Tile" className="tiles__img--small" />&nbsp;
-                            <span className="tiles__text--primary">20 * 20</span>
                         </span>
                         <div className="infoTiles__btn">
                             <ButtonSmall text="Add" click={createNew} />

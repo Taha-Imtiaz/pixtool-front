@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: .7fr .3fr;
 
-    width: 100rem;
+    min-width: 100rem;
     // height: 52rem;
     border-radius: 1.2rem;
     background-color: $color-secondary-dark;
@@ -57,6 +57,11 @@
         transform: rotate(-90deg);
     }
 
+    &__arrow {
+        width: 150px;
+        height: 15px;
+    }
+
     &__img-box {
         grid-column: 2 / span 1;
         grid-row-start: 1;
@@ -81,6 +86,10 @@
     &__right-arrow {
         grid-column: 2 / span 1;
         grid-row-start: 2;
+        
+        position: absolute;
+        top: 0;
+        right: 5rem;
 
         &>span {
             display: block;
