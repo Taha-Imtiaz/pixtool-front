@@ -18,7 +18,7 @@ function Filter() {
             </select>
 
             <div className="filter__arrow-icon">
-                <i class="fas fa-chevron-down"></i>
+                <i className="fas fa-chevron-down"></i>
             </div>
         </div>
     )

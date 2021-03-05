@@ -2,6 +2,7 @@ import React from 'react';
 import './Overview.scss';
 
 function Overview() {
+    let descriptionText = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet';
     return (
         <div className="overview">
             <form action="" className="overview__form">
@@ -23,9 +24,7 @@ function Overview() {
                 <div className="overview__group">
                     <label htmlFor="overviewDescription" className="overview__label">Description</label>
                     {/* <input type="text" name="overviewDescription" id="overviewDescription" className="overview__input"/> */}
-                    <textarea name="overviewDescription" id="overviewDescription" className="overview__input overview__input--textArea" cols="30" rows="10">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet
-                    </textarea>
+                    <textarea name="overviewDescription" id="overviewDescription" className="overview__input overview__input--textArea" cols="30" rows="10" defaultValue= {descriptionText}></textarea>
                 </div>
             </form>
         </div>

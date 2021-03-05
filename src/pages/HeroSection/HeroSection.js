@@ -12,6 +12,7 @@ function HeroSection() {
 
     const createNew = () => { }
 
+    // Below Code Changes The Header Bg Color On Page Scroll
     document.addEventListener('scroll', function () {
         let header = document.getElementById("heroHeader");
 
