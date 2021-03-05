@@ -176,6 +176,7 @@ function PlayerP() {
     // useEffect(() => {
     //     let myVideo = document.getElementById('myVideo');
     //     let volumeBar = document.getElementById('volume-bar');
+    
     //     myVideo.addEventListener('volumechange', function () {
     //         volumeBar.value = myVideo.volume;
     //         if (volumeBar.value === '0') {

@@ -12,19 +12,21 @@ function HeroSection() {
 
     const createNew = () => { }
 
-    // Below Code Changes The Header Bg Color On Page Scroll
-    window.onscroll = function () { scrollFunction() };
-    function scrollFunction() {
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-            document.getElementById("header").style.backgroundColor = "#121212";
-        } else {
-            document.getElementById("header").style.backgroundColor = "#292929";
+    document.addEventListener('scroll', function () {
+        let header = document.getElementById("heroHeader");
+
+        if (header) {
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                header.style.backgroundColor = "#121212";
+            } else {
+                header.style.backgroundColor = "#292929";
+            }
         }
-    }
+    });
 
     return (
         <div className="heroSec">
-            <div className="heroSec__header" id="header">
+            <div className="heroSec__header" id="heroHeader">
                 <div className="heroSec__logo">
                     <img src={Logo} alt="Logo" className="logo-img" />
                 </div>
