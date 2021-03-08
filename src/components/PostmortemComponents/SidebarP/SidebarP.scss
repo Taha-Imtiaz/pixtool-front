@@ -83,7 +83,7 @@
 
 .comments {
     position: relative;
-    max-height: 60vh;
+    // max-height: 60vh;
     overflow: auto;
 
     &__head {
@@ -93,10 +93,6 @@
         border-bottom: 2px solid rgba($color-white, .6);
         background-color: $color-secondary-dark;
         z-index: 5;
-    }
-
-    &__body {
-        
     }
 }
 

@@ -41,77 +41,76 @@
             height: calc(100% - 8rem);
         }
     }
-}
 
-.rightBox {
-    padding: 2rem 1rem;
-    border-bottom: 1px solid $color-secondary;
+    & .rightBox {
+        padding: 2rem 1rem;
+        border-bottom: 1px solid $color-secondary;
 
-    &__heading {
-        font-family: 'Segoe UI', 'Open Sans', sans-serif;
-        font-size: 1.6rem;
-        font-weight: bold;
-        color: rgba($color-white, .8);
-        text-align: center;
-    }
-
-    &__table {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
-
-        width: 100%;
-        padding: 1.5rem 0;
-    }
-
-    &__btn {
-        text-align: center;
-
-        & button {
-            width: 60%;
-        }
-    }
-}
-
-.table {
-
-    &__row {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        gap: 1.5rem;
-    }
-
-    &__text {
-
-        width: 100%;
-        font-size: 1.5rem;
-        font-weight: normal;
-        color: rgba($color-white, .8);
-        text-align: right;
-
-        &--primary {
-            color: $color-primary;
-            text-align: left;
+        &__heading {
+            font-family: 'Segoe UI', 'Open Sans', sans-serif;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: rgba($color-white, .8);
+            text-align: center;
         }
 
-        &--img {
-            width: auto;
-            align-self: center;
+        &__table {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+
+            width: 100%;
+            padding: 1.5rem 0;
+        }
+
+        &__btn {
+            text-align: center;
+
+            & button {
+                width: 60%;
+            }
         }
     }
 
-    &__img {
-        width: 15%;
+    & .table {
 
-        &--2 {
-            width: 50%;
+        &__row {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            gap: 1.5rem;
         }
 
-        & img {
-            max-width: 100%;
-            height: auto;
+        &__text {
+            width: 100%;
+            font-size: 1.5rem;
+            font-weight: normal;
+            color: rgba($color-white, .8);
+            text-align: right;
+
+            &--primary {
+                color: $color-primary;
+                text-align: left;
+            }
+
+            &--img {
+                width: auto;
+                align-self: center;
+            }
+        }
+
+        &__img {
+            width: 15%;
+
+            &--2 {
+                width: 50%;
+            }
+
+            & img {
+                max-width: 100%;
+                height: auto;
+            }
         }
     }
 }

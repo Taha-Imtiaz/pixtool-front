@@ -10,7 +10,10 @@ a {
     display: grid;
     grid-template-rows: 25vh 35vh 40vh;
 
-    position: relative;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    // position: relative;
     width: 20vw;
     // height: 100vh;
     background-color: $color-secondary-dark;
@@ -37,7 +40,7 @@ a {
         flex-direction: column;
 
         list-style: none;
-        
+
     }
 
     &__link {

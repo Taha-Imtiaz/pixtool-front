@@ -1,12 +1,34 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import './MainTile-1.scss';
 
-import TileImg from '../../../images/tile.svg';
+// import TileImg from '../../../images/tile.svg';
 // import ButtonSmall from '../../Button/Button';
 import TwoWayArrow from '../../../images/twoWayArrow.svg';
 import TwoWayArrowVert from '../../../images/twoWayArrow_vertical.svg';
 
-function MainTile() {
+function MainTile(props) {
+
+    // Function To Set The Height Of Vertical Arrow To That Of Image In MainTile-1
+    const setVertArrowHeight = () => {
+        setTimeout(() => {
+            // To Set The Height Of Vertical Arrow To That Of Image
+            try {
+                let vertArrow = document.getElementById('vertArrow');
+                let imgHeight = (document.getElementById('image').offsetHeight + 20).toString();
+                if (vertArrow && imgHeight) vertArrow.style.height = (imgHeight + 'px');
+
+            } catch (e) {
+                console.log('Following Values Were Not Found: vertArrow & imgHeight \nYou can safely ignore this error if your are not on Stages Tab.')
+            }
+        });
+    }
+
+    useEffect(() => {
+        // To Set The Height Of Vertical Arrow To That Of Image
+        window.addEventListener('load', setVertArrowHeight, false);
+        window.addEventListener('click', setVertArrowHeight, false);
+    }, [])
+
     return (
         <div className="mainTile-1">
             <div className="mainTile-1__heightBox">
@@ -14,11 +36,11 @@ function MainTile() {
                     Height:&nbsp;
                     <span className="mainTile-1__text--primary">250px</span>
                 </div>
-                <img src={TwoWayArrowVert} alt="Two Way Pointing Arrow" className="mainTile-1__arrow mainTile-1__arrow--vertical"></img>
+                <img src={TwoWayArrowVert} alt="Two Way Pointing Arrow" id="vertArrow" className="mainTile-1__arrow mainTile-1__arrow--vertical"></img>
             </div>
 
             <div className="mainTile-1__imgBox">
-                <img src={TileImg} alt="Tile" className="mainTile-1__img" />
+                <img src={props.image} alt="Tile" id="image" className="mainTile-1__img" />
             </div>
 
             <div className="mainTile-1__widthBox">
@@ -26,7 +48,7 @@ function MainTile() {
                     Width:&nbsp;
                     <span className="mainTile-1__text--primary">250px</span>
                 </div>
-                <img src={TwoWayArrow} alt="Two Way Pointing Arrow" className="mainTile-1__arrow"></img>
+                <img src={TwoWayArrow} alt="Two Way Pointing Arrow" className="mainTile-1__arrow mainTile-1__arrow--horizontal"></img>
             </div>
         </div>
     )
