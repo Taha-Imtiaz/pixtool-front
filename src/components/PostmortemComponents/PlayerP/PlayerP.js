@@ -89,6 +89,13 @@ function PlayerP() {
         }
     }
 
+    /* Function For Resetting The Player State When Video Ends */
+    const resetPlayer = () => {
+        let myVideo = document.getElementById('myVideo');
+        myVideo.pause();
+        setPlay(false);
+    }
+
     /* Function For Loop */
     const loopVideo = () => {
         let myVideo = document.getElementById('myVideo');
@@ -176,7 +183,7 @@ function PlayerP() {
     // useEffect(() => {
     //     let myVideo = document.getElementById('myVideo');
     //     let volumeBar = document.getElementById('volume-bar');
-    
+
     //     myVideo.addEventListener('volumechange', function () {
     //         volumeBar.value = myVideo.volume;
     //         if (volumeBar.value === '0') {
@@ -220,7 +227,10 @@ function PlayerP() {
         let myVideo = document.getElementById('myVideo');
 
         /* For Seeking & Updating Time Duration (Initially 00:00 / 00:00) */
-        myVideo.addEventListener("timeupdate", seekTimeUpdate, false);
+        myVideo.addEventListener('timeupdate', seekTimeUpdate, false);
+
+        /* For Resetting The Player State When Video Ends */
+        myVideo.addEventListener('ended', resetPlayer, false);
 
     }, [])
 
