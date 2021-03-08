@@ -7,4 +7,111 @@
 
     font-family: 'Segoe UI', 'Open Sans', sans-serif;
     padding: 2rem;
+
+    & .tileLayout {
+        display: grid;
+        grid-template-columns: .7fr .3fr;
+
+        min-width: 100rem;
+        min-height: 52rem;
+        font-family: 'Segoe UI', 'Open Sans', sans-serif;
+        border-radius: 1.2rem;
+        background-color: $color-secondary-dark;
+        box-shadow: 1px 1px 6px rgba($color-secondary-dark, .8);
+
+        &__left {
+            border-right: 1px solid $color-secondary;
+        }
+
+        &__heading {
+            font-family: inherit;
+            font-size: 1.7rem;
+            font-weight: bold;
+            color: rgba($color-white, .8);
+            padding: 2rem;
+        }
+
+        &__mainContent {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            gap: 2rem;
+
+            height: calc(100% - 8rem);
+        }
+    }
+}
+
+.rightBox {
+    padding: 2rem 1rem;
+    border-bottom: 1px solid $color-secondary;
+
+    &__heading {
+        font-family: 'Segoe UI', 'Open Sans', sans-serif;
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: rgba($color-white, .8);
+        text-align: center;
+    }
+
+    &__table {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+
+        width: 100%;
+        padding: 1.5rem 0;
+    }
+
+    &__btn {
+        text-align: center;
+
+        & button {
+            width: 60%;
+        }
+    }
+}
+
+.table {
+
+    &__row {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        gap: 1.5rem;
+    }
+
+    &__text {
+
+        width: 100%;
+        font-size: 1.5rem;
+        font-weight: normal;
+        color: rgba($color-white, .8);
+        text-align: right;
+
+        &--primary {
+            color: $color-primary;
+            text-align: left;
+        }
+
+        &--img {
+            width: auto;
+            align-self: center;
+        }
+    }
+
+    &__img {
+        width: 15%;
+
+        &--2 {
+            width: 50%;
+        }
+
+        & img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
 }

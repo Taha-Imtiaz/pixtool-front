@@ -1,6 +1,6 @@
 import React from 'react';
 import './Tiles.scss';
-import TileImg from '../../images/tile.png';
+import TileImg from '../../images/tile.svg';
 import ButtonSmall from '../Button/Button';
 import TwoWayArrow from '../../images/twoWayArrow.svg';
 

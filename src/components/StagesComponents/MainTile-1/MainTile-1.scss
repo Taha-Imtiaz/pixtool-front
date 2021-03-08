@@ -1,0 +1,62 @@
+@import '../../../scss/variables.scss';
+
+.mainTile-1 {
+    display: grid;
+    grid-template-columns: .2fr .8fr;
+    grid-template-rows: .8fr .2fr;
+    grid-template-areas: 
+            "height image"
+            "empty width";
+
+    align-self: center;
+    // min-width: 30rem;
+    // min-height: 30rem;
+    font-size: 1.5rem;
+    border-radius: 1.2rem;
+    background-color: $color-secondary;
+
+    &__heightBox {
+        grid-area: height;
+        display: flex;
+    }
+
+    &__widthBox {
+        grid-area: width;
+    }
+
+    &__imgBox {
+        grid-area: image;
+        padding: 1rem;
+    }
+
+    &__img {
+        max-width: 95%;
+    }
+
+    &__text {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: rgba($color-white, .8);
+        text-align: center;
+
+        &--primary {
+            color: $color-primary;
+        }
+
+        &--vertical {
+            display: inline-block;
+            writing-mode: vertical-rl;
+            padding-left: 1rem;
+        }
+    }
+
+    &__arrow {
+        // flex-grow: 1;
+        // width: 100%;
+
+        &--vertical {
+            display: inline-block;
+            max-width: 2.5rem;
+        }
+    }
+}

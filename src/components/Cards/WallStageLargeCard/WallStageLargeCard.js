@@ -18,7 +18,7 @@ function WallStageLargeCard(props) {
 
                 <div className="splider">
                     <Splide
-                        className="splide"
+                        className="splide splide-custom"
                         options={{
                             /* perPage: 2,
                             perMove: 1,

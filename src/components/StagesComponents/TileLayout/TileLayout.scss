@@ -1,0 +1,50 @@
+@import '../../../scss/variables.scss';
+
+.tileLayout {
+    display: grid;
+    grid-template-columns: .7fr .3fr;
+
+    min-width: 100rem;
+    min-height: 52rem;
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
+    border-radius: 1.2rem;
+    background-color: $color-secondary-dark;
+    box-shadow: 1px 1px 6px rgba($color-secondary-dark, .8);
+
+    &__left {
+        border-right: 1px solid $color-secondary;
+    }
+
+    &__heading {
+        font-family: inherit;
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: rgba($color-white, .8);
+        padding: 2rem;
+    }
+
+    &__mainContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        gap: 2rem;
+
+        padding-top: 2rem;
+    }
+
+    &__splider {
+        align-self: center;
+        padding: 2rem 0;
+    }
+
+    &__splide {
+        max-width: 50rem;
+        gap: 1rem;
+    }
+
+    &__rightSmallBox {
+        min-height: 33.33%;
+        border-bottom: 1px solid $color-secondary;
+    }
+}
