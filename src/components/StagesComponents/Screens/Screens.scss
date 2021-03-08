@@ -2,16 +2,18 @@
 
 .screens {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-content: center;
+    gap: 4rem;
 
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
     padding: 2rem;
 
     & .tileLayout {
         display: grid;
         grid-template-columns: .7fr .3fr;
 
-        min-width: 100rem;
+        min-width: 80rem;
         min-height: 52rem;
         font-family: 'Segoe UI', 'Open Sans', sans-serif;
         border-radius: 1.2rem;
@@ -25,7 +27,7 @@
         &__heading {
             font-family: inherit;
             font-size: 1.7rem;
-            font-weight: 600;
+            font-weight: bold;
             color: rgba($color-white, .8);
             padding: 2rem;
         }
@@ -37,22 +39,126 @@
             align-content: center;
             gap: 2rem;
 
-            padding-top: 2rem;
+            height: calc(100% - 8rem);
+        }
+    }
+
+    & .rightBox {
+        padding: 2rem 1rem;
+
+        &__heading {
+            font-family: 'Segoe UI', 'Open Sans', sans-serif;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: rgba($color-white, .8);
+            text-align: center;
         }
 
-        &__splider {
-            align-self: center;
-            padding: 2rem 0;
-        }
+        &__table {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
 
-        &__splide {
-            max-width: 50rem;
-            gap: 1rem;
-        }
-
-        &__rightSmallBox {
-            min-height: 33.33%;
+            width: 100%;
+            padding: 1.5rem 0;
             border-bottom: 1px solid $color-secondary;
+        }
+
+        &__btn {
+            text-align: center;
+
+            & button {
+                width: 60%;
+            }
+        }
+    }
+
+    & .table {
+
+        &__row {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            gap: 1.5rem;
+        }
+
+        &__text {
+            width: 100%;
+            font-size: 1.5rem;
+            font-weight: normal;
+            color: rgba($color-white, .8);
+            text-align: right;
+
+            &--primary {
+                color: $color-primary;
+                text-align: left;
+            }
+
+            &--img {
+                width: auto;
+                align-self: center;
+            }
+        }
+
+        &__img {
+            width: 15%;
+
+            &--2 {
+                width: 50%;
+            }
+
+            & img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    & .selectTiles {
+        width: 25rem;
+        min-height: 52rem;
+        font-family: 'Segoe UI', 'Open Sans', sans-serif;
+        border-radius: 1.2rem;
+        background-color: $color-secondary-dark;
+
+        &__heading {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: rgba($color-white, .8);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        &__content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            padding: 2rem;
+        }
+    }
+
+    & .tileBox {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        flex: 1 1 50%;
+        gap: .5rem;
+
+        padding: .5rem;
+
+        &__img {
+            align-self: center;
+            width: 60px;
+            height: auto;
+        }
+
+        &__text {
+            align-self: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: rgba($color-white, .8);
         }
     }
 }

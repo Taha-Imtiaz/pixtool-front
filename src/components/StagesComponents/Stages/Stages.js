@@ -7,6 +7,7 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import MainTile1 from '../MainTile-1/MainTile-1';
 
 import CoderWall from '../../../images/Icon simple-coderwall.png';
+import TileImg2 from '../../../images/tile2.svg'
 
 function Stages() {
     return (
@@ -15,7 +16,7 @@ function Stages() {
                 < div className="tileLayout__left" >
                     <div className="tileLayout__heading">This Is Tile Layout Heading</div>
                     <div className="tileLayout__mainContent">
-                        <MainTile1 />
+                        <MainTile1 image={TileImg2}/>
                         <div className="tileLayout__splider">
                             <Splide
                                 className="splide tileLayout__splide"
