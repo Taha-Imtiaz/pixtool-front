@@ -37,7 +37,7 @@
             align-content: center;
             gap: 2rem;
 
-            padding-top: 2rem;
+            height: calc(100% - 8rem);
         }
 
         &__splider {
@@ -49,10 +49,81 @@
             max-width: 50rem;
             gap: 1rem;
         }
+    }
 
-        &__rightSmallBox {
-            min-height: 33.33%;
+    & .rightBox {
+        padding: 2rem 1rem;
+
+        &__heading {
+            font-family: 'Segoe UI', 'Open Sans', sans-serif;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: rgba($color-white, .8);
+            text-align: center;
+        }
+
+        &__cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            padding: 2rem 1rem;
             border-bottom: 1px solid $color-secondary;
+        }
+
+        &__output {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            
+            padding: 2rem;
+
+        }
+
+        &__outputImg {
+            width: 15rem;
+            align-self: center;
+        }
+    }
+
+    & .table {
+
+        &__row {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            gap: 1.5rem;
+        }
+
+        &__text {
+            width: 100%;
+            font-size: 1.5rem;
+            font-weight: normal;
+            color: rgba($color-white, .8);
+            text-align: right;
+
+            &--primary {
+                color: $color-primary;
+                text-align: left;
+            }
+
+            &--img {
+                width: auto;
+                align-self: center;
+            }
+        }
+
+        &__img {
+            width: 15%;
+
+            &--2 {
+                width: 50%;
+            }
+
+            & img {
+                max-width: 100%;
+                height: auto;
+            }
         }
     }
 }

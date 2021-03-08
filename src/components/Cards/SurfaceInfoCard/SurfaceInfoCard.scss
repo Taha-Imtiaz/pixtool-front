@@ -1,0 +1,75 @@
+@import '../../../scss/variables.scss';
+
+.surfaceInfoCard {
+    display: flex;
+    align-content: center;
+
+    position: relative;
+    min-width: 20rem;
+    padding: 2rem;
+    border-radius: 1.2rem;
+    background-color: $color-secondary;
+    box-shadow: 1px 1px 6px rgba($color-secondary-dark, .8);
+
+    & > .checkbox {
+        position: absolute;
+        top: .6rem;
+        right: .6rem;
+    }
+
+    &__img {
+        width: 50px;
+        height: auto;
+    }
+
+    &__table {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+
+        width: 100%;
+    }
+
+    & .table {
+
+        &__row {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            gap: 1rem;
+        }
+
+        &__text {
+            width: 100%;
+            font-size: 1.5rem;
+            font-weight: normal;
+            color: rgba($color-white, .8);
+            padding-bottom: .5rem;
+            text-align: right;
+
+            &--primary {
+                color: $color-primary;
+                text-align: left;
+            }
+
+            &--img {
+                width: auto;
+                align-self: center;
+            }
+        }
+
+        &__img {
+            width: 15%;
+
+            &--2 {
+                width: 50%;
+            }
+
+            & img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
+}
