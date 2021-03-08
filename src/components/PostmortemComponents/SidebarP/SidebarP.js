@@ -35,7 +35,6 @@ function SidebarP(props) {
             let comments = document.getElementById('comments');
             let sidebarHeadHeight = (windowHeight - (document.getElementById('sidebarPHead').offsetHeight + 110)).toString();
             if (comments) comments.style.maxHeight = (sidebarHeadHeight + 'px');
-            console.log(windowHeight, sidebarHeadHeight);
         });
     }
 

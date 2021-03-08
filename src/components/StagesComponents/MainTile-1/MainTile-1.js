@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import './MainTile-1.scss';
 
 // import TileImg from '../../../images/tile.svg';
@@ -8,13 +8,23 @@ import TwoWayArrowVert from '../../../images/twoWayArrow_vertical.svg';
 
 function MainTile(props) {
 
-    setTimeout(() => {
-        // To Set The Height Of Vertical Arrow To That Of Image
-        let imgBoxHeight = (document.getElementById('image').offsetHeight + 20).toString();
-        document.getElementById('vertArrow').style.height = (imgBoxHeight + 'px');
-        // console.log(imgBoxHeight);
-    });
+    // Function To Set The Height Of Vertical Arrow To That Of Image In MainTile-1
+    const setVertArrowHeight = () => {
+        setTimeout(() => {
+            // To Set The Height Of Vertical Arrow To That Of Image
+            let vertArrow = document.getElementById('vertArrow');
+            let imgHeight = (document.getElementById('image').offsetHeight + 20).toString();
+            if (vertArrow && imgHeight) {
+                vertArrow.style.height = (imgHeight + 'px');
+            }
+        });
+    }
 
+    useEffect(() => {
+        // To Set The Height Of Vertical Arrow To That Of Image
+        window.addEventListener('load', setVertArrowHeight, false);
+        window.addEventListener('click', setVertArrowHeight, false);
+    }, [])
 
     return (
         <div className="mainTile-1">
