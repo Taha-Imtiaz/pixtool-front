@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './MainTile-1.scss';
 
 // import TileImg from '../../../images/tile.svg';
@@ -12,7 +12,7 @@ function MainTile(props) {
         // To Set The Height Of Vertical Arrow To That Of Image
         let imgBoxHeight = (document.getElementById('image').offsetHeight + 20).toString();
         document.getElementById('vertArrow').style.height = (imgBoxHeight + 'px');
-        console.log(imgBoxHeight);
+        // console.log(imgBoxHeight);
     });
 
 
