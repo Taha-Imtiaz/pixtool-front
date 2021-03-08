@@ -30,7 +30,9 @@
     }
 
     &__img {
-        max-width: 95%;
+        // max-width: 95%;
+        max-height: 22rem;
+        max-width: 22rem;
     }
 
     &__text {
@@ -46,7 +48,8 @@
         &--vertical {
             display: inline-block;
             writing-mode: vertical-rl;
-            padding-left: 1rem;
+            // padding-left: 1rem;
+            padding: 1rem 0 0 1rem;
         }
     }
 
@@ -57,6 +60,12 @@
         &--vertical {
             display: inline-block;
             max-width: 2.5rem;
+            min-width: 2.5rem;
+        }
+
+        &--horizontal {
+            max-height: 2.5rem;
+            min-height: 2.5rem;
         }
     }
 }

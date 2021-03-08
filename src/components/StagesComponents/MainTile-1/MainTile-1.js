@@ -12,10 +12,13 @@ function MainTile(props) {
     const setVertArrowHeight = () => {
         setTimeout(() => {
             // To Set The Height Of Vertical Arrow To That Of Image
-            let vertArrow = document.getElementById('vertArrow');
-            let imgHeight = (document.getElementById('image').offsetHeight + 20).toString();
-            if (vertArrow && imgHeight) {
-                vertArrow.style.height = (imgHeight + 'px');
+            try {
+                let vertArrow = document.getElementById('vertArrow');
+                let imgHeight = (document.getElementById('image').offsetHeight + 20).toString();
+                if (vertArrow && imgHeight) vertArrow.style.height = (imgHeight + 'px');
+
+            } catch (e) {
+                console.log('Following Values Were Not Found: vertArrow & imgHeight \nYou can safely ignore this error if your are not on Stages Tab.')
             }
         });
     }
@@ -45,7 +48,7 @@ function MainTile(props) {
                     Width:&nbsp;
                     <span className="mainTile-1__text--primary">250px</span>
                 </div>
-                <img src={TwoWayArrow} alt="Two Way Pointing Arrow" className="mainTile-1__arrow"></img>
+                <img src={TwoWayArrow} alt="Two Way Pointing Arrow" className="mainTile-1__arrow mainTile-1__arrow--horizontal"></img>
             </div>
         </div>
     )
