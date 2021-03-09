@@ -42,6 +42,12 @@ function Library() {
                         <ThumbnailCard />
                         <ThumbnailCard />
                         <ThumbnailCard />
+                        <ThumbnailCard />
+                        <ThumbnailCard />
+                        <ThumbnailCard />
+                        <ThumbnailCard />
+                        <ThumbnailCard />
+                        <ThumbnailCard />
                     </div>
                 </div>
             </div>

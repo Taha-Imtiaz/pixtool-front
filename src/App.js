@@ -12,36 +12,36 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
 
-const App = ({toastMessage}) => {
+const App = ({ toastMessage }) => {
 
   const notify = (message) => toast.dark(message);
 
   // show toast when toastMessage state changes
- useEffect(() => {
-   console.log(toastMessage)
-  if(toastMessage) {
-    notify(toastMessage)
-  }
- },[toastMessage])
+  useEffect(() => {
+    console.log(toastMessage)
+    if (toastMessage) {
+      notify(toastMessage)
+    }
+  }, [toastMessage])
   return (
-   <div>
-    
+    <div>
+
       <Router>
-       <ToastContainer/>
-      <Switch>
-        <Route path="/sign-in" component={SignIn} />
-        <Route path="/sign-up" component={SignUp}/>
-        <Route path="/home" component={Home}/>
-        <Route path="/player" component={Postmortem}/>
-        <Route path="/test" component={Test}/>
-        <Route path="/" component={HeroSection} exact/>
-      </Switch>
-    </Router>
-   </div>
+        <ToastContainer />
+        <Switch>
+          <Route path="/sign-in" component={SignIn} />
+          <Route path="/sign-up" component={SignUp} />
+          <Route path="/home" component={Home} />
+          <Route path="/player" component={Postmortem} />
+          <Route path="/test" component={Test} />
+          <Route path="/" component={HeroSection} exact />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 var mapStateToProps = (state) => ({
-toastMessage: state.utilities.showMessage
+  toastMessage: state.utilities.showMessage
 })
 
 export default connect(mapStateToProps)(App);
