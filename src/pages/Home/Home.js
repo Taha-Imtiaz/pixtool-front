@@ -16,9 +16,16 @@ import Stages from '../../components/StagesComponents/Stages/Stages';
 
 function Home() {
 
+    /* Arrays To Pass The Sidebar Content In Props */
+    let sidebarMenu1 = [
+        { icon: 'fas fa-book', value: 'My Library' },
+        { icon: 'far fa-file-alt', value: 'Shared with me' },
+        { icon: 'fas fa-cog', value: 'Settings' }
+    ];
+
     return (
         <div className="home page-wrapper">                 {/* "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
-            <Sidebar />
+            <Sidebar menu1={sidebarMenu1}/>
             <div>
                 <Header className="header" />
 
