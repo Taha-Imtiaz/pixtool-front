@@ -6,10 +6,28 @@ import Home from './pages/Home/Home';
 import HeroSection from './pages/HeroSection/HeroSection';
 import Postmortem from './pages/Postmortem/Postmortem';
 import Test from './pages/test';
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
-function App() {
+
+const App = ({toastMessage}) => {
+
+  const notify = (message) => toast.dark(message);
+
+  // show toast when toastMessage state changes
+ useEffect(() => {
+   console.log(toastMessage)
+  if(toastMessage) {
+    notify(toastMessage)
+  }
+ },[toastMessage])
   return (
-    <Router>
+   <div>
+    
+      <Router>
+       <ToastContainer/>
       <Switch>
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp}/>
@@ -19,7 +37,11 @@ function App() {
         <Route path="/" component={HeroSection} exact/>
       </Switch>
     </Router>
+   </div>
   );
 }
+var mapStateToProps = (state) => ({
+toastMessage: state.utilities.showMessage
+})
 
-export default App;
+export default connect(mapStateToProps)(App);

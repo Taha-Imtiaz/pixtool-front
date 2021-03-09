@@ -4,7 +4,7 @@ import './Button.scss'
 function Button(props) {
     return (
         <div>
-            <button className="btn btn--large btn--primary" onClick = {() => props.click()}>{props.text}</button>
+            <button type = {props.type} className="btn btn--large btn--primary">{props.text}</button>
         </div>
     )
 }
