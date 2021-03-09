@@ -8,7 +8,8 @@ a {
 // For Normal Sidebar
 .sidebar {
     display: grid;
-    grid-template-rows: 25vh 35vh 40vh;
+    grid-template-rows: repeat(3, min-content);
+    // grid-template-rows: 25vh 35vh 40vh;
 
     position: sticky;
     top: 0;
@@ -35,46 +36,44 @@ a {
         }
     }
 
-    &__list {
-        display: flex;
-        flex-direction: column;
-
-        list-style: none;
-
+    &__nav {
+        padding: 2rem 0;
     }
 
-    &__link {
+    &__list {
+        list-style: none;
+    }
+
+    &__item {
         color: rgba($color-white, .8);
-        font-size: 2.7rem;
+        font-size: 2.2rem;
         font-weight: 600;
-        padding: 1rem 1.5rem;
-        transition: cursor .3s, background-color, color .3s ease-in, .3s text-align .3s;
-
-        &--name {
-            display: inline-block;
-            transition: .3s display ease-in 0s;
-            animation: goLeft-right .8s;
-        }
-
-        &>a {
-            color: inherit;
-
-            &:focus {
-                outline: none;
-            }
-
-            &>* {
-                margin-left: 2rem;
-            }
-        }
+        padding: 1rem 0;
+        margin: 0 auto;
+        transition: cursor .3s, color .3s, background-color .3s;
 
         &:hover,
         &:active,
         &:focus {
             cursor: pointer;
-            color: $color-white;
-            background-color: $color-secondary-light;
+            color: $color-secondary-dark;
+            background-color: rgba($color-secondary-light, .8);
         }
+    }
+
+    &__option {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        width: 75%;
+        margin: auto;
+    }
+
+    &__text {
+        display: inline-block;
+        transition: .3s display ease-in 0s;
+        animation: goLeft-right .8s;
     }
 }
 

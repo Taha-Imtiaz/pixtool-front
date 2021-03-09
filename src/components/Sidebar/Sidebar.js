@@ -31,33 +31,24 @@ function Sidebar() {
             </div>
 
             <nav className="sidebar__nav">
-                <ul className={drawer ? 'sidebar__list' : 'sidebar__list'}>
-                    <li className={drawer ? 'sidebar__link' : 'sidebar__link txt-align-cen'}>
-                        <a href="./#">
-                            {/* <i className="fas fa-book"></i> */}
+                <ul className="sidebar__list">
+                    <li className='sidebar__item'>
+                        <div className={drawer ? 'sidebar__option' : 'sidebar__option just-cont-cen'}>
                             <i className={drawer ? 'fas fa-book' : 'fas fa-book margin-0'}></i>
-                            <span className={drawer ? 'sidebar__link--name' : 'dis-none'}>My Library</span>
-                        </a>
+                            <span className={drawer ? 'sidebar__text' : 'dis-none'}>My Library</span>
+                        </div>
                     </li>
-                    {/* <li className="sidebar__link">
-                        <a href="./#">
-                            <i className="far fa-user"></i>
-                            <span>Account Management</span>
-                        </a>
-                    </li> */}
-                    <li className={drawer ? 'sidebar__link' : 'sidebar__link txt-align-cen'}>
-                        <a href="./#">
-                            {/* <i className="far fa-file-alt"></i> */}
+                    <li className='sidebar__item'>
+                        <div className={drawer ? 'sidebar__option' : 'sidebar__option just-cont-cen'}>
                             <i className={drawer ? 'far fa-file-alt' : 'far fa-file-alt margin-0'}></i>
-                            <span className={drawer ? 'sidebar__link--name' : 'dis-none'}>Shared with me</span>
-                        </a>
+                            <span className={drawer ? 'sidebar__text' : 'dis-none'}>Shared with me</span>
+                        </div>
                     </li>
-                    <li className={drawer ? 'sidebar__link' : 'sidebar__link txt-align-cen'}>
-                        <a href="./#">
-                            {/* <i class="fas fa-cog"></i> */}
+                    <li className='sidebar__item'>
+                        <div className={drawer ? 'sidebar__option' : 'sidebar__option just-cont-cen'}>
                             <i className={drawer ? 'fas fa-cog' : 'fas fa-cog margin-0'}></i>
-                            <span className={drawer ? 'sidebar__link--name' : 'dis-none'}>Settings</span>
-                        </a>
+                            <span className={drawer ? 'sidebar__text' : 'dis-none'}>Settings</span>
+                        </div>
                     </li>
                 </ul>
             </nav>
