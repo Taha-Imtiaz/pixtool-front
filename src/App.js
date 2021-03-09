@@ -10,38 +10,45 @@ import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Loader from './components/Loader/Loader';
+import { showToastMessage } from './Redux/utility/utilityActions';
 
 
-const App = ({toastMessage}) => {
+const App = ({ toastMessage, showToastMessage, numberOfRequest }) => {
 
   const notify = (message) => toast.dark(message);
 
   // show toast when toastMessage state changes
- useEffect(() => {
-   console.log(toastMessage)
-  if(toastMessage) {
-    notify(toastMessage)
-  }
- },[toastMessage])
+  useEffect(() => {
+    console.log(toastMessage)
+    if (toastMessage) {
+      notify(toastMessage)
+      showToastMessage('')
+    }
+  }, [toastMessage])
   return (
-   <div>
-    
+    <div>
+      {/* {numberOfRequest > 0 && <Loader/>} */}
       <Router>
-       <ToastContainer/>
-      <Switch>
-        <Route path="/sign-in" component={SignIn} />
-        <Route path="/sign-up" component={SignUp}/>
-        <Route path="/home" component={Home}/>
-        <Route path="/player" component={Postmortem}/>
-        <Route path="/test" component={Test}/>
-        <Route path="/" component={HeroSection} exact/>
-      </Switch>
-    </Router>
-   </div>
+        <ToastContainer />
+        <Switch>
+          <Route path="/sign-in" component={SignIn} />
+          <Route path="/sign-up" component={SignUp} />
+          <Route path="/home" component={Home} />
+          <Route path="/player" component={Postmortem} />
+          <Route path="/test" component={Test} />
+          <Route path="/" component={HeroSection} exact />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 var mapStateToProps = (state) => ({
-toastMessage: state.utilities.showMessage
+  toastMessage: state.utilities.showMessage,
+  numberOfRequest: state.utilities.numberOfRequest
 })
+let mapDispatchToProps = {
+  showToastMessage
+}
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

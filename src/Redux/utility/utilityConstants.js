@@ -1,1 +1,5 @@
 export const SHOW_TOAST_MESSAGE = "SHOW_TOAST_MESSAGE"
+export const SHOW_LOADER = "SHOW_LOADER"
+export const HIDE_LOADER = "HIDE_LOADER"
+
+

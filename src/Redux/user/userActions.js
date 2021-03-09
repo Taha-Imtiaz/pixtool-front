@@ -8,8 +8,11 @@ export const setCurrentUser = (userObj, callback) => async (dispatch) => {
         console.log(userObj)
         let response = await Axios.post(`user`, userObj)
         console.log(response.data)
-        if (response.data.status === 200) {
+     
             // data successfuly send to the server
+
+             //save token in local storage
+             localStorage.setItem("pixtool-token", response.data.token);
 
             //show toast notification(by updating utilities state)
            dispatch(showToastMessage(response.data.message))
@@ -21,14 +24,13 @@ export const setCurrentUser = (userObj, callback) => async (dispatch) => {
             })
             // navigate user to home page
             callback()
-        }
-        else if (response.data.status === 400) {
-            //show toast notification (by updating utilities state)
-            dispatch(showToastMessage(response.data.message))
-       }
+  
 
-    } catch (error) {
-        console.log(error)
+    } catch (e) {
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
+
+          }
     }
 }
 // set login user request to server(loggedin the user and set the data in redux store)
@@ -37,13 +39,13 @@ export const setLoginUser = (userObj, callback) => async (dispatch) => {
         console.log(userObj)
         let response = await Axios.post(`/user/login`, userObj)
         console.log(response.data)
-        if (response.data.status === 200) {
+       
             // data successfuly send to the server
 
             //save token in local storage
             localStorage.setItem("pixtool-token", response.data.token);
 
-            //show toast notification (by updating utilities state)
+            //show toast notification (by updating utilities state in redux)
             dispatch(showToastMessage(response.data.message))
 
 
@@ -54,13 +56,14 @@ export const setLoginUser = (userObj, callback) => async (dispatch) => {
             })
             // navigate user to home page
             callback()
-        }
-        else if (response.data.status === 400) {
-             //show toast notification (by updating utilities state)
-             dispatch(showToastMessage(response.data.message))
-        }
+        
+      
 
-    } catch (error) {
-        console.log(error)
+    } catch (e) {
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
+
+          }
     }
 }
+
