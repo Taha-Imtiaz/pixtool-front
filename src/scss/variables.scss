@@ -2,47 +2,54 @@
 ////////////////              COLORS              ////////////////
 //////////////////////////////////////////////////////////////////
 
-$color-black: #000;
 
-$color-green: #27BC6C;
-$color-red: #E10000;
-$color-blue: #181F47;
-
-$color-grey-dark-1: #3D3D3D;
-$color-grey-dark-2: #3D3D3DE6;
-$color-grey-dark-3: #535353;
-$color-grey-dark-4: #2D2D2D;
-$color-grey-dark-5: #515151;
-$color-grey-dark-6: #2E323A;
-$color-grey-dark-7: #8B8989;
-$color-grey-dark-8: #9F9F9F;
-
-$color-grey-light-1: #CFCFCF;
-$color-grey-light-2: #FFFFFF80;
-$color-grey-light-3: #A2A2A2;
-$color-grey-light-4: #707070;
-$color-grey-light-5: #787878;
-$color-grey-light-6: #B4B4B4;
-$color-grey-light-7: #E2E2E2;
-$color-grey-light-8: #C4C4C4;
-$color-grey-light-9: #727272;
-
-$color-light-1: #FCFCFC;
-$color-light-2: #F8FAFC;
-$color-light-3: #F2F2F2;
-
-$color-dark-1:#00000099;
-$color-dark-2:#00000080;
-$color-dark-3: #00000029;
-
-// Theme Colors
 $color-primary: #37CC84;
 $color-primary-dark: #137F4B;
 $color-primary-light: #00FF85;
 
-$color-secondary: #292929;                      // Old Discarded Color: #191919;
-$color-secondary-dark: #121212;                 // Old Discarded Color: #000000;
-$color-secondary-light: #FFFFFF80;              // Old Discarded Color: #9C9DAD;
+$color-secondary: #292929; // Old Discarded Color: #191919;
+$color-secondary-dark: #121212; // Old Discarded Color: #000000;
+$color-secondary-light: #FFFFFF80; // Old Discarded Color: #9C9DAD;
 
 $color-white: #fff;
 $color-white-dull: #FCFCFC;
+
+$color-red: #E10000;
+
+
+//////////////////////////////////////////////////////////////////
+////////////////               FONTS              ////////////////
+//////////////////////////////////////////////////////////////////
+
+
+// $color-black: #000;
+
+// $color-green: #27BC6C;
+// $color-blue: #181F47;
+
+// $color-grey-dark-1: #3D3D3D;
+// $color-grey-dark-2: #3D3D3DE6;
+// $color-grey-dark-3: #535353;
+// $color-grey-dark-4: #2D2D2D;
+// $color-grey-dark-5: #515151;
+// $color-grey-dark-6: #2E323A;
+// $color-grey-dark-7: #8B8989;
+// $color-grey-dark-8: #9F9F9F;
+
+// $color-grey-light-1: #CFCFCF;
+// $color-grey-light-2: #FFFFFF80;
+// $color-grey-light-3: #A2A2A2;
+// $color-grey-light-4: #707070;
+// $color-grey-light-5: #787878;
+// $color-grey-light-6: #B4B4B4;
+// $color-grey-light-7: #E2E2E2;
+// $color-grey-light-8: #C4C4C4;
+// $color-grey-light-9: #727272;
+
+// $color-light-1: #FCFCFC;
+// $color-light-2: #F8FAFC;
+// $color-light-3: #F2F2F2;
+
+// $color-dark-1:#00000099;
+// $color-dark-2:#00000080;
+// $color-dark-3: #00000029;
