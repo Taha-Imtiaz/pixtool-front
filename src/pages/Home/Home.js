@@ -14,19 +14,23 @@ import Surfaces from '../../components/StagesComponents/Surfaces/Surfaces';
 import Screens from '../../components/StagesComponents/Screens/Screens';
 import Stages from '../../components/StagesComponents/Stages/Stages';
 import { connect } from 'react-redux';
-import { getAccount } from '../../Redux/account/accountActions';
+import { getAccount} from '../../Redux/account/accountActions';
+import { getTeams } from '../../Redux/team/teamActions';
 
 
-function Home({ getAccount }) {
-    // cdm
+function Home({ getAccount, getTeams, account }) {
+
     useEffect(() => {
-        // get token from local storage
-console.log('Home')
-        let token = localStorage.getItem(`pixtool-token`)
-
-        //fetch account data on cdm
-        getAccount(token)
+        getAccount()
     }, [])
+
+    useEffect(() => {
+    if(account) {
+        let {account_id} = account
+        console.log(account_id[0]._id)
+        getTeams(account_id[0]._id)
+    }
+    }, [account])
 
     /* Arrays To Pass The Sidebar Content In Props */
     let sidebarMenu1 = [
@@ -34,10 +38,9 @@ console.log('Home')
         { icon: 'far fa-file-alt', value: 'Shared with me' },
         { icon: 'fas fa-cog', value: 'Settings' }
     ];
-
     return (
         <div className="home page-wrapper">                 {/* "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
-            <Sidebar menu1={sidebarMenu1}/>
+            <Sidebar menu1={sidebarMenu1} />
             <div>
                 <Header className="header" />
 
@@ -105,9 +108,12 @@ console.log('Home')
         </div>
     )
 }
-
+var mapStateToProps = (state) => ({
+    account: state.accounts && state.accounts.account
+})
 var mapDispatchToProps = {
-    getAccount
+    getAccount,
+    getTeams
 }
 
-export default connect(null, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

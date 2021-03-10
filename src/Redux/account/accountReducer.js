@@ -6,8 +6,7 @@ let accountReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case ACCOUNT:
             return { ...state, account: payload }
-
-
+      
         default:
             return state
     }

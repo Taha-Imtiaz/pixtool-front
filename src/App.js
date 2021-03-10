@@ -19,12 +19,9 @@ const App = ({ toastMessage, showToastMessage, numberOfRequests }) => {
 
   // show toast when toastMessage state changes
   useEffect(() => {
-    console.log(toastMessage)
-console.log(numberOfRequests)
 
     if (toastMessage) {
       notify(toastMessage)
-      showToastMessage('')
     }
   }, [toastMessage])
   return (
@@ -47,7 +44,6 @@ console.log(numberOfRequests)
 var mapStateToProps = (state) => ({
   toastMessage: state.utilities.showMessage,
   numberOfRequests: state.utilities.numberOfRequests,
-  toastMessage: state.utilities.showMessage
 })
 let mapDispatchToProps = {
   showToastMessage

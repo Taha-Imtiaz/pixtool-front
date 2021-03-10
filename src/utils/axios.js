@@ -6,8 +6,7 @@ import { HIDE_LOADER, SHOW_LOADER } from "../Redux/utility/utilityConstants"
 
 const isHandlerEnabled = (config = {}) => {
     // check if the handler enabled property is true or not
-
-    return config.hasOwnProperty(`handlerEnabled`) && config.HandlerEnabled ? true : false
+    return config.hasOwnProperty(`handlerEnabled`) && config.handlerEnabled ? true : false
 }
 const requestHandler = (request) => {
     if (isHandlerEnabled(request.config)) {
