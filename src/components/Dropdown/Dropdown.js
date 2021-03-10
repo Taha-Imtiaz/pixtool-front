@@ -104,6 +104,7 @@ function DropdownMenu(props) {
                                 rightIcon={x.rightIcon}
                                 leftIcon={x.leftIcon}
                                 goToMenu={x.goToMenu}>
+                                    key={i}
                                 {x.value}
                             </DropdownItem>
                         ))}

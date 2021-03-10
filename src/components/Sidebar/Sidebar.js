@@ -12,10 +12,7 @@ function Sidebar({ menu1 }) {
 
     //This function is responsible for toggling sidebar
     const toggleSidebar = (e) => {
-        // e.stopPropagation()
-        // e.preventDefault()
         setDrawer(!drawer)
-        // console.log(drawer)
     }
 
     return (
@@ -32,20 +29,18 @@ function Sidebar({ menu1 }) {
 
             <nav className="sidebar__nav">
                 <ul className="sidebar__list">
-                    <li className='sidebar__item'>
-                        {menu1.map((x, i) => {
+                    {menu1.map((x, i) =>
+                        <li className='sidebar__item' key={i}>
                             <div className={drawer ? 'sidebar__option' : 'sidebar__option just-cont-cen'}>
                                 <i className={x.icon}></i>
-                                <span className={drawer ? 'sidebar__text' : 'dis-none'}>My Library</span>
+                                <span className={drawer ? 'sidebar__text' : 'dis-none'}>{x.value}</span>
                             </div>
-                        })}
-                    </li>
+                        </li>
+                    )}
                 </ul>
             </nav>
 
-            <div className="sidebar__menu">
-
-            </div>
+            <div className="sidebar__menu"></div>
         </div>
     )
 }
