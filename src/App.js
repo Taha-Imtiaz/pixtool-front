@@ -14,11 +14,8 @@ import Loader from './components/Loader/Loader';
 import { showToastMessage } from './Redux/utility/utilityActions';
 
 
-<<<<<<< HEAD
 const App = ({ toastMessage, showToastMessage, numberOfRequest }) => {
-=======
-const App = ({ toastMessage }) => {
->>>>>>> 58dd5342badb0b96e564736dac1c68e3ef6c4804
+
 
   const notify = (message) => toast.dark(message);
 
@@ -27,19 +24,12 @@ const App = ({ toastMessage }) => {
     console.log(toastMessage)
     if (toastMessage) {
       notify(toastMessage)
-<<<<<<< HEAD
       showToastMessage('')
-=======
->>>>>>> 58dd5342badb0b96e564736dac1c68e3ef6c4804
     }
   }, [toastMessage])
   return (
     <div>
-<<<<<<< HEAD
       {/* {numberOfRequest > 0 && <Loader/>} */}
-=======
-
->>>>>>> 58dd5342badb0b96e564736dac1c68e3ef6c4804
       <Router>
         <ToastContainer />
         <Switch>
@@ -55,12 +45,9 @@ const App = ({ toastMessage }) => {
   );
 }
 var mapStateToProps = (state) => ({
-<<<<<<< HEAD
   toastMessage: state.utilities.showMessage,
-  numberOfRequest: state.utilities.numberOfRequest
-=======
+  numberOfRequest: state.utilities.numberOfRequest,
   toastMessage: state.utilities.showMessage
->>>>>>> 58dd5342badb0b96e564736dac1c68e3ef6c4804
 })
 let mapDispatchToProps = {
   showToastMessage

@@ -1,8 +1,8 @@
-@import "scss/variables.scss";
-@import "scss/fonts.scss";
-@import "scss/scrollbars.scss";
-@import "scss/range-inputs.scss";
-@import "scss/progressbar.scss";
+@import "./scss/variables.scss";
+@import "./scss/fonts.scss";
+@import "./scss/scrollbars.scss";
+@import "./scss/range-inputs.scss";
+@import "./scss/progressbar.scss";
 
 *,
 *::before,
@@ -112,7 +112,7 @@ a {
   &:active,
   &:hover {
     outline: none;
-    background-color: rgba($color-light-1, 0.8);
+    background-color: rgba($color-white-dull, 0.8);
   }
 }
 

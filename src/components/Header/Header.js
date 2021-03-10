@@ -6,7 +6,7 @@ import { Fragment } from 'react';
 
 function Header({ account }) {
 
-function Header() {
+
 
     const closeProfileDropdown = (event) => {
         // Get parent element and check if click happened outside parent only
