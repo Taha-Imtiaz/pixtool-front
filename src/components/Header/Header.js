@@ -2,7 +2,6 @@ import { React, useEffect } from 'react'
 import './Header.scss';
 import Profile from '../../images/profile.png';
 import { connect } from 'react-redux';
-import { Fragment } from 'react';
 
 function Header({ account }) {
 
@@ -41,7 +40,7 @@ function Header({ account }) {
                     </div>
 
             <div className="profile">
-                <span className="profile__text">John Doe</span>
+              {account &&  <span className="profile__text">{account.name}</span>}
                 <span className="profile__picture">
                     <img src={Profile} alt="Profile" onClick={toggleProfile} />
                     <i className="fas fa-angle-down profile__icon" onClick={toggleProfile}></i>
