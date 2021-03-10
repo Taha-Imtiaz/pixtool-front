@@ -1,7 +1,11 @@
 @import "../../scss/variables.scss";
 
 .inner-tab-list {
+    position: sticky;
+    top: 15.7rem;
     font-family: 'Segoe UI', sans-serif;
+    background-color: $color-secondary;
+    z-index: 100;
 
     &-item {
         display: inline-block;
