@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+
 import './Home.scss'
+
 import Tabs from "../../components/NavigationTabs/Tabs";
 import InnerTabs from "../../components/InnerNav/InnerTabs";
 import Header from "../../components/Header/Header";
@@ -13,7 +16,6 @@ import Export from '../../components/ShowsComponents/Export/Export';
 import Surfaces from '../../components/StagesComponents/Surfaces/Surfaces';
 import Screens from '../../components/StagesComponents/Screens/Screens';
 import Stages from '../../components/StagesComponents/Stages/Stages';
-import { connect } from 'react-redux';
 import { getAccount } from '../../Redux/account/accountActions';
 
 
@@ -21,7 +23,7 @@ function Home({ getAccount }) {
     // cdm
     useEffect(() => {
         // get token from local storage
-console.log('Home')
+        console.log('Home')
         let token = localStorage.getItem(`pixtool-token`)
 
         //fetch account data on cdm
@@ -36,8 +38,10 @@ console.log('Home')
     ];
 
     return (
-        <div className="home page-wrapper">                 {/* "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
-            <Sidebar menu1={sidebarMenu1}/>
+        <div className="home page-wrapper">
+            {/* "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
+
+            <Sidebar menu1={sidebarMenu1} />
             <div>
                 <Header className="header" />
 

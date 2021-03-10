@@ -1,0 +1,50 @@
+@import '../../../scss/variables.scss';
+
+.topBtns {
+    display: flex;
+    gap: 2rem;
+
+    position: absolute;
+    top: 10.5rem;
+    right: 2rem;
+    z-index: 10001;
+}
+
+.teamMembers {
+    padding: 2rem;
+}
+
+.teamMembersTable {
+    width: 100%;
+    padding: 2rem;
+
+    &__row {
+        display: grid;
+        grid-template-columns: .1fr .4fr repeat(2, .25fr);
+    }
+
+    &__head,
+    &__data {
+        padding: 1.5rem 1rem 1.5rem 2rem;
+        text-align: left;
+        border-bottom: 1px solid $color-secondary-light;
+    }
+
+    &__head {
+        font-size: 1.8rem;
+        // color: $color-secondary-light;
+        color: rgba($color-primary, .9);
+
+    }
+
+    &__data {
+        font-size: 1.5rem;
+        color: rgba($color-white, .8);
+    }
+
+    &__img {
+        height: 2.8rem;
+        width: 2.8rem;
+        border-radius: 50%;
+    }
+}

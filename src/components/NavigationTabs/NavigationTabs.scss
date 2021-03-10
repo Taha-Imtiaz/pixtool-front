@@ -4,7 +4,6 @@
     position: sticky;
     top: 10rem;
 
-    // height: 5.5rem;
     font-family: 'Segoe UI', sans-serif;
     border-bottom: 2px solid rgba($color-white, .8);
     background-color: $color-secondary;
@@ -13,8 +12,9 @@
 
     &-item {
         display: inline-block;
+        height: 4.5rem;
         color: rgba($color-white, .8);
-        font-size: 2.5rem;
+        font-size: 1.8rem;
         font-weight: 600;
         margin-bottom: -2px;
         padding: 1rem 2rem;

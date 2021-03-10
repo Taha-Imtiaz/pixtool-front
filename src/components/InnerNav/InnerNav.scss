@@ -2,7 +2,7 @@
 
 .inner-tab-list {
     position: sticky;
-    top: 15.7rem;
+    top: 14.5rem;
     font-family: 'Segoe UI', sans-serif;
     background-color: $color-secondary;
     z-index: 100;
@@ -10,9 +10,9 @@
     &-item {
         display: inline-block;
         color: rgba($color-white, .8);
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: bold;
-        padding: 1rem 3rem;
+        padding: 1rem 2rem;
         border: none;
         transition: color .3s, cursor .3s;
 

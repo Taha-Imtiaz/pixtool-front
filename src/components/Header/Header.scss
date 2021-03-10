@@ -10,48 +10,60 @@
     z-index: 1000;
     width: 100%;
     height: 10rem; // Old Size 15vh
-    background-color: $color-secondary;
+    background-color: $color-secondary-dark;
     // border-bottom: 1px solid $color-secondary-dark;
-    // box-shadow: 0px 2px 5px rgba($color-secondary-dark, .8);
+    box-shadow: 0px 0px 6px rgba($color-secondary-dark, .8);
 }
 
 .search {
-    font-size: 2.5rem;
+    position: relative;
+    width: 28rem;
+    font-size: 1.8rem;
     color: rgba($color-white, .8);
-    border: 2px solid $color-secondary-dark;
-    background-color: $color-secondary-dark;
-    border-radius: 10rem;
-    width: fit-content;
     margin-left: 5rem;
+    border-radius: 10rem;
+    border: 1px solid $color-secondary;
+    background-color: $color-secondary;
+    transform: border .3s, box-shadow .3s;
 
-    &>* {
-        margin-left: 3rem;
+    &:active,
+    &:focus,
+    &:hover {
+        outline: none;
+        border: 1px solid $color-primary;
+        box-shadow: 0px 0px 6px $color-primary;
     }
 
     &__icon {
+        position: absolute;
+        top: 1.2rem;
+        left: 1.5rem;
+
         font-size: inherit;
         color: inherit;
     }
 
     &__input {
-        width: 35rem;
+        width: 100%;
+        height: 4rem;
         font-size: inherit;
         font-weight: 400;
         color: rgba($color-white, .8);
-        padding: .5rem 1rem;
+        padding-left: 4.5rem;
         border: none;
         background-color: transparent;
 
         &::placeholder {
             font-size: inherit;
-            font-weight: 600;
+            font-weight:400;
             color: rgba($color-white, .8);
         }
 
-        &:focus {
+        &:active,
+        &:focus,
+        &:hover {
             outline: none;
         }
-
     }
 }
 
@@ -60,14 +72,15 @@
     justify-content: space-between;
     align-items: center;
     // width: 50rem;
-    min-width: 30rem;
+    min-width: 20rem;
     padding-right: 5rem;
 
     &__text {
-        font-size: 2.2rem;
+        font-size: 2rem;
         font-weight: 600;
         color: $color-primary;
         padding-right: 1.5rem;
+        text-transform: capitalize;
     }
 
     &__picture {
@@ -96,7 +109,7 @@
     }
 
     &__notification {
-        font-size: 3rem;
+        font-size: 2.5rem;
         color: rgba($color-white, .8);
         position: relative;
         transition: cursor .3s, color .3s;

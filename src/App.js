@@ -1,15 +1,18 @@
-import './App.scss';
+import { useEffect } from 'react';
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import { connect } from 'react-redux';
+import "react-toastify/dist/ReactToastify.css";
+
+import './App.scss';
+
 import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 import Home from './pages/Home/Home';
 import HeroSection from './pages/HeroSection/HeroSection';
 import Postmortem from './pages/Postmortem/Postmortem';
+import Accounts from './pages/Accounts/Accounts';
 import Test from './pages/test';
-import { connect } from 'react-redux';
-import { useEffect } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 import Loader from './components/Loader/Loader';
 import { showToastMessage } from './Redux/utility/utilityActions';
 
@@ -37,6 +40,7 @@ console.log(numberOfRequests)
           <Route path="/sign-up" component={SignUp} />
           <Route path="/home" component={Home} />
           <Route path="/player" component={Postmortem} />
+          <Route path="/accounts" component={Accounts} />
           <Route path="/test" component={Test} />
           <Route path="/" component={HeroSection} exact />
         </Switch>
