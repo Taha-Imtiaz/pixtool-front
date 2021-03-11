@@ -44,25 +44,26 @@ const Teams = () => {
                                     <th className="teamMembersTable__head">Last Scene</th>
                                     <th className="teamMembersTable__head">Role</th>
                                 </tr>
-                                <tr className="teamMembersTable__row">
+                                {/* This teamMembersTable__row--data will be repeated */}
+                                <tr className="teamMembersTable__row teamMembersTable__row--data">
                                     <td className="teamMembersTable__data"><input type="checkBox" className="checkbox" /></td>
                                     <td className="teamMembersTable__data teamMembersTable__data--flex">
                                         <img src={DisplayProfile} alt="Display Profile" className="teamMembersTable__img"/>
                                         <div className="teamMembersTable__text">
-                                            <div className="teamMembersTable__text__name">Muhammad Usama Zuberi</div>
-                                            <div className="teamMembersTable__text__email">usama1234@email.com</div>
+                                            <div className="teamMembersTable__text--name">Muhammad Usama Zuberi</div>
+                                            <div className="teamMembersTable__text--email">usama1234@email.com</div>
                                         </div>
                                     </td>
                                     <td className="teamMembersTable__data">1 hour ago</td>
                                     <td className="teamMembersTable__data">Owner</td>
                                 </tr>
-                                <tr className="teamMembersTable__row">
+                                <tr className="teamMembersTable__row teamMembersTable__row--data">
                                     <td className="teamMembersTable__data"><input type="checkBox" className="checkbox" /></td>
                                     <td className="teamMembersTable__data teamMembersTable__data--flex">
                                         <img src={DisplayProfile} alt="Display Profile" className="teamMembersTable__img"/>
                                         <div className="teamMembersTable__text">
-                                            <div className="teamMembersTable__text__name">Rizwan Ahmed Siddique</div>
-                                            <div className="teamMembersTable__text__email">rizwan1234@email.com</div>
+                                            <div className="teamMembersTable__text--name">Rizwan Ahmed Siddique</div>
+                                            <div className="teamMembersTable__text--email">rizwan1234@email.com</div>
                                         </div>
                                     </td>
                                     <td className="teamMembersTable__data">39 minutes ago</td>

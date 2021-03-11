@@ -24,13 +24,14 @@ ul {
     height: 3.5rem;
     border-radius: 5px;
     background-color: $color-white-dull;
+    user-select: none;
     transition: cursor .3s, background-color .3s;
 
     &:active,
     &:focus,
     &:hover {
+        cursor: default;
         outline: none;
-        cursor: pointer;
         background-color: rgba($color-white-dull, .8);
     }
 }
@@ -58,6 +59,14 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    transition: cursor .3s;
+
+    &:active,
+    &:focus,
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 /* Dropdown Arrow Icon */
