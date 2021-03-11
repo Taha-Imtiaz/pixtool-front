@@ -9,6 +9,8 @@ export const getAssets = (projectId) => async (dispatch) => {
             payload: response.data.data
         })
     } catch (e) {
-        
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
     }
+}
 }
