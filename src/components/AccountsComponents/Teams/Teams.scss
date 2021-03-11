@@ -12,6 +12,7 @@
 
 .teamMembers {
     padding: 2rem;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 .teamMembersTable {
@@ -21,6 +22,17 @@
     &__row {
         display: grid;
         grid-template-columns: .1fr .4fr repeat(2, .25fr);
+
+        &--data {
+            transition: cursor .3s, background-color .3s;
+
+            &:active,
+            &:focus,
+            &:hover {
+                cursor: pointer;
+                background-color: rgba($color-secondary-light, .5);
+            }
+        }
     }
 
     &__head,
@@ -38,13 +50,37 @@
     }
 
     &__data {
+        display: flex;
+        align-items: center;
+
         font-size: 1.5rem;
         color: rgba($color-white, .8);
+
+        &--flex {
+            display: flex;
+            align-content: center;
+            gap: 1.5rem;
+        }
     }
 
     &__img {
-        height: 2.8rem;
-        width: 2.8rem;
+        height: 3.5rem;
+        width: 3.5rem;
+        margin: auto 0;
         border-radius: 50%;
+    }
+
+    &__text {
+
+        &--name {
+            font-size: inherit;
+            font-weight: 500;
+        }
+
+        &--email {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: rgba($color-secondary-light, .5);
+        }
     }
 }

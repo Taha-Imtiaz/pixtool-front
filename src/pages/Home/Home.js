@@ -16,7 +16,6 @@ import Export from '../../components/ShowsComponents/Export/Export';
 import Surfaces from '../../components/StagesComponents/Surfaces/Surfaces';
 import Screens from '../../components/StagesComponents/Screens/Screens';
 import Stages from '../../components/StagesComponents/Stages/Stages';
-import { connect } from 'react-redux';
 import { getAccount} from '../../Redux/account/accountActions';
 import { getTeams } from '../../Redux/team/teamActions';
 
