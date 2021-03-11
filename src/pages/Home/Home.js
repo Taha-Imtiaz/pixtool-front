@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+
 import './Home.scss'
+
 import Tabs from "../../components/NavigationTabs/Tabs";
 import InnerTabs from "../../components/InnerNav/InnerTabs";
 import Header from "../../components/Header/Header";
@@ -39,7 +42,9 @@ function Home({ getAccount, getTeams, account }) {
         { icon: 'fas fa-cog', value: 'Settings' }
     ];
     return (
-        <div className="home page-wrapper">                 {/* "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
+        <div className="home page-wrapper">
+            {/* "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
+
             <Sidebar menu1={sidebarMenu1} />
             <div>
                 <Header className="header" />

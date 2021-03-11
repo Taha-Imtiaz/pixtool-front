@@ -1,0 +1,120 @@
+@import '../../../scss/variables.scss';
+
+.profileTab {
+    display: grid;
+    grid-template-columns: 1fr min-content 1fr;
+    grid-template-rows: 1fr min-content;
+
+    min-height: calc(100vh - 10rem);
+    font-family: 'Segoe UI', sans-serif;
+    padding: 2rem;
+
+    // Chrome Auto-complete Styles
+    & input:-webkit-autofill,
+    & input:-webkit-autofill:hover,
+    & input:-webkit-autofill:focus,
+    & textarea:-webkit-autofill,
+    & textarea:-webkit-autofill:hover,
+    & textarea:-webkit-autofill:focus,
+    & select:-webkit-autofill,
+    & select:-webkit-autofill:hover,
+    & select:-webkit-autofill:focus {
+        background: transparent;
+        -webkit-text-fill-color: $color-secondary;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+}
+
+.profileInfo {
+    grid-column: 2/ span 1;
+
+    min-width: 70rem;
+    padding: 2rem;
+    // margin: 2rem auto;
+    text-align: center;
+    border-radius: 1.2rem;
+    background-color: $color-secondary-dark;
+
+    &__img {
+        width: 7rem;
+        height: 7rem;
+        margin-top: 2rem;
+        border-radius: 50%;
+        transition: cursor .3s, box-shadow .3s;
+
+        &:focus,
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0px 0px 10px rgba($color-secondary-dark, 1);
+        }
+    }
+
+    &__headName {
+        font-family: inherit;
+        font-size: 2.5rem;
+        color: rgba($color-white, .8);
+        padding: 2rem 0;
+        text-transform: capitalize;
+    }
+
+    &__inputsBox {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4rem;
+
+        padding: 2rem 0;
+    }
+
+    &__inputsGroup {
+        text-align: left;
+
+        &--half {
+            flex: 1 calc(50% - 4rem);
+        }
+
+        &--bio {
+            flex: 1 calc(100% - 4rem);
+        }
+    }
+
+    &__label {
+        font-family: inherit;
+        font-size: 1.5rem;
+        color: rgba($color-white, .8);
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+    }
+
+    &__input {
+        width: 100%;
+        height: 4rem;
+        font-family: inherit;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $color-secondary;
+        padding: 1rem 2rem;
+        margin-top: 1rem;
+        text-transform: capitalize;
+        border-radius: 3px;
+        border: 1px solid transparent;
+        background-color: $color-secondary-light;
+        transition: border .3s, box-shadow .3s;
+
+        &:focus,
+        &:active {
+            outline: none;
+            border: 1px solid $color-primary;
+            box-shadow: 0px 0px 6px $color-primary;
+        }
+
+        &--bio {
+            resize: none;
+            height: 20rem;
+            overflow: auto;
+        }
+    }
+
+    &__btn {
+        padding: 1rem 0;
+    }
+}

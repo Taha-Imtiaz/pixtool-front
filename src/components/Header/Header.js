@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 function Header({ account }) {
 
+    // document.querySelector('.header').style.borderBottom = style;
 
 
     const closeProfileDropdown = (event) => {
@@ -32,15 +33,15 @@ function Header({ account }) {
     }, [])
 
     return (
-           
-                <div className="header">
-                    <div className="search">
-                        <i className="fas fa-search search__icon"></i>
-                        <input type="text" className="search__input" name="search" placeholder="Search"></input>
-                    </div>
+
+        <div className="header">
+            <div className="search">
+                <i className="fas fa-search search__icon"></i>
+                <input type="text" className="search__input" name="search" placeholder="Search"></input>
+            </div>
 
             <div className="profile">
-              {account &&  <span className="profile__text">{account.name}</span>}
+                {account && <span className="profile__text">{account.name}</span>}
                 <span className="profile__picture">
                     <img src={Profile} alt="Profile" onClick={toggleProfile} />
                     <i className="fas fa-angle-down profile__icon" onClick={toggleProfile}></i>
