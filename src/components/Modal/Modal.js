@@ -4,14 +4,15 @@ import './Modal.scss';
 const Modal = ({ show, close }) => {
     
     return (
-        <div className="modal-wrapper"
+        <div className="modal__backDrop"
             style={{
                 /* transform: show ? 'translate(30%, 50%)' : 'translateY(-30%, -100vh)', */
                 opacity: show ? '1' : '0',
                 zIndex: show ? '1000' : '-1',
+                overflow: show ? 'auto' : 'hidden',
             }}
         >
-            <div className="modal-header">
+            {/* <div className="modal-header">
                 <p>Welcome To Our Site</p>
                 <span onClick={close} className="close-modal-btn">x</span>
             </div>
@@ -23,7 +24,7 @@ const Modal = ({ show, close }) => {
                 <div className="modal-footer">
                     <button onClick={close} className="btn-cancel">Close</button>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

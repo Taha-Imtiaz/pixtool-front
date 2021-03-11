@@ -1,22 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import './Home.scss'
 
-import Tabs from "../../components/NavigationTabs/Tabs";
-import InnerTabs from "../../components/InnerNav/InnerTabs";
-import Header from "../../components/Header/Header";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Tabs from '../../components/NavigationTabs/Tabs';
+import InnerTabs from '../../components/InnerNav/InnerTabs';
+import Modal from '../../components/Modal/Modal'
+import Header from '../../components/Header/Header';
+import Sidebar from '../../components/Sidebar/Sidebar';
+import TeamsNav from '../../components/TeamsNav/TeamsNav'
 import Library from '../../components/Library/Library';
-import Media from '../../components/ShowsComponents/Media/Media';
-import Settings from '../../components/ShowsComponents/Settings/Settings';
 import Overview from '../../components/ShowsComponents/Overview/Overview';
+import Settings from '../../components/ShowsComponents/Settings/Settings';
+import Media from '../../components/ShowsComponents/Media/Media';
 import Preview from '../../components/ShowsComponents/Preview/Preview';
 import Export from '../../components/ShowsComponents/Export/Export';
 import Surfaces from '../../components/StagesComponents/Surfaces/Surfaces';
 import Screens from '../../components/StagesComponents/Screens/Screens';
 import Stages from '../../components/StagesComponents/Stages/Stages';
-import { getAccount} from '../../Redux/account/accountActions';
+
+import { getAccount } from '../../Redux/account/accountActions';
 import { getTeams } from '../../Redux/team/teamActions';
 
 
@@ -27,12 +30,15 @@ function Home({ getAccount, getTeams, account }) {
     }, [])
 
     useEffect(() => {
-    if(account) {
-        let {account_id} = account
-        console.log(account_id[0]._id)
-        getTeams(account_id[0]._id)
-    }
+        if (account) {
+            let { account_id } = account
+            console.log(account_id[0]._id)
+            getTeams(account_id[0]._id)
+        }
     }, [account])
+
+    const [show, setShow] = useState(false);
+    const modalToggle = () => setShow(!show);
 
     /* Arrays To Pass The Sidebar Content In Props */
     let sidebarMenu1 = [
@@ -42,9 +48,20 @@ function Home({ getAccount, getTeams, account }) {
     ];
     return (
         <div className="home page-wrapper">
-            {/* "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
+            {/* Above "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
 
-            <Sidebar menu1={sidebarMenu1} />
+            {/* This is Modal Backdrop*/}
+            {/* {show ? <div onClick={modalToggle} className="back-drop">
+
+            </div> : null} */}
+            {/* This is Modal */}
+            <Modal show={show} close={modalToggle} />
+
+
+            <Sidebar menu1={sidebarMenu1}>
+                <TeamsNav toggleModal={modalToggle} show={show} />
+            </Sidebar>
+
             <div>
                 <Header className="header" />
 

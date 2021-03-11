@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: min-content 1fr;
 
+    position: relative;
     background-color: $color-secondary;
 }
 
