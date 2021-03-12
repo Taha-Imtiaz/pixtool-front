@@ -1,23 +1,23 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import './ThumbnailCard.scss';
-import Thumbnail from '../../../images/thumbnail.jpg'
 
-function ThumbnailCard() {
-
+const ThumbnailCard = ({resource,id, history}) =>  {
     const linkToPost = ()=> {
-        window.location.assign('/player')
+       history.push('/player')
+        
     }
-
+let {thumbnail} = resource
     return (
-        <div className="thumbnailCard" onClick={linkToPost}>
+        <div className="thumbnailCard" key = {id} onClick={linkToPost}>
             <div className="thumbnailCard__status">
                 Needs Approval
             </div>
             <div className="thumbnailCard__img">
-                <img src={Thumbnail} alt="Thumbnail"/>
+                <img src={thumbnail} alt="Thumbnail"/>
             </div>
             <div className="thumbnailCard__text">
-                <div className="thumbnailCard__name">Best Samsung Mobile.mp4</div>
+                <div className="thumbnailCard__name">{resource.name}</div>
                 <div className="thumbnailCard__datail">
                     <span>John</span>
                     &nbsp;-&nbsp;
@@ -28,4 +28,4 @@ function ThumbnailCard() {
     )
 }
 
-export default ThumbnailCard
+export default withRouter(ThumbnailCard)

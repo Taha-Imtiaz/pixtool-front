@@ -5,7 +5,7 @@ import { GET_TEAMS } from "./teamConstants"
 export const getTeams = (accountId) => async (dispatch) => {
     try {
      
-        let response = await Axios.get(`/account/${accountId}`)
+        let response = await Axios.get(`account/${accountId}`)
         console.log(response)
         dispatch({
           type:GET_TEAMS,

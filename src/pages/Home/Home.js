@@ -23,19 +23,22 @@ import { getAccount } from '../../Redux/account/accountActions';
 import { getTeams } from '../../Redux/team/teamActions';
 
 
-function Home({ getAccount, getTeams, account }) {
+function Home({ getAccount, getTeams,account }) {
 
     useEffect(() => {
         getAccount()
     }, [])
 
+    // get team's by assing an accountId
     useEffect(() => {
         if (account) {
             let { account_id } = account
             console.log(account_id[0]._id)
             getTeams(account_id[0]._id)
+
         }
     }, [account])
+
 
     const [show, setShow] = useState(false);
     const modalToggle = () => setShow(!show);
@@ -46,6 +49,7 @@ function Home({ getAccount, getTeams, account }) {
         { icon: 'far fa-file-alt', value: 'Shared with me' },
         { icon: 'fas fa-cog', value: 'Settings' }
     ];
+    
     return (
         <div className="home page-wrapper">
             {/* Above "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
@@ -59,7 +63,7 @@ function Home({ getAccount, getTeams, account }) {
 
 
             <Sidebar menu1={sidebarMenu1}>
-                <TeamsNav show={show} toggleModal={modalToggle} />
+                <TeamsNav show={show} toggleModal={modalToggle}  />
             </Sidebar>
 
             <div>
@@ -130,8 +134,9 @@ function Home({ getAccount, getTeams, account }) {
     )
 }
 var mapStateToProps = (state) => ({
-    account: state.accounts && state.accounts.account
+    account: state.accounts && state.accounts.account,
 })
+
 var mapDispatchToProps = {
     getAccount,
     getTeams

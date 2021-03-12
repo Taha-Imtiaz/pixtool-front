@@ -4,9 +4,9 @@ import SignInBG from '../../images/signIn.png';
 import { Link } from 'react-router-dom';
 import ButtonLarge from '../../components/Button/ButtonLarge';
 import { connect } from 'react-redux';
-import { LoginUser } from '../../Redux/user/userActions';
+import { loginUser } from '../../Redux/user/userActions';
 
-const SignIn = ({LoginUser, history}) => {
+const SignIn = ({loginUser, history}) => {
     const [authFormState, setAuthFormState] = useState({
         email: '',
         password: ''
@@ -61,7 +61,7 @@ const SignIn = ({LoginUser, history}) => {
         let userObj = {
             email, password
         } 
-        LoginUser(userObj,  () => history.push(`/home`))
+        loginUser(userObj,  () => history.push(`/home`))
 
     }
     return (
@@ -112,6 +112,6 @@ const SignIn = ({LoginUser, history}) => {
     )
 }
 var mapDispatchToProps = {
-    LoginUser,
+    loginUser,
 }
 export default connect(null, mapDispatchToProps)(SignIn)

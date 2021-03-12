@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { showToastMessage } from "../utility/utilityActions";
-import {  ACCOUNT } from "./accountConstants";
+import { ACCOUNT } from "./accountConstants";
 
 //get all user project accounts details
 export const getAccount = () => async (dispatch) => {
@@ -11,17 +11,19 @@ export const getAccount = () => async (dispatch) => {
     // };
 
     // send request to the server
-    const response = await Axios.get(`user`, {config : {
-      handlerEnabled: true
-    }})
-
+    const response = await Axios.get(`user`, {
+      config: {
+        handlerEnabled: true
+      }
+    })
+    console.log(response.data.data)
     // update app's state
     dispatch({
       type: ACCOUNT,
       payload: response.data.data
     })
 
-  
+
   } catch (e) {
     if (e.response && e.response.data) {
       dispatch(showToastMessage(e.response.data.message))

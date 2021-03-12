@@ -4,7 +4,10 @@ import './Sidebar.scss';
 import Logo from '../../images/logo.png';
 import NavIcon from '../NavIcon/NavIcon';
 
-function Sidebar(props) {
+
+function Sidebar({children, menu1}) {
+
+     
 
     // This state is used for toggling sidebar
     const [drawer, setDrawer] = useState(true)
@@ -13,7 +16,7 @@ function Sidebar(props) {
     const toggleSidebar = (e) => {
         setDrawer(!drawer)
     }
-
+  
     return (
         <div className={drawer ? 'sidebar' : 'sidebarCollapse sidebar'}>
             <div className={drawer ? 'sidebar__top' : 'sidebar__top just-cont-cen'}>
@@ -24,11 +27,10 @@ function Sidebar(props) {
                 <NavIcon toggle={(e) => toggleSidebar(e)} />
             </div>
 
-            {props.children}
-
+            {children}
             <nav className="sidebar__nav">
                 <ul className="sidebar__list">
-                    {props.menu1.map((x, i) =>
+                    {menu1.map((x, i) =>
                         <li className='sidebar__item' key={i}>
                             <div className={drawer ? 'sidebar__option' : 'sidebar__option just-cont-cen'}>
                                 <i className={x.icon}></i>
@@ -43,5 +45,6 @@ function Sidebar(props) {
         </div>
     )
 }
+
 
 export default Sidebar

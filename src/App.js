@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 import "react-toastify/dist/ReactToastify.css";
@@ -40,6 +40,7 @@ const App = ({ toastMessage, showToastMessage, numberOfRequests }) => {
           <Route path="/accounts" component={Accounts} />
           <Route path="/test" component={Test} />
           <Route path="/" component={HeroSection} exact />
+          <Redirect to= "/sign-in"/>
         </Switch>
       </Router>
     </div>

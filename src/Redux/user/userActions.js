@@ -34,7 +34,7 @@ export const signupUser = (userObj, callback) => async (dispatch) => {
     }
 }
 // set login user request to server(loggedin the user and set the data in redux store)
-export const LoginUser = (userObj, callback) => async (dispatch) => {
+export const loginUser = (userObj, callback) => async (dispatch) => {
     try {
         console.log(userObj)
         let response = await Axios.post(`user/login`, userObj)
