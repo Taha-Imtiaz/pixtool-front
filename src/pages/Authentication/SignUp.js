@@ -3,10 +3,10 @@ import './Authentication.scss'
 import SignUpBG from '../../images/signUp.png'
 import ButtonLarge from '../../components/Button/ButtonLarge';
 import { connect } from 'react-redux';
-import { setCurrentUser } from '../../Redux/user/userActions';
+import { signupUser } from '../../Redux/user/userActions';
 
 
-const SignUp = ({ setCurrentUser, history }) => {
+const SignUp = ({ signupUser, history }) => {
     const [authFormState, setAuthFormState] = useState({
         email: '',
         name: '',
@@ -27,7 +27,7 @@ const SignUp = ({ setCurrentUser, history }) => {
         if (input.type === 'password' || inputC.type === 'password') {
             input.type = "text";
             inputC.type = "text";
-            
+
             x.style.display = 'none';
             y.style.display = 'inline-block';
         }
@@ -77,9 +77,9 @@ const SignUp = ({ setCurrentUser, history }) => {
 
             }
             console.log(userObj)
-            setCurrentUser(userObj, () => history.push(`/home`))
-            
-
+            signupUser(userObj, () => {
+                history.push(`/home`)
+            })
         }
         else {
             console.log("Password do not match!")
@@ -149,6 +149,6 @@ const SignUp = ({ setCurrentUser, history }) => {
     )
 }
 var mapDispatchToProps = {
-    setCurrentUser
+    signupUser
 }
 export default connect(null, mapDispatchToProps)(SignUp)

@@ -11,7 +11,7 @@ export const getAccount = () => async (dispatch) => {
     // };
 
     // send request to the server
-    const response = await Axios.get(`/user`, {config : {
+    const response = await Axios.get(`user`, {config : {
       handlerEnabled: true
     }})
 
