@@ -6,18 +6,12 @@ import Button from "../../components/Button/Button";
 import ThumbnailCard from "../../components/Cards/ThumbnailCard/ThumbnailCard";
 import Modal from '../../components/Modal/Modal';
 
-function Library() {
+function Library({ toggleModal, show }) {
 
-    const [show, setShow] = useState(false);
-    const closeModalHandler = () => setShow(false);
-    const openModalHandler = () => setShow(true);
     const createNew = () => { }
 
     return (
         <div>
-            {show ? <div onClick={closeModalHandler} className="back-drop"></div> : null}
-            <Modal show={show} close={closeModalHandler} />
-
             <div className="library">
                 <div className="library__head">
                     <Filter />
@@ -31,7 +25,7 @@ function Library() {
                         </div>
 
                         <div className="library__head__buttons">
-                            <Button text="Share" click={openModalHandler} />
+                            <Button text="Share" click={toggleModal} />
                             <Button text="Create New" click={createNew} />
                         </div>
                     </div>

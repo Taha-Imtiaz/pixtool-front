@@ -12,6 +12,12 @@ const Modal = ({ show, toggleModal }) => {
 
     return (
         <div className="modal__backDrop" style={backDropStyle} onClick={toggleModal}>
+            <div className="modal">
+                <div className="modal__content">
+                    <div className="modal__test"></div>
+                </div>
+            </div>
+
             {/* transform: show ? 'translate(30%, 50%)' : 'translateY(-30%, -100vh)', */}
             {/* <div className="modal-header">
                 <p>Welcome To Our Site</p>

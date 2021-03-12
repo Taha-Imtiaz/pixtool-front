@@ -37,8 +37,21 @@ function Home({ getAccount, getTeams, account }) {
         }
     }, [account])
 
+    // This state is used to Show/ Hide the Modal
     const [show, setShow] = useState(false);
-    const modalToggle = () => setShow(!show);
+
+    // This Function is responsible to Show/ Hide the Modal
+    const modalToggle = () => {
+        if (show) {
+            // Allow to scroll when closing the modal
+            document.body.style.removeProperty('overflow');
+
+        } else {
+            // Disable scrolling on the `body` element when opening a modal
+            document.body.style.overflow = 'hidden';
+        }
+        setShow(!show)
+    };
 
     /* Arrays To Pass The Sidebar Content In Props */
     let sidebarMenu1 = [
@@ -50,10 +63,6 @@ function Home({ getAccount, getTeams, account }) {
         <div className="home page-wrapper">
             {/* Above "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
 
-            {/* This is Modal Backdrop*/}
-            {/* {show ? <div onClick={modalToggle} className="back-drop">
-
-            </div> : null} */}
             {/* This is Modal */}
             <Modal show={show} toggleModal={modalToggle} />
 
@@ -70,7 +79,7 @@ function Home({ getAccount, getTeams, account }) {
 
                     {/* Library Tab Content */}
                     <div label="Library">
-                        <Library />
+                        <Library show={show} toggleModal={modalToggle}/>
                     </div>
 
                     {/* Shows Tab Content */}
