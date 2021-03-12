@@ -7,7 +7,7 @@ const ThumbnailCard = ({resource,id, history}) =>  {
        history.push('/player')
         
     }
-let {thumbnail} = resource
+let {thumbnail,name} = resource
     return (
         <div className="thumbnailCard" key = {id} onClick={linkToPost}>
             <div className="thumbnailCard__status">
@@ -17,7 +17,7 @@ let {thumbnail} = resource
                 <img src={thumbnail} alt="Thumbnail"/>
             </div>
             <div className="thumbnailCard__text">
-                <div className="thumbnailCard__name">{resource.name}</div>
+                <div className="thumbnailCard__name truncate">{name}</div>
                 <div className="thumbnailCard__datail">
                     <span>John</span>
                     &nbsp;-&nbsp;

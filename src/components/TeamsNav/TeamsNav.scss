@@ -1,6 +1,7 @@
 @import "../../scss/variables.scss";
 
 .teamsNav {
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
     color: rgba($color-white, .8);
     padding: 1rem 0;
 
@@ -15,6 +16,17 @@
 
     &__text {
         flex: 1;
+    }
+
+    &__addBtn {
+        transition: cursor .3s, color .3s;
+
+        &:active,
+        &:focus,
+        &:hover {
+            cursor: pointer;
+            color: $color-primary-dark;
+        }
     }
 
     &__item {

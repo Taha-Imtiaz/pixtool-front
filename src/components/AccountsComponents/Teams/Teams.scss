@@ -19,6 +19,12 @@
     width: 100%;
     padding: 2rem;
 
+    &__dropdown {
+        max-width: 18rem;
+        grid-column: 4 / span 1;
+        justify-self: end;
+    }
+
     &__row {
         display: grid;
         grid-template-columns: .1fr .4fr repeat(2, .25fr);

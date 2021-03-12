@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getProject } from '../../Redux/project/projectActions';
 import './TeamsNav.scss';
 
-const TeamsNav = ({ toggleModal, show , getProject, teams}) => {
+const TeamsNav = ({ addProjectModalToggle, show , getProject, teams}) => {
 
     // This state is used for toggling Sidebar Team Nav Lists
     const [teamNav, setTeamNav] = useState(false);
@@ -32,7 +32,7 @@ const TeamsNav = ({ toggleModal, show , getProject, teams}) => {
                               { index === teamItemIndex ? <i className="fas fa-chevron-down"></i>:  <i className="fas fa-chevron-right"></i>}
                             </span>
                             <span className="teamsNav__text">{team.name}</span>
-                            <span className="teamsNav__addBtn" onClick={toggleModal}>
+                            <span className="teamsNav__addBtn" onClick={addProjectModalToggle}>
                                 <i className="fas fa-plus-circle"></i>
                             </span>
                         </div>
@@ -65,7 +65,7 @@ const TeamsNav = ({ toggleModal, show , getProject, teams}) => {
                                 <i className="fas fa-chevron-right"></i>
                             </span>
                             <span className="teamsNav__text">Usama's Team</span>
-                            <span className="teamsNav__addBtn" onClick={toggleModal}>
+                            <span className="teamsNav__addBtn" onClick={props.addProjectModalToggle}>
                                 <i className="fas fa-plus-circle"></i>
                             </span>
                         </div>

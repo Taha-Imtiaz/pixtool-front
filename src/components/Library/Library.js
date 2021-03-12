@@ -4,16 +4,12 @@ import Filter from "../../components/Filter/Filter";
 import Avatar from "../../components/Avatar/Avatar";
 import Button from "../../components/Button/Button";
 import ThumbnailCard from "../../components/Cards/ThumbnailCard/ThumbnailCard";
-import Modal from '../../components/Modal/Modal';
 import { connect } from 'react-redux';
 import { getProject } from '../../Redux/project/projectActions';
 
 
 const Library = ({ resources, teams,getProject }) => {
 
-    const [show, setShow] = useState(false);
-    const closeModalHandler = () => setShow(false);
-    const openModalHandler = () => setShow(true);
     const createNew = () => { }
     console.log(resources)
 
@@ -29,9 +25,6 @@ const Library = ({ resources, teams,getProject }) => {
     }, [teams])
     return (
         <div>
-            {show ? <div onClick={closeModalHandler} className="back-drop"></div> : null}
-            <Modal show={show} close={closeModalHandler} />
-
             <div className="library">
                 <div className="library__head">
                     <Filter />
@@ -45,7 +38,7 @@ const Library = ({ resources, teams,getProject }) => {
                         </div>
 
                         <div className="library__head__buttons">
-                            <Button text="Share" click={openModalHandler} />
+                            <Button text="Share" click={createNew} />
                             <Button text="Create New" click={createNew} />
                         </div>
                     </div>

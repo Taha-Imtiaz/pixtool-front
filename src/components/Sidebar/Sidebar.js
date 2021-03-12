@@ -27,7 +27,10 @@ function Sidebar({children, menu1}) {
                 <NavIcon toggle={(e) => toggleSidebar(e)} />
             </div>
 
-            {children}
+            <div className={drawer ? 'sidebar__teamsMenu' : 'sidebar__teamsMenu--hidden'}>
+                {children}
+            </div>
+
             <nav className="sidebar__nav">
                 <ul className="sidebar__list">
                     {menu1.map((x, i) =>
