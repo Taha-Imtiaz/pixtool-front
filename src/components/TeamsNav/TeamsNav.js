@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './TeamsNav.scss';
 
-const TeamsNav = ({ toggleModal, show }) => {
+const TeamsNav = (props) => {
 
     // This state is used for toggling Sidebar Team Nav Lists
     const [teamNav, setTeamNav] = useState(false);
@@ -21,7 +21,7 @@ const TeamsNav = ({ toggleModal, show }) => {
                                 <i className="fas fa-chevron-right"></i>
                             </span>
                             <span className="teamsNav__text">Usama's Team</span>
-                            <span className="teamsNav__addBtn" onClick={toggleModal}>
+                            <span className="teamsNav__addBtn" onClick={props.addProjectModalToggle}>
                                 <i className="fas fa-plus-circle"></i>
                             </span>
                         </div>
@@ -55,7 +55,7 @@ const TeamsNav = ({ toggleModal, show }) => {
                                 <i className="fas fa-chevron-right"></i>
                             </span>
                             <span className="teamsNav__text">Usama's Team</span>
-                            <span className="teamsNav__addBtn" onClick={toggleModal}>
+                            <span className="teamsNav__addBtn" onClick={props.addProjectModalToggle}>
                                 <i className="fas fa-plus-circle"></i>
                             </span>
                         </div>

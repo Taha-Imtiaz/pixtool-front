@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Library.scss';
 import Filter from "../../components/Filter/Filter";
 import Avatar from "../../components/Avatar/Avatar";
 import Button from "../../components/Button/Button";
 import ThumbnailCard from "../../components/Cards/ThumbnailCard/ThumbnailCard";
-import Modal from '../../components/Modal/Modal';
 
-function Library({ toggleModal, show }) {
+function Library() {
 
     const createNew = () => { }
 
@@ -25,7 +24,7 @@ function Library({ toggleModal, show }) {
                         </div>
 
                         <div className="library__head__buttons">
-                            <Button text="Share" click={toggleModal} />
+                            <Button text="Share" click={createNew} />
                             <Button text="Create New" click={createNew} />
                         </div>
                     </div>

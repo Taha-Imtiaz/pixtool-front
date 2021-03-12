@@ -5,7 +5,6 @@ import './Home.scss'
 
 import Tabs from '../../components/NavigationTabs/Tabs';
 import InnerTabs from '../../components/InnerNav/InnerTabs';
-import Modal from '../../components/Modal/Modal'
 import Header from '../../components/Header/Header';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import TeamsNav from '../../components/TeamsNav/TeamsNav'
@@ -18,6 +17,8 @@ import Export from '../../components/ShowsComponents/Export/Export';
 import Surfaces from '../../components/StagesComponents/Surfaces/Surfaces';
 import Screens from '../../components/StagesComponents/Screens/Screens';
 import Stages from '../../components/StagesComponents/Stages/Stages';
+
+import AddProjectModal from '../../components/Modals/AddProjectModal/AddProjectModal';
 
 import { getAccount } from '../../Redux/account/accountActions';
 import { getTeams } from '../../Redux/team/teamActions';
@@ -37,12 +38,28 @@ function Home({ getAccount, getTeams, account }) {
         }
     }, [account])
 
-    // This state is used to Show/ Hide the Modal
-    const [show, setShow] = useState(false);
+    // This state is used to Show/ Hide the AddProjectModal
+    const [showAddProjectModal, setShowAddProjectModal] = useState(false);
 
-    // This Function is responsible to Show/ Hide the Modal
-    const modalToggle = () => {
-        if (show) {
+    // Function to close the Profile Dropdown whenever clicked outside it
+    const closeModal = (event) => {
+        const backDrop = document.querySelector(".modal__backDrop");
+        const modal = document.querySelector(".modal");
+        if (backDrop && event.target === backDrop && !event.target !== modal) {
+            setShowAddProjectModal(false);
+        }
+    }
+
+    useEffect(() => {
+        // Listener to close the Profile Dropdown whenever clicked outside it
+        const backDrop = document.querySelector(".modal__backDrop");
+        backDrop.addEventListener('click', (e) => closeModal(e), false);
+
+    }, []);
+
+    // This Function is responsible to Show/ Hide the AddProjectModal
+    const addProjectModalToggle = () => {
+        if (showAddProjectModal) {
             // Allow to scroll when closing the modal
             document.body.style.removeProperty('overflow');
 
@@ -50,7 +67,7 @@ function Home({ getAccount, getTeams, account }) {
             // Disable scrolling on the `body` element when opening a modal
             document.body.style.overflow = 'hidden';
         }
-        setShow(!show)
+        setShowAddProjectModal(!showAddProjectModal);
     };
 
     /* Arrays To Pass The Sidebar Content In Props */
@@ -63,12 +80,8 @@ function Home({ getAccount, getTeams, account }) {
         <div className="home page-wrapper">
             {/* Above "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
 
-            {/* This is Modal */}
-            <Modal show={show} toggleModal={modalToggle} />
-
-
             <Sidebar menu1={sidebarMenu1}>
-                <TeamsNav show={show} toggleModal={modalToggle} />
+                <TeamsNav showAddProjectModal={showAddProjectModal} addProjectModalToggle={addProjectModalToggle} />
             </Sidebar>
 
             <div>
@@ -79,7 +92,7 @@ function Home({ getAccount, getTeams, account }) {
 
                     {/* Library Tab Content */}
                     <div label="Library">
-                        <Library show={show} toggleModal={modalToggle}/>
+                        <Library />
                     </div>
 
                     {/* Shows Tab Content */}
@@ -129,12 +142,15 @@ function Home({ getAccount, getTeams, account }) {
                             <div label="Stages">
                                 <Stages />
                             </div>
-
                         </InnerTabs>
                     </div>
                 </Tabs>
-
             </div>
+
+            {/* All The Modal Components Used In Home Page, All Its Tabs & Sidebar*/}
+
+            {/* This is AddProjectModal */}
+            <AddProjectModal showAddProjectModal={showAddProjectModal} addProjectModalToggle={addProjectModalToggle} />
         </div>
     )
 }

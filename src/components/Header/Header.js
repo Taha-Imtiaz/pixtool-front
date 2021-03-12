@@ -5,9 +5,7 @@ import { connect } from 'react-redux';
 
 function Header({ account }) {
 
-    // document.querySelector('.header').style.borderBottom = style;
-
-
+    // Function to close the Profile Dropdown whenever clicked outside it
     const closeProfileDropdown = (event) => {
         // Get parent element and check if click happened outside parent only
         const parent = document.querySelector(".profile__picture");
@@ -16,7 +14,14 @@ function Header({ account }) {
             profileDropdown.style.display = 'none';
         }
     }
+    
+    useEffect(() => {
+        // Listener to close the Profile Dropdown whenever clicked outside it
+        document.addEventListener('click', (e) => closeProfileDropdown(e), false);
 
+    }, []);
+
+    // Function To Toggle The Profile Dropdown
     const toggleProfile = () => {
         let profileDropdown = document.querySelector('.profileDropdown');
         if (profileDropdown.style.display === 'none') {
@@ -26,11 +31,6 @@ function Header({ account }) {
             profileDropdown.style.display = 'none';
         }
     }
-
-    useEffect(() => {
-        document.addEventListener('click', (e) => closeProfileDropdown(e), false);
-
-    }, [])
 
     return (
 

@@ -34,7 +34,6 @@ function PlayerP() {
     useEffect(() => {
 
         function handleClickEvent(event) {
-
             if (event.target.className === 'far fa-laugh' || !emojiBox) {
             } else {
                 // Get parent element and check if click happened outside parent only
@@ -47,8 +46,6 @@ function PlayerP() {
         document.querySelector(".postmortem").addEventListener("click", handleClickEvent);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [emojiBox])
-
-
 
     // Function To Add & Append Emojis To Comments TextArea
     const addEmoji = (e) => {

@@ -1,0 +1,28 @@
+@import '../../scss/variables.scss';
+@import '../../scss/animations.scss';
+
+.modal {
+
+    &__backDrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba($color-secondary-dark, .6);
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+        z-index: -1;
+        transition: all .3s;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__content {
+        border-radius: 1.2rem;
+        overflow: auto;
+    }
+}
