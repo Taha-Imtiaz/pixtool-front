@@ -1,17 +1,18 @@
 import React from 'react';
 import './Modal.scss';
 
-const Modal = ({ show, close }) => {
-    
+const Modal = ({ show, toggleModal }) => {
+
+    const backDropStyle = {
+        opacity: show ? '1' : '',
+        visibility: show ? 'visible' : '',
+        overflow: show ? 'auto' : '',
+        zIndex: show ? '2000' : '',
+    };
+
     return (
-        <div className="modal__backDrop"
-            style={{
-                /* transform: show ? 'translate(30%, 50%)' : 'translateY(-30%, -100vh)', */
-                opacity: show ? '1' : '0',
-                zIndex: show ? '1000' : '-1',
-                overflow: show ? 'auto' : 'hidden',
-            }}
-        >
+        <div className="modal__backDrop" style={backDropStyle} onClick={toggleModal}>
+            {/* transform: show ? 'translate(30%, 50%)' : 'translateY(-30%, -100vh)', */}
             {/* <div className="modal-header">
                 <p>Welcome To Our Site</p>
                 <span onClick={close} className="close-modal-btn">x</span>

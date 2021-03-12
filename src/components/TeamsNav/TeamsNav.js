@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './TeamsNav.scss';
 
-const TeamsNav = ({toggleModal, show}) => {
+const TeamsNav = ({ toggleModal, show }) => {
 
-    // Is state is used for toggling Sidebar Team Nav Lists
+    // This state is used for toggling Sidebar Team Nav Lists
     const [teamNav, setTeamNav] = useState(false);
 
+    // This Function is responsible for toggling Sidebar Team Nav Lists
     const toggleTeamNav = () => {
         setTeamNav(!teamNav)
     }
@@ -42,7 +43,8 @@ const TeamsNav = ({toggleModal, show}) => {
                                 </li>
                             </ul>
                         </div>
-                        : null
+                        :
+                        null
                     }
                 </li>
 

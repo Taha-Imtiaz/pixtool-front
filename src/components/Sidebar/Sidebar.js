@@ -5,8 +5,8 @@ import Logo from '../../images/logo.png';
 import NavIcon from '../NavIcon/NavIcon';
 
 function Sidebar(props) {
-    console.log(props.children)
-    // This state is responsible for toggling sidebar
+
+    // This state is used for toggling sidebar
     const [drawer, setDrawer] = useState(true)
 
     //This function is responsible for toggling sidebar
