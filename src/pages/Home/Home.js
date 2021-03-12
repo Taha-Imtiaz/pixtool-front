@@ -55,11 +55,11 @@ function Home({ getAccount, getTeams, account }) {
 
             </div> : null} */}
             {/* This is Modal */}
-            <Modal show={show} close={modalToggle} />
+            <Modal show={show} toggleModal={modalToggle} />
 
 
             <Sidebar menu1={sidebarMenu1}>
-                <TeamsNav toggleModal={modalToggle} show={show} />
+                <TeamsNav show={show} toggleModal={modalToggle} />
             </Sidebar>
 
             <div>
