@@ -24,7 +24,9 @@ function Sidebar(props) {
                 <NavIcon toggle={(e) => toggleSidebar(e)} />
             </div>
 
-            {props.children}
+            <div className={drawer ? 'sidebar__teamsMenu' : 'sidebar__teamsMenu--hidden'}>
+                {props.children}
+            </div>
 
             <nav className="sidebar__nav">
                 <ul className="sidebar__list">

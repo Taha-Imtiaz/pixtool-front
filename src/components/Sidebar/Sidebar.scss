@@ -33,6 +33,19 @@ a {
         }
     }
 
+    &__teamsMenu {
+        animation: goLeft-right .8s;
+        transition: all .8s;
+
+        &--hidden {
+            transform: translateX(-200%);
+            width: 0;
+            height: 0;
+            overflow: hidden;
+           
+        }
+    }
+
     &__nav {
         padding: 1rem 0;
     }

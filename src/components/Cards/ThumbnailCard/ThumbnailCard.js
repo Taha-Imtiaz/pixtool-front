@@ -17,7 +17,7 @@ function ThumbnailCard() {
                 <img src={Thumbnail} alt="Thumbnail"/>
             </div>
             <div className="thumbnailCard__text">
-                <div className="thumbnailCard__name">Best Samsung Mobile.mp4</div>
+                <div className="thumbnailCard__name truncate">Best Samsung Mobile.mp4</div>
                 <div className="thumbnailCard__datail">
                     <span>John</span>
                     &nbsp;-&nbsp;

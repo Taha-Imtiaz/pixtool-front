@@ -18,6 +18,17 @@
         flex: 1;
     }
 
+    &__addBtn {
+        transition: cursor .3s, color .3s;
+
+        &:active,
+        &:focus,
+        &:hover {
+            cursor: pointer;
+            color: $color-primary-dark;
+        }
+    }
+
     &__item {
         padding: .5rem 0;
 
