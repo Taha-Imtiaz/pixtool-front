@@ -68,7 +68,7 @@ const Library = ({ resources, teams, getProject }) => {
                         <ThumbnailCard />
                         <ThumbnailCard />
                         <ThumbnailCard /> */}
-                        <ThumbnailFolderCard />
+                        {/* <ThumbnailFolderCard /> */}
                         {resources && resources.map((resource) => <ThumbnailCard id={resource._id} resource={resource} />)}
                     </div>
                 </div>
