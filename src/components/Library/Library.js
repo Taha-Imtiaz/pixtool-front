@@ -52,7 +52,7 @@ const Library = ({ resources, teams, getProject }) => {
                         <div className="library__head__buttons">
                             <Button text="Share" click={createNew} />
                             {/* <Button text="New" click={createNew} /> */}
-                            <Dropdown text="New Upload" menuItems={newUpload} />
+                            <Dropdown text="New" menuItems={newUpload} />
                         </div>
                     </div>
                 </div>
