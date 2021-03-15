@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import './Library.scss';
-import Filter from "../../components/Filter/Filter";
-import Avatar from "../../components/Avatar/Avatar";
-import Button from "../../components/Button/Button";
-import ThumbnailCard from "../../components/Cards/ThumbnailCard/ThumbnailCard";
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+
+import './Library.scss';
+
+import Filter from '../../components/Filter/Filter';
+import Avatar from '../../components/Avatar/Avatar';
+import Button from '../../components/Button/Button';
+import Dropdown from '../Dropdown/Dropdown'
+import ThumbnailCard from '../../components/Cards/ThumbnailCard/ThumbnailCard';
+
 import { getProject } from '../../Redux/project/projectActions';
+import ThumbnailFolderCard from '../Cards/ThumbnailFolderCard/ThumbnailFolderCard';
 
 
-const Library = ({ resources, teams,getProject }) => {
+const Library = ({ resources, teams, getProject }) => {
 
     const createNew = () => { }
     console.log(resources)
@@ -17,12 +22,19 @@ const Library = ({ resources, teams,getProject }) => {
     useEffect(() => {
         if (teams) {
             // get all projects of first team
-            let {projects} = teams[0];
+            let { projects } = teams[0];
             console.log(projects)
             // get assets of 1st project
             getProject(projects[0]._id)
         }
-    }, [teams])
+    }, [teams]);
+
+    // Dropdown Option Values
+    let newUpload = [
+        { rightIcon: '', leftIcon: '', value: 'File Upload', goToMenu: '' },
+        { rightIcon: '', leftIcon: '', value: 'New Folder', goToMenu: '' }
+    ];
+
     return (
         <div>
             <div className="library">
@@ -39,7 +51,8 @@ const Library = ({ resources, teams,getProject }) => {
 
                         <div className="library__head__buttons">
                             <Button text="Share" click={createNew} />
-                            <Button text="Create New" click={createNew} />
+                            {/* <Button text="New" click={createNew} /> */}
+                            <Dropdown text="New Upload" menuItems={newUpload} />
                         </div>
                     </div>
                 </div>
@@ -55,6 +68,7 @@ const Library = ({ resources, teams,getProject }) => {
                         <ThumbnailCard />
                         <ThumbnailCard />
                         <ThumbnailCard /> */}
+                        <ThumbnailFolderCard />
                         {resources && resources.map((resource) => <ThumbnailCard id={resource._id} resource={resource} />)}
                     </div>
                 </div>

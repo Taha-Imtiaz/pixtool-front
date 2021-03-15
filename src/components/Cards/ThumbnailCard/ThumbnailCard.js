@@ -13,8 +13,8 @@ let {thumbnail,name} = resource
             <div className="thumbnailCard__status">
                 Needs Approval
             </div>
-            <div className="thumbnailCard__img">
-                <img src={thumbnail} alt="Thumbnail"/>
+            <div className="thumbnailCard__imgBox">
+                <img src={thumbnail} alt="Thumbnail" className="thumbnailCard__img"/>
             </div>
             <div className="thumbnailCard__text">
                 <div className="thumbnailCard__name truncate">{name}</div>
