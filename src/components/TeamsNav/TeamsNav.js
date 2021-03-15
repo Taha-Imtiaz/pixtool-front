@@ -21,7 +21,7 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, teams }) => {
             setTeamItemIndex(index)
         }
     }
-    
+
     return (
         <div className="teamsNav">
             <ul className="teamsNav__list">

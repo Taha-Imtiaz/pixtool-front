@@ -78,4 +78,13 @@
             transition: border .3s;
         }
     }
+
+    // Chrome Auto-complete Styles
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+        background: transparent;
+        -webkit-text-fill-color: rgba($color-secondary, 0.8);
+        transition: background-color 5000s ease-in-out 0s;
+    }
 }
