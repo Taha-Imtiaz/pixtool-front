@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AddProjectModal.scss';
 
 import ButtonLight from '../../Button/ButtonLight';
+import { connect } from 'react-redux';
+import { addProject } from '../../../Redux/project/projectActions';
+import { getTeams } from '../../../Redux/team/teamActions';
 
-const AddProjectModal = ({ showAddProjectModal, addProjectModalToggle }) => {
-    const createNew = () => {}
+const AddProjectModal = ({ showAddProjectModal, addProjectModalToggle,teamId,addProject,getTeams,account, closeAddProjectModal }) => {
+    // modal form state
+    const [modalFormState, setModalFormState] = useState({
+        projectName:''
+    })
+//    const [addProjectModal,setAddProjectModal] = useState(showAddProjectModal)
+//    console.log(showAddProjectModal)
     
     // Modal Back-drop Styling
     const backDropStyle = {
@@ -13,7 +21,29 @@ const AddProjectModal = ({ showAddProjectModal, addProjectModalToggle }) => {
         overflow: showAddProjectModal ? 'auto' : '',
         zIndex: showAddProjectModal ? '2000' : '',
     };
-
+    const handleModalInput = (e) => {
+        let {name, value} = e.target;
+        console.log(name, value)
+        setModalFormState({
+            ...modalFormState,
+            [name]: value
+        })
+    }
+    // add new project to the selected team
+    const handleAddProject = () => {
+       let data = {
+           name: modalFormState.projectName
+       }
+     
+        var { account_id } = account
+   
+       addProject(teamId, data, () =>  { console.log("callback called")
+           getTeams(account_id[0]._id)
+        })
+        closeAddProjectModal()
+    }
+  
+   
     return (
         <div className="modal__backDrop" style={backDropStyle} >
             <div className="modal">
@@ -27,11 +57,11 @@ const AddProjectModal = ({ showAddProjectModal, addProjectModalToggle }) => {
                         </div>
                         <div className="addProjectModal__body">
                             <div>
-                                <input type="text" className="addProjectModal__input addProjectModal__input--name" placeholder="Enter Project Name" />
+                                <input type="text" name = "projectName" value = {modalFormState.projectName} onChange = {handleModalInput}  className="addProjectModal__input addProjectModal__input--name" placeholder="Enter Project Name" />
                             </div>
                         </div>
                         <div className="addProjectModal__footer">
-                            <ButtonLight text="Create Project" click={createNew} />
+                            <ButtonLight text="Create Project" click={handleAddProject} />
                         </div>
                     </div>
                 </div>
@@ -39,5 +69,14 @@ const AddProjectModal = ({ showAddProjectModal, addProjectModalToggle }) => {
         </div>
     )
 }
+var mapStateToProps = (state) => ({
+    account: state.accounts && state.accounts.account,
+})
 
-export default AddProjectModal
+
+var mapDispatchToProps = {
+    addProject,
+    getTeams
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddProjectModal)

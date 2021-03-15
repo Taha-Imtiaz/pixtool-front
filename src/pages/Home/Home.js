@@ -42,9 +42,12 @@ function Home({ getAccount, getTeams,account }) {
 
 
     const [show, setShow] = useState(false);
+
     const modalToggle = () => setShow(!show);
     // This state is used to Show/ Hide the AddProjectModal
     const [showAddProjectModal, setShowAddProjectModal] = useState(false);
+    // This state is used to set teamId
+    const [teamId, setTeamId] = useState(null)
 
     // Function to close the Profile Dropdown whenever clicked outside it
     const closeModal = (event) => {
@@ -62,8 +65,18 @@ function Home({ getAccount, getTeams,account }) {
 
     }, []);
 
+
+    // close add project modal
+
+    const closeAddProjectModal = () => {
+        setShowAddProjectModal(false);
+
+    }
     // This Function is responsible to Show/ Hide the AddProjectModal
-    const addProjectModalToggle = () => {
+    const addProjectModalToggle = (e,teamId) => {
+      setTeamId(teamId)
+        // prevent parent component to render when open open a modal
+        e.stopPropagation()
         if (showAddProjectModal) {
             // Allow to scroll when closing the modal
             document.body.style.removeProperty('overflow');
@@ -72,6 +85,7 @@ function Home({ getAccount, getTeams,account }) {
             // Disable scrolling on the `body` element when opening a modal
             document.body.style.overflow = 'hidden';
         }
+
         setShowAddProjectModal(!showAddProjectModal);
     };
 
@@ -156,7 +170,7 @@ function Home({ getAccount, getTeams,account }) {
             {/* All The Modal Components Used In Home Page, All Its Tabs & Sidebar*/}
 
             {/* This is AddProjectModal */}
-            <AddProjectModal showAddProjectModal={showAddProjectModal} addProjectModalToggle={addProjectModalToggle} />
+            <AddProjectModal showAddProjectModal={showAddProjectModal} addProjectModalToggle={addProjectModalToggle} teamId = {teamId} closeAddProjectModal = {closeAddProjectModal} />
         </div>
     )
 }
