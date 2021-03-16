@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import './SidebarP.scss';
 import TabsP from '../NavigationTabsP/TabsP';
-import CommentP from '../../PostmortemComponents/CommentP/CommentP';
+import CommentP from '../../PlayerComponents/CommentP/CommentP';
 
 function SidebarP(props) {
     //For Video Description On Player Sidebar 

@@ -1,10 +1,10 @@
 import { React, useState } from 'react';
 import './Postmortem.scss';
-import HeaderP from '../../components/PostmortemComponents/HeaderP/HeaderP';
-import SidebarP from '../../components/PostmortemComponents/SidebarP/SidebarP';
-import PlayerP from '../../components/PostmortemComponents/PlayerP/PlayerP';
+import HeaderP from '../../components/PlayerComponents/HeaderP/HeaderP';
+import SidebarP from '../../components/PlayerComponents/SidebarP/SidebarP';
+import PlayerP from '../../components/PlayerComponents/PlayerP/PlayerP';
 
-function Postmortem() {
+function Player() {
     // This state is responsible for toggling sidebar
     const [drawer, setDrawer] = useState(true)
 
@@ -27,6 +27,6 @@ function Postmortem() {
     )
 }
 
-export default Postmortem
+export default Player
 
 

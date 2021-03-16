@@ -10,7 +10,7 @@ import Dropdown from '../Dropdown/Dropdown'
 import ThumbnailCard from '../../components/Cards/ThumbnailCard/ThumbnailCard';
 
 import { getProject } from '../../Redux/project/projectActions';
-import ThumbnailFolderCard from '../Cards/ThumbnailFolderCard/ThumbnailFolderCard';
+// import ThumbnailFolderCard from '../Cards/ThumbnailFolderCard/ThumbnailFolderCard';
 
 
 const Library = ({ resources, teams, getProject }) => {

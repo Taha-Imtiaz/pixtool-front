@@ -10,11 +10,11 @@ import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 import Home from './pages/Home/Home';
 import HeroSection from './pages/HeroSection/HeroSection';
-import Postmortem from './pages/Postmortem/Postmortem';
 import Accounts from './pages/Accounts/Accounts';
 import Test from './pages/test';
 import Loader from './components/Loader/Loader';
 import { showToastMessage } from './Redux/utility/utilityActions';
+import Player from './pages/Player/Player';
 
 
 const App = ({ toastMessage, showToastMessage, numberOfRequests }) => {
@@ -36,7 +36,7 @@ const App = ({ toastMessage, showToastMessage, numberOfRequests }) => {
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
           <Route path="/home" component={Home} />
-          <Route path="/player" component={Postmortem} />
+          <Route path="/player/:assetId" component={Player} />
           <Route path="/accounts" component={Accounts} />
           <Route path="/test" component={Test} />
           <Route path="/" component={HeroSection} exact />
