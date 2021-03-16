@@ -6,12 +6,14 @@ import './DropdownMenus.scss';
 import { ReactComponent as CaretIcon } from '../../icons/caret.svg';
 // import { ReactComponent as ChevronIcon } from '../../icons/chevron.svg';
 import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
+import { Fragment } from 'react';
 
 function Dropdown(props) {
+
     return (
         <Navbar text={props.text}>
             <NavItem icon={<CaretIcon />}>
-                <DropdownMenu menuItems={props.menuItems}></DropdownMenu>
+                <DropdownMenu menuItems={props.menuItems} upload={props.upload}></DropdownMenu>
             </NavItem>
         </Navbar>
     )
@@ -49,20 +51,22 @@ function NavItem(props) {
 
     // Function To Position Dropdown Upwards/ Downwards w.r.t. Space Available
     const setDropdownPosition = () => {
-        setTimeout(() => {
-            let windowHeight = window.innerHeight;
-            let myDropdown = document.querySelector('.dropdown');
-            let dropdownHeight = myDropdown.offsetHeight;
-            let dropdownTop = myDropdown.getBoundingClientRect().top;
-            let space = windowHeight - dropdownTop - dropdownHeight;
+        if (document.querySelector('.dropdown')) {
+            setTimeout(() => {
+                let windowHeight = window.innerHeight;
+                let myDropdown = document.querySelector('.dropdown');
+                let dropdownHeight = myDropdown.offsetHeight;
+                let dropdownTop = myDropdown.getBoundingClientRect().top;
+                let space = windowHeight - dropdownTop - dropdownHeight;
 
-            if (space > dropdownHeight) {
-                myDropdown.style.top = '4.2rem';
+                if (space > dropdownHeight) {
+                    myDropdown.style.top = '4.2rem';
 
-            } else {
-                myDropdown.style.top = '-11rem';
-            }
-        });
+                } else {
+                    myDropdown.style.top = '-11rem';
+                }
+            });
+        }
     }
 
     return (
@@ -76,14 +80,63 @@ function NavItem(props) {
     );
 }
 
+// load video
+
+const loadVideo = (e) => {
+    // let videoSrc = document.querySelector(".videoSrc")
+    // let videoTag = document.querySelector(".videoTag")
+    // console.log(videoSrc, videoTag)
+    // // console.log('loaded',videoSrcRef)
+
+    // videoSrc.src = e.target.result
+    // // console.log( videoSrcRef.current)
+
+    // videoTag.load()
+}
+
+// function defined to read a video
+const readVideo = (e) => {
+    // read only first file at 0 index
+    console.log(e.target.files[0])
+    if (e.target.files[0]) {
+        // reads a file which is selected
+        let reader = new FileReader();
+
+        // check file type
+        var blob = e.target.files[0]; // See step 1 above
+        console.log(blob.type)
+
+        // load a file which was read in previous step 
+        reader.onload = function (e) {
+            // loadVideo(e)
+        }
+        // The readAsDataURL method is used to read the contents of the specified File. 
+        reader.readAsDataURL(e.target.files[0]);
+    }
+}
+
 function DropdownMenu(props) {
     const [activeMenu, setActiveMenu] = useState('main');
 
+
     function DropdownItem(props) {
+
         return (
             <span className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>
-                {props.children}
+                {/* <input type = "file" value =  /> */}
+                {/* <input type = "file" value = {props.children} />  */}
+                {props.upload ? <Fragment>
+                    <label for="file-upload" class="custom-file-upload">
+                        {props.children}
+                    </label>
+                    <input id="file-upload" type="file" className="dropdown__uploadInput inputTag" onChange={(e) => readVideo(e)} accept="video/*" />
+                    {/* <video  id="video-tag" className="videoTag">
+                        <source id="video-source" src="" className="videoSrc" />
+                    Your browser does not support the video tag.
+                </video> */}
+
+                </Fragment> : props.children}
                 <span className="icon-button icon-right">{props.rightIcon}</span>
             </span>
         );
@@ -102,9 +155,11 @@ function DropdownMenu(props) {
                         {props.menuItems.map((x, i) => (
                             <DropdownItem
                                 rightIcon={x.rightIcon}
+                                upload={props.upload}
                                 leftIcon={x.leftIcon}
                                 goToMenu={x.goToMenu}
                                 key={i}>
+
                                 {x.value}
                             </DropdownItem>
                         ))}
@@ -123,6 +178,7 @@ function DropdownMenu(props) {
                     unmountOnExit
                     timeout={500}
                     classNames="menu-secondary"
+
                 >
                     <div className="menu">
                         <DropdownItem leftIcon={<ArrowIcon />} goToMenu="main">Back</DropdownItem>

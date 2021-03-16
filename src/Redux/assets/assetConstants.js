@@ -1,0 +1,1 @@
+export const GET_ASSET_DETAILS = "GET_ASSET_DETAILS"

@@ -9,12 +9,12 @@ import ButtonSmall from '../../Button/ButtonSmall';
 import Dropdown from '../../Dropdown/Dropdown';
 import { Picker } from 'emoji-mart';
 
-import Video from '../../../images/mov_bbb.mp4';
-import Test1 from '../../../images/test1.jpg'
+
 
 import PlayerControls from '../../../images/player-icons/sprite.svg';
+import { connect } from 'react-redux';
 
-function PlayerP() {
+const PlayerP = ({ asset }) => {
     const createNew = () => { }
 
 
@@ -27,6 +27,10 @@ function PlayerP() {
     const [loop, setLoop] = useState(false);
     const [volume, setVolume] = useState('medium');
     const [volumeValue, setVolumeValue] = useState(1);
+
+    // set video thumbnail and source
+    const [videoThumbNail, setVideoThumbNail] = useState('')
+    const [videoSource, setVideoSource] = useState('')
 
 
 
@@ -70,7 +74,7 @@ function PlayerP() {
         { rightIcon: '', leftIcon: '', value: 'Team only', goToMenu: '' }
     ];
 
-    // For Video Player Controls
+    // ***** For Video Player Controls *****
 
     /* Function For Play/ Pause */
     const playPause = () => {
@@ -78,6 +82,7 @@ function PlayerP() {
 
         if (play === false) {
             myVideo.play();
+            //    if(playVideoPromise !== undefined)
             setPlay(!play);
 
         } else {
@@ -135,7 +140,7 @@ function PlayerP() {
             volumeBar.value = 0;
             myVideo.muted = true;
             setVolume('mute');
-            console.log('Helllo', volumeBar.value, myVideo.volume, volume)
+
         } else {
             volumeBar.value = volumeValue;
             myVideo.muted = false;
@@ -231,6 +236,42 @@ function PlayerP() {
 
     }, [])
 
+    /* For Video Progress Bar */
+    useEffect(() => {
+        let myVideo = document.getElementById('myVideo');
+        let progress = document.getElementById('progress');
+        // let progressBar = document.getElementById('progress-bar');
+
+        console.log(myVideo)
+
+        myVideo.addEventListener('loadedmetadata', function () {
+            // let myVideo = document.getElementById('myVideo');
+            // let progress = document.getElementById('progress');
+            console.log('loadedmetadata')
+            progress.setAttribute('max', myVideo.duration);
+            console.log(myVideo)
+        });
+
+        myVideo.addEventListener('timeupdate', function () {
+            // let myVideo = document.getElementById('myVideo');
+            // let progress = document.getElementById('progress');
+            console.log('timeupdate')
+            if (!progress.getAttribute('max')) progress.setAttribute('max', myVideo.duration);
+            progress.value = myVideo.currentTime;
+            console.log(progress.value)
+        });
+
+        progress.addEventListener('click', function (e) {
+            // let myVideo = document.getElementById('myVideo');
+            // let progress = document.getElementById('progress');
+            console.log('click')
+            const scrubTime = (e.offsetX / progress.offsetWidth) * myVideo.duration;
+            // console.log(scrubTime,myVideo.duration)
+            myVideo.currentTime = scrubTime;
+        });
+
+    }, [])
+
     /* Function To Toggle the fullscreen On/Off */
     const toggleFullScreen = () => {
         let myVideo = document.getElementById('myVideo');
@@ -268,32 +309,23 @@ function PlayerP() {
         }
     }
 
-    /* For Video Progress Bar */
     useEffect(() => {
-        let myVideo = document.getElementById('myVideo');
-        let progress = document.getElementById('progress');
-        // let progressBar = document.getElementById('progress-bar');
-
-        myVideo.addEventListener('loadedmetadata', function () {
-            progress.setAttribute('max', myVideo.duration);
-        });
-
-        myVideo.addEventListener('timeupdate', function () {
-            if (!progress.getAttribute('max')) progress.setAttribute('max', myVideo.duration);
-            progress.value = myVideo.currentTime;
-        });
-
-        progress.addEventListener('click', function (e) {
-            const scrubTime = (e.offsetX / progress.offsetWidth) * myVideo.duration;
-            myVideo.currentTime = scrubTime;
-        });
-
-    }, [])
+        console.log(asset)
+        if (asset) {
+            let { thumbnail, original } = asset
+            console.log(thumbnail, original)
+            setVideoThumbNail(thumbnail)
+            setVideoSource(original)
+        }
+    }, [asset])
 
     return (
         <div className="playerP">
-            <video id="myVideo" className="playerP__video" poster={Test1} onClick={playPause}>
-                <source src={Video} type="video/mp4" />
+            {/* The poster attribute specifies an image to be shown while the video is downloading, or until the user hits the play button. 
+            If this is not included, the first frame of the video will be used instead. */}
+
+            <video id="myVideo" className="playerP__video" poster={videoThumbNail} onClick={() => playPause()}>
+                {videoSource ? <source src={videoSource} type="video/mp4" /> : null}
                 Your browser does not support HTML video.
             </video>
             <div className="playerP__control-box">
@@ -305,7 +337,7 @@ function PlayerP() {
 
                 <div className="playerP__control-area">
                     <div className="playerP__control-area--left">
-                        <span className="playerP__icons" onClick={playPause}>
+                        <span className="playerP__icons" onClick={() => playPause()}>
                             {play ?
                                 <svg className="playerP__icons">
                                     <use href={PlayerControls + "#icon-pause2"}></use>
@@ -411,5 +443,7 @@ function PlayerP() {
         </div>
     )
 }
-
-export default PlayerP
+var mapStateToProps = (state) => ({
+    asset: state.assets && state.assets.asset
+})
+export default connect(mapStateToProps)(PlayerP)

@@ -1,12 +1,11 @@
-import { GET_ASSETS } from "./assetConstants"
+import { GET_ASSET_DETAILS } from "./assetConstants"
 
 let initialState = null
 
 let assetReducer = (state = initialState, {type, payload}) => {
     switch (type) {
-        // case GET_ASSETS:
-        //     return {...state, assetList: payload}
-            // break;
+        case GET_ASSET_DETAILS:
+            return {...state, asset: payload}
     
         default:
             return state
