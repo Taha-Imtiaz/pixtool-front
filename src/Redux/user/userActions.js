@@ -5,12 +5,7 @@ import { SET_CURRENT_USER, SET_LOGGEDIN_USER } from "./userConstants"
 // set current user in redux store(who is signed up first time)
 export const signupUser = (userObj, callback) => async (dispatch) => {
     try {
-        console.log(userObj)
         let response = await Axios.post(`user`, userObj)
-        console.log(response.data)
-
-        // data successfuly send to the server
-
         //save token in local storage
         localStorage.setItem("pixtool-token", response.data.token);
 
@@ -36,12 +31,7 @@ export const signupUser = (userObj, callback) => async (dispatch) => {
 // set login user request to server(loggedin the user and set the data in redux store)
 export const loginUser = (userObj, callback) => async (dispatch) => {
     try {
-        console.log(userObj)
         let response = await Axios.post(`user/login`, userObj)
-        console.log(response.data)
-
-        // data successfuly send to the server
-
         //save token in local storage
         localStorage.setItem("pixtool-token", response.data.token);
 

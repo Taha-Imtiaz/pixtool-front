@@ -9,11 +9,10 @@ import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 import { Fragment } from 'react';
 
 function Dropdown(props) {
-
     return (
         <Navbar text={props.text}>
             <NavItem icon={<CaretIcon />}>
-                <DropdownMenu menuItems={props.menuItems} upload={props.upload}></DropdownMenu>
+                <DropdownMenu menuItems={props.menuItems} ></DropdownMenu>
             </NavItem>
         </Navbar>
     )
@@ -80,62 +79,21 @@ function NavItem(props) {
     );
 }
 
-// load video
-
-const loadVideo = (e) => {
-    // let videoSrc = document.querySelector(".videoSrc")
-    // let videoTag = document.querySelector(".videoTag")
-    // console.log(videoSrc, videoTag)
-    // // console.log('loaded',videoSrcRef)
-
-    // videoSrc.src = e.target.result
-    // // console.log( videoSrcRef.current)
-
-    // videoTag.load()
-}
-
-// function defined to read a video
-const readVideo = (e) => {
-    // read only first file at 0 index
-    console.log(e.target.files[0])
-    if (e.target.files[0]) {
-        // reads a file which is selected
-        let reader = new FileReader();
-
-        // check file type
-        var blob = e.target.files[0]; // See step 1 above
-        console.log(blob.type)
-
-        // load a file which was read in previous step 
-        reader.onload = function (e) {
-            // loadVideo(e)
-        }
-        // The readAsDataURL method is used to read the contents of the specified File. 
-        reader.readAsDataURL(e.target.files[0]);
-    }
-}
-
 function DropdownMenu(props) {
     const [activeMenu, setActiveMenu] = useState('main');
 
 
     function DropdownItem(props) {
-
         return (
             <span className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>
                 {/* <input type = "file" value =  /> */}
                 {/* <input type = "file" value = {props.children} />  */}
-                {props.upload ? <Fragment>
-                    <label for="file-upload" class="custom-file-upload">
+                {props.upload.value ? <Fragment>
+                    <label htmlFor="file-upload" className="custom-file-upload">
                         {props.children}
                     </label>
-                    <input id="file-upload" type="file" className="dropdown__uploadInput inputTag" onChange={(e) => readVideo(e)} accept="video/*" />
-                    {/* <video  id="video-tag" className="videoTag">
-                        <source id="video-source" src="" className="videoSrc" />
-                    Your browser does not support the video tag.
-                </video> */}
-
+                    <input id="file-upload" type="file" className="dropdown__uploadInput inputTag" onChange={(e) => props.upload.onUpload(e)} accept="video/*" />
                 </Fragment> : props.children}
                 <span className="icon-button icon-right">{props.rightIcon}</span>
             </span>
@@ -155,7 +113,7 @@ function DropdownMenu(props) {
                         {props.menuItems.map((x, i) => (
                             <DropdownItem
                                 rightIcon={x.rightIcon}
-                                upload={props.upload}
+                                upload={x.isUpload}
                                 leftIcon={x.leftIcon}
                                 goToMenu={x.goToMenu}
                                 key={i}>

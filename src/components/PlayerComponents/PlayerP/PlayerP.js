@@ -13,8 +13,10 @@ import { Picker } from 'emoji-mart';
 
 import PlayerControls from '../../../images/player-icons/sprite.svg';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-const PlayerP = ({ asset }) => {
+const PlayerP = ({ asset, match:{params:{assetId}}}) => {
+    console.log(assetId)
     const createNew = () => { }
 
 
@@ -22,7 +24,7 @@ const PlayerP = ({ asset }) => {
     const [textValue, setTextValue] = useState('');
     // State For Emojibox
     const [emojiBox, setEmojiBox] = useState(false);
-    // State For Video Player Controls
+    // States For Video Player Controls
     const [play, setPlay] = useState(false);
     const [loop, setLoop] = useState(false);
     const [volume, setVolume] = useState('medium');
@@ -81,7 +83,7 @@ const PlayerP = ({ asset }) => {
         let myVideo = document.getElementById('myVideo');
 
         if (play === false) {
-            myVideo.play();
+                myVideo.play();
             //    if(playVideoPromise !== undefined)
             setPlay(!play);
 
@@ -209,8 +211,8 @@ const PlayerP = ({ asset }) => {
         let myVideo = document.getElementById('myVideo');
         let curtimetext = document.getElementById("curtimetext");
         let durtimetext = document.getElementById("durtimetext");
-
-        // let nt = myVideo.currentTime * (100 / myVideo.duration);
+        if(myVideo) {
+              // let nt = myVideo.currentTime * (100 / myVideo.duration);
         // seekslider.value = nt;
         let curmins = Math.floor(myVideo.currentTime / 60);
         let cursecs = Math.floor(myVideo.currentTime - curmins * 60);
@@ -222,6 +224,8 @@ const PlayerP = ({ asset }) => {
         if (durmins < 10) { durmins = "0" + durmins; }
         curtimetext.innerHTML = curmins + ":" + cursecs;
         durtimetext.innerHTML = durmins + ":" + dursecs;
+        }
+      
     }
 
 
@@ -240,35 +244,32 @@ const PlayerP = ({ asset }) => {
     useEffect(() => {
         let myVideo = document.getElementById('myVideo');
         let progress = document.getElementById('progress');
-        // let progressBar = document.getElementById('progress-bar');
-
         console.log(myVideo)
+        // let progressBar = document.getElementById('progress-bar');
+      
+            myVideo.addEventListener('loadedmetadata', function () {
+                // let myVideo = document.getElementById('myVideo');
+                // let progress = document.getElementById('progress');
+                console.log("metadata")
+                progress.setAttribute('max', myVideo.duration);
+            });
+    
+            myVideo.addEventListener('timeupdate', function () {
+                if (!progress.getAttribute('max')) progress.setAttribute('max', myVideo.duration);
+                progress.value = myVideo.currentTime;
+                console.log( myVideo.currentTime)
+            });
+    
+            progress.addEventListener('click', function (e) {
+                // let myVideo = document.getElementById('myVideo');
+                // let progress = document.getElementById('progress');
+                const scrubTime = (e.offsetX / progress.offsetWidth) * myVideo.duration;
+                console.log(myVideo)
+                myVideo.currentTime = scrubTime;
+            });
+          
 
-        myVideo.addEventListener('loadedmetadata', function () {
-            // let myVideo = document.getElementById('myVideo');
-            // let progress = document.getElementById('progress');
-            console.log('loadedmetadata')
-            progress.setAttribute('max', myVideo.duration);
-            console.log(myVideo)
-        });
-
-        myVideo.addEventListener('timeupdate', function () {
-            // let myVideo = document.getElementById('myVideo');
-            // let progress = document.getElementById('progress');
-            console.log('timeupdate')
-            if (!progress.getAttribute('max')) progress.setAttribute('max', myVideo.duration);
-            progress.value = myVideo.currentTime;
-            console.log(progress.value)
-        });
-
-        progress.addEventListener('click', function (e) {
-            // let myVideo = document.getElementById('myVideo');
-            // let progress = document.getElementById('progress');
-            console.log('click')
-            const scrubTime = (e.offsetX / progress.offsetWidth) * myVideo.duration;
-            // console.log(scrubTime,myVideo.duration)
-            myVideo.currentTime = scrubTime;
-        });
+     
 
     }, [])
 
@@ -310,22 +311,31 @@ const PlayerP = ({ asset }) => {
     }
 
     useEffect(() => {
-        console.log(asset)
         if (asset) {
+            console.log(asset)
             let { thumbnail, original } = asset
-            console.log(thumbnail, original)
             setVideoThumbNail(thumbnail)
             setVideoSource(original)
         }
     }, [asset])
 
+    useEffect(() => {
+        // on componentWillUnmount
+
+        return (() => {
+            console.log("component is unmounted")
+            console.log(asset)
+            setVideoThumbNail('')
+            setVideoSource('')
+        })
+    },[])
     return (
         <div className="playerP">
             {/* The poster attribute specifies an image to be shown while the video is downloading, or until the user hits the play button. 
             If this is not included, the first frame of the video will be used instead. */}
 
             <video id="myVideo" className="playerP__video" poster={videoThumbNail} onClick={() => playPause()}>
-                {videoSource ? <source src={videoSource} type="video/mp4" /> : null}
+             {videoSource && asset._id === assetId ? <source src={videoSource} type="video/mp4" key = {videoSource}/> : null}
                 Your browser does not support HTML video.
             </video>
             <div className="playerP__control-box">
@@ -446,4 +456,4 @@ const PlayerP = ({ asset }) => {
 var mapStateToProps = (state) => ({
     asset: state.assets && state.assets.asset
 })
-export default connect(mapStateToProps)(PlayerP)
+export default connect(mapStateToProps)(withRouter(PlayerP))

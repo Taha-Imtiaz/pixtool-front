@@ -30,11 +30,10 @@ function Home({ getAccount, getTeams,account }) {
         getAccount()
     }, [])
 
-    // get team's by assing an accountId
+    // get team's by assing an accountId (show 1st project of first team by default)
     useEffect(() => {
         if (account) {
             let { account_id } = account
-            console.log(account_id[0]._id)
             getTeams(account_id[0]._id)
 
         }

@@ -11,9 +11,6 @@ const AddProjectModal = ({ showAddProjectModal, addProjectModalToggle,teamId,add
     const [modalFormState, setModalFormState] = useState({
         projectName:''
     })
-//    const [addProjectModal,setAddProjectModal] = useState(showAddProjectModal)
-//    console.log(showAddProjectModal)
-    
     // Modal Back-drop Styling
     const backDropStyle = {
         opacity: showAddProjectModal ? '1' : '',
@@ -23,7 +20,6 @@ const AddProjectModal = ({ showAddProjectModal, addProjectModalToggle,teamId,add
     };
     const handleModalInput = (e) => {
         let {name, value} = e.target;
-        console.log(name, value)
         setModalFormState({
             ...modalFormState,
             [name]: value

@@ -16,7 +16,6 @@ export const getAccount = () => async (dispatch) => {
         handlerEnabled: true
       }
     })
-    console.log(response.data.data)
     // update app's state
     dispatch({
       type: ACCOUNT,

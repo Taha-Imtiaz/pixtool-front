@@ -14,7 +14,6 @@ function HeaderP(props) {
         // e.stopPropagation()
         // e.preventDefault()
         // setDrawer(!drawer)
-        // console.log(drawer)
 
         props.toggle()
     }

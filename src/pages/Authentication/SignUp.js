@@ -68,15 +68,12 @@ const SignUp = ({ signupUser, history }) => {
         e.preventDefault();
         let { name, email, password, confirmPassword } = authFormState
         if (password === confirmPassword) {
-            console.log(name, email, password, confirmPassword)
-
             // send data to the server
             var userObj = {
 
                 name, email, password,
 
             }
-            console.log(userObj)
             signupUser(userObj, () => {
                 history.push(`/home`)
             })

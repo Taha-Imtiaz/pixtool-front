@@ -6,7 +6,6 @@ import { GET_PROJECTS,GET_PROJECT, ADD_PROJECT } from "./projectConstants"
 export const getProjects = (teamId) => async (dispatch) => {
     try {
         let response = await Axios.get(`team/${teamId}`)
-        console.log(response)
         dispatch({
             type: GET_PROJECTS,
             payload: response.data.data
@@ -23,10 +22,14 @@ export const getProjects = (teamId) => async (dispatch) => {
 export const getProject = (projectId) => async (dispatch) => {
     try {
         let response = await Axios.get(`project/${projectId}`)
-        console.log(response.data.data)
+        console.log(response.data.data.resources)
+        let assetsObj = {
+            projectId: projectId,
+            assets:response.data.data.resources
+        }
         dispatch({
             type:GET_PROJECT,
-            payload: response.data.data
+            payload: assetsObj
         })
     } catch (e) {
         if (e.response && e.response.data) {
@@ -44,7 +47,6 @@ export const addProject = (teamId, data,callback) => async (dispatch) => {
               handlerEnabled: true
             }
           })
-        console.log(response)
         // update app's state
         dispatch({
             type: ADD_PROJECT,
