@@ -4,10 +4,10 @@ import {  withRouter } from 'react-router-dom';
 import ThumbnailFolderCard from '../ThumbnailFolderCard/ThumbnailFolderCard';
 import './ThumbnailCard.scss';
 
-const ThumbnailCard = ({ asset, key,id, history }) => {
+const ThumbnailCard = ({ resource, key,id, history }) => {
     
     
-    let { thumbnail, name } = asset
+    let { thumbnail, name } = resource
     return (
         <div className="thumbnailCard" key={key} onClick = {() => history.push(`/player/${id}`)}>
            <Fragment>

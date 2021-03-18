@@ -18,18 +18,18 @@ export const getProjects = (teamId) => async (dispatch) => {
     }
 }
 
-// get a single project by passing projectId
+// get all assets of  single project by passing projectId(asset of type file)
 export const getProject = (projectId) => async (dispatch) => {
     try {
         let response = await Axios.get(`project/${projectId}`)
-        console.log(response.data.data.resources)
-        let assetsObj = {
-            projectId: projectId,
-            assets:response.data.data.resources
+        console.log(response)
+        let projectObj = {
+           parentId: projectId,
+            ...response.data.data
         }
         dispatch({
             type:GET_PROJECT,
-            payload: assetsObj
+            payload: projectObj
         })
     } catch (e) {
         if (e.response && e.response.data) {
@@ -38,6 +38,29 @@ export const getProject = (projectId) => async (dispatch) => {
           }
     }
 }
+// get all assets of single project by passing assetid(asset of type folder)
+
+export const getAssets = (parentId) => async (dispatch) => {
+    try {
+        let response = await Axios.get(`child/${parentId}`)
+       
+        let projectObj = {
+            parentId: parentId,
+            resources: response.data.data
+         }
+         console.log(projectObj)
+        dispatch({
+            type:GET_PROJECT,
+            payload: projectObj
+        })
+    } catch (e) {
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
+      
+          }
+    }
+}
+
 // add new Project to the team whose teamId is passed
 
 export const addProject = (teamId, data,callback) => async (dispatch) => {

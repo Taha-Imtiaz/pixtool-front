@@ -8,7 +8,7 @@ let projectReducer = (state = initialState, { type, payload }) => {
 
             return { ...state, projectList: payload }
         case GET_PROJECT:
-            return { ...state, project: payload }
+            return { ...state, ... payload }
         case ADD_PROJECT:
             
             return {...state, project: payload}

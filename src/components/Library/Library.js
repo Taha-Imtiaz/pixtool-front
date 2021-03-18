@@ -14,21 +14,23 @@ import { getProject } from '../../Redux/project/projectActions';
 import { uploadAsset } from '../../Redux/assets/assetActions'
 import ThumbnailFolderCard from '../Cards/ThumbnailFolderCard/ThumbnailFolderCard';
 
-const Library = ({ assets, teams, getProject, uploadAsset,project }) => {
+const Library = ({ resources, teams, getProject, uploadAsset,project }) => {
     const createNew = () => { }
 
-    //show all the assets (projects) of 1st team
+    //show all the resources (projects) of 1st team
     useEffect(() => {
         if (teams) {
             // get all projects of first team
             let { projects } = teams[0];
-            // get assets of 1st project
+            // get resources of 1st project
             getProject(projects[0]._id)
         }
     }, [teams]);
 
     const handleVideoUpload = async (e) => {
-       
+        let {parentId} = project;
+        console.log(parentId)
+
         if (e.target.files[0]) {
             let file = e.target.files[0];
             const cover = await getVideoCover(file, 1.5);
@@ -38,7 +40,7 @@ const Library = ({ assets, teams, getProject, uploadAsset,project }) => {
             data.append('files', file, file.name)
             data.append('files', cover, cover.name)
             data.append('data', JSON.stringify({
-                parent_id: "604b78582c85c0001553eea8"
+                parent_id: parentId
             }))
 
             uploadAsset(data)
@@ -101,6 +103,7 @@ const Library = ({ assets, teams, getProject, uploadAsset,project }) => {
             });
         });
     }
+  
     return (
         <div>
             <div className="library">
@@ -126,7 +129,7 @@ const Library = ({ assets, teams, getProject, uploadAsset,project }) => {
                 <div className="library__main">
                     <div className="thumbnail-container">
                      
-                        {assets && assets.map((asset) =>asset._type === "file" ? <ThumbnailCard key={asset._id} id = {asset._id} asset={asset} />: <ThumbnailFolderCard/>)}
+                        {resources && resources.length > 0 && resources.map((resource) =>resource._type === "file" ? <ThumbnailCard key={resource._id} id = {resource._id} resource={resource} />: <ThumbnailFolderCard id = {resource._id} resource={resource} />)}
                     </div>
                 </div>
             </div>
@@ -134,9 +137,9 @@ const Library = ({ assets, teams, getProject, uploadAsset,project }) => {
     )
 }
 var mapStateToProps = (state) => ({
-    assets: state.projects && state.projects.project && state.projects.project.assets,
+    resources: state.project && state.project.resources,
     teams: state.teams && state.teams.teamList,
-    project:state.projects && state.projects.project
+    project: state.project
 
 })
 var mapDispatchToProps = {

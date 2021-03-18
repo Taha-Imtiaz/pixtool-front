@@ -11,7 +11,7 @@ let rootReducer = combineReducers({
     utilities: utilityReducer,
     accounts: projectAccountReducer,
     teams:teamReducer,
-    projects:projectReducer,
+    project:projectReducer,
     assets: assetReducer
 })
 export default rootReducer

@@ -1,13 +1,32 @@
 import Axios from "axios"
-import { GET_ASSET_DETAILS } from "./assetConstants"
+import { GET_PROJECT } from "../project/projectConstants"
+import { showToastMessage } from "../utility/utilityActions"
+import { GET_ASSET_DETAILS, GET_PROJECT_ASSETS } from "./assetConstants"
 
-export const getAllAssets = (projectId) => async (dispatch) => {
-    try {
-        
-    } catch (error) {
-        console.log(error)
-    }
-}
+// get all assets of  single project (which is in folder) by passing projectId
+// export const getAllProjectAssests = (projectId) => async (dispatch) => {
+//     try {
+//         let response = await Axios.get(`project/${projectId}`)
+//         console.log(response.data.data)
+//         // let assetsObj = {
+//         //     projectId: projectId,
+//         //     assets:response.data.data.resources
+//         // }
+//         let assetObj = {
+//             parentId: projectId,
+//             assets: response.data.data.resources
+//         }
+//         dispatch({
+//             type:GET_PROJECT_ASSETS,
+//             payload: assetObj
+//         })
+//     } catch (e) {
+//         if (e.response && e.response.data) {
+//             dispatch(showToastMessage(e.response.data.message))
+      
+//           }
+//     }
+// }
 
 export const getAssetDetails = (assetId) => async (dispatch) => {
     let response = await Axios.get(`asset/${assetId}`)
@@ -20,12 +39,21 @@ export const getAssetDetails = (assetId) => async (dispatch) => {
 
 
 export const uploadAsset = (data) => async (dispatch) => {
+    console.log(data)
     let response = await Axios.post(`asset`, data, {
         config: {
             handlerEnabled: true
         }
     })
-    console.log(response)
+    let projectObj = {
+        // parentId: projectId,
+        resources: response.data.data
+     }
+    dispatch({
+        type: GET_PROJECT,
+        payload:projectObj
+    })
+    
     // dispatch({
     //     type: GET_ASSET_DETAILS,
     //     payload: response.data.data

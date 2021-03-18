@@ -1,13 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getAssets } from '../../../Redux/project/projectActions';
 
 import './ThumbnailFolderCard.scss';
 
-const ThumbnailFolderCard = () => {
 
+const ThumbnailFolderCard = ({id, getAssets, resource}) => {
+    
+    
+    
+    const navigate = () => {
+        getAssets(id)
+     console.log(id)
+       
+    }
     const thumbnails = 4;
 
     return (
-        <div className="thumbnailFolderCard">
+        <div className="thumbnailFolderCard" onClick = {navigate}>
             {/* <div className="thumbnailFolderCard__status">Needs Approval</div> */}
             <div className={thumbnails <= 1 ? 'thumbnailFolderCard__thumbnailBox thumbnailFolderCard__thumbnailBox--1' : 'thumbnailFolderCard__thumbnailBox'}>
                 <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--1">
@@ -44,5 +54,11 @@ const ThumbnailFolderCard = () => {
         </div>
     )
 }
+// var mapStateToProps = (state) => ({
+//     project: state.project
+// })
+var mapDispatchToProps = {
+    getAssets
+}
 
-export default ThumbnailFolderCard
+export default connect(null,mapDispatchToProps)(ThumbnailFolderCard)
