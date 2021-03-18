@@ -33,10 +33,7 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, teams }) => {
                             </span>
                             <span className="teamsNav__text">{team.name}</span>
                             <span className="teamsNav__addBtn" >
-                                <i className="fas fa-plus-circle" onClick={(e) => addProjectModalToggle(e, team._id)}
-                                >
-
-                                </i>
+                                <i className="fas fa-plus-circle" onClick={(e) => addProjectModalToggle(e, team._id)}></i>
                             </span>
                         </div>
                     </div>

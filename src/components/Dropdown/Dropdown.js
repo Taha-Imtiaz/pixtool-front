@@ -46,30 +46,34 @@ function NavItem(props) {
         document.querySelector('.page-wrapper').addEventListener("click", handleClickEvent);
         // eslint-disable-next-line react-hooks/exhaustive-deps
 
+        // This Function Sets The Position Of Dropdown Menu As Soon As The Open State Becomes True (Changes)
+        setDropdownPosition();
+
     }, [open])
 
     // Function To Position Dropdown Upwards/ Downwards w.r.t. Space Available
     const setDropdownPosition = () => {
         if (document.querySelector('.dropdown')) {
+            let windowHeight = window.innerHeight;
+            let myDropdown = document.querySelector('.dropdown');
+            let dropdownHeight = myDropdown.offsetHeight;
+            let dropdownTop = myDropdown.getBoundingClientRect().top;
+            let space = windowHeight - dropdownTop - dropdownHeight;
+
+            if (space > dropdownHeight) {
+                myDropdown.style.top = '4.2rem';
+
+            } else {
+                myDropdown.style.top = '-11rem';
+            }
             setTimeout(() => {
-                let windowHeight = window.innerHeight;
-                let myDropdown = document.querySelector('.dropdown');
-                let dropdownHeight = myDropdown.offsetHeight;
-                let dropdownTop = myDropdown.getBoundingClientRect().top;
-                let space = windowHeight - dropdownTop - dropdownHeight;
 
-                if (space > dropdownHeight) {
-                    myDropdown.style.top = '4.2rem';
-
-                } else {
-                    myDropdown.style.top = '-11rem';
-                }
             });
         }
     }
 
     return (
-        <li id="nav-item" className="nav-item" onClick={setDropdownPosition}>
+        <li id="nav-item" className="nav-item" /* onClick={setDropdownPosition} */>
             <span className="icon-arrow" onClick={() => setOpen(!open)}>
                 {props.icon}
             </span>
