@@ -6,17 +6,17 @@ import { connect } from 'react-redux';
 import { addProject } from '../../../Redux/project/projectActions';
 import { getTeams } from '../../../Redux/team/teamActions';
 
-const AddProjectModal = ({ showAddProjectModal, addProjectModalToggle,teamId,addProject,getTeams,account, closeAddProjectModal }) => {
+const AddProjectModal = ({ showModal, modalToggler,teamId,addProject,getTeams,account, closeAddProjectModal }) => {
     // modal form state
     const [modalFormState, setModalFormState] = useState({
         projectName:''
     })
     // Modal Back-drop Styling
     const backDropStyle = {
-        opacity: showAddProjectModal ? '1' : '',
-        visibility: showAddProjectModal ? 'visible' : '',
-        overflow: showAddProjectModal ? 'auto' : '',
-        zIndex: showAddProjectModal ? '2000' : '',
+        opacity: showModal ? '1' : '',
+        visibility: showModal ? 'visible' : '',
+        overflow: showModal ? 'auto' : '',
+        zIndex: showModal ? '2000' : '',
     };
     const handleModalInput = (e) => {
         let {name, value} = e.target;
@@ -47,7 +47,7 @@ const AddProjectModal = ({ showAddProjectModal, addProjectModalToggle,teamId,add
                     <div className="addProjectModal">
                         <div className="addProjectModal__header">
                             <span className="addProjectModal__heading">New Project</span>
-                            <span className="addProjectModal__closeBtn" onClick={addProjectModalToggle}>
+                            <span className="addProjectModal__closeBtn" onClick={modalToggler}>
                                 <i className="fas fa-times"></i>
                             </span>
                         </div>

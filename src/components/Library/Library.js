@@ -14,7 +14,7 @@ import { getProject } from '../../Redux/project/projectActions';
 import { uploadAsset } from '../../Redux/assets/assetActions'
 import ThumbnailFolderCard from '../Cards/ThumbnailFolderCard/ThumbnailFolderCard';
 
-const Library = ({ resources, teams, getProject, uploadAsset,project }) => {
+const Library = ({ resources, teams, getProject, uploadAsset, project, addFolderModalToggle }) => {
     const createNew = () => { }
 
     //show all the resources (projects) of 1st team
@@ -57,7 +57,8 @@ const Library = ({ resources, teams, getProject, uploadAsset,project }) => {
         },
         {
             rightIcon: '', leftIcon: '', value: 'New Folder', goToMenu: '', isUpload: {
-                value: false
+                value: false,
+                modalToggler: addFolderModalToggle
             }
         },
     ];

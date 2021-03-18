@@ -59,8 +59,8 @@
         cursor: pointer
     }
 
-    &:hover &__img>img,
-    &:focus &__img>img,
+    &:hover &__imgBox>img,
+    &:focus &__imgBox>img,
     &:hover &__status,
     &:focus &__status {
         filter: brightness(.65)

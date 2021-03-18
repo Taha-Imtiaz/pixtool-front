@@ -19,12 +19,20 @@ import Screens from '../../components/StagesComponents/Screens/Screens';
 import Stages from '../../components/StagesComponents/Stages/Stages';
 
 import AddProjectModal from '../../components/Modals/AddProjectModal/AddProjectModal';
+import AddFolderModal from '../../components/Modals/AddFolderModal/AddFolderModal';
 
 import { getAccount } from '../../Redux/account/accountActions';
 import { getTeams } from '../../Redux/team/teamActions';
 
 
-function Home({ getAccount, getTeams,account }) {
+function Home({ getAccount, getTeams, account }) {
+
+    // This state is used to Show/ Hide the AddProjectModal
+    const [showAddProjectModal, setShowAddProjectModal] = useState(false);
+    // This state is used to set teamId
+    const [teamId, setTeamId] = useState(null)
+    // This state is used to Show/ Hide the AddFolderModal
+    const [showAddFolderModal, setShowAddFolderModal] = useState(true);
 
     useEffect(() => {
         getAccount()
@@ -39,14 +47,8 @@ function Home({ getAccount, getTeams,account }) {
         }
     }, [account])
 
-
-    const [show, setShow] = useState(false);
-
-    const modalToggle = () => setShow(!show);
-    // This state is used to Show/ Hide the AddProjectModal
-    const [showAddProjectModal, setShowAddProjectModal] = useState(false);
-    // This state is used to set teamId
-    const [teamId, setTeamId] = useState(null)
+    // const [show, setShow] = useState(false);
+    // const modalToggle = () => setShow(!show);
 
     // Function to close the Profile Dropdown whenever clicked outside it
     const closeModal = (event) => {
@@ -72,8 +74,8 @@ function Home({ getAccount, getTeams,account }) {
 
     }
     // This Function is responsible to Show/ Hide the AddProjectModal
-    const addProjectModalToggle = (e,teamId) => {
-      setTeamId(teamId)
+    const addProjectModalToggle = (e, teamId) => {
+        setTeamId(teamId)
         // prevent parent component to render when open open a modal
         e.stopPropagation()
         if (showAddProjectModal) {
@@ -88,13 +90,28 @@ function Home({ getAccount, getTeams,account }) {
         setShowAddProjectModal(!showAddProjectModal);
     };
 
+    // This Function is responsible to Show/ Hide the AddFolderModal
+    const addFolderModalToggle = () => {
+
+        if (showAddFolderModal) {
+            // Allow to scroll when closing the modal
+            document.body.style.removeProperty('overflow');
+
+        } else {
+            // Disable scrolling on the `body` element when opening a modal
+            document.body.style.overflow = 'hidden';
+        }
+
+        setShowAddFolderModal(!showAddFolderModal);
+    };
+
     /* Arrays To Pass The Sidebar Content In Props */
     let sidebarMenu1 = [
         { icon: 'fas fa-book', value: 'My Library' },
         { icon: 'far fa-file-alt', value: 'Shared with me' },
         { icon: 'fas fa-cog', value: 'Settings' }
     ];
-    
+
     return (
         <div className="home page-wrapper">
             {/* Above "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
@@ -111,7 +128,7 @@ function Home({ getAccount, getTeams,account }) {
 
                     {/* Library Tab Content */}
                     <div label="Library">
-                        <Library />
+                        <Library addFolderModalToggle={addFolderModalToggle}/>
                     </div>
 
                     {/* Shows Tab Content */}
@@ -169,7 +186,11 @@ function Home({ getAccount, getTeams,account }) {
             {/* All The Modal Components Used In Home Page, All Its Tabs & Sidebar*/}
 
             {/* This is AddProjectModal */}
-            <AddProjectModal showAddProjectModal={showAddProjectModal} addProjectModalToggle={addProjectModalToggle} teamId = {teamId} closeAddProjectModal = {closeAddProjectModal} />
+            <AddProjectModal showModal={showAddProjectModal} modalToggler={addProjectModalToggle} teamId={teamId} closeAddProjectModal={closeAddProjectModal} />
+
+            {/* This is AddNewFolderModal */}
+            <AddFolderModal showModal={showAddFolderModal} modalToggler={addFolderModalToggle} />
+
         </div>
     )
 }
