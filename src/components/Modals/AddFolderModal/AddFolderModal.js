@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './AddFolderModal.scss';
 
 import ButtonLight from '../../Button/ButtonLight';
 
-const AddFolderModal = ({showModal, modalToggler}) => {
-    const createNew = () => {}
+const AddFolderModal = ({ showModal, setShowModal, modalToggler }) => {
+    const createNew = () => { }
     // Modal Back-drop Styling
     const backDropStyle = {
         opacity: showModal ? '1' : '',
@@ -13,8 +13,24 @@ const AddFolderModal = ({showModal, modalToggler}) => {
         zIndex: showModal ? '2000' : '',
     };
 
+    // Function to close the Modal whenever Backdrop clicked
+    const closeModal = (event) => {
+        const backDrop = document.querySelector(".backDrop2");
+        const modal = document.querySelector(".modal");
+        if (backDrop && event.target === backDrop && !event.target !== modal) {
+            setShowModal(false);
+        }
+    }
+
+    useEffect(() => {
+        // Listener to close the Modal whenever Backdrop clicked
+        const backDrop = document.querySelector(".backDrop2");
+        backDrop.addEventListener('click', (e) => closeModal(e), false);
+
+    }, []);
+
     return (
-        <div className="modal__backDrop" style={backDropStyle} >
+        <div className="modal__backDrop backDrop2" style={backDropStyle} >
             <div className="modal">
                 <div className="modal__content">
                     <div className="addFolderModal">

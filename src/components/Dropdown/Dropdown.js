@@ -69,7 +69,7 @@ function NavItem(props) {
     }
 
     return (
-        <li id="nav-item" className="nav-item" onClick={setDropdownPosition}>
+        <li id="nav-item" className="nav-item" /* onClick={setDropdownPosition} */>
             <span className="icon-arrow" onClick={() => setOpen(!open)}>
                 {props.icon}
             </span>

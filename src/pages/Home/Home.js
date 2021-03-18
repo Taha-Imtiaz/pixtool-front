@@ -50,23 +50,6 @@ function Home({ getAccount, getTeams, account }) {
     // const [show, setShow] = useState(false);
     // const modalToggle = () => setShow(!show);
 
-    // Function to close the Profile Dropdown whenever clicked outside it
-    const closeModal = (event) => {
-        const backDrop = document.querySelector(".modal__backDrop");
-        const modal = document.querySelector(".modal");
-        if (backDrop && event.target === backDrop && !event.target !== modal) {
-            setShowAddProjectModal(false);
-        }
-    }
-
-    useEffect(() => {
-        // Listener to close the Profile Dropdown whenever clicked outside it
-        const backDrop = document.querySelector(".modal__backDrop");
-        backDrop.addEventListener('click', (e) => closeModal(e), false);
-
-    }, []);
-
-
     // close add project modal
 
     const closeAddProjectModal = () => {
@@ -186,10 +169,10 @@ function Home({ getAccount, getTeams, account }) {
             {/* All The Modal Components Used In Home Page, All Its Tabs & Sidebar*/}
 
             {/* This is AddProjectModal */}
-            <AddProjectModal showModal={showAddProjectModal} modalToggler={addProjectModalToggle} teamId={teamId} closeAddProjectModal={closeAddProjectModal} />
+            <AddProjectModal showModal={showAddProjectModal} setShowModal={setShowAddProjectModal} modalToggler={addProjectModalToggle} teamId={teamId} closeAddProjectModal={closeAddProjectModal} />
 
             {/* This is AddNewFolderModal */}
-            <AddFolderModal showModal={showAddFolderModal} modalToggler={addFolderModalToggle} />
+            <AddFolderModal showModal={showAddFolderModal} setShowModal={setShowAddFolderModal} modalToggler={addFolderModalToggle} />
 
         </div>
     )
