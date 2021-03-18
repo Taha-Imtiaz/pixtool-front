@@ -15,6 +15,7 @@ import Test from './pages/test';
 import Loader from './components/Loader/Loader';
 import { showToastMessage } from './Redux/utility/utilityActions';
 import Player from './pages/Player/Player';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 
 const App = ({ toastMessage, showToastMessage, numberOfRequests }) => {
@@ -35,10 +36,10 @@ const App = ({ toastMessage, showToastMessage, numberOfRequests }) => {
         <Switch>
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
-          <Route path="/home" component={Home} />
-          <Route path="/player/:assetId" component={Player} />
-          <Route path="/accounts" component={Accounts} />
-          <Route path="/test" component={Test} />
+          <PrivateRoute path="/home" component={Home} />
+          <PrivateRoute path="/player/:assetId" component={Player} />
+          <PrivateRoute path="/accounts" component={Accounts} />
+          <PrivateRoute path="/test" component={Test} />
           <Route path="/" component={HeroSection} exact />
           <Redirect to= "/sign-in"/>
         </Switch>

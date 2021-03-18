@@ -14,4 +14,6 @@ let rootReducer = combineReducers({
     project:projectReducer,
     assets: assetReducer
 })
-export default rootReducer
+export default (state, action) =>
+// check user auth (if user is logged out then clear redux store)
+  rootReducer(action.type === 'LOGOUT' ? undefined : state, action);

@@ -1,7 +1,8 @@
 
 import Axios from "axios"
 import { showToastMessage } from "../utility/utilityActions"
-import { SET_CURRENT_USER, SET_LOGGEDIN_USER } from "./userConstants"
+import { SET_CURRENT_USER, SET_LOGGEDIN_USER, LOGOUT } from "./userConstants"
+
 // set current user in redux store(who is signed up first time)
 export const signupUser = (userObj, callback) => async (dispatch) => {
     try {
@@ -57,3 +58,10 @@ export const loginUser = (userObj, callback) => async (dispatch) => {
     }
 }
 
+export const logout = () => (dispatch) =>  {
+    // remove token from local 
+    localStorage.removeItem("pixtool-token")
+    dispatch({
+    type: LOGOUT,
+    })
+}

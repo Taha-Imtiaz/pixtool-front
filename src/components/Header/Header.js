@@ -2,8 +2,15 @@ import { React, useEffect } from 'react'
 import './Header.scss';
 import Profile from '../../images/profile.png';
 import { connect } from 'react-redux';
+import { logout } from '../../Redux/user/userActions';
+import { withRouter } from 'react-router';
 
-function Header({ account }) {
+function Header({ account, logout, history }) {
+
+    const logOut = () => {
+      history.push("/sign-in")
+        logout();
+    }
 
     // Function to close the Profile Dropdown whenever clicked outside it
     const closeProfileDropdown = (event) => {
@@ -14,7 +21,7 @@ function Header({ account }) {
             profileDropdown.style.display = 'none';
         }
     }
-    
+
     useEffect(() => {
         // Listener to close the Profile Dropdown whenever clicked outside it
         document.addEventListener('click', (e) => closeProfileDropdown(e), false);
@@ -49,7 +56,7 @@ function Header({ account }) {
                         <ul className="profileDropdown__list">
                             <li className="profileDropdown__listItem"><span className="profileDropdown__listOption"><i className="fas fa-user-circle pd-r-1-5"></i> Account Settings</span></li>
                             <li className="profileDropdown__listItem"><span className="profileDropdown__listOption"><i className="fas fa-headset pd-r-1-5"></i> Support FAQ</span></li>
-                            <li className="profileDropdown__listItem"><span className="profileDropdown__listOption"><i className="fas fa-sign-out-alt pd-r-1-5"></i> Log out</span></li>
+                            <li className="profileDropdown__listItem" onClick={() => logOut()}><span className="profileDropdown__listOption"><i className="fas fa-sign-out-alt pd-r-1-5"></i> Log out</span></li>
                         </ul>
                     </div>
                 </span>
@@ -61,4 +68,7 @@ function Header({ account }) {
 var mapStateToProps = (state) => ({
     account: state.accounts && state.accounts.account
 })
-export default connect(mapStateToProps)(Header)
+var mapDispatchToProps = {
+    logout
+}
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header))
