@@ -32,7 +32,7 @@ function Home({ getAccount, getTeams, account }) {
     // This state is used to set teamId
     const [teamId, setTeamId] = useState(null)
     // This state is used to Show/ Hide the AddFolderModal
-    const [showAddFolderModal, setShowAddFolderModal] = useState(true);
+    const [showAddFolderModal, setShowAddFolderModal] = useState(false);
 
     useEffect(() => {
         getAccount()
@@ -52,12 +52,10 @@ function Home({ getAccount, getTeams, account }) {
 
     // close add project modal
 
-    const closeAddProjectModal = () => {
-        setShowAddProjectModal(false);
-
-    }
+   
     // This Function is responsible to Show/ Hide the AddProjectModal
     const addProjectModalToggle = (e, teamId) => {
+        console.log(e, teamId)
         setTeamId(teamId)
         // prevent parent component to render when open open a modal
         e.stopPropagation()
@@ -169,7 +167,7 @@ function Home({ getAccount, getTeams, account }) {
             {/* All The Modal Components Used In Home Page, All Its Tabs & Sidebar*/}
 
             {/* This is AddProjectModal */}
-            <AddProjectModal showModal={showAddProjectModal} setShowModal={setShowAddProjectModal} modalToggler={addProjectModalToggle} teamId={teamId} closeAddProjectModal={closeAddProjectModal} />
+            <AddProjectModal showModal={showAddProjectModal} setShowModal={setShowAddProjectModal} modalToggler={addProjectModalToggle} teamId={teamId}  />
 
             {/* This is AddNewFolderModal */}
             <AddFolderModal showModal={showAddFolderModal} setShowModal={setShowAddFolderModal} modalToggler={addFolderModalToggle} />

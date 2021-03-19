@@ -88,17 +88,22 @@ function DropdownMenu(props) {
 
 
     function DropdownItem(props) {
+        console.log(props)
         return (
             <span className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>
-                {/* <input type = "file" value =  /> */}
-                {/* <input type = "file" value = {props.children} />  */}
-                {props.upload.value ? <Fragment>
+               {/* {props.children} */}
+                {props.upload !== undefined && props.upload.value === true ? <Fragment>
                     <label htmlFor="file-upload" className="custom-file-upload">
                         {props.children}
                     </label>
                     <input id="file-upload" type="file" className="dropdown__uploadInput inputTag" onChange={(e) => props.upload.onUpload(e)} accept="video/*" />
-                </Fragment> : props.children}
+                </Fragment> :props.upload !== undefined && props.upload.value === false ? 
+               <Fragment>
+                      <label htmlFor="folder-upload" className="custom-folder-upload" onClick = {() => props.upload.modalToggler()}>
+                        {props.children}
+                    </label>
+               </Fragment> : props.children}
                 <span className="icon-button icon-right">{props.rightIcon}</span>
             </span>
         );

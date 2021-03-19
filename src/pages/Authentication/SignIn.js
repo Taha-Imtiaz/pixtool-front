@@ -1,16 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Authentication.scss'
 import SignInBG from '../../images/signIn.png';
 import { Link } from 'react-router-dom';
 import ButtonLarge from '../../components/Button/ButtonLarge';
 import { connect } from 'react-redux';
-import { loginUser } from '../../Redux/user/userActions';
+import { checkUserAuthentication, loginUser } from '../../Redux/user/userActions';
 
 const SignIn = ({loginUser, history}) => {
     const [authFormState, setAuthFormState] = useState({
         email: '',
         password: ''
     })
+    useEffect(() => {
+    let checkUserAuth = checkUserAuthentication()
+   if(checkUserAuth) {
+       console.log(checkUserAuth)
+      history.push("/")
+   }
+   else {
+      history.push("/sign-in")
+   }
+    },[])
 
     // const createNew = () => {
     //     // history.push('/home')

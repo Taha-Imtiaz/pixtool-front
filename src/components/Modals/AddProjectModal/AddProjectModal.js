@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { addProject } from '../../../Redux/project/projectActions';
 import { getTeams } from '../../../Redux/team/teamActions';
 
-const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addProject, getTeams, account, closeAddProjectModal }) => {
+const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addProject, getTeams, account }) => {
     // modal form state
     const [modalFormState, setModalFormState] = useState({
         projectName: ''
@@ -26,7 +26,7 @@ const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addPro
         })
     }
     // add new project to the selected team
-    const handleAddProject = () => {
+    const handleAddProject = (e) => {
         let data = {
             name: modalFormState.projectName
         }
@@ -37,7 +37,8 @@ const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addPro
             console.log("callback called")
             getTeams(account_id[0]._id)
         })
-        closeAddProjectModal()
+        modalToggler(e, teamId)
+        
     }
 
     // Function to close the Modal whenever Backdrop clicked

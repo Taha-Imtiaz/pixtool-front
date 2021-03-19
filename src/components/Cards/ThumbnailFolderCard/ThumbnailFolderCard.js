@@ -5,19 +5,14 @@ import { getAssets } from '../../../Redux/project/projectActions';
 import './ThumbnailFolderCard.scss';
 
 
-const ThumbnailFolderCard = ({id, getAssets, resource}) => {
-    
-    
-    
-    const navigate = () => {
-        getAssets(id)
-     console.log(id)
-       
-    }
-    const thumbnails = 4;
+const ThumbnailFolderCard = ({ id, getAssets, resource }) => {
+
+
+const thumbnails = 4;
+let {name} = resource
 
     return (
-        <div className="thumbnailFolderCard" onClick = {navigate}>
+        <div className="thumbnailFolderCard" onClick={() => getAssets(id)}>
             {/* <div className="thumbnailFolderCard__status">Needs Approval</div> */}
             <div className={thumbnails <= 1 ? 'thumbnailFolderCard__thumbnailBox thumbnailFolderCard__thumbnailBox--1' : 'thumbnailFolderCard__thumbnailBox'}>
                 <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--1">
@@ -31,20 +26,20 @@ const ThumbnailFolderCard = ({id, getAssets, resource}) => {
                 {thumbnails === 3 ?
                     <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--3">
                         <img src="https://images.pexels.com/photos/6574738/pexels-photo-6574738.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                        className="thumbnailFolderCard__img thumbnailFolderCard__img--3" />
+                            className="thumbnailFolderCard__img thumbnailFolderCard__img--3" />
                     </span>
                     : null
                 }
                 {
                     thumbnails > 3 ?
-                    <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--3">
-                        <span>+2</span>
-                    </span>
-                    : null
+                        <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--3">
+                            <span>+2</span>
+                        </span>
+                        : null
                 }
             </div>
             <div className="thumbnailFolderCard__text">
-                <div className="thumbnailFolderCard__name truncate">Hello World</div>
+                <div className="thumbnailFolderCard__name truncate">{name}</div>
                 <div className="thumbnailFolderCard__datail">
                     <span>John</span>
                     &nbsp;-&nbsp;
@@ -61,4 +56,4 @@ var mapDispatchToProps = {
     getAssets
 }
 
-export default connect(null,mapDispatchToProps)(ThumbnailFolderCard)
+export default connect(null, mapDispatchToProps)(ThumbnailFolderCard)

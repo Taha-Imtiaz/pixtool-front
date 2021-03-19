@@ -1,7 +1,7 @@
 import Axios from "axios"
 import { GET_PROJECT } from "../project/projectConstants"
 import { showToastMessage } from "../utility/utilityActions"
-import { GET_ASSET_DETAILS, GET_PROJECT_ASSETS } from "./assetConstants"
+import { GET_ASSET_DETAILS } from "./assetConstants"
 
 // get all assets of  single project (which is in folder) by passing projectId
 // export const getAllProjectAssests = (projectId) => async (dispatch) => {
@@ -23,39 +23,49 @@ import { GET_ASSET_DETAILS, GET_PROJECT_ASSETS } from "./assetConstants"
 //     } catch (e) {
 //         if (e.response && e.response.data) {
 //             dispatch(showToastMessage(e.response.data.message))
-      
+
 //           }
 //     }
 // }
 
 export const getAssetDetails = (assetId) => async (dispatch) => {
-    let response = await Axios.get(`asset/${assetId}`)
-    dispatch({
-        type: GET_ASSET_DETAILS,
-        payload: response.data.data
-    })
+    try {
+        let response = await Axios.get(`asset/${assetId}`)
+        dispatch({
+            type: GET_ASSET_DETAILS,
+            payload: response.data.data
+        })
+    } catch (e) {
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
+
+        }
+    }
 }
 
 
 
 export const uploadAsset = (data) => async (dispatch) => {
-    console.log(data)
-    let response = await Axios.post(`asset`, data, {
-        config: {
-            handlerEnabled: true
+
+    try {
+        let response = await Axios.post(`asset`, data, {
+            config: {
+                handlerEnabled: true
+            }
+        })
+        let projectObj = {
+            resources: response.data.data
         }
-    })
-    let projectObj = {
-        // parentId: projectId,
-        resources: response.data.data
-     }
-    dispatch({
-        type: GET_PROJECT,
-        payload:projectObj
-    })
-    
-    // dispatch({
-    //     type: GET_ASSET_DETAILS,
-    //     payload: response.data.data
-    // })
+        dispatch({
+            type: GET_PROJECT,
+            payload: projectObj
+        })
+    } catch (e) {
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
+
+        }
+    }
+
+
 }

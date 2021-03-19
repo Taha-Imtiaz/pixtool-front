@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Authentication.scss'
 import SignUpBG from '../../images/signUp.png'
 import ButtonLarge from '../../components/Button/ButtonLarge';
 import { connect } from 'react-redux';
-import { signupUser } from '../../Redux/user/userActions';
+import { checkUserAuthentication, signupUser } from '../../Redux/user/userActions';
 
 
 const SignUp = ({ signupUser, history }) => {
@@ -13,7 +13,16 @@ const SignUp = ({ signupUser, history }) => {
         password: '',
         confirmPassword: '',
     })
-
+    useEffect(() => {
+        let checkUserAuth = checkUserAuthentication()
+       if(checkUserAuth) {
+           console.log(checkUserAuth)
+          history.push("/")
+       }
+       else {
+          history.push("/sign-up")
+       }
+        },[])
     // const createNew = () => {
     //     history.push('/home') 
     // }

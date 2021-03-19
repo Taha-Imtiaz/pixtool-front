@@ -1,12 +1,9 @@
 import React from 'react'
 import { Redirect, Route } from 'react-router'
+import { checkUserAuthentication } from '../../Redux/user/userActions'
 
 const PrivateRoute = ({component:Component,...restProps}) => {
-const checkUserAuthentication = () => {
-let token = localStorage.getItem("pixtool-token");
-if(token) return true
-else return false
-}
+
 
     return (
       <Route

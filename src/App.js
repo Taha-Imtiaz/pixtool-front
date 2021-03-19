@@ -41,7 +41,7 @@ const App = ({ toastMessage, showToastMessage, numberOfRequests }) => {
           <PrivateRoute path="/accounts" component={Accounts} />
           <PrivateRoute path="/test" component={Test} />
           <Route path="/" component={HeroSection} exact />
-          <Redirect to= "/sign-in"/>
+          <Redirect to= "/"/>
         </Switch>
       </Router>
     </div>

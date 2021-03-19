@@ -1,4 +1,4 @@
-import { GET_ASSET_DETAILS, UPLOAD_ASSET } from "./assetConstants"
+import { GET_ASSET_DETAILS } from "./assetConstants"
 
 let initialState = null
 
@@ -8,10 +8,10 @@ let assetReducer = (state = initialState, {type, payload}) => {
         // return {...state, asset:payload}
         case GET_ASSET_DETAILS:
             return {...state, asset: payload}
-    case UPLOAD_ASSET:
-        // return {...state, }
+  
         default:
             return state
     }
+    
 }
 export default assetReducer

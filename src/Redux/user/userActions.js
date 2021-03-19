@@ -65,3 +65,9 @@ export const logout = () => (dispatch) =>  {
     type: LOGOUT,
     })
 }
+// check user auth
+export const checkUserAuthentication = () => {
+    let token = localStorage.getItem("pixtool-token");
+    if(token) return true
+    else return false
+    }
