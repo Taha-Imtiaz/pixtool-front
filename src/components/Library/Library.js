@@ -15,7 +15,6 @@ import { uploadAsset } from '../../Redux/assets/assetActions'
 import ThumbnailFolderCard from '../Cards/ThumbnailFolderCard/ThumbnailFolderCard';
 
 const Library = ({ resources, teams, getProject, uploadAsset, project, addFolderModalToggle }) => {
-    console.log(addFolderModalToggle)
     const createNew = () => { }
 
     //show all the resources (projects) of 1st team
