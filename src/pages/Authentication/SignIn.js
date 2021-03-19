@@ -15,7 +15,7 @@ const SignIn = ({loginUser, history}) => {
     let checkUserAuth = checkUserAuthentication()
    if(checkUserAuth) {
        console.log(checkUserAuth)
-      history.push("/")
+      history.push("/home")
    }
    else {
       history.push("/sign-in")
