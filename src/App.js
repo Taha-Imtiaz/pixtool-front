@@ -35,7 +35,11 @@ const App = ({ toastMessage, showToastMessage, numberOfRequests }) => {
         <Switch>
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
-          <PrivateRoute path="/home" component={Home} />
+          {/* <Route path={["/home", "/home/:projectId", "/home/:projectId/:assetId"]} component={Home} /> */}
+          <PrivateRoute path="/home" component={Home} key="single-home"/>
+          <PrivateRoute path="/home/:projectId" component={Home} key="single-home-id"/>
+          <PrivateRoute path="/home/:projectId/:assetId" component={Home} key="double-home-id"/>
+         
           <PrivateRoute path="/player/:assetId" component={Player} />
           <PrivateRoute path="/accounts" component={Accounts} />
           <PrivateRoute path="/test" component={Test} />

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import './Library.scss';
@@ -13,28 +13,64 @@ import { getProject } from '../../Redux/project/projectActions';
 // import ThumbnailFolderCard from '../Cards/ThumbnailFolderCard/ThumbnailFolderCard';
 import { uploadAsset } from '../../Redux/assets/assetActions'
 import ThumbnailFolderCard from '../Cards/ThumbnailFolderCard/ThumbnailFolderCard';
+import { withRouter } from 'react-router-dom';
 
-const Library = ({ resources, teams, getProject, uploadAsset, project, addFolderModalToggle }) => {
+const Library = ({ resources, teams, getProject, uploadAsset, project, addFolderModalToggle, history, location: { pathname } }) => {
     const createNew = () => { }
+
+    // const routeChange = history.listen((location, action) => {
+    //     console.log("on route change", location, action);
+    // });
+    console.log(pathname)
+
+    useEffect(() => {
+        //     if (teams) {
+        //     let { projects } = teams[0];
+        //     if(projects && pathname === `/home/${projects[0]._id}`) {
+        //         getProject(projects[0]._id)
+        //     }
+    console.log(pathname)
+    // }
+        if (sessionStorage.getItem('path', pathname) &&( pathname != sessionStorage.getItem('path'))) {
+            console.log('Call Api')
+            sessionStorage.setItem('path', pathname)
+          
+            
+
+        } else {
+            sessionStorage.setItem('path', pathname)
+        }
+    }, [pathname])
+
+
+    // useEffect(() => {
+    //     return (()=> )
+    // }, [])
+    const [urlPathName, setUrlPathName] = useState('')
+
 
     //show all the resources (projects) of 1st team
     useEffect(() => {
         if (teams) {
             // get all projects of first team
             let { projects } = teams[0];
+            if (projects) {
+                history.push(`/home/${projects[0]._id}`)
+
+            }
             // get resources of 1st project
             getProject(projects[0]._id)
         }
     }, [teams]);
 
     const handleVideoUpload = async (e) => {
-        let {parentId} = project;
+        let { parentId } = project;
         console.log(parentId)
 
         if (e.target.files[0]) {
             let file = e.target.files[0];
             const cover = await getVideoCover(file, 1.5);
-           
+
             // print out the result image blob
             const data = new FormData()
             data.append('files', file, file.name)
@@ -104,7 +140,7 @@ const Library = ({ resources, teams, getProject, uploadAsset, project, addFolder
             });
         });
     }
-  
+
     return (
         <div>
             <div className="library">
@@ -129,8 +165,8 @@ const Library = ({ resources, teams, getProject, uploadAsset, project, addFolder
 
                 <div className="library__main">
                     <div className="thumbnail-container">
-                     
-                        {resources && resources.length > 0 && resources.map((resource) =>resource._type === "file" ? <ThumbnailCard key={resource._id} id = {resource._id} resource={resource} />: <ThumbnailFolderCard id = {resource._id} resource={resource} />)}
+
+                        {resources && resources.length > 0 && resources.map((resource) => resource._type === "file" ? <ThumbnailCard key={resource._id} id={resource._id} resource={resource} /> : <ThumbnailFolderCard id={resource._id} resource={resource} />)}
                     </div>
                 </div>
             </div>
@@ -148,4 +184,4 @@ var mapDispatchToProps = {
     uploadAsset
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Library)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Library))

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './Authentication.scss'
 import SignInBG from '../../images/signIn.png';
 import { Link } from 'react-router-dom';
@@ -11,20 +11,9 @@ const SignIn = ({loginUser, history}) => {
         email: '',
         password: ''
     })
-    useEffect(() => {
-    let checkUserAuth = checkUserAuthentication()
-   if(checkUserAuth) {
-       console.log(checkUserAuth)
-      history.push("/home")
-   }
-   else {
-      history.push("/sign-in")
-   }
-    },[])
+ 
 
-    // const createNew = () => {
-    //     // history.push('/home')
-    // }
+  
 
     const showHidePassword = () => {
         var input = document.getElementById("password");
@@ -105,7 +94,6 @@ const SignIn = ({loginUser, history}) => {
                     </div>
 
                     <div className="form__group">
-                        {/* <button class="btn btn--large btn--primary" onClick={() => history.push('/home')}>Sign In</button> */}
                         <ButtonLarge type="submit" text="Sign In" />
                     </div>
                 </form>
