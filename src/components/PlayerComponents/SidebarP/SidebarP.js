@@ -7,7 +7,7 @@ import TabsP from '../NavigationTabsP/TabsP';
 import CommentP from '../../PlayerComponents/CommentP/CommentP';
 
 function SidebarP({ comments, open }) {
-
+    console.log(comments)
     // States For Video Description On Player Sidebar 
     const [editEnabled, setEditEnabled] = useState(false);
     const [description, setDescription] = useState('');
@@ -49,6 +49,11 @@ function SidebarP({ comments, open }) {
         sidebarP.addEventListener('click', setCommentsHeight, false);
 
     }, [])
+
+    // To Set The Height Of Comment Area Of SidebarP
+    useEffect(() => {
+        console.log(comments)
+    }, [comments])
 
     return (
         <div id="sidebarP" className={open ? 'sidebarP' : 'sidebarP sidebarPCollapse'}>
@@ -174,4 +179,4 @@ var mapStateToProps = (state) => ({
     comments: state.assets && state.assets.asset && state.assets.asset.comments
 })
 
-export default connect(mapStateToProps)(SidebarP)
+export default connect(mapStateToProps, null)(SidebarP)

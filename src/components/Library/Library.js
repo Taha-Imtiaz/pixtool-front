@@ -14,7 +14,7 @@ import { getAssets, getProject } from "../../Redux/project/projectActions";
 import { uploadAsset } from "../../Redux/assets/assetActions";
 import ThumbnailFolderCard from "../Cards/ThumbnailFolderCard/ThumbnailFolderCard";
 import { withRouter } from "react-router-dom";
-
+import NoDataFoundImg from "../../images/no-data-found.png"
 
 const Library = ({
   resources,
@@ -27,7 +27,7 @@ const Library = ({
   history,
   location: { pathname },
 }) => {
-  const createNew = () => {};
+  const createNew = () => { };
 
   // const routeChange = history.listen((location, action) => {
   //     console.log("on route change", location, action);
@@ -52,10 +52,10 @@ const Library = ({
 
           getProject(projects[0]._id);
         }
-      } 
+      }
       else /*if (pathNameIdArrayLength === 2)*/ {
         //   this else part runs only if we go back
-        getAssets(pathNameIdArray[1])  /*pass asset id in argument   */ 
+        getAssets(pathNameIdArray[1])  /*pass asset id in argument   */
       }
     } else {
       sessionStorage.setItem("path", pathname);
@@ -189,7 +189,7 @@ const Library = ({
         <div className="library__main">
           <div className="thumbnail-container">
             {resources &&
-              resources.length > 0 &&
+              resources.length > 0 ?
               resources.map((resource) =>
                 resource._type === "file" ? (
                   <ThumbnailCard
@@ -198,9 +198,9 @@ const Library = ({
                     resource={resource}
                   />
                 ) : (
-                  <ThumbnailFolderCard id={resource._id} resource={resource} />
-                )
-              )}
+                    <ThumbnailFolderCard id={resource._id} resource={resource} />
+                  )
+              ) : <img src={NoDataFoundImg} alt="No Data Found" />}
           </div>
         </div>
       </div>

@@ -7,7 +7,8 @@ import Dropdown from '../../Dropdown/Dropdown';
 import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
 import { withRouter } from 'react-router-dom';
 
-function HeaderP({toggle,history,location}) {
+function HeaderP({ toggle, location, asset, history }) {
+    // const history = useHistory();
     const createNew = () => { }
 
     //This function is responsible for toggling sidebar
@@ -20,8 +21,11 @@ function HeaderP({toggle,history,location}) {
     }
 
     const goBack = () => {
-      console.log(history)
-      history.goBack()
+        // console.log(history)
+        history.goBack()
+        // let path = sessionStorage.getItem('path')
+        // console.log(path)
+        // history.push(path);
     }
 
     // Dropdown Option Values
@@ -43,12 +47,12 @@ function HeaderP({toggle,history,location}) {
         { rightIcon: '', leftIcon: '', value: 'Make Private', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Reveal in project', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Delete', goToMenu: '' }];
-console.log(location)
+    console.log(location)
     return (
         <div className="headerP">
             <div className="headerP__left-box">
                 <span className="headerP__back-btn" onClick={goBack}><i className="fas fa-less-than"></i></span>
-                <span className="headerP__title .truncate">Best Samsung Mobile.mp4</span>
+                <span className="headerP__title .truncate">{asset && asset.asset.name}</span>
             </div>
             <div className="headerP__logo">
                 <img src={Logo} alt="Logo" className="logo-img" />
@@ -59,7 +63,7 @@ console.log(location)
 
                 <Dropdown text="---" menuItems={options} />
 
-                <Button text="Share" click={createNew}/>
+                <Button text="Share" click={createNew} />
 
                 <span className="headerP__notification"><i className="fas fa-bell"></i> <span className="notificationCount">1</span></span>
 
