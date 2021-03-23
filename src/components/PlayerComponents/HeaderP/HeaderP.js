@@ -5,8 +5,9 @@ import Button from '../../Button/Button';
 import NavIcon from '../../NavIcon/NavIcon';
 import Dropdown from '../../Dropdown/Dropdown';
 import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
+import { withRouter } from 'react-router-dom';
 
-function HeaderP(props) {
+function HeaderP({toggle,history,location}) {
     const createNew = () => { }
 
     //This function is responsible for toggling sidebar
@@ -15,11 +16,12 @@ function HeaderP(props) {
         // e.preventDefault()
         // setDrawer(!drawer)
 
-        props.toggle()
+        toggle()
     }
 
     const goBack = () => {
-        window.history.back(1);
+      console.log(history)
+      history.goBack()
     }
 
     // Dropdown Option Values
@@ -41,7 +43,7 @@ function HeaderP(props) {
         { rightIcon: '', leftIcon: '', value: 'Make Private', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Reveal in project', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Delete', goToMenu: '' }];
-
+console.log(location)
     return (
         <div className="headerP">
             <div className="headerP__left-box">
@@ -71,4 +73,4 @@ function HeaderP(props) {
     )
 }
 
-export default HeaderP
+export default withRouter(HeaderP)
