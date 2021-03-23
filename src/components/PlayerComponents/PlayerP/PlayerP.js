@@ -1,7 +1,9 @@
 import { React, useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addComment } from '../../../Redux/assets/assetActions';
 
 import './PlayerP.scss';
-
 import 'emoji-mart/css/emoji-mart.css';
 
 import Avatar from '../../Avatar/Avatar';
@@ -9,81 +11,42 @@ import ButtonSmall from '../../Button/ButtonSmall';
 import Dropdown from '../../Dropdown/Dropdown';
 import { Picker } from 'emoji-mart';
 
-
-
 import PlayerControls from '../../../images/player-icons/sprite.svg';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-
-const PlayerP = ({ asset, match:{params:{assetId}}}) => {
-    console.log(assetId)
-    const createNew = () => { }
 
 
-    // State For Comment TextArea
-    const [textValue, setTextValue] = useState('');
-    // State For Emojibox
-    const [emojiBox, setEmojiBox] = useState(false);
+const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
+
+
+    /* ---------------------------- ALL STATES FOR PLAYERP COMPONENT---------------------------- */
+
+
     // States For Video Player Controls
     const [play, setPlay] = useState(false);
     const [loop, setLoop] = useState(false);
     const [volume, setVolume] = useState('medium');
     const [volumeValue, setVolumeValue] = useState(1);
 
-    // set video thumbnail and source
+    // State For Video Player Thumbnail
     const [videoThumbNail, setVideoThumbNail] = useState('')
+    // State For Video Player Source
     const [videoSource, setVideoSource] = useState('')
 
+    // State For Comment TextArea
+    const [textValue, setTextValue] = useState('');
+
+    // State For Emojibox
+    const [emojiBox, setEmojiBox] = useState(false);
 
 
-    // To Close the Emoji Picker whenever click outside it
-    useEffect(() => {
+    /* ---------------------------- FOR VIDEO PLAYER CONTROLS ---------------------------- */
 
-        function handleClickEvent(event) {
-            if (event.target.className === 'far fa-laugh' || !emojiBox) {
-            } else {
-                // Get parent element and check if click happened outside parent only
-                const parent = document.querySelector(".emoji-picker__box");
-                if (emojiBox && parent && !parent.contains(event.target)) {
-                    showEmojiBox();
-                }
-            }
-        }
-        document.querySelector(".postmortem").addEventListener("click", handleClickEvent);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [emojiBox])
 
-    // Function To Add & Append Emojis To Comments TextArea
-    const addEmoji = (e) => {
-        let newValue = textValue + e.native;
-        setTextValue(newValue);
-    }
-
-    // Function To Show/ Hide Emoji Picker
-    const showEmojiBox = () => {
-        setEmojiBox(!emojiBox);
-    }
-
-    //Function For Change Handling of Comment TextArea
-    function textAreaChangeHandle(event) {
-        const value = event.target.value;
-        setTextValue(value);
-    }
-
-    // Dropdown Option Values
-    let commentPrivacy = [
-        { rightIcon: '', leftIcon: '', value: 'Everyone can see', goToMenu: '' },
-        { rightIcon: '', leftIcon: '', value: 'Team only', goToMenu: '' }
-    ];
-
-    // ***** For Video Player Controls *****
-
-    /* Function For Play/ Pause */
+    // Function For Play/ Pause
     const playPause = () => {
         let myVideo = document.getElementById('myVideo');
 
         if (play === false) {
-                myVideo.play();
+            myVideo.play();
             //    if(playVideoPromise !== undefined)
             setPlay(!play);
 
@@ -93,14 +56,14 @@ const PlayerP = ({ asset, match:{params:{assetId}}}) => {
         }
     }
 
-    /* Function For Resetting The Player State When Video Ends */
+    // Function For Resetting The Player State When Video Ends
     const resetPlayer = () => {
         let myVideo = document.getElementById('myVideo');
         myVideo.pause();
         setPlay(false);
     }
 
-    /* Function For Loop */
+    // Function For Loop
     const loopVideo = () => {
         let myVideo = document.getElementById('myVideo');
         let loopIcon = document.getElementById('loop-icon');
@@ -132,7 +95,7 @@ const PlayerP = ({ asset, match:{params:{assetId}}}) => {
         setLoop(!loop);
     }
 
-    /* Function For Volume Button/Icon Click For Mute/Unmute */
+    // Function For Volume Button/Icon Click For Mute/Unmute
     const mute = (e) => {
         let myVideo = document.getElementById('myVideo');
         let volumeBar = document.getElementById('volume-bar');
@@ -160,7 +123,7 @@ const PlayerP = ({ asset, match:{params:{assetId}}}) => {
         }
     }
 
-    /* Volume Bar Change Handler Function For Setting Volume */
+    // Volume Bar Change Handler Function For Setting Volume
     const volumeChangeHandler = (event) => {
         let myVideo = document.getElementById('myVideo');
         myVideo.volume = event.target.value;
@@ -183,7 +146,7 @@ const PlayerP = ({ asset, match:{params:{assetId}}}) => {
         }
     }
 
-    /* For Setting Volume Bar Value From Volume Of Full Screen */
+    // For Setting Volume Bar Value From Volume Of Full Screen
     // useEffect(() => {
     //     let myVideo = document.getElementById('myVideo');
     //     let volumeBar = document.getElementById('volume-bar');
@@ -206,28 +169,27 @@ const PlayerP = ({ asset, match:{params:{assetId}}}) => {
 
     // }, [])
 
-    /* Function For Video Duration */
+    // Function For Video Duration
     const seekTimeUpdate = () => {
         let myVideo = document.getElementById('myVideo');
         let curtimetext = document.getElementById("curtimetext");
         let durtimetext = document.getElementById("durtimetext");
-        if(myVideo) {
-              // let nt = myVideo.currentTime * (100 / myVideo.duration);
-        // seekslider.value = nt;
-        let curmins = Math.floor(myVideo.currentTime / 60);
-        let cursecs = Math.floor(myVideo.currentTime - curmins * 60);
-        let durmins = Math.floor(myVideo.duration / 60);
-        let dursecs = Math.floor(myVideo.duration - durmins * 60);
-        if (cursecs < 10) { cursecs = "0" + cursecs; }
-        if (dursecs < 10) { dursecs = "0" + dursecs; }
-        if (curmins < 10) { curmins = "0" + curmins; }
-        if (durmins < 10) { durmins = "0" + durmins; }
-        curtimetext.innerHTML = curmins + ":" + cursecs;
-        durtimetext.innerHTML = durmins + ":" + dursecs;
+        if (myVideo) {
+            // let nt = myVideo.currentTime * (100 / myVideo.duration);
+            // seekslider.value = nt;
+            let curmins = Math.floor(myVideo.currentTime / 60);
+            let cursecs = Math.floor(myVideo.currentTime - curmins * 60);
+            let durmins = Math.floor(myVideo.duration / 60);
+            let dursecs = Math.floor(myVideo.duration - durmins * 60);
+            if (cursecs < 10) { cursecs = "0" + cursecs; }
+            if (dursecs < 10) { dursecs = "0" + dursecs; }
+            if (curmins < 10) { curmins = "0" + curmins; }
+            if (durmins < 10) { durmins = "0" + durmins; }
+            curtimetext.innerHTML = curmins + ":" + cursecs;
+            durtimetext.innerHTML = durmins + ":" + dursecs;
         }
-      
-    }
 
+    }
 
     useEffect(() => {
         let myVideo = document.getElementById('myVideo');
@@ -240,40 +202,40 @@ const PlayerP = ({ asset, match:{params:{assetId}}}) => {
 
     }, [])
 
-    /* For Video Progress Bar */
+    // For Video Progress Bar
     useEffect(() => {
         let myVideo = document.getElementById('myVideo');
         let progress = document.getElementById('progress');
         console.log(myVideo)
         // let progressBar = document.getElementById('progress-bar');
-      
-            myVideo.addEventListener('loadedmetadata', function () {
-                // let myVideo = document.getElementById('myVideo');
-                // let progress = document.getElementById('progress');
-                console.log("metadata")
-                progress.setAttribute('max', myVideo.duration);
-            });
-    
-            myVideo.addEventListener('timeupdate', function () {
-                if (!progress.getAttribute('max')) progress.setAttribute('max', myVideo.duration);
-                progress.value = myVideo.currentTime;
-                console.log( myVideo.currentTime)
-            });
-    
-            progress.addEventListener('click', function (e) {
-                // let myVideo = document.getElementById('myVideo');
-                // let progress = document.getElementById('progress');
-                const scrubTime = (e.offsetX / progress.offsetWidth) * myVideo.duration;
-                console.log(myVideo)
-                myVideo.currentTime = scrubTime;
-            });
-          
 
-     
+        myVideo.addEventListener('loadedmetadata', function () {
+            // let myVideo = document.getElementById('myVideo');
+            // let progress = document.getElementById('progress');
+            console.log("metadata")
+            progress.setAttribute('max', myVideo.duration);
+        });
+
+        myVideo.addEventListener('timeupdate', function () {
+            if (!progress.getAttribute('max')) progress.setAttribute('max', myVideo.duration);
+            progress.value = myVideo.currentTime;
+            console.log(myVideo.currentTime)
+        });
+
+        progress.addEventListener('click', function (e) {
+            // let myVideo = document.getElementById('myVideo');
+            // let progress = document.getElementById('progress');
+            const scrubTime = (e.offsetX / progress.offsetWidth) * myVideo.duration;
+            console.log(myVideo)
+            myVideo.currentTime = scrubTime;
+        });
+
+
+
 
     }, [])
 
-    /* Function To Toggle the fullscreen On/Off */
+    // Function To Toggle the fullscreen On/Off
     const toggleFullScreen = () => {
         let myVideo = document.getElementById('myVideo');
 
@@ -310,32 +272,95 @@ const PlayerP = ({ asset, match:{params:{assetId}}}) => {
         }
     }
 
+    // To set the Video Poster and Video Source
     useEffect(() => {
+        // On componentWillMount
         if (asset) {
-            console.log(asset)
-            let { thumbnail, original } = asset
-            setVideoThumbNail(thumbnail)
-            setVideoSource(original)
+            console.log(asset.asset);
+            let { thumbnail, original } = asset.asset;
+            setVideoThumbNail(thumbnail);
+            setVideoSource(original);
         }
     }, [asset])
 
+    // To remove the Video Poster and Video Source
     useEffect(() => {
-        // on componentWillUnmount
-
+        // On componentWillUnmount
         return (() => {
-            console.log("component is unmounted")
-            console.log(asset)
-            setVideoThumbNail('')
-            setVideoSource('')
+            console.log("component is unmounted");
+            console.log(asset);
+            setVideoThumbNail('');
+            setVideoSource('');
         })
-    },[])
+    }, [])
+
+
+    /* ---------------------------- FOR COMMENTS WRITING BOX ---------------------------- */
+
+
+    // Function To Show/ Hide Emoji Picker
+    const showEmojiBox = () => {
+        setEmojiBox(!emojiBox);
+    }
+
+    // To Close the Emoji Picker whenever click outside it
+    useEffect(() => {
+
+        function handleClickEvent(event) {
+            if (event.target.className === 'far fa-laugh' || !emojiBox) {
+            } else {
+                // Get parent element and check if click happened outside parent only
+                const parent = document.querySelector(".emoji-picker__box");
+                if (emojiBox && parent && !parent.contains(event.target)) {
+                    showEmojiBox();
+                }
+            }
+        }
+        document.querySelector(".postmortem").addEventListener("click", handleClickEvent);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [emojiBox])
+
+    // Function To Add & Append Emojis To Comments TextArea
+    const addEmoji = (e) => {
+        let newValue = textValue + e.native;
+        setTextValue(newValue);
+    }
+
+    //Function For Change Handling of Comment TextArea
+    function textAreaChangeHandle(event) {
+        const value = event.target.value;
+        setTextValue(value);
+    }
+
+    // Function to post the comment to the backend
+    const sendComment = () => {
+        let obj = {
+            "comment": textValue,
+            "video_current_time": new Date(),
+            "userId": "604b78572c85c0001553eea5"
+        }
+        let formData = new FormData();
+        formData.append('data', JSON.stringify(obj))
+        addComment(formData, asset.asset._id)
+    }
+
+    // Comment Privacy Dropdown Option Values
+    let commentPrivacy = [
+        { rightIcon: '', leftIcon: '', value: 'Everyone can see', goToMenu: '' },
+        { rightIcon: '', leftIcon: '', value: 'Team only', goToMenu: '' }
+    ];
+
+
+    /* -------------------------------------------------------------------------------------------- */
+
+
     return (
         <div className="playerP">
             {/* The poster attribute specifies an image to be shown while the video is downloading, or until the user hits the play button. 
             If this is not included, the first frame of the video will be used instead. */}
 
             <video id="myVideo" className="playerP__video" poster={videoThumbNail} onClick={() => playPause()}>
-             {videoSource && asset._id === assetId ? <source src={videoSource} type="video/mp4" key = {videoSource}/> : null}
+                {videoSource && asset._id === assetId ? <source src={videoSource} type="video/mp4" key={videoSource} /> : null}
                 Your browser does not support HTML video.
             </video>
             <div className="playerP__control-box">
@@ -444,7 +469,7 @@ const PlayerP = ({ asset, match:{params:{assetId}}}) => {
                                 <span className="emoji-picker__icon" onClick={showEmojiBox}>
                                 <i className="far fa-laugh"></i>
                             </span>
-                            <ButtonSmall text="Send" click={createNew} />
+                            <ButtonSmall text="Send" click={sendComment} />
                         </div>
                     </div>
 
@@ -456,4 +481,9 @@ const PlayerP = ({ asset, match:{params:{assetId}}}) => {
 var mapStateToProps = (state) => ({
     asset: state.assets && state.assets.asset
 })
-export default connect(mapStateToProps)(withRouter(PlayerP))
+
+var mapDispatchToProps = {
+    addComment
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PlayerP))

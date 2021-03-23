@@ -69,3 +69,24 @@ export const uploadAsset = (data) => async (dispatch) => {
 
 
 }
+
+
+
+export const addComment = (data, assetId) => async (dispatch) => {
+
+    try {
+        let response = await Axios.post(`comment/${assetId}`, data, {
+            config: {
+                handlerEnabled: true
+            }
+        })
+        console.log(response)
+    } catch (e) {
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
+
+        }
+    }
+
+
+}
