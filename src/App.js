@@ -22,10 +22,10 @@ const App = ({ toastMessage, showToastMessage, numberOfRequests }) => {
   const notify = (message) => toast.dark(message);
   // show toast when toastMessage state changes
   useEffect(() => {
-
     if (toastMessage) {
       notify(toastMessage)
     }
+
   }, [toastMessage])
   return (
     <div>

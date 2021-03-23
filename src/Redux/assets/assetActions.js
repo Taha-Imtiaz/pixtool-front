@@ -1,7 +1,7 @@
 import Axios from "axios"
 import { GET_PROJECT } from "../project/projectConstants"
 import { showToastMessage } from "../utility/utilityActions"
-import { GET_ASSET_DETAILS } from "./assetConstants"
+import { GET_ASSET_DETAILS, ADD_COMMENT } from "./assetConstants"
 
 // get all assets of  single project (which is in folder) by passing projectId
 // export const getAllProjectAssests = (projectId) => async (dispatch) => {
@@ -44,7 +44,6 @@ export const getAssetDetails = (assetId) => async (dispatch) => {
 }
 
 
-
 export const uploadAsset = (data) => async (dispatch) => {
 
     try {
@@ -63,15 +62,12 @@ export const uploadAsset = (data) => async (dispatch) => {
     } catch (e) {
         if (e.response && e.response.data) {
             dispatch(showToastMessage(e.response.data.message))
-
         }
     }
-
-
 }
 
 
-
+// For Posting New Comment To The Backend
 export const addComment = (data, assetId) => async (dispatch) => {
 
     try {
@@ -81,12 +77,13 @@ export const addComment = (data, assetId) => async (dispatch) => {
             }
         })
         console.log(response)
+        dispatch({
+            type: ADD_COMMENT,
+            payload: response.data.data
+        })
     } catch (e) {
         if (e.response && e.response.data) {
             dispatch(showToastMessage(e.response.data.message))
-
         }
     }
-
-
 }

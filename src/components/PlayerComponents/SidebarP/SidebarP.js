@@ -1,10 +1,14 @@
 import { React, useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+
 import './SidebarP.scss';
+
 import TabsP from '../NavigationTabsP/TabsP';
 import CommentP from '../../PlayerComponents/CommentP/CommentP';
 
-function SidebarP(props) {
-    //For Video Description On Player Sidebar 
+function SidebarP({ comments, open }) {
+
+    // States For Video Description On Player Sidebar 
     const [editEnabled, setEditEnabled] = useState(false);
     const [description, setDescription] = useState('');
     const [tempDescription, setTempDescription] = useState('');
@@ -38,17 +42,17 @@ function SidebarP(props) {
         });
     }
 
+    // To Set The Height Of Comment Area Of SidebarP
     useEffect(() => {
-        // To Set The Height Of Comment Area Of SidebarP
         let sidebarP = document.getElementById('sidebarP');
-        sidebarP.addEventListener('click', setCommentsHeight, false);
         window.addEventListener('load', setCommentsHeight, false);
+        sidebarP.addEventListener('click', setCommentsHeight, false);
 
     }, [])
 
     return (
-        <div id="sidebarP" className={props.open ? 'sidebarP' : 'sidebarP sidebarPCollapse'}>
-            <div id="sidebar-overlay" className={props.open ? '' : 'sidebarP__overlay'}></div>
+        <div id="sidebarP" className={open ? 'sidebarP' : 'sidebarP sidebarPCollapse'}>
+            <div id="sidebar-overlay" className={open ? '' : 'sidebarP__overlay'}></div>
             <div id="sidebarPHead" className="sidebarP__head">
                 <div className="sidebarP__info">
                     <span className="sidebarP__info--name">John</span>
@@ -95,13 +99,11 @@ function SidebarP(props) {
                         </div>
 
                         <div className="comments__body">
-                            <CommentP />
-                            <CommentP />
-                            <CommentP />
-                            <CommentP />
-                            <CommentP />
-                            <CommentP />
-                            <CommentP />
+                            {comments ? comments.map((comment, i) =>
+                                <CommentP comment={comment} key={comment._id} />
+                            )
+                                : null
+                            }
                         </div>
                     </div>
                 </div>
@@ -168,4 +170,8 @@ function SidebarP(props) {
     )
 }
 
-export default SidebarP
+var mapStateToProps = (state) => ({
+    comments: state.assets && state.assets.asset && state.assets.asset.comments
+})
+
+export default connect(mapStateToProps)(SidebarP)
