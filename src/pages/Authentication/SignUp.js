@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import './Authentication.scss'
 import SignUpBG from '../../images/signUp.png'
 import ButtonLarge from '../../components/Button/ButtonLarge';
 import { connect } from 'react-redux';
-import { checkUserAuthentication, signupUser } from '../../Redux/user/userActions';
+import {signupUser } from '../../Redux/user/userActions';
 
 
 const SignUp = ({ signupUser, history }) => {
@@ -13,20 +13,8 @@ const SignUp = ({ signupUser, history }) => {
         password: '',
         confirmPassword: '',
     })
-    useEffect(() => {
-        let checkUserAuth = checkUserAuthentication()
-       if(checkUserAuth) {
-           console.log(checkUserAuth)
-          history.push("/home")
-       }
-       else {
-          history.push("/sign-up")
-       }
-        },[])
-    // const createNew = () => {
-    //     history.push('/home') 
-    // }
-
+    
+   
     const showHidePassword = () => {
         var input = document.getElementById("password");
         var inputC = document.getElementById("passwordConfirm");
@@ -138,7 +126,6 @@ const SignUp = ({ signupUser, history }) => {
                     </div>
 
                     <div className="form__group">
-                        {/* <button className="btn btn--large btn--blue" onClick={() => history.push('/home')}>Sign Up</button> */}
                         <ButtonLarge type="submit" text="Sign Up" />
                     </div>
                 </form>
