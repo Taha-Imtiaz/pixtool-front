@@ -200,7 +200,7 @@ const Library = ({
                 ) : (
                     <ThumbnailFolderCard id={resource._id} resource={resource} />
                   )
-              ) : <img src={NoDataFoundImg} alt="No Data Found" />}
+              ) : <img src={NoDataFoundImg} alt="No Data Found" className="margin-auto" />}
           </div>
         </div>
       </div>
