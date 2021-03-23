@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getAssetDetails } from '../../Redux/assets/assetActions';
+import { getAssetDetails, getCommentDetails } from '../../Redux/assets/assetActions';
 
 import './Postmortem.scss';
 
@@ -9,13 +9,14 @@ import SidebarP from '../../components/PlayerComponents/SidebarP/SidebarP';
 import PlayerP from '../../components/PlayerComponents/PlayerP/PlayerP';
 
 
-const Player = ({ match: { params: { assetId } }, getAssetDetails, asset }) => {
+const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDetails, asset }) => {
     // This state is responsible for toggling sidebar
     sessionStorage.setItem('previousRoute', 'player')
     const [drawer, setDrawer] = useState(true)
 
     useEffect(() => {
         getAssetDetails(assetId)
+        getCommentDetails(assetId)
     }, [])
 
     const toggle = () => {
@@ -44,7 +45,9 @@ var mapStateToProps = (state) => ({
 })
 
 var mapDispatchToProps = {
-    getAssetDetails
+    getAssetDetails,
+    getCommentDetails
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Player)
 

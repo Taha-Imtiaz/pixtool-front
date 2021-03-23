@@ -176,7 +176,7 @@ function SidebarP({ comments, open }) {
 }
 
 var mapStateToProps = (state) => ({
-    comments: state.assets && state.assets.asset && state.assets.asset.comments
+    comments: state.assets && state.assets.comments
 })
 
 export default connect(mapStateToProps, null)(SidebarP)

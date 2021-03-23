@@ -265,8 +265,8 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
     useEffect(() => {
         // On componentWillMount
         if (asset) {
-            // console.log(asset.asset);
-            let { thumbnail, original } = asset.asset;
+            // console.log(asset);
+            let { thumbnail, original } = asset;
             setVideoThumbNail(thumbnail);
             setVideoSource(original);
         }
@@ -278,7 +278,7 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
         // On componentWillUnmount
         return (() => {
             // console.log("component is unmounted");
-            // console.log(asset.asset);
+            // console.log(asset);
             setVideoThumbNail('');
             setVideoSource('');
         })
@@ -335,7 +335,7 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
             }
             
             formData.append('data', JSON.stringify(obj));
-            addComment(formData, asset.asset._id);
+            addComment(formData, asset._id);
             setTextValue('');
         }
     }
@@ -356,7 +356,7 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
             If this is not included, the first frame of the video will be used instead. */}
 
             <video id="myVideo" className="playerP__video" poster={videoThumbNail} onClick={() => playPause()}>
-                {videoSource && asset.asset._id === assetId
+                {videoSource && asset._id === assetId
                     ?
                     <source src={videoSource} type="video/mp4" key={videoSource} />
                     :

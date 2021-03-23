@@ -1,4 +1,4 @@
-import { ADD_COMMENT, GET_ASSET_DETAILS } from "./assetConstants"
+import { ADD_COMMENT, GET_ASSET_DETAILS, GET_COMMENTS } from "./assetConstants"
 
 let initialState = null
 
@@ -10,7 +10,9 @@ let assetReducer = (state = initialState, { type, payload }) => {
             return { ...state, asset: payload }
 
         case ADD_COMMENT:
-            return { ...state, comment: payload }
+            return { ...state, comments: payload }
+        case GET_COMMENTS:
+            return { ...state, comments: payload }
 
         default:
             return state
