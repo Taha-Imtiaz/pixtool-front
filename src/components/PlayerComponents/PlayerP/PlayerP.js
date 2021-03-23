@@ -41,26 +41,17 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
     /* ---------------------------- FOR VIDEO PLAYER CONTROLS ---------------------------- */
 
 
-    // Function For Play/ Pause
+    // Function To Play/ Pause The Video
     const playPause = () => {
         let myVideo = document.getElementById('myVideo');
 
         if (play === false) {
             myVideo.play();
-            //    if(playVideoPromise !== undefined)
-            setPlay(!play);
 
         } else {
             myVideo.pause();
-            setPlay(!play);
         }
-    }
-
-    // Function For Resetting The Player State When Video Ends
-    const resetPlayer = () => {
-        let myVideo = document.getElementById('myVideo');
-        myVideo.pause();
-        setPlay(false);
+        setPlay(!play);
     }
 
     // Function For Loop
@@ -146,7 +137,44 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
         }
     }
 
-    // For Setting Volume Bar Value From Volume Of Full Screen
+    // Function To Toggle the fullscreen On/Off
+    const toggleFullScreen = () => {
+        let myVideo = document.getElementById('myVideo');
+
+        if (myVideo.requestFullscreen) {
+            if (document.fullScreenElement) {
+                document.cancelFullScreen();
+            } else {
+                myVideo.requestFullscreen();
+            }
+        }
+        else if (myVideo.msRequestFullscreen) {
+            if (document.msFullscreenElement) {
+                document.msExitFullscreen();
+            } else {
+                myVideo.msRequestFullscreen();
+            }
+        }
+        else if (myVideo.mozRequestFullScreen) {
+            if (document.mozFullScreenElement) {
+                document.mozCancelFullScreen();
+            } else {
+                myVideo.mozRequestFullScreen();
+            }
+        }
+        else if (myVideo.webkitRequestFullscreen) {
+            if (document.webkitFullscreenElement) {
+                document.webkitCancelFullScreen();
+            } else {
+                myVideo.webkitRequestFullscreen();
+            }
+        }
+        else {
+            alert("Fullscreen API is not supported");
+        }
+    }
+
+    // Function For Setting Volume Bar Value From Volume Of Full Screen
     // useEffect(() => {
     //     let myVideo = document.getElementById('myVideo');
     //     let volumeBar = document.getElementById('volume-bar');
@@ -191,13 +219,21 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
 
     }
 
+    // Function For Resetting The Player State When Video Ends
+    const resetPlayer = () => {
+        let myVideo = document.getElementById('myVideo');
+        myVideo.pause();
+        setPlay(false);
+    }
+
+    // For Seeking & Updating Time Duration & Resetting The Player State When Video Ends
     useEffect(() => {
         let myVideo = document.getElementById('myVideo');
 
-        /* For Seeking & Updating Time Duration (Initially 00:00 / 00:00) */
+        // For Seeking & Updating Time Duration (Initially 00:00 / 00:00)
         myVideo.addEventListener('timeupdate', seekTimeUpdate, false);
 
-        /* For Resetting The Player State When Video Ends */
+        // For Resetting The Player State When Video Ends
         myVideo.addEventListener('ended', resetPlayer, false);
 
     }, [])
@@ -206,92 +242,47 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
     useEffect(() => {
         let myVideo = document.getElementById('myVideo');
         let progress = document.getElementById('progress');
-        console.log(myVideo)
         // let progressBar = document.getElementById('progress-bar');
 
         myVideo.addEventListener('loadedmetadata', function () {
-            // let myVideo = document.getElementById('myVideo');
-            // let progress = document.getElementById('progress');
-            console.log("metadata")
             progress.setAttribute('max', myVideo.duration);
         });
 
         myVideo.addEventListener('timeupdate', function () {
             if (!progress.getAttribute('max')) progress.setAttribute('max', myVideo.duration);
             progress.value = myVideo.currentTime;
-            console.log(myVideo.currentTime)
         });
 
         progress.addEventListener('click', function (e) {
-            // let myVideo = document.getElementById('myVideo');
-            // let progress = document.getElementById('progress');
             const scrubTime = (e.offsetX / progress.offsetWidth) * myVideo.duration;
-            console.log(myVideo)
             myVideo.currentTime = scrubTime;
         });
 
-
-
-
     }, [])
 
-    // Function To Toggle the fullscreen On/Off
-    const toggleFullScreen = () => {
-        let myVideo = document.getElementById('myVideo');
 
-        if (myVideo.requestFullscreen) {
-            if (document.fullScreenElement) {
-                document.cancelFullScreen();
-            } else {
-                myVideo.requestFullscreen();
-            }
-        }
-        else if (myVideo.msRequestFullscreen) {
-            if (document.msFullscreenElement) {
-                document.msExitFullscreen();
-            } else {
-                myVideo.msRequestFullscreen();
-            }
-        }
-        else if (myVideo.mozRequestFullScreen) {
-            if (document.mozFullScreenElement) {
-                document.mozCancelFullScreen();
-            } else {
-                myVideo.mozRequestFullScreen();
-            }
-        }
-        else if (myVideo.webkitRequestFullscreen) {
-            if (document.webkitFullscreenElement) {
-                document.webkitCancelFullScreen();
-            } else {
-                myVideo.webkitRequestFullscreen();
-            }
-        }
-        else {
-            alert("Fullscreen API is not supported");
-        }
-    }
-
-    // To set the Video Poster and Video Source
+    // To set the Video Poster and Video Source On componentWillMount
     useEffect(() => {
         // On componentWillMount
         if (asset) {
-            console.log(asset.asset);
+            // console.log(asset.asset);
             let { thumbnail, original } = asset.asset;
             setVideoThumbNail(thumbnail);
             setVideoSource(original);
         }
+
     }, [asset])
 
-    // To remove the Video Poster and Video Source
+    // To remove the Video Poster and Video Source On componentWillUnmount
     useEffect(() => {
         // On componentWillUnmount
         return (() => {
-            console.log("component is unmounted");
-            console.log(asset);
+            // console.log("component is unmounted");
+            // console.log(asset.asset);
             setVideoThumbNail('');
             setVideoSource('');
         })
+
     }, [])
 
 
@@ -318,6 +309,7 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
         }
         document.querySelector(".postmortem").addEventListener("click", handleClickEvent);
         // eslint-disable-next-line react-hooks/exhaustive-deps
+
     }, [emojiBox])
 
     // Function To Add & Append Emojis To Comments TextArea
@@ -360,7 +352,12 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
             If this is not included, the first frame of the video will be used instead. */}
 
             <video id="myVideo" className="playerP__video" poster={videoThumbNail} onClick={() => playPause()}>
-                {videoSource && asset._id === assetId ? <source src={videoSource} type="video/mp4" key={videoSource} /> : null}
+                {videoSource && asset.asset._id === assetId
+                    ?
+                    <source src={videoSource} type="video/mp4" key={videoSource} />
+                    :
+                    null
+                }
                 Your browser does not support HTML video.
             </video>
             <div className="playerP__control-box">
