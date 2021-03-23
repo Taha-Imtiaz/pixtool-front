@@ -9,8 +9,9 @@ import SidebarP from '../../components/PlayerComponents/SidebarP/SidebarP';
 import PlayerP from '../../components/PlayerComponents/PlayerP/PlayerP';
 
 
-const Player = ({ match: { params: { assetId } }, getAssetDetails }) => {
+const Player = ({ match: { params: { assetId } }, getAssetDetails, asset }) => {
     // This state is responsible for toggling sidebar
+    sessionStorage.setItem('previousRoute', 'player')
     const [drawer, setDrawer] = useState(true)
 
     useEffect(() => {
@@ -23,9 +24,9 @@ const Player = ({ match: { params: { assetId } }, getAssetDetails }) => {
     return (
         <div className="postmortem page-wrapper">
             {/* "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
-            
+
             <div className="postmortem__header">
-                <HeaderP toggle={toggle} />
+                <HeaderP toggle={toggle} asset={asset} />
             </div>
             <div className="postmortem__sidebar">
                 <SidebarP open={drawer} />
@@ -37,8 +38,13 @@ const Player = ({ match: { params: { assetId } }, getAssetDetails }) => {
         </div>
     )
 }
+
+var mapStateToProps = (state) => ({
+    asset: state.assets && state.assets.asset
+})
+
 var mapDispatchToProps = {
     getAssetDetails
 }
-export default connect(null, mapDispatchToProps)(Player)
+export default connect(mapStateToProps, mapDispatchToProps)(Player)
 
