@@ -326,14 +326,18 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
 
     // Function to post the comment to the backend
     const sendComment = () => {
-        let obj = {
-            "comment": textValue,
-            "video_current_time": new Date(),
-            "userId": "604b78572c85c0001553eea5"
+        if (textValue !== '') {
+            let formData = new FormData();
+            let obj = {
+                "comment": textValue,
+                "video_current_time": new Date(),
+                "userId": "604b78572c85c0001553eea5"
+            }
+            
+            formData.append('data', JSON.stringify(obj));
+            addComment(formData, asset.asset._id);
+            setTextValue('');
         }
-        let formData = new FormData();
-        formData.append('data', JSON.stringify(obj))
-        addComment(formData, asset.asset._id)
     }
 
     // Comment Privacy Dropdown Option Values
