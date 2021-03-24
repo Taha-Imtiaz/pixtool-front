@@ -16,7 +16,7 @@ function CommentP({ comment }) {
                 <Avatar profileImg={comment.user.images.profile_image}/>
                 <span className="comment__name">{comment.user.name}</span>
                 <span className="comment__time">
-                    <TimeAgo date={comment.createdAt} />
+                    <TimeAgo date={comment.createdAt} minPeriod={10} /* live={false} *//>
                 </span>
             </div>
 
