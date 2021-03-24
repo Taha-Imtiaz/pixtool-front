@@ -89,7 +89,7 @@ export const addComment = (data, assetId) => async (dispatch) => {
 }
 
 
-
+// For Getting The Comment Details From Backend
 export const getCommentDetails = (assetId) => async (dispatch) => {
     try {
         let response = await Axios.get(`comment/${assetId}`)

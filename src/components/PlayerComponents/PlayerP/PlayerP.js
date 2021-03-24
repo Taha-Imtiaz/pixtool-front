@@ -515,8 +515,8 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
                                     <Picker set='google' color={'#181F47'} onSelect={addEmoji} />
                                 </div>
                                 : null
-                            };
-                                <span className="emoji-picker__icon" onClick={showEmojiBox}>
+                            }
+                            <span className="emoji-picker__icon" onClick={showEmojiBox}>
                                 <i className="far fa-laugh"></i>
                             </span>
                             <ButtonSmall text="Send" click={sendComment} />

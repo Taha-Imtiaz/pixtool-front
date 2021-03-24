@@ -109,6 +109,7 @@
         border-radius: 1.2rem;
         border: 1px solid $color-primary;
         background-color: $color-secondary;
+        transition: box-shadow .3s;
 
         &:focus,
         &:hover {
@@ -161,7 +162,7 @@
 }
 
 .file-info {
-    max-height: 68vh;
+    max-height: 58.5vh;
     overflow: auto;
     
     &__table {

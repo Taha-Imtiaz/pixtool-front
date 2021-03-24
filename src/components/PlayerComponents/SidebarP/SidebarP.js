@@ -1,12 +1,15 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
+import TimeAgo from 'react-timeago';
+// import { browserHistory } from 'react-router';
 
 import './SidebarP.scss';
 
 import TabsP from '../NavigationTabsP/TabsP';
 import CommentP from '../../PlayerComponents/CommentP/CommentP';
 
-function SidebarP({ comments, open }) {
+function SidebarP({ asset, comments, open }) {
+    console.log(asset)
 
     // States For Video Description On Player Sidebar 
     const [editEnabled, setEditEnabled] = useState(false);
@@ -37,8 +40,8 @@ function SidebarP({ comments, open }) {
 
         setTimeout(() => {
             let comments = document.getElementById('comments');
-
             let sidebarHeadHeight = (windowHeight - (document.getElementById('sidebarPHead').offsetHeight + document.querySelector('.tab-listP').offsetHeight + document.querySelector('.headerP').offsetHeight)).toString();
+
             if (comments) comments.style.maxHeight = (sidebarHeadHeight + 'px');
         });
     }
@@ -46,10 +49,16 @@ function SidebarP({ comments, open }) {
     // To Set The Height Of Comment Area Of SidebarP
     useEffect(() => {
         let sidebarP = document.getElementById('sidebarP');
-        window.addEventListener('load', setCommentsHeight, false);
-        sidebarP.addEventListener('click', setCommentsHeight, false);
+        if (sidebarP) {
+            window.addEventListener('load', setCommentsHeight, false);
+            sidebarP.addEventListener('click', setCommentsHeight, false);
+        }
 
     }, [])
+
+    // browserHistory.listen(location => {
+    //     setCommentsHeight();
+    // });
 
 
     return (
@@ -57,13 +66,20 @@ function SidebarP({ comments, open }) {
             <div id="sidebar-overlay" className={open ? '' : 'sidebarP__overlay'}></div>
             <div id="sidebarPHead" className="sidebarP__head">
                 <div className="sidebarP__info">
-                    <span className="sidebarP__info--name">John</span>
-                    <span className="sidebarP__info--time">uploaded 3d ago</span>
+                    {asset ?
+                        <Fragment>
+                            <span className="sidebarP__info--name">John</span>
+                            <span className="sidebarP__info--time">
+                                Uploaded <TimeAgo date={asset.createdAt} minPeriod={10} />
+                            </span>
+                        </Fragment>
+                        : null
+                    }
                 </div>
 
                 <div className="sidebarP__description">
                     {editEnabled ?
-                        <div>
+                        <Fragment>
                             <div className="sidebarP__description--3">
                                 <textarea className="description__text-area" name="descriptiontext" onChange={(e) => textAreaChangeHandler(e)} value={tempDescription}></textarea>
                                 <span className="description__buttons">
@@ -71,9 +87,9 @@ function SidebarP({ comments, open }) {
                                     <span className="description__button" onClick={() => hanldeSaveDescription()}>Save</span>
                                 </span>
                             </div>
-                        </div>
+                        </Fragment>
                         :
-                        <div>
+                        <Fragment>
                             {description === ''
                                 ?
                                 <div className="sidebarP__description--1">
@@ -86,7 +102,7 @@ function SidebarP({ comments, open }) {
                                     <span className="description__edit-icon" onClick={() => setEditEnabledHandler()}><i className="far fa-edit"></i></span>
                                 </div>
                             }
-                        </div>
+                        </Fragment>
                     }
                 </div>
             </div>

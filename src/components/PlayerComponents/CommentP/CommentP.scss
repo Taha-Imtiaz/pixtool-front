@@ -1,13 +1,20 @@
 @import '../../../scss/variables.scss';
 
 .comment {
+    grid-area: replyCommentArea;
+
     font-family: 'Segoe UI', 'Open Sans', sans-serif;
     color: rgba($color-white, .8);
+    padding: 0 2rem;
+    border-left: 2px solid transparent;
     border-bottom: 2px solid rgba($color-white, .6);
-    
+    transition: border-left .3s, background-color .3s;
+
     &:active,
     &:focus,
     &:hover {
+        outline: none;
+        border-left: 2px solid $color-primary;
         background-color: rgba($color-secondary, .6);
     }
 
@@ -24,7 +31,8 @@
         gap: 1rem;
 
         font-size: 1.8rem;
-        padding: 1rem 2rem;
+        // padding: 1rem 2rem;
+        padding: 1rem 0;
         position: relative;
     }
 
@@ -37,7 +45,8 @@
         display: flex;
         align-items: center;
         gap: 1rem;
-        padding: 1rem 2rem;
+        // padding: 1rem 2rem;
+        padding: 1rem 0;
     }
 
     &__timespan {
@@ -57,7 +66,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 2rem;
+        // padding: 2rem;
+        padding: 1.5rem 0;
         font-size: 1.6rem;
 
         &--left,
@@ -67,7 +77,7 @@
         }
     }
 
-    &__reply {
+    &__icons {
         transition: color .3s, cursor .3s;
 
         &:hover {
@@ -76,12 +86,110 @@
         }
     }
 
-    &__icons {
+    /* &__reply {
         transition: color .3s, cursor .3s;
 
         &:hover {
             cursor: pointer;
             color: rgba($color-white, .6);
+        }
+    } */
+}
+
+.replyComment {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    grid-template-areas:
+        ". replyCommentArea"
+        "replyTextArea replyTextArea";
+
+    padding: 0 2rem;
+    border-left: 2px solid transparent;
+    border-bottom: 2px solid rgba($color-white, .6);
+    transition: border-left .3s, background-color .3s;
+
+    &:active,
+    &:focus,
+    &:hover {
+        outline: none;
+        border-left: 2px solid $color-primary;
+        background-color: rgba($color-secondary, .6);
+    }
+
+    &__content {
+        padding: 0;
+        border: none;
+        background-color: transparent;
+
+        &:active,
+        &:focus,
+        &:hover {
+            outline: none;
+            border: none;
+            background-color: transparent;
+        }
+    }
+}
+
+.reply {
+    grid-area: replyTextArea;
+
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0 2rem;
+
+    &__text-area {
+        justify-self: center;
+        resize: none;
+        min-width: 90%;
+        height: 3.5rem;
+        font-size: 1.6rem;
+        color: rgba($color-white, .8);
+        padding: .8rem;
+        border-radius: .5rem;
+        border: 1px solid $color-primary;
+        background-color: $color-secondary;
+        transition: box-shadow .3s;
+
+        &:focus,
+        &:hover {
+            outline: none;
+            box-shadow: 0px 0px 5px 0px $color-primary;
+        }
+    }
+
+    .emoji-picker {
+
+        &__icon {
+            font-size: 2.5rem;
+            color: rgba($color-white, .8);
+            transition: color .3s, cursor .3s;
+
+            &:active,
+            &:focus,
+            &:hover {
+                outline: none;
+                color: rgba($color-primary, .8);
+                cursor: pointer;
+            }
+        }
+
+        &__box {
+            position: absolute;
+            top: -15rem;
+            right: 3.2rem;
+            border: none;
+            z-index: 10;
+        }
+    }
+
+    .emoji-mart {
+        width: 25rem !important;
+
+        &-preview {
+            display: none;
         }
     }
 }

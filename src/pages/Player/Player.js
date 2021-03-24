@@ -32,7 +32,7 @@ const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDet
                 <HeaderP toggle={toggle} asset={asset} />
             </div>
             <div className="postmortem__sidebar">
-                <SidebarP open={drawer} />
+                <SidebarP open={drawer} asset={asset} />
             </div>
             <div className="postmortem__body">
                 <PlayerP />

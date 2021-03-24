@@ -187,6 +187,39 @@
             outline: none;
         }
     }
+
+    .emoji-picker {
+
+        &__icon {
+            font-size: 2.5rem;
+            color: rgba($color-white, .8);
+            transition: color .3s, cursor .3s;
+
+            &:active,
+            &:focus,
+            &:hover {
+                outline: none;
+                color: rgba($color-primary, .8);
+                cursor: pointer;
+            }
+        }
+
+        &__box {
+            position: absolute;
+            top: -36rem;
+            right: -5rem;
+            border: none;
+            z-index: 1000;
+        }
+    }
+
+    .emoji-mart {
+        width: 30rem !important;
+
+        &-preview {
+            display: none;
+        }
+    }
 }
 
 .timespanBox {
@@ -215,37 +248,5 @@
 
     &__checkbox {
         margin-top: .3rem;
-    }
-}
-
-.emoji-picker {
-
-    &__icon {
-        font-size: 2.5rem;
-        color: rgba($color-white, .8);
-        transition: color .3s, cursor .3s;
-
-        &:active,
-        &:focus,
-        &:hover {
-            outline: none;
-            color: rgba($color-primary, .8);
-            cursor: pointer;
-        }
-    }
-
-    &__box {
-        position: absolute;
-        top: -36rem;
-        right: -5rem;
-        border: none;
-    }
-}
-
-.emoji-mart {
-    width: 30rem !important;
-
-    &-preview {
-        display: none;
     }
 }
