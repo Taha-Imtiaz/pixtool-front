@@ -34,6 +34,9 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
     // State For Comment TextArea
     const [textValue, setTextValue] = useState('');
 
+    // State For Video Time Stamp At Time Of Comment
+    const [timespan, setTimespan] = useState('00 : 00');
+
     // State For Emojibox
     const [emojiBox, setEmojiBox] = useState(false);
 
@@ -175,27 +178,27 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
     }
 
     // Function For Setting Volume Bar Value From Volume Of Full Screen
-    // useEffect(() => {
-    //     let myVideo = document.getElementById('myVideo');
-    //     let volumeBar = document.getElementById('volume-bar');
+    /* useEffect(() => {
+        let myVideo = document.getElementById('myVideo');
+        let volumeBar = document.getElementById('volume-bar');
 
-    //     myVideo.addEventListener('volumechange', function () {
-    //         volumeBar.value = myVideo.volume;
-    //         if (volumeBar.value === '0') {
-    //             setVolume('mute');
+        myVideo.addEventListener('volumechange', function () {
+            volumeBar.value = myVideo.volume;
+            if (volumeBar.value === '0') {
+                setVolume('mute');
 
-    //         } else if (volumeBar.value > .6) {
-    //             setVolume('high');
+            } else if (volumeBar.value > .6) {
+                setVolume('high');
 
-    //         } else if (volumeBar.value < .4) {
-    //             setVolume('low');
+            } else if (volumeBar.value < .4) {
+                setVolume('low');
 
-    //         } else {
-    //             setVolume('medium');
-    //         }
-    //     });
+            } else {
+                setVolume('medium');
+            }
+        });
 
-    // }, [])
+    }, []) */
 
     // Function For Video Duration
     const seekTimeUpdate = () => {
@@ -324,16 +327,62 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
         setTextValue(value);
     }
 
+    // Function To Get The Current Video Play Time & Pause The Video When Comment Textarea Focus
+    const getTimespan = () => {
+        let myVideo = document.getElementById('myVideo');
+
+        if (play !== false) {
+            myVideo.pause();
+            setPlay(!play);
+        }
+
+        if (textValue === '') {
+            let curmins = Math.floor(myVideo.currentTime / 60);
+            let cursecs = Math.floor(myVideo.currentTime - curmins * 60)
+
+            if (cursecs < 10) { cursecs = "0" + cursecs; }
+            if (curmins < 10) { curmins = "0" + curmins; }
+
+            setTimespan(curmins + ":" + cursecs);
+
+        }
+    }
+
+    // Function to Mark Check The TimeSpan CheckBox When Its Container Is Clicked
+    const markCheckBox = () => {
+        let checkbox = document.getElementById('timespanCheckbox');
+
+        if (checkbox.checked === false) {
+            checkbox.checked = true;
+
+        } else {
+            checkbox.checked = false;
+        }
+    }
+
     // Function to post the comment to the backend
     const sendComment = () => {
         if (textValue !== '') {
+            let checkbox = document.getElementById('timespanCheckbox');
             let formData = new FormData();
-            let obj = {
-                "comment": textValue,
-                "video_current_time": new Date(),
-                "userId": "604b78572c85c0001553eea5"
+            let obj = {};
+
+
+            if (checkbox.checked === false) {
+                obj = {
+                    "comment": textValue,
+                    "userId": "604b78572c85c0001553eea5",
+                    "video_current_time": ''
+                }
+
+            } else {
+                obj = {
+                    "comment": textValue,
+                    "userId": "604b78572c85c0001553eea5",
+                    "video_current_time": timespan
+                }
             }
-            
+
             formData.append('data', JSON.stringify(obj));
             addComment(formData, asset._id);
             setTextValue('');
@@ -444,17 +493,17 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
                         <Avatar />
                     </div>
 
-                    <textarea className="playerP__text-area" placeholder="Leave your comment here..." name="textValue" onChange={textAreaChangeHandle} value={textValue}></textarea>
+                    <textarea className="playerP__text-area" placeholder="Leave your comment here..." name="textValue" onFocus={() => getTimespan()} onChange={textAreaChangeHandle} value={textValue}></textarea>
                 </div>
 
                 <div className="playerP__comment-box--bottom">
                     <div></div>
                     <div className="playerP__comment-box--bottom-2">
                         <div className="playerP__comment-box--bottom-left">
-                            <div className="timespanBox">
+                            <div className="timespanBox" onClick={markCheckBox} >
                                 <span className="timespanBox__clock"><i className="far fa-clock"></i></span>
-                                <span className="timespanBox__time">00:00</span>
-                                <span className="timespanBox__checkbox"><input type="checkBox" className="checkbox" /></span>
+                                <span className="timespanBox__time">{timespan}</span>
+                                <span className="timespanBox__checkbox"><input type="checkBox" id="timespanCheckbox" className="checkbox" onClick={markCheckBox} /></span>
                             </div>
 
                             <Dropdown text="Privacy" menuItems={commentPrivacy} />

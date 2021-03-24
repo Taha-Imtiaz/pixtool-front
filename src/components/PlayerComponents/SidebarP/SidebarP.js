@@ -7,7 +7,7 @@ import TabsP from '../NavigationTabsP/TabsP';
 import CommentP from '../../PlayerComponents/CommentP/CommentP';
 
 function SidebarP({ comments, open }) {
-    console.log(comments)
+
     // States For Video Description On Player Sidebar 
     const [editEnabled, setEditEnabled] = useState(false);
     const [description, setDescription] = useState('');
@@ -37,7 +37,8 @@ function SidebarP({ comments, open }) {
 
         setTimeout(() => {
             let comments = document.getElementById('comments');
-            let sidebarHeadHeight = (windowHeight - (document.getElementById('sidebarPHead').offsetHeight + 110)).toString();
+
+            let sidebarHeadHeight = (windowHeight - (document.getElementById('sidebarPHead').offsetHeight + document.querySelector('.tab-listP').offsetHeight + document.querySelector('.headerP').offsetHeight)).toString();
             if (comments) comments.style.maxHeight = (sidebarHeadHeight + 'px');
         });
     }
@@ -50,10 +51,6 @@ function SidebarP({ comments, open }) {
 
     }, [])
 
-    // To Set The Height Of Comment Area Of SidebarP
-    useEffect(() => {
-        console.log(comments)
-    }, [comments])
 
     return (
         <div id="sidebarP" className={open ? 'sidebarP' : 'sidebarP sidebarPCollapse'}>

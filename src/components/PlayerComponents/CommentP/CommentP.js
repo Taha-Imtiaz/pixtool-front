@@ -1,11 +1,11 @@
 import React from 'react';
+import TimeAgo from 'react-timeago'
+
 import './CommentP.scss';
+
 import Avatar from '../../Avatar/Avatar';
 
 function CommentP({ comment }) {
-
-    console.log("Entire Comment", comment)
-    console.log("Comment > User > Name", comment.user.name)
     
     return (
         <div className="comment">
@@ -15,11 +15,13 @@ function CommentP({ comment }) {
                 </span>
                 <Avatar profileImg={comment.user.images.profile_image}/>
                 <span className="comment__name">{comment.user.name}</span>
-                <span className="comment__time">3d</span>
+                <span className="comment__time">
+                    <TimeAgo date={comment.createdAt} />
+                </span>
             </div>
 
             <div className="comment__main">
-                <span className="comment__timespan">00:00</span>
+                <span className="comment__timespan">{comment.video_current_time}</span>
                 <span className="comment__text">{comment.comment}</span>
             </div>
 

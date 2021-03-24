@@ -3,7 +3,8 @@
 .sidebarP {
     position: relative;
     width: 25vw;
-    height: calc(100vh - 6rem);
+    // height: calc(100% - 6rem);
+    height: 100%;
     font-family: 'Segoe UI', 'Open Sans', sans-serif;
     background-color: $color-secondary-dark;
     overflow: hidden;
