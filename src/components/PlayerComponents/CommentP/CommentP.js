@@ -68,7 +68,7 @@ function CommentP({ comment }) {
 
     return (
         <Fragment>
-            <div className="comment" tabindex="0">
+            <div className="comment" tabIndex="0">
                 <div className="comment__head">
                     <span className="comment__check">
                         <input type="checkBox" className="checkbox" />
@@ -115,7 +115,7 @@ function CommentP({ comment }) {
             </div>
 
             {/* For Reply Comment */}
-            <div className="replyComment" tabindex="1">
+            <div className="replyComment" tabIndex="1">
                 <div className="comment replyComment__content">
                     <div className="comment__head">
                         <span className="comment__check">

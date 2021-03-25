@@ -6,7 +6,7 @@ import { getAssets } from '../../../Redux/project/projectActions';
 import './ThumbnailFolderCard.scss';
 
 
-const ThumbnailFolderCard = ({ id, getAssets, resource, history,projectId }) => {
+const ThumbnailFolderCard = ({ id, getAssets, resource, history, projectId }) => {
 
     const [thumbnailsLength, setThumbnailsLength] = useState(0)
     let { name, thumbnails } = resource
@@ -26,29 +26,27 @@ const ThumbnailFolderCard = ({ id, getAssets, resource, history,projectId }) => 
     }
     return (
         <div className="thumbnailFolderCard"
-        onClick={() => fetchAssets(projectId, id)}
+            onClick={() => fetchAssets(projectId, id)}
         >
 
 
             { thumbnails && <div className={thumbnailsLength <= 1 ? 'thumbnailFolderCard__thumbnailBox thumbnailFolderCard__thumbnailBox--1' : 'thumbnailFolderCard__thumbnailBox'}>
                 <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--1">
-                    <img src={thumbnails[0]}
-                        className="thumbnailFolderCard__img thumbnailFolderCard__img--1" />
+                    <img src={thumbnails[0]} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--1" />
                 </span>
                 <span className={thumbnailsLength === 2 ? 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2 thumbnailFolderCard__imgBox--expand' : 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2'}>
-                    <img src={thumbnails[1]}
-                        className="thumbnailFolderCard__img thumbnailFolderCard__img--2" />
+                    <img src={thumbnails[1]} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--2" />
                 </span>
                 {thumbnailsLength === 3 ?
                     <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--3">
-                        <img src={thumbnails[2]} className="thumbnailFolderCard__img thumbnailFolderCard__img--3" />
+                        <img src={thumbnails[2]} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--3" />
                     </span>
                     :
                     null
                 }
                 {thumbnailsLength > 3 ?
                     <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--3">
-                        <span>+{thumbnailsLength -2 }</span>
+                        <span>+{thumbnailsLength - 2}</span>
                     </span>
                     :
                     null

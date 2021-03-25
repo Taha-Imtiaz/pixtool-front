@@ -1,7 +1,6 @@
 import { React, useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import TimeAgo from 'react-timeago';
-// import { browserHistory } from 'react-router';
 
 import './SidebarP.scss';
 
@@ -9,7 +8,6 @@ import TabsP from '../NavigationTabsP/TabsP';
 import CommentP from '../../PlayerComponents/CommentP/CommentP';
 
 function SidebarP({ asset, comments, open }) {
-    console.log(asset)
 
     // States For Video Description On Player Sidebar 
     const [editEnabled, setEditEnabled] = useState(false);
@@ -55,10 +53,6 @@ function SidebarP({ asset, comments, open }) {
         }
 
     }, [])
-
-    // browserHistory.listen(location => {
-    //     setCommentsHeight();
-    // });
 
 
     return (

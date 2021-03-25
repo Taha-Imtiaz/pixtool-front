@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { connect } from "react-redux";
 
 import "./Library.scss";
@@ -38,7 +38,7 @@ const Library = ({
     //check pathname when we goBack(pathname !== the path of the page from which we are coming)
     if (
       sessionStorage.getItem("path") &&
-      pathname != sessionStorage.getItem("path")
+      pathname !== sessionStorage.getItem("path")
     ) {
       console.log("Call Api", pathname);
       sessionStorage.setItem("path", pathname);
