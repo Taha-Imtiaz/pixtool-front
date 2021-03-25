@@ -7,7 +7,7 @@
     color: rgba($color-white, .8);
     padding: 0 2rem;
     border-left: 2px solid transparent;
-    border-bottom: 2px solid rgba($color-white, .6);
+    border-bottom: 1px solid rgba($color-white, .6);
     transition: border-left .3s, background-color .3s;
 
     &:active,
@@ -20,8 +20,8 @@
 
     &__check {
         position: absolute;
-        top: 1.5rem;
-        right: 2rem;
+        top: 2rem;
+        right: 0;
         z-index: 1;
     }
 
@@ -98,14 +98,14 @@
 
 .replyComment {
     display: grid;
-    grid-template-columns: 3rem 1fr;
+    grid-template-columns: 5rem 1fr;
     grid-template-areas:
         ". replyCommentArea"
         "replyTextArea replyTextArea";
 
     padding: 0 2rem;
     border-left: 2px solid transparent;
-    border-bottom: 2px solid rgba($color-white, .6);
+    border-bottom: 1px solid rgba($color-white, .6);
     transition: border-left .3s, background-color .3s;
 
     &:active,

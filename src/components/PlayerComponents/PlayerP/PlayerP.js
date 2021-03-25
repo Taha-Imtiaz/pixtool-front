@@ -310,7 +310,7 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
                 }
             }
         }
-        document.querySelector(".postmortem").addEventListener("click", handleClickEvent);
+        document.querySelector(".player").addEventListener("click", handleClickEvent);
         // eslint-disable-next-line react-hooks/exhaustive-deps
 
     }, [emojiBox])
@@ -371,14 +371,12 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
             if (checkbox.checked === false) {
                 obj = {
                     "comment": textValue,
-                    "userId": "604b78572c85c0001553eea5",
                     "video_current_time": ''
                 }
 
             } else {
                 obj = {
                     "comment": textValue,
-                    "userId": "604b78572c85c0001553eea5",
                     "video_current_time": timespan
                 }
             }

@@ -1,3 +1,4 @@
 export const GET_ASSET_DETAILS = "GET_ASSET_DETAILS"
 export const ADD_COMMENT = "ADD_COMMENT"
 export const GET_COMMENTS = "GET_COMMENTS"
+export const ADD_REPLY = "ADD_REPLY"

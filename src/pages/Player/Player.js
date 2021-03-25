@@ -25,16 +25,16 @@ const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDet
     }
     
     return (
-        <div className="postmortem page-wrapper">
+        <div className="player page-wrapper">
             {/* "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
 
-            <div className="postmortem__header">
+            <div className="player__header">
                 <HeaderP toggle={toggle} asset={asset} />
             </div>
-            <div className="postmortem__sidebar">
+            <div className="player__sidebar">
                 <SidebarP open={drawer} asset={asset} />
             </div>
-            <div className="postmortem__body">
+            <div className="player__body">
                 <PlayerP />
             </div>
 

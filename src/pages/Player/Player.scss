@@ -1,9 +1,12 @@
 @import '../../scss/variables.scss';
+@import '../../scss/scrollbars.scss';
 
-.postmortem {
+.player {
     display: grid;
     grid-template-columns: 1fr min-content;
+    grid-auto-rows: min-content 1fr;
 
+    min-height: 100vh;
     background-color: $color-secondary;
 
     &__header {

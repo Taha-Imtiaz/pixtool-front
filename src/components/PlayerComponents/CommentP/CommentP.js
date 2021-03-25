@@ -1,5 +1,8 @@
 import { React, useState, useEffect, Fragment } from 'react';
 import TimeAgo from 'react-timeago';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addReply } from '../../../Redux/assets/assetActions';
 
 import './CommentP.scss';
 import 'emoji-mart/css/emoji-mart.css';
@@ -7,7 +10,13 @@ import 'emoji-mart/css/emoji-mart.css';
 import Avatar from '../../Avatar/Avatar';
 import { Picker } from 'emoji-mart';
 
-function CommentP({ comment }) {
+function CommentP({ asset, comment, addReply }) {
+
+
+    /* ---------------------------- ALL STATES FOR COMMENTP COMPONENT---------------------------- */
+
+    // console.log("AssetID:", assetId)
+    console.log("Asset:", asset)
 
     // State For Toggling Reply TextArea
     const [writeReply, setWriteReply] = useState(false)
@@ -21,13 +30,21 @@ function CommentP({ comment }) {
     // State For Emojibox
     const [emojiBox, setEmojiBox] = useState(false);
 
-    // Function For Toggling Reply TextArea
+
+    /* ---------------------------- ALL FUNCTIONS FOR COMMENTP COMPONENT---------------------------- */
+
+
+    // Function For Main Comment Reply TextArea Toggling 
     const reply = () => {
+        setReplyText('');
+        setWriteCommentReply(false);
         setWriteReply(!writeReply);
     }
 
-    // Function For Toggling Reply TextArea
+    // Function For Sub Comment TextArea Reply Toggling
     const commentReply = () => {
+        setReplyText('');
+        setWriteReply(false);
         setWriteCommentReply(!writeCommentReply);
     }
 
@@ -49,7 +66,7 @@ function CommentP({ comment }) {
                 }
             }
         }
-        document.querySelector(".postmortem").addEventListener("click", handleClickEvent);
+        document.querySelector(".player").addEventListener("click", handleClickEvent);
         // eslint-disable-next-line react-hooks/exhaustive-deps
 
     }, [emojiBox])
@@ -60,14 +77,39 @@ function CommentP({ comment }) {
         setReplyText(replyTextValue);
     }
 
-    //Function For Change Handling of Comment TextArea
+    // Function For Change Handling of Comment TextArea
     function replyTextAreaChangeHandle(event) {
         const value = event.target.value;
         setReplyText(value);
     }
 
+    // Function To Submit/ Save/ Record The Comment Reply
+    const submitReply = (event) => {
+        if (event.key === 'Enter' || event.charCode === 13 || event.keyCode === 13) {
+            if (event.shiftKey) { } // New Line Is Added
+
+            else if (replyText !== '') {
+                let obj = {
+                    "comment": replyText,
+                    "commentId": comment._id
+                }
+                addReply(obj, asset._id);
+                setReplyText('');
+
+                // Below Two States Toggle Off The Reply TextArea
+                setWriteCommentReply(false);
+                setWriteReply(false);
+            }
+            return false;
+        }
+    }
+
+    /* -------------------------------------------------------------------------------------------- */
+
+
     return (
         <Fragment>
+            {/* For Normal/ Main Comment */}
             <div className="comment" tabIndex="0">
                 <div className="comment__head">
                     <span className="comment__check">
@@ -98,7 +140,7 @@ function CommentP({ comment }) {
 
                 {writeReply ?
                     <div className="reply">
-                        <textarea className="reply__text-area" name="replyTextArea" onChange={replyTextAreaChangeHandle} value={replyText}></textarea>
+                        <textarea className="reply__text-area" name="replyTextArea" onKeyPress={(e) => submitReply(e)} onChange={replyTextAreaChangeHandle} value={replyText}></textarea>
 
                         {emojiBox === true ?
                             <div className="emoji-picker__box">
@@ -114,23 +156,23 @@ function CommentP({ comment }) {
                 }
             </div>
 
-            {/* For Reply Comment */}
-            <div className="replyComment" tabIndex="1">
+            {/* For Sub/ Reply Comment */}
+            {comment.replies.map((reply, i) => <div className="replyComment" tabIndex="1">
                 <div className="comment replyComment__content">
                     <div className="comment__head">
                         <span className="comment__check">
                             <input type="checkBox" className="checkbox" />
                         </span>
-                        <Avatar profileImg={comment.user.images.profile_image} />
-                        <span className="comment__name">{comment.user.name}</span>
+                        <Avatar profileImg={reply.user.images.profile_image} />
+                        <span className="comment__name">{reply.user.name}</span>
                         <span className="comment__time">
-                            <TimeAgo date={comment.createdAt} minPeriod={10} />
+                            <TimeAgo date={reply.createdAt} minPeriod={10} />
                         </span>
                     </div>
 
                     <div className="comment__main">
-                        {/* <span className="comment__timespan">{comment.video_current_time}</span> */}
-                        <span className="comment__text">{comment.comment}</span>
+                        {/* <span className="comment__timespan">{reply.video_current_time}</span> */}
+                        <span className="comment__text">{reply.comment}</span>
                     </div>
 
                     <div className="comment__bottom">
@@ -146,7 +188,7 @@ function CommentP({ comment }) {
                 </div>
                 {writeCommentReply ?
                     <div className="reply">
-                        <textarea className="reply__text-area" name="replyTextArea" onChange={replyTextAreaChangeHandle} value={replyText}></textarea>
+                        <textarea className="reply__text-area" name="replyTextArea" onKeyPress={(e) => submitReply(e)} onChange={replyTextAreaChangeHandle} value={replyText}></textarea>
 
                         {emojiBox === true ?
                             <div className="emoji-picker__box">
@@ -161,8 +203,18 @@ function CommentP({ comment }) {
                     : null
                 }
             </div>
+            )}
+
         </Fragment>
     )
 }
 
-export default CommentP
+var mapStateToProps = (state) => ({
+    asset: state.assets && state.assets.asset
+})
+
+var mapDispatchToProps = {
+    addReply
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentP)

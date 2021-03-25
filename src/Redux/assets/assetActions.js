@@ -1,7 +1,7 @@
-import Axios from "axios"
-import { GET_PROJECT } from "../project/projectConstants"
-import { showToastMessage } from "../utility/utilityActions"
-import { GET_ASSET_DETAILS, ADD_COMMENT, GET_COMMENTS } from "./assetConstants"
+import Axios from 'axios';
+import { GET_PROJECT } from '../project/projectConstants';
+import { showToastMessage } from '../utility/utilityActions';
+import { GET_ASSET_DETAILS, ADD_COMMENT, GET_COMMENTS, ADD_REPLY } from './assetConstants';
 
 // get all assets of  single project (which is in folder) by passing projectId
 // export const getAllProjectAssests = (projectId) => async (dispatch) => {
@@ -76,7 +76,6 @@ export const addComment = (data, assetId) => async (dispatch) => {
                 handlerEnabled: true
             }
         })
-        console.log(response)
         dispatch({
             type: ADD_COMMENT,
             payload: response.data.data
@@ -101,6 +100,28 @@ export const getCommentDetails = (assetId) => async (dispatch) => {
         if (e.response && e.response.data) {
             dispatch(showToastMessage(e.response.data.message))
 
+        }
+    }
+}
+
+
+// For Posting New Reply Comment To The Backend
+export const addReply = (data, assetId) => async (dispatch) => {
+
+    try {
+        let response = await Axios.post(`comment/reply/${assetId}`, data, {
+            config: {
+                handlerEnabled: true
+            }
+        })
+        console.log(response);
+        dispatch({
+            type: ADD_COMMENT,
+            payload: response.data.data
+        })
+    } catch (e) {
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
         }
     }
 }
