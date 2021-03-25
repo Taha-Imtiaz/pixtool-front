@@ -1,8 +1,7 @@
 import { React, useState, useEffect, Fragment } from 'react';
 import TimeAgo from 'react-timeago';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addReply } from '../../../Redux/assets/assetActions';
+import { addReply, deleteComments } from '../../../Redux/assets/assetActions';
 
 import './CommentP.scss';
 import 'emoji-mart/css/emoji-mart.css';
@@ -10,7 +9,7 @@ import 'emoji-mart/css/emoji-mart.css';
 import Avatar from '../../Avatar/Avatar';
 import { Picker } from 'emoji-mart';
 
-function CommentP({ asset, comment, addReply }) {
+function CommentP({ asset, comment, addReply, deleteComments }) {
 
 
     /* ---------------------------- ALL STATES FOR COMMENTP COMPONENT---------------------------- */
@@ -104,6 +103,13 @@ function CommentP({ asset, comment, addReply }) {
         }
     }
 
+    // Function To Delete The Comments
+    const deleteComment = (comment) => {
+       let assetId =  asset._id;
+       deleteComments(assetId, comment);
+    }
+
+
     /* -------------------------------------------------------------------------------------------- */
 
 
@@ -130,11 +136,11 @@ function CommentP({ asset, comment, addReply }) {
                 <div className="comment__bottom">
                     <div className="comment__bottom--left">
                         <span className="comment__icons" onClick={reply}>Reply</span>
-                        <span className="comment__icons"><a href="./#" className="txt-dec-none"><i className="far fa-thumbs-up"></i></a></span>
+                        <span className="comment__icons"><i className="far fa-thumbs-up"></i></span>
                     </div>
                     <div className="comment__bottom--right">
-                        <span className="comment__icons"><a href="./#" className="txt-dec-none"><i className="far fa-edit"></i></a></span>
-                        <span className="comment__icons"><a href="./#" className="txt-dec-none"><i className="far fa-trash-alt"></i></a></span>
+                        <span className="comment__icons"><i className="far fa-edit"></i></span>
+                        <span className="comment__icons" onClick={() => deleteComment(comment._id)}><i className="far fa-trash-alt"></i></span>
                     </div>
                 </div>
 
@@ -178,11 +184,11 @@ function CommentP({ asset, comment, addReply }) {
                     <div className="comment__bottom">
                         <div className="comment__bottom--left">
                             <span className="comment__icons" onClick={commentReply}>Reply</span>
-                            <span className="comment__icons"><a href="./#" className="txt-dec-none"><i className="far fa-thumbs-up"></i></a></span>
+                            <span className="comment__icons"><i className="far fa-thumbs-up"></i></span>
                         </div>
                         <div className="comment__bottom--right">
-                            <span className="comment__icons"><a href="./#" className="txt-dec-none"><i className="far fa-edit"></i></a></span>
-                            <span className="comment__icons"><a href="./#" className="txt-dec-none"><i className="far fa-trash-alt"></i></a></span>
+                            <span className="comment__icons"><i className="far fa-edit"></i></span>
+                            <span className="comment__icons" onClick={() => deleteComment(reply._id)}><i className="far fa-trash-alt"></i></span>
                         </div>
                     </div>
                 </div>
@@ -214,7 +220,7 @@ var mapStateToProps = (state) => ({
 })
 
 var mapDispatchToProps = {
-    addReply
+    addReply, deleteComments
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentP)
