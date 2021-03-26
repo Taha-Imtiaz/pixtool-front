@@ -1,5 +1,7 @@
 import { React, useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { addDescription, getDescription } from '../../../Redux/assets/assetActions';
 import TimeAgo from 'react-timeago';
 
 import './SidebarP.scss';
@@ -7,10 +9,10 @@ import './SidebarP.scss';
 import TabsP from '../NavigationTabsP/TabsP';
 import CommentP from '../../PlayerComponents/CommentP/CommentP';
 
-function SidebarP({ asset, comments, open }) {
+function SidebarP({ asset, comments, open, addDescription, getDescription, assetDescription, match: { params: { assetId } } }) {
 
     // States For Video Description On Player Sidebar 
-    const [editEnabled, setEditEnabled] = useState(false);
+    const [enableEditor, setEnableEditor] = useState(false);
     const [description, setDescription] = useState('');
     const [tempDescription, setTempDescription] = useState('');
 
@@ -20,17 +22,31 @@ function SidebarP({ asset, comments, open }) {
         setTempDescription(value);
     }
 
-    // For Opening The Edit Description Textbox
-    const setEditEnabledHandler = () => {
-        setEditEnabled(true)
+    // For Opening The Edit Description TextArea
+    const editDescription = () => {
+        setEnableEditor(true)
         setTempDescription(description)
     }
 
-    // For Saving The Description Typed In Textbox
-    const hanldeSaveDescription = () => {
-        setEditEnabled(false)
-        setDescription(tempDescription)
+    // For Saving The Description, Typed In TextArea
+    const saveDescription = () => {
+        setEnableEditor(false);
+        setDescription(tempDescription);
+
+        let obj = {
+            "description": tempDescription, // Although description is already set a step before. But I sended tempDescription because setting state takes time.
+        }
+        addDescription(obj, asset._id);
     }
+
+    // For Getting The Saved Description, From Backend
+    useEffect(() => {
+        getDescription(assetId);
+        if(assetDescription) {
+            setDescription(assetDescription);
+        }
+
+    }, [assetDescription])
 
     // Function To Set The Height Of Comment Area Of SidebarP
     const setCommentsHeight = () => {
@@ -72,36 +88,36 @@ function SidebarP({ asset, comments, open }) {
                 </div>
 
                 <div className="sidebarP__description">
-                    {editEnabled ?
-                        <Fragment>
-                            <div className="sidebarP__description--3">
-                                <textarea className="description__text-area" name="descriptiontext" onChange={(e) => textAreaChangeHandler(e)} value={tempDescription}></textarea>
-                                <span className="description__buttons">
-                                    <span className="description__button" onClick={() => setEditEnabled(false)}>Cancel</span>
-                                    <span className="description__button" onClick={() => hanldeSaveDescription()}>Save</span>
-                                </span>
-                            </div>
-                        </Fragment>
-                        :
+                    {!enableEditor ?
                         <Fragment>
                             {description === ''
                                 ?
                                 <div className="sidebarP__description--1">
-                                    <span className="sidebarP__description--add" onClick={() => setEditEnabledHandler()}><i className="fas fa-plus-square"></i></span>
-                                    <label className="sidebarP__description--add" onClick={() => setEditEnabledHandler()}>Add Description</label>
+                                    <span className="sidebarP__description--add" onClick={() => editDescription()}><i className="fas fa-plus-square"></i></span>
+                                    <label className="sidebarP__description--add" onClick={() => editDescription()}>Add Description</label>
                                 </div>
                                 :
                                 <div className="sidebarP__description--2">
                                     <div className="description__text">{description}</div>
-                                    <span className="description__edit-icon" onClick={() => setEditEnabledHandler()}><i className="far fa-edit"></i></span>
+                                    <span className="description__edit-icon" onClick={() => editDescription()}><i className="far fa-edit"></i></span>
                                 </div>
                             }
+                        </Fragment>
+                        :
+                        <Fragment>
+                            <div className="sidebarP__description--3">
+                                <textarea className="description__text-area" name="descriptiontext" onChange={(e) => textAreaChangeHandler(e)} value={tempDescription}></textarea>
+                                <span className="description__buttons">
+                                    <span className="description__button" onClick={() => setEnableEditor(false)}>Cancel</span>
+                                    <span className="description__button" onClick={() => saveDescription()}>Save</span>
+                                </span>
+                            </div>
                         </Fragment>
                     }
                 </div>
             </div>
 
-            {/* This is Postmortem Page's Sidebar Tab which include Comments & File Information Tabs */}
+            {/* This is Player Page's Sidebar Tab which include Comments & File Information Tabs */}
             <TabsP className="tabs">
                 {/* Comments Tab Content */}
                 <div label="Comments">
@@ -183,7 +199,13 @@ function SidebarP({ asset, comments, open }) {
 }
 
 var mapStateToProps = (state) => ({
-    comments: state.assets && state.assets.comments
+    comments: state.assets && state.assets.comments,
+    assetDescription: state.assets && state.assets.description && state.assets.description.description
 })
 
-export default connect(mapStateToProps, null)(SidebarP)
+var mapDispatchToProps = {
+    addDescription,
+    getDescription
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SidebarP))

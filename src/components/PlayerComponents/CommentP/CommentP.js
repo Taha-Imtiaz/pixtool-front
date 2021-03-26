@@ -14,8 +14,6 @@ function CommentP({ asset, comment, addReply, deleteComments }) {
 
     /* ---------------------------- ALL STATES FOR COMMENTP COMPONENT---------------------------- */
 
-    // console.log("AssetID:", assetId)
-    console.log("Asset:", asset)
 
     // State For Toggling Reply TextArea
     const [writeReply, setWriteReply] = useState(false)
@@ -105,10 +103,11 @@ function CommentP({ asset, comment, addReply, deleteComments }) {
 
     // Function To Delete The Comments
     const deleteComment = (comment) => {
-       let assetId =  asset._id;
-       deleteComments(assetId, comment);
+        let assetId = asset._id;
+        deleteComments(assetId, comment);
     }
-
+    console.log("Comments", comment)
+    console.log("All Replies", comment.replies)
 
     /* -------------------------------------------------------------------------------------------- */
 
@@ -163,53 +162,55 @@ function CommentP({ asset, comment, addReply, deleteComments }) {
             </div>
 
             {/* For Sub/ Reply Comment */}
-            {comment.replies.map((reply, i) => <div className="replyComment" tabIndex="1">
-                <div className="comment replyComment__content">
-                    <div className="comment__head">
-                        <span className="comment__check">
-                            <input type="checkBox" className="checkbox" />
-                        </span>
-                        <Avatar profileImg={reply.user.images.profile_image} />
-                        <span className="comment__name">{reply.user.name}</span>
-                        <span className="comment__time">
-                            <TimeAgo date={reply.createdAt} minPeriod={10} />
-                        </span>
-                    </div>
-
-                    <div className="comment__main">
-                        {/* <span className="comment__timespan">{reply.video_current_time}</span> */}
-                        <span className="comment__text">{reply.comment}</span>
-                    </div>
-
-                    <div className="comment__bottom">
-                        <div className="comment__bottom--left">
-                            <span className="comment__icons" onClick={commentReply}>Reply</span>
-                            <span className="comment__icons"><i className="far fa-thumbs-up"></i></span>
+            {comment.replies ?
+                comment.replies.map((reply, i) => <div className="replyComment" tabIndex="1" key={comment.replies[i]._id}>
+                    <div className="comment replyComment__content">
+                        <div className="comment__head">
+                            <span className="comment__check">
+                                <input type="checkBox" className="checkbox" />
+                            </span>
+                            <Avatar profileImg={reply.user.images.profile_image} />
+                            <span className="comment__name">{reply.user.name}</span>
+                            <span className="comment__time">
+                                <TimeAgo date={reply.createdAt} minPeriod={10} />
+                            </span>
                         </div>
-                        <div className="comment__bottom--right">
-                            <span className="comment__icons"><i className="far fa-edit"></i></span>
-                            <span className="comment__icons" onClick={() => deleteComment(reply._id)}><i className="far fa-trash-alt"></i></span>
-                        </div>
-                    </div>
-                </div>
-                {writeCommentReply ?
-                    <div className="reply">
-                        <textarea className="reply__text-area" name="replyTextArea" onKeyPress={(e) => submitReply(e)} onChange={replyTextAreaChangeHandle} value={replyText}></textarea>
 
-                        {emojiBox === true ?
-                            <div className="emoji-picker__box">
-                                <Picker set='google' color={'#181F47'} onSelect={addEmoji} />
+                        <div className="comment__main">
+                            <span className="comment__text">{reply.comment}</span>
+                        </div>
+
+                        <div className="comment__bottom">
+                            <div className="comment__bottom--left">
+                                <span className="comment__icons" onClick={commentReply}>Reply</span>
+                                <span className="comment__icons"><i className="far fa-thumbs-up"></i></span>
                             </div>
-                            : null
-                        }
-                        <span className="emoji-picker__icon" onClick={showEmojiBox}>
-                            <i className="far fa-laugh"></i>
-                        </span>
+                            <div className="comment__bottom--right">
+                                <span className="comment__icons"><i className="far fa-edit"></i></span>
+                                <span className="comment__icons" onClick={() => deleteComment(reply._id)}><i className="far fa-trash-alt"></i></span>
+                            </div>
+                        </div>
                     </div>
-                    : null
-                }
-            </div>
-            )}
+                    {writeCommentReply ?
+                        <div className="reply">
+                            <textarea className="reply__text-area" name="replyTextArea" onKeyPress={(e) => submitReply(e)} onChange={replyTextAreaChangeHandle} value={replyText}></textarea>
+
+                            {emojiBox === true ?
+                                <div className="emoji-picker__box">
+                                    <Picker set='google' color={'#181F47'} onSelect={addEmoji} />
+                                </div>
+                                : null
+                            }
+                            <span className="emoji-picker__icon" onClick={showEmojiBox}>
+                                <i className="far fa-laugh"></i>
+                            </span>
+                        </div>
+                        : null
+                    }
+                </div>
+                )
+                : null
+            }
 
         </Fragment>
     )

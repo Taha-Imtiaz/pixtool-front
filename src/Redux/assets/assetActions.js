@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { GET_PROJECT } from '../project/projectConstants';
 import { showToastMessage } from '../utility/utilityActions';
-import { GET_ASSET_DETAILS, ADD_COMMENT, GET_COMMENTS, ADD_REPLY, DELETE_COMMENT } from './assetConstants';
+import { GET_ASSET_DETAILS, ADD_COMMENT, GET_COMMENTS, ADD_REPLY, DELETE_COMMENT, ADD_DESCRIPTION, GET_DESCRIPTION } from './assetConstants';
 
 // get all assets of  single project (which is in folder) by passing projectId
 // export const getAllProjectAssests = (projectId) => async (dispatch) => {
@@ -126,7 +126,7 @@ export const addReply = (data, assetId) => async (dispatch) => {
 }
 
 
-// For Posting New Reply Comment To The Backend
+// For Deleting Comment From The Backend
 export const deleteComments = (assetId, commentId) => async (dispatch) => {
 
     try {
@@ -143,6 +143,44 @@ export const deleteComments = (assetId, commentId) => async (dispatch) => {
     } catch (e) {
         if (e.response && e.response.data) {
             dispatch(showToastMessage(e.response.data.message))
+        }
+    }
+}
+
+
+// For Posting Video/ Asset Description To The Backend
+export const addDescription = (data, assetId) => async (dispatch) => {
+
+    try {
+        let response = await Axios.put(`/asset/${assetId}`, data, {
+            config: {
+                handlerEnabled: true
+            }
+        })
+        dispatch({
+            type: ADD_DESCRIPTION,
+            payload: response.data.data
+        })
+    } catch (e) {
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
+        }
+    }
+}
+
+
+// For Getting Video/ Asset Description From Backend
+export const getDescription = (assetId) => async (dispatch) => {
+    try {
+        let response = await Axios.get(`/asset/${assetId}`)
+        dispatch({
+            type: GET_DESCRIPTION,
+            payload: response.data.data
+        })
+    } catch (e) {
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
+
         }
     }
 }

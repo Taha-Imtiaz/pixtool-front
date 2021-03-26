@@ -1,4 +1,4 @@
-import { ADD_COMMENT, GET_ASSET_DETAILS, GET_COMMENTS, ADD_REPLY,  DELETE_COMMENT } from './assetConstants';
+import { ADD_COMMENT, GET_ASSET_DETAILS, GET_COMMENTS, ADD_REPLY, DELETE_COMMENT, ADD_DESCRIPTION, GET_DESCRIPTION } from './assetConstants';
 
 let initialState = null
 
@@ -20,6 +20,12 @@ let assetReducer = (state = initialState, { type, payload }) => {
 
         case DELETE_COMMENT:
             return { ...state, comments: payload }
+
+        case ADD_DESCRIPTION:
+            return { ...state, description: payload }
+
+        case GET_DESCRIPTION:
+            return { ...state, description: payload }
 
         default:
             return state
