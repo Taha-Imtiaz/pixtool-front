@@ -127,7 +127,7 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
                         </div>
 
                         <div className="comments__body">
-                            {comments ? comments.map((comment, i) =>
+                            {comments ? comments.map((comment) =>
                                 <CommentP comment={comment} key={comment._id} />
                             )
                                 : null

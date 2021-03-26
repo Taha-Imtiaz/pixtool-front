@@ -9,10 +9,23 @@ import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 import { Fragment } from 'react';
 
 function Dropdown(props) {
+
+    // Function to check which dropdown value is Clicked
+    const checkClick = (option) => {
+
+        // Check For Comment Privacy
+        if (option == 'Everyone can see') {
+            props.setCommentPrivacy('public');
+
+        } else if (option == 'Team only') {
+            props.setCommentPrivacy('private');
+        }
+    }
+
     return (
         <Navbar text={props.text}>
             <NavItem icon={<CaretIcon />}>
-                <DropdownMenu menuItems={props.menuItems} ></DropdownMenu>
+                <DropdownMenu menuItems={props.menuItems} checkClick={checkClick}></DropdownMenu>
             </NavItem>
         </Navbar>
     )
@@ -88,22 +101,22 @@ function DropdownMenu(props) {
 
 
     function DropdownItem(props) {
-        console.log(props)
+
         return (
             <span className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>
-               {/* {props.children} */}
+                {/* {props.children} */}
                 {props.upload !== undefined && props.upload.value === true ? <Fragment>
-                    <label htmlFor="file-upload" className="custom-file-upload">
+                    <label htmlFor="file-upload" className="custom-file-upload" >
                         {props.children}
                     </label>
                     <input id="file-upload" type="file" className="dropdown__uploadInput inputTag" onChange={(e) => props.upload.onUpload(e)} accept="video/*" />
-                </Fragment> :props.upload !== undefined && props.upload.value === false ? 
-               <Fragment>
-                      <label htmlFor="folder-upload" className="custom-folder-upload" onClick = {() => props.upload.modalToggler()}>
-                        {props.children}
-                    </label>
-               </Fragment> : props.children}
+                </Fragment> : props.upload !== undefined && props.upload.value === false ?
+                    <Fragment>
+                        <label htmlFor="folder-upload" className="custom-folder-upload" onClick={() => props.upload.modalToggler()}>
+                            {props.children}
+                        </label>
+                    </Fragment> : <span onClick={() => props.checkClick(props.children)} >{props.children}</span>}
                 <span className="icon-button icon-right">{props.rightIcon}</span>
             </span>
         );
@@ -117,6 +130,7 @@ function DropdownMenu(props) {
                     unmountOnExit
                     timeout={500}
                     classNames="menu-primary"
+
                 >
                     <div className="menu">
                         {props.menuItems.map((x, i) => (
@@ -125,7 +139,8 @@ function DropdownMenu(props) {
                                 upload={x.isUpload}
                                 leftIcon={x.leftIcon}
                                 goToMenu={x.goToMenu}
-                                key={i}>
+                                key={i}
+                                checkClick={props.checkClick}>
 
                                 {x.value}
                             </DropdownItem>

@@ -17,6 +17,10 @@ import PlayerControls from '../../../images/player-icons/sprite.svg';
 const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
 
 
+    /* ------------------------------ ENTIRE FILE SCOPE VARIABLES ------------------------------ */
+    var commentPrivacy;
+
+
     /* ---------------------------- ALL STATES FOR PLAYERP COMPONENT---------------------------- */
 
 
@@ -292,6 +296,12 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
     /* ---------------------------- FOR COMMENTS WRITING BOX ---------------------------- */
 
 
+    // Comment Privacy Dropdown Option Values
+    let commentPrivacyOpt = [
+        { rightIcon: '', leftIcon: '', value: 'Everyone can see', goToMenu: '' },
+        { rightIcon: '', leftIcon: '', value: 'Team only', goToMenu: '' }
+    ];
+
     // Function To Show/ Hide Emoji Picker
     const showEmojiBox = () => {
         setEmojiBox(!emojiBox);
@@ -360,6 +370,12 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
         }
     }
 
+
+    // Function To Set Comment Privacy On Dropdown Option Click
+    const setCommentPrivacy = (value) => {
+        commentPrivacy = value;
+    }
+
     // Function to post the comment to the backend
     const sendComment = () => {
         if (textValue !== '') {
@@ -371,13 +387,15 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
             if (checkbox.checked === false) {
                 obj = {
                     "comment": textValue,
-                    "video_current_time": ''
+                    "video_current_time": '',
+                    "privacy_status": commentPrivacy
                 }
 
             } else {
                 obj = {
                     "comment": textValue,
-                    "video_current_time": timespan
+                    "video_current_time": timespan,
+                    "privacy_status": commentPrivacy
                 }
             }
 
@@ -386,12 +404,6 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
             setTextValue('');
         }
     }
-
-    // Comment Privacy Dropdown Option Values
-    let commentPrivacy = [
-        { rightIcon: '', leftIcon: '', value: 'Everyone can see', goToMenu: '' },
-        { rightIcon: '', leftIcon: '', value: 'Team only', goToMenu: '' }
-    ];
 
 
     /* -------------------------------------------------------------------------------------------- */
@@ -504,7 +516,7 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
                                 <span className="timespanBox__checkbox"><input type="checkBox" id="timespanCheckbox" className="checkbox" onClick={markCheckBox} /></span>
                             </div>
 
-                            <Dropdown text="Privacy" menuItems={commentPrivacy} />
+                            <Dropdown text="Privacy" menuItems={commentPrivacyOpt} setCommentPrivacy={setCommentPrivacy}/>
                         </div>
 
                         <div className="playerP__comment-box--bottom-right">

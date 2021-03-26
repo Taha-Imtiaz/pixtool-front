@@ -106,8 +106,7 @@ function CommentP({ asset, comment, addReply, deleteComments }) {
         let assetId = asset._id;
         deleteComments(assetId, comment);
     }
-    console.log("Comments", comment)
-    console.log("All Replies", comment.replies)
+
 
     /* -------------------------------------------------------------------------------------------- */
 
@@ -163,7 +162,7 @@ function CommentP({ asset, comment, addReply, deleteComments }) {
 
             {/* For Sub/ Reply Comment */}
             {comment.replies ?
-                comment.replies.map((reply, i) => <div className="replyComment" tabIndex="1" key={comment.replies[i]._id}>
+                comment.replies.map((reply) => <div className="replyComment" tabIndex="1" key={reply._id}>
                     <div className="comment replyComment__content">
                         <div className="comment__head">
                             <span className="comment__check">
