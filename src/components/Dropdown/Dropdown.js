@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import './DropdownMenus.scss';
+import './Dropdown.scss';
 
 import { ReactComponent as CaretIcon } from '../../icons/caret.svg';
 // import { ReactComponent as ChevronIcon } from '../../icons/chevron.svg';
@@ -18,12 +18,12 @@ function Dropdown({ text, menuItems, setCommentPrivacy }) {
     // Function to check which dropdown value is Clicked
     const checkClick = (option) => {
         // Check For Comment Privacy
-        if (option == 'Everyone can see') {
+        if (option === 'Everyone can see') {
             setCommentPrivacy('public');
             setOpen(!open);
             setDropText('Everyone can see');
 
-        } else if (option == 'Team only') {
+        } else if (option === 'Team only') {
             setCommentPrivacy('private');
             setOpen(!open);
             setDropText('Team only');

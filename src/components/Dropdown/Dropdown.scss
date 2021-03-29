@@ -111,7 +111,8 @@ ul {
 .dropdown {
     position: absolute;
     top: 0rem;
-    min-width: 20rem;
+    // min-width: 20rem;
+    min-width: max-content;
     padding: .8rem;
     border: 1px solid $color-secondary-dark;
     border-radius: 8px;
