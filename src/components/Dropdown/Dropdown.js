@@ -8,41 +8,48 @@ import { ReactComponent as CaretIcon } from '../../icons/caret.svg';
 import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 import { Fragment } from 'react';
 
-function Dropdown(props) {
+
+function Dropdown({ text, menuItems, setCommentPrivacy }) {
+    // State For Dropdowns toggling
+    const [open, setOpen] = useState(false);
+    // State For Dropdown Text
+    const [dropText, setDropText] = useState(text)
 
     // Function to check which dropdown value is Clicked
     const checkClick = (option) => {
-
         // Check For Comment Privacy
         if (option == 'Everyone can see') {
-            props.setCommentPrivacy('public');
+            setCommentPrivacy('public');
+            setOpen(!open);
+            setDropText('Everyone can see');
 
         } else if (option == 'Team only') {
-            props.setCommentPrivacy('private');
+            setCommentPrivacy('private');
+            setOpen(!open);
+            setDropText('Team only');
+        }
+
+    }
+
+    // Function To Position Dropdown Upwards/ Downwards w.r.t. Space Available
+    const setDropdownPosition = () => {
+        if (document.querySelector('.dropdown')) {
+            let windowHeight = window.innerHeight;
+            let myDropdown = document.querySelector('.dropdown');
+            let dropdownHeight = myDropdown.offsetHeight;
+            let dropdownTop = myDropdown.getBoundingClientRect().top;
+            let space = windowHeight - dropdownTop - dropdownHeight;
+
+            if (space > dropdownHeight) {
+                myDropdown.style.top = '4.2rem';
+
+            } else {
+                myDropdown.style.top = '-11rem';
+            }
         }
     }
 
-    return (
-        <Navbar text={props.text}>
-            <NavItem icon={<CaretIcon />}>
-                <DropdownMenu menuItems={props.menuItems} checkClick={checkClick}></DropdownMenu>
-            </NavItem>
-        </Navbar>
-    )
-}
-
-function Navbar(props) {
-    return (
-        <nav className="navbar">
-            <ul className="navbar-nav">{props.text} {props.children}</ul>
-        </nav>
-    );
-}
-
-function NavItem(props) {
-    // State For Dropdowns toggling
-    const [open, setOpen] = useState(false);
-
+    // To Close the Dropdowns whenever click outside them &  set position of Dropdown Menu
     useEffect(() => {
         // To Close the Dropdowns whenever click outside them
         function handleClickEvent(event) {
@@ -64,39 +71,25 @@ function NavItem(props) {
 
     }, [open])
 
-    // Function To Position Dropdown Upwards/ Downwards w.r.t. Space Available
-    const setDropdownPosition = () => {
-        if (document.querySelector('.dropdown')) {
-            let windowHeight = window.innerHeight;
-            let myDropdown = document.querySelector('.dropdown');
-            let dropdownHeight = myDropdown.offsetHeight;
-            let dropdownTop = myDropdown.getBoundingClientRect().top;
-            let space = windowHeight - dropdownTop - dropdownHeight;
-
-            if (space > dropdownHeight) {
-                myDropdown.style.top = '4.2rem';
-
-            } else {
-                myDropdown.style.top = '-11rem';
-            }
-            setTimeout(() => {
-
-            });
-        }
-    }
 
     return (
-        <li id="nav-item" className="nav-item" /* onClick={setDropdownPosition} */>
-            <span className="icon-arrow" onClick={() => setOpen(!open)}>
-                {props.icon}
-            </span>
+        <nav className="navbar">
+            <ul className="navbar-nav">
+                {dropText}
+                <li id="nav-item" className="nav-item">
+                    <span className="icon-arrow" onClick={() => setOpen(!open)}>
+                        {<CaretIcon />}
+                    </span>
 
-            {open && props.children}
-        </li>
-    );
+                    {open && <DropdownMenu menuItems={menuItems} checkClick={checkClick} ></DropdownMenu>}
+                </li>
+            </ul>
+        </nav>
+    )
 }
 
-function DropdownMenu(props) {
+
+function DropdownMenu({menuItems, checkClick}) {
     const [activeMenu, setActiveMenu] = useState('main');
 
 
@@ -105,24 +98,30 @@ function DropdownMenu(props) {
         return (
             <span className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>
-                {/* {props.children} */}
-                {props.upload !== undefined && props.upload.value === true ? <Fragment>
-                    <label htmlFor="file-upload" className="custom-file-upload" >
-                        {props.children}
-                    </label>
-                    <input id="file-upload" type="file" className="dropdown__uploadInput inputTag" onChange={(e) => props.upload.onUpload(e)} accept="video/*" />
-                </Fragment> : props.upload !== undefined && props.upload.value === false ?
+
+                {props.upload !== undefined && props.upload.value === true ?
                     <Fragment>
-                        <label htmlFor="folder-upload" className="custom-folder-upload" onClick={() => props.upload.modalToggler()}>
+                        <label htmlFor="file-upload" className="custom-file-upload" >
                             {props.children}
                         </label>
-                    </Fragment> : <span onClick={() => props.checkClick(props.children)} >{props.children}</span>}
+                        <input id="file-upload" type="file" className="dropdown__uploadInput inputTag" onChange={(e) => props.upload.onUpload(e)} accept="video/*" />
+                    </Fragment>
+                    :
+                    props.upload !== undefined && props.upload.value === false ?
+                        <Fragment>
+                            <label htmlFor="folder-upload" className="custom-folder-upload" onClick={() => props.upload.modalToggler()}>
+                                {props.children}
+                            </label>
+                        </Fragment>
+                        :
+                        <span onClick={() => props.checkClick(props.children)} >{props.children}</span>}
                 <span className="icon-button icon-right">{props.rightIcon}</span>
             </span>
         );
     }
 
     return (
+        // DropdownMenu Component
         <div className="dropdown ">
             <div>
                 <CSSTransition
@@ -130,57 +129,39 @@ function DropdownMenu(props) {
                     unmountOnExit
                     timeout={500}
                     classNames="menu-primary"
-
                 >
                     <div className="menu">
-                        {props.menuItems.map((x, i) => (
+                        {menuItems.map((x, index) => (
                             <DropdownItem
                                 rightIcon={x.rightIcon}
                                 upload={x.isUpload}
                                 leftIcon={x.leftIcon}
                                 goToMenu={x.goToMenu}
-                                key={i}
-                                checkClick={props.checkClick}>
-
+                                key={index}
+                                checkClick={checkClick}
+                            >
                                 {x.value}
                             </DropdownItem>
                         ))}
-
-                        {/* <DropdownItem
-                            rightIcon={<ChevronIcon />}
-                            goToMenu="settings"
-                        >
-                            Settings
-                        </DropdownItem> */}
                     </div>
                 </CSSTransition>
 
-                {props.menuItems.map((x, i) => (x.goToMenu ? <CSSTransition
-                    in={activeMenu === x.goToMenu}
-                    unmountOnExit
-                    timeout={500}
-                    classNames="menu-secondary"
-
-                >
-                    <div className="menu">
-                        <DropdownItem leftIcon={<ArrowIcon />} goToMenu="main">Back</DropdownItem>
-                        {x.child.map((y, j) => <DropdownItem>{y.value}</DropdownItem>)}
-                    </div>
-                </CSSTransition> : null
+                {menuItems.map((x, index) => (x.goToMenu ?
+                    <CSSTransition
+                        in={activeMenu === x.goToMenu}
+                        unmountOnExit
+                        timeout={500}
+                        classNames="menu-secondary"
+                        key={index}
+                    >
+                        <div className="menu">
+                            <DropdownItem leftIcon={<ArrowIcon />} goToMenu="main" checkClick={checkClick}>Back</DropdownItem>
+                            {x.child.map((y, index) => <DropdownItem checkClick={checkClick} key={index}>{y.value}</DropdownItem>)}
+                        </div>
+                    </CSSTransition>
+                    :
+                    null
                 ))}
-                {/* <CSSTransition
-                    in={activeMenu === 'settings'}
-                    unmountOnExit
-                    timeout={500}
-                    classNames="menu-secondary"
-                    // onEnter={calcHeight}
-                >
-                    <div className="menu">
-                        <DropdownItem leftIcon={<ArrowIcon />} goToMenu="main">Back</DropdownItem>
-                        <DropdownItem>Settings</DropdownItem>
-                    </div>
-                </CSSTransition> */}
-
             </div>
         </div>
     );
