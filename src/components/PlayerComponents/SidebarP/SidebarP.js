@@ -10,7 +10,7 @@ import TabsP from '../NavigationTabsP/TabsP';
 import CommentP from '../../PlayerComponents/CommentP/CommentP';
 
 function SidebarP({ asset, comments, open, addDescription, getDescription, assetDescription, match: { params: { assetId } } }) {
-
+    console.log(asset)
     // States For Video Description On Player Sidebar 
     const [enableEditor, setEnableEditor] = useState(false);
     const [description, setDescription] = useState('');
@@ -42,7 +42,7 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
     // For Getting The Saved Description, From Backend
     useEffect(() => {
         getDescription(assetId);
-        if(assetDescription) {
+        if (assetDescription) {
             setDescription(assetDescription);
         }
 
@@ -139,58 +139,61 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
                 {/* File Information Tab Content */}
                 <div label="File Information">
                     <div className="file-info">
-                        <table className="file-info__table">
-                            <tbody>
-                                <tr className="file-info__table--row">
-                                    <td className="file-info__table--name">File Name</td>
-                                    <td className="file-info__table--content">Full Spot - Graded.mp4</td>
-                                </tr>
-                                <tr className="file-info__table--row">
-                                    <td className="file-info__table--name">Uploader</td>
-                                    <td className="file-info__table--content">Emery</td>
-                                </tr>
-                                <tr className="file-info__table--row">
-                                    <td className="file-info__table--name">Upload Date</td>
-                                    <td className="file-info__table--content">3d ago at 2:34pm</td>
-                                </tr>
-                                <tr className="file-info__table--row">
-                                    <td className="file-info__table--name">Codec</td>
-                                    <td className="file-info__table--content">AVC</td>
-                                </tr>
-                                <tr className="file-info__table--row">
-                                    <td className="file-info__table--name">RES</td>
-                                    <td className="file-info__table--content">1920 x 1080</td>
-                                </tr>
-                                <tr className="file-info__table--row">
-                                    <td className="file-info__table--name">FPS</td>
-                                    <td className="file-info__table--content">23.976</td>
-                                </tr>
-                                <tr className="file-info__table--row">
-                                    <td className="file-info__table--name">Audio</td>
-                                    <td className="file-info__table--content">AAC</td>
-                                </tr>
-                                <tr className="file-info__table--row">
-                                    <td className="file-info__table--name">Size</td>
-                                    <td className="file-info__table--content">534.45 MB</td>
-                                </tr>
-                                <tr className="file-info__table--row">
-                                    <td className="file-info__table--name">TC In</td>
-                                    <td className="file-info__table--content">00:00:00:00</td>
-                                </tr>
-                                <tr className="file-info__table--row">
-                                    <td className="file-info__table--name">TC Out</td>
-                                    <td className="file-info__table--content">00:01:24:21</td>
-                                </tr>
-                                <tr className="file-info__table--row">
-                                    <td className="file-info__table--name">Duration</td>
-                                    <td className="file-info__table--content">01:25.01</td>
-                                </tr>
-                                <tr className="file-info__table--row">
-                                    <td className="file-info__table--name">Frames</td>
-                                    <td className="file-info__table--content">2037</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        {asset ?
+                            <table className="file-info__table">
+                                <tbody>
+                                    <tr className="file-info__table--row">
+                                        <td className="file-info__table--name">File Name</td>
+                                        <td className="file-info__table--content">{asset.name}</td>
+                                    </tr>
+                                    <tr className="file-info__table--row">
+                                        <td className="file-info__table--name">Uploader</td>
+                                        <td className="file-info__table--content">{asset.asset_info.uploader}</td>
+                                    </tr>
+                                    <tr className="file-info__table--row">
+                                        <td className="file-info__table--name">Uploaded</td>
+                                        <td className="file-info__table--content">{asset.createdAt.split('T')[0]} at {asset.createdAt.split('T')[1].split('.')[0]}</td>
+                                    </tr>
+                                    <tr className="file-info__table--row">
+                                        <td className="file-info__table--name">Codec</td>
+                                        <td className="file-info__table--content">{asset.asset_info.codec}</td>
+                                    </tr>
+                                    <tr className="file-info__table--row">
+                                        <td className="file-info__table--name">RES</td>
+                                        <td className="file-info__table--content">{asset.asset_info.resolution}</td>
+                                    </tr>
+                                    <tr className="file-info__table--row">
+                                        <td className="file-info__table--name">FPS</td>
+                                        <td className="file-info__table--content">{asset.asset_info.fps}</td>
+                                    </tr>
+                                    <tr className="file-info__table--row">
+                                        <td className="file-info__table--name">Audio Format</td>
+                                        <td className="file-info__table--content">{asset.asset_info.audio_format}</td>
+                                    </tr>
+                                    <tr className="file-info__table--row">
+                                        <td className="file-info__table--name">Size</td>
+                                        <td className="file-info__table--content">{(asset.asset_info.file_size / 1024).toFixed(2)} MB</td>
+                                    </tr>
+                                    <tr className="file-info__table--row">
+                                        <td className="file-info__table--name">TC In</td>
+                                        <td className="file-info__table--content">{asset.asset_info.tc.tc_in}</td>
+                                    </tr>
+                                    <tr className="file-info__table--row">
+                                        <td className="file-info__table--name">TC Out</td>
+                                        <td className="file-info__table--content">{asset.asset_info.tc.tc_out}</td>
+                                    </tr>
+                                    <tr className="file-info__table--row">
+                                        <td className="file-info__table--name">Duration</td>
+                                        <td className="file-info__table--content">{asset.asset_info.duration}</td>
+                                    </tr>
+                                    <tr className="file-info__table--row">
+                                        <td className="file-info__table--name">Frames</td>
+                                        <td className="file-info__table--content">{asset.asset_info.frames}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            : null
+                        }
                     </div>
                 </div>
             </TabsP>

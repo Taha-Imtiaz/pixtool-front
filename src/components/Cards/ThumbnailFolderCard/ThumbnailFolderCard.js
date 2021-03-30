@@ -15,7 +15,6 @@ const ThumbnailFolderCard = ({ id, getAssets, resource, history, projectId }) =>
     useEffect(() => {
         if (thumbnails) {
             setThumbnailsLength(thumbnails.length)
-            console.log(thumbnails.length)
         }
 
     }, [thumbnails])
