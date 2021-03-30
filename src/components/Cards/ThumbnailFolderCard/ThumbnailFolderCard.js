@@ -9,12 +9,14 @@ import './ThumbnailFolderCard.scss';
 const ThumbnailFolderCard = ({ id, getAssets, resource, history, projectId }) => {
 
     const [thumbnailsLength, setThumbnailsLength] = useState(0)
+
     let { name, thumbnails } = resource
+
     useEffect(() => {
         if (thumbnails) {
             setThumbnailsLength(thumbnails.length)
+            console.log(thumbnails.length)
         }
-
 
     }, [thumbnails])
 
@@ -34,9 +36,15 @@ const ThumbnailFolderCard = ({ id, getAssets, resource, history, projectId }) =>
                 <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--1">
                     <img src={thumbnails[0]} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--1" />
                 </span>
-                <span className={thumbnailsLength === 2 ? 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2 thumbnailFolderCard__imgBox--expand' : 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2'}>
-                    <img src={thumbnails[1]} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--2" />
-                </span>
+
+                {thumbnailsLength >= 2 ?
+                    <span className={thumbnailsLength === 2 ? 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2 thumbnailFolderCard__imgBox--expand' : 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2'}>
+                        <img src={thumbnails[1]} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--2" />
+                    </span>
+                    :
+                    null
+                }
+
                 {thumbnailsLength === 3 ?
                     <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--3">
                         <img src={thumbnails[2]} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--3" />
@@ -44,6 +52,7 @@ const ThumbnailFolderCard = ({ id, getAssets, resource, history, projectId }) =>
                     :
                     null
                 }
+
                 {thumbnailsLength > 3 ?
                     <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--3">
                         <span>+{thumbnailsLength - 2}</span>
