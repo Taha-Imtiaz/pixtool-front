@@ -1,13 +1,18 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addDescription } from '../../../Redux/assets/assetActions';
+
 import './HeaderP.scss';
-import Logo from '../../../images/logo.png';
+
 import Button from '../../Button/Button';
 import NavIcon from '../../NavIcon/NavIcon';
 import Dropdown from '../../Dropdown/Dropdown';
-import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
-import { withRouter } from 'react-router-dom';
 
-function HeaderP({ toggle, location, asset, history }) {
+import Logo from '../../../images/logo.png';
+import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
+
+function HeaderP({ toggle, location, asset, history, addDescription }) {
     // const history = useHistory();
     const createNew = () => { }
 
@@ -32,8 +37,7 @@ function HeaderP({ toggle, location, asset, history }) {
     let status = [
         { rightIcon: '', leftIcon: '', value: 'Needs Review', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'In Progress', goToMenu: '' },
-        { rightIcon: '', leftIcon: '', value: 'Approved', goToMenu: '' },
-        { rightIcon: '', leftIcon: '', value: 'No Status', goToMenu: '' }];
+        { rightIcon: '', leftIcon: '', value: 'Approved', goToMenu: '' }];
 
     let options = [
         {
@@ -59,7 +63,7 @@ function HeaderP({ toggle, location, asset, history }) {
             </div>
 
             <div className="headerP__right-box">
-                <Dropdown text="Status" menuItems={status} />
+                {asset && asset._id && <Dropdown text="Status" menuItems={status} addDescription={addDescription} assetId={asset._id}/>}
 
                 <Dropdown text="---" menuItems={options} />
 
@@ -77,4 +81,12 @@ function HeaderP({ toggle, location, asset, history }) {
     )
 }
 
-export default withRouter(HeaderP)
+var mapStateToProps = (state) => ({
+    assetStatus: state.assets && state.assets.description && state.assets.description.status
+})
+
+var mapDispatchToProps = {
+    addDescription
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HeaderP))

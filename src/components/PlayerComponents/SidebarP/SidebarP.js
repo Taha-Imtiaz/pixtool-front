@@ -10,7 +10,7 @@ import TabsP from '../NavigationTabsP/TabsP';
 import CommentP from '../../PlayerComponents/CommentP/CommentP';
 
 function SidebarP({ asset, comments, open, addDescription, getDescription, assetDescription, match: { params: { assetId } } }) {
-    console.log(asset)
+
     // States For Video Description On Player Sidebar 
     const [enableEditor, setEnableEditor] = useState(false);
     const [description, setDescription] = useState('');

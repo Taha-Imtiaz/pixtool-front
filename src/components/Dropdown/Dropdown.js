@@ -9,7 +9,7 @@ import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 import { Fragment } from 'react';
 
 
-function Dropdown({ text, menuItems, setCommentPrivacy }) {
+function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, assetId }) {
     // State For Dropdowns toggling
     const [open, setOpen] = useState(false);
     // State For Dropdown Text
@@ -17,6 +17,7 @@ function Dropdown({ text, menuItems, setCommentPrivacy }) {
 
     // Function to check which dropdown value is Clicked
     const checkClick = (option) => {
+        console.log(option)
         // Check For Comment Privacy
         if (option === 'Everyone can see') {
             setCommentPrivacy('public');
@@ -29,6 +30,34 @@ function Dropdown({ text, menuItems, setCommentPrivacy }) {
             setDropText('Team only');
         }
 
+        // Check For Video status
+        if (option === 'Needs Review') {
+            let obj = {
+                "status" : "needs_review"
+            }
+
+            addDescription(obj, assetId);
+            setOpen(!open);
+            setDropText('Needs Review');
+
+        } else if (option === 'In Progress') {
+            let obj = {
+                "status" : "in_progress"
+            }
+
+            addDescription(obj, assetId);
+            setOpen(!open);
+            setDropText('In Progress');
+
+        } else if (option === 'Approved') {
+            let obj = {
+                "status" : "approved"
+            }
+
+            addDescription(obj, assetId);
+            setOpen(!open);
+            setDropText('Approved');
+        }
     }
 
     // Function To Position Dropdown Upwards/ Downwards w.r.t. Space Available
@@ -89,7 +118,7 @@ function Dropdown({ text, menuItems, setCommentPrivacy }) {
 }
 
 
-function DropdownMenu({menuItems, checkClick}) {
+function DropdownMenu({ menuItems, checkClick }) {
     const [activeMenu, setActiveMenu] = useState('main');
 
 
