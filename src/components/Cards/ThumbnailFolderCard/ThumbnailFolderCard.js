@@ -25,8 +25,10 @@ const ThumbnailFolderCard = ({ id, getAssets, resource, history, projectId }) =>
         history.push(`/home/${projectId}/${assetId}`)
         getAssets(assetId)
     }
+
+
     return (
-        <div className="thumbnailFolderCard" tabindex="0" onClick={() => fetchAssets(projectId, id)} >
+        <div className="thumbnailFolderCard" tabIndex="0" onClick={() => fetchAssets(projectId, id)} >
 
             { thumbnails && <div className={thumbnailsLength <= 1 ? 'thumbnailFolderCard__thumbnailBox thumbnailFolderCard__thumbnailBox--1' : 'thumbnailFolderCard__thumbnailBox'}>
                 <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--1">

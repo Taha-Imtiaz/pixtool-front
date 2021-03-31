@@ -4,7 +4,7 @@ import SignInBG from '../../images/signIn.png';
 import { Link } from 'react-router-dom';
 import ButtonLarge from '../../components/Button/ButtonLarge';
 import { connect } from 'react-redux';
-import { checkUserAuthentication, loginUser } from '../../Redux/user/userActions';
+import { loginUser } from '../../Redux/user/userActions';
 
 const SignIn = ({ loginUser, history }) => {
 
@@ -13,24 +13,7 @@ const SignIn = ({ loginUser, history }) => {
         email: '',
         password: ''
     });
-
-    /* const showHidePassword = () => {
-        var input = document.getElementById("password");
-        var x = document.getElementById("showPass");
-        var y = document.getElementById("hidePass");
-
-        if (input.type === 'password') {
-            input.type = "text";
-            x.style.display = 'none';
-            y.style.display = 'inline-block';
-        }
-        else {
-            input.type = "password";
-            x.style.display = 'inline-block';
-            y.style.display = 'none';
-        }
-
-    } */
+    
 
     // Function To Show/ Hide Password When Clicked On Eye Icons On Input Fields
     const showHidePassword = () => {

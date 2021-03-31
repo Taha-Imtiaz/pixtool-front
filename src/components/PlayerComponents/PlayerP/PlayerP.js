@@ -2,6 +2,7 @@ import { React, useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addComment } from '../../../Redux/assets/assetActions';
+import { getUserData } from '../../../Redux/user/userActions';
 
 import './PlayerP.scss';
 import 'emoji-mart/css/emoji-mart.css';
@@ -14,7 +15,7 @@ import { Picker } from 'emoji-mart';
 import PlayerControls from '../../../images/player-icons/sprite.svg';
 
 
-const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
+const PlayerP = ({ asset, addComment, getUserData, userImage, match: { params: { assetId } } }) => {
 
 
     /* ------------------------------ ENTIRE FILE SCOPE VARIABLES ------------------------------ */
@@ -406,6 +407,16 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
     }
 
 
+    /* ---------------------------------------- ON MOUNT ------------------------------------------ */
+
+
+    // To Get The User Data
+    useEffect(() => {
+        getUserData();
+
+    }, [])
+
+    
     /* -------------------------------------------------------------------------------------------- */
 
 
@@ -500,7 +511,7 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
             <div className="playerP__comment-box">
                 <div className="playerP__comment-box--top">
                     <div className="playerP__avatar">
-                        <Avatar />
+                        <Avatar profileImg={userImage} />
                     </div>
 
                     <textarea className="playerP__text-area" placeholder="Leave your comment here..." name="textValue" onFocus={() => getTimespan()} onChange={textAreaChangeHandle} value={textValue}></textarea>
@@ -516,7 +527,7 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
                                 <span className="timespanBox__checkbox"><input type="checkBox" id="timespanCheckbox" className="checkbox" onClick={markCheckBox} /></span>
                             </div>
 
-                            <Dropdown text="Privacy" menuItems={commentPrivacyOpt} setCommentPrivacy={setCommentPrivacy}/>
+                            <Dropdown text="Privacy" menuItems={commentPrivacyOpt} setCommentPrivacy={setCommentPrivacy} />
                         </div>
 
                         <div className="playerP__comment-box--bottom-right">
@@ -539,11 +550,13 @@ const PlayerP = ({ asset, addComment, match: { params: { assetId } } }) => {
     )
 }
 var mapStateToProps = (state) => ({
-    asset: state.assets && state.assets.asset
+    asset: state.assets && state.assets.asset,
+    userImage: state.users && state.users.userData && state.users.userData.images && state.users.userData.images.profile_image
 })
 
 var mapDispatchToProps = {
-    addComment
+    addComment,
+    getUserData
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PlayerP))

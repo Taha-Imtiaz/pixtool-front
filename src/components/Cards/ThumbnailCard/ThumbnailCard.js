@@ -8,7 +8,7 @@ const ThumbnailCard = ({ resource, key,id, history }) => {
     let { thumbnail, name } = resource
     
     return (
-        <div className="thumbnailCard" tabindex="0" key={key} onClick = {() => history.push(`/player/${id}`)}>
+        <div className="thumbnailCard" tabIndex="0" key={key} onClick = {() => history.push(`/player/${id}`)}>
            <Fragment>
                 <div className="thumbnailCard__status">
                     Needs Approval

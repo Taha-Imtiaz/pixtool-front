@@ -5,14 +5,12 @@ import './TeamsNav.scss';
 
 const TeamsNav = ({ addProjectModalToggle, show, getProject, teams }) => {
 
+
     // This state is used for toggling Sidebar Team Nav Lists
     const [teamItemIndex, setTeamItemIndex] = useState(null)
 
     // This Function is responsible for toggling Sidebar Team Nav Lists
     const toggleTeamNav = (index) => {
-
-
-
         if (index === teamItemIndex) {
             setTeamItemIndex(-1)
         }
@@ -31,7 +29,7 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, teams }) => {
                             <span className="teamsNav__icon">
                                 {index === teamItemIndex ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-right"></i>}
                             </span>
-                            <span className="teamsNav__text">{team.name}</span>
+                            <span className="teamsNav__text truncate" title={team.name}>{team.name}</span>
                             <span className="teamsNav__addBtn" >
                                 <i className="fas fa-plus-circle" onClick={(e) => addProjectModalToggle(e, team._id)}></i>
                             </span>
@@ -44,18 +42,8 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, teams }) => {
                                 <span className="project__item--name" onClick={() => getProject(project._id)}>{project.name}</span>
                                 <span className="project__item--icon"><i className="fas fa-ellipsis-v"></i></span>
                             </li>)}
-                            {/* <li className="project__item">
-                                    <span className="project__item--name">Demo Project</span>
-                                    <span className="project__item--icon"><i className="fas fa-ellipsis-v"></i></span>
-                                </li>
-                                <li className="project__item">
-                                    <span className="project__item--name">Demo Project</span>
-                                    <span className="project__item--icon"><i className="fas fa-ellipsis-v"></i></span>
-                                </li> */}
                         </ul>
                     </div>}
-
-
                 </li>)}
 
                 {/* <li className="teamsNav__item">

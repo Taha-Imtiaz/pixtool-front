@@ -22,19 +22,15 @@
         padding: 2rem 2rem 0 2rem;
     }
 
-    &__info {
+    &__info-name {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: rgba($color-white, .9);
+    }
 
-        &--name {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: rgba($color-white, .9);
-        }
-
-        &--time {
-            font-size: 1.4rem;
-            color: rgba($color-white, .6);
-            padding-left: .8rem;
-        }
+    &__info-time {
+        font-size: 1.4rem;
+        color: rgba($color-white, .6);
     }
 
     &__description {
@@ -74,13 +70,17 @@
 }
 
 @-webkit-keyframes slide {
-    100% { left: 0; }
+    100% {
+        left: 0;
+    }
 }
 
 @keyframes slide {
-    100% { left: 0; }
+    100% {
+        left: 0;
+    }
 
-} 
+}
 
 .comments {
     position: relative;
@@ -164,7 +164,7 @@
 .file-info {
     max-height: 58.5vh;
     overflow: auto;
-    
+
     &__table {
         color: $color-white;
         font-size: 1.5rem;
@@ -179,6 +179,7 @@
         }
 
         &--name {
+            width: 40%;
             color: rgba($color-white, .6);
         }
     }

@@ -27,24 +27,29 @@ import { getTeams } from '../../Redux/team/teamActions';
 
 function Home({ getAccount, getTeams, account }) {
 
-    // This state is used to Show/ Hide the AddProjectModal
-    const [showAddProjectModal, setShowAddProjectModal] = useState(false);
     // This state is used to set teamId
     const [teamId, setTeamId] = useState(null)
+    // This state is used to Show/ Hide the AddProjectModal
+    const [showAddProjectModal, setShowAddProjectModal] = useState(false);
     // This state is used to Show/ Hide the AddFolderModal
     const [showAddFolderModal, setShowAddFolderModal] = useState(false);
 
     useEffect(() => {
         getAccount()
+
     }, [])
 
     // get teams of account which is signed in currently(by default first team) 
     useEffect(() => {
         if (account) {
-            let { account_id } = account
-            getTeams(account_id[0]._id)
+            let { account_id } = account;
 
+            if (account_id[0]) {
+                getTeams(account_id[0]._id)
+
+            }
         }
+
     }, [account])
 
     // const [show, setShow] = useState(false);
@@ -52,7 +57,7 @@ function Home({ getAccount, getTeams, account }) {
 
     // close add project modal
 
-   
+
     // This Function is responsible to Show/ Hide the AddProjectModal
     const addProjectModalToggle = (e, teamId) => {
         console.log(e, teamId)
@@ -109,7 +114,7 @@ function Home({ getAccount, getTeams, account }) {
 
                     {/* Library Tab Content */}
                     <div label="Library">
-                        <Library addFolderModalToggle={addFolderModalToggle}/>
+                        <Library addFolderModalToggle={addFolderModalToggle} />
                     </div>
 
                     {/* Shows Tab Content */}
@@ -164,10 +169,10 @@ function Home({ getAccount, getTeams, account }) {
                 </Tabs>
             </div>
 
-            {/* All The Modal Components Used In Home Page, All Its Tabs & Sidebar*/}
+            {/* All The Modal Components Used In Home Page, All It's Tabs & Sidebar*/}
 
             {/* This is AddProjectModal */}
-            <AddProjectModal showModal={showAddProjectModal} setShowModal={setShowAddProjectModal} modalToggler={addProjectModalToggle} teamId={teamId}  />
+            <AddProjectModal showModal={showAddProjectModal} setShowModal={setShowAddProjectModal} modalToggler={addProjectModalToggle} teamId={teamId} />
 
             {/* This is AddNewFolderModal */}
             <AddFolderModal showModal={showAddFolderModal} setShowModal={setShowAddFolderModal} modalToggler={addFolderModalToggle} />
@@ -175,6 +180,7 @@ function Home({ getAccount, getTeams, account }) {
         </div>
     )
 }
+
 var mapStateToProps = (state) => ({
     account: state.accounts && state.accounts.account,
 })

@@ -44,6 +44,9 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
         getDescription(assetId);
         if (assetDescription) {
             setDescription(assetDescription);
+
+        } else {
+            setDescription('');
         }
 
     }, [assetDescription])
@@ -76,12 +79,12 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
             <div id="sidebar-overlay" className={open ? '' : 'sidebarP__overlay'}></div>
             <div id="sidebarPHead" className="sidebarP__head">
                 <div className="sidebarP__info">
-                    {asset ?
+                    {asset && asset.asset_info ?
                         <Fragment>
-                            <span className="sidebarP__info--name">John</span>
-                            <span className="sidebarP__info--time">
+                            <div className="sidebarP__info-name">{asset.asset_info.uploader}</div>
+                            <div className="sidebarP__info-time">
                                 Uploaded <TimeAgo date={asset.createdAt} minPeriod={10} />
-                            </span>
+                            </div>
                         </Fragment>
                         : null
                     }
@@ -122,9 +125,7 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
                 {/* Comments Tab Content */}
                 <div label="Comments">
                     <div id="comments" className="comments">
-                        <div className="comments__head">
-
-                        </div>
+                        <div className="comments__head"></div>
 
                         <div className="comments__body">
                             {comments ? comments.map((comment) =>

@@ -22,15 +22,16 @@ export const getProjects = (teamId) => async (dispatch) => {
 export const getProject = (projectId) => async (dispatch) => {
     try {
         let response = await Axios.get(`project/${projectId}`)
-        console.log(response)
         let projectObj = {
            parentId: projectId,
             ...response.data.data
         }
+
         dispatch({
             type:GET_PROJECT,
             payload: projectObj
         })
+
     } catch (e) {
         if (e.response && e.response.data) {
             dispatch(showToastMessage(e.response.data.message))
@@ -40,12 +41,12 @@ export const getProject = (projectId) => async (dispatch) => {
 }
 // get all assets of single project by passing assetid(asset of type folder)
 
-export const getAssets = (parentId) => async (dispatch) => {
+export const getAssets = (assetId) => async (dispatch) => {
     try {
-        let response = await Axios.get(`child/${parentId}`)
+        let response = await Axios.post(`child/${assetId}`)
        
         let projectObj = {
-            parentId: parentId,
+            parentId: assetId,
             resources: response.data.data
          }
          console.log(projectObj)

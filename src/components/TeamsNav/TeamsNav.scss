@@ -6,16 +6,12 @@
     padding: 1rem 0;
 
     &__center {
-        display: flex;
-        align-content: center;
+        display: grid;
+        grid-template-columns: minmax(2rem, min-content) 1fr min-content;
         gap: 2rem;
 
         width: 75%;
         margin: 0 auto;
-    }
-
-    &__text {
-        flex: 1;
     }
 
     &__addBtn {

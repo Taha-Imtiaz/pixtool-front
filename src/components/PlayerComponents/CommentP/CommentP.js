@@ -137,14 +137,14 @@ function CommentP({ asset, comment, addReply, deleteComments }) {
                         <span className="comment__icons"><i className="far fa-thumbs-up"></i></span>
                     </div>
                     <div className="comment__bottom--right">
-                        <span className="comment__icons"><i className="far fa-edit"></i></span>
+                        {/* <span className="comment__icons"><i className="far fa-edit"></i></span> */}
                         <span className="comment__icons" onClick={() => deleteComment(comment._id)}><i className="far fa-trash-alt"></i></span>
                     </div>
                 </div>
 
                 {writeReply ?
                     <div className="reply">
-                        <textarea className="reply__text-area" name="replyTextArea" onKeyPress={(e) => submitReply(e)} onChange={replyTextAreaChangeHandle} value={replyText}></textarea>
+                        <textarea className="reply__text-area" name="replyTextArea" autoFocus onKeyPress={(e) => submitReply(e)} onChange={replyTextAreaChangeHandle} value={replyText}></textarea>
 
                         {emojiBox === true ?
                             <div className="emoji-picker__box">
@@ -185,14 +185,14 @@ function CommentP({ asset, comment, addReply, deleteComments }) {
                                 <span className="comment__icons"><i className="far fa-thumbs-up"></i></span>
                             </div>
                             <div className="comment__bottom--right">
-                                <span className="comment__icons"><i className="far fa-edit"></i></span>
+                                {/* <span className="comment__icons"><i className="far fa-edit"></i></span> */}
                                 <span className="comment__icons" onClick={() => deleteComment(reply._id)}><i className="far fa-trash-alt"></i></span>
                             </div>
                         </div>
                     </div>
                     {writeCommentReply ?
                         <div className="reply">
-                            <textarea className="reply__text-area" name="replyTextArea" onKeyPress={(e) => submitReply(e)} onChange={replyTextAreaChangeHandle} value={replyText}></textarea>
+                            <textarea className="reply__text-area" name="replyTextArea" autoFocus onKeyPress={(e) => submitReply(e)} onChange={replyTextAreaChangeHandle} value={replyText}></textarea>
 
                             {emojiBox === true ?
                                 <div className="emoji-picker__box">
