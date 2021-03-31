@@ -26,10 +26,7 @@ const ThumbnailFolderCard = ({ id, getAssets, resource, history, projectId }) =>
         getAssets(assetId)
     }
     return (
-        <div className="thumbnailFolderCard"
-            onClick={() => fetchAssets(projectId, id)}
-        >
-
+        <div className="thumbnailFolderCard" tabindex="0" onClick={() => fetchAssets(projectId, id)} >
 
             { thumbnails && <div className={thumbnailsLength <= 1 ? 'thumbnailFolderCard__thumbnailBox thumbnailFolderCard__thumbnailBox--1' : 'thumbnailFolderCard__thumbnailBox'}>
                 <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--1">
@@ -60,11 +57,7 @@ const ThumbnailFolderCard = ({ id, getAssets, resource, history, projectId }) =>
                     null
                 }
             </div>
-
             }
-
-
-
 
             <div className="thumbnailFolderCard__text">
                 <div className="thumbnailFolderCard__name truncate">{name}</div>
@@ -77,6 +70,7 @@ const ThumbnailFolderCard = ({ id, getAssets, resource, history, projectId }) =>
         </div>
     )
 }
+
 var mapStateToProps = (state) => ({
     projectId: state.project && state.project.parentId
 })

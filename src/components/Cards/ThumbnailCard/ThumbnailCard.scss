@@ -4,13 +4,24 @@
 .thumbnailCard {
     display: grid;
     grid-template-rows: 1fr 6rem;
-
+    
     width: 30rem;
     height: 22rem;
     border-top-right-radius: 3rem;
     border-bottom-left-radius: 3rem;
+    border: 2px solid transparent;
     background-color: $color-secondary;
     position: relative;
+    transition: cursor .3s, filter .3s, border .3s;
+    
+    &:active,
+    &:focus,
+    &:hover {
+        outline: none;
+        cursor: pointer;
+        filter: brightness(.7);
+        border: 2px solid $color-primary;
+    }
 
     &__status {
         position: absolute;
@@ -28,12 +39,12 @@
     }
 
     &__img {
-        width: 30rem;
+        width: 100%;
         min-height: 15rem;
         max-height: 15rem;
         object-fit: cover;
-        border-top-right-radius: 3rem;
-        transition: filter .3s;
+        border-top-right-radius: 2.9rem;
+        transition: width .3s;
     }
 
     &__text {
@@ -53,16 +64,5 @@
         color: inherit;
         font-size: 1.4rem;
         margin-top: 5px;
-    }
-
-    &:hover {
-        cursor: pointer
-    }
-
-    &:hover &__imgBox>img,
-    &:focus &__imgBox>img,
-    &:hover &__status,
-    &:focus &__status {
-        filter: brightness(.65)
     }
 }
