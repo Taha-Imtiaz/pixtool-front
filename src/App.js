@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import { Route, BrowserRouter as Switch, Redirect } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 import "react-toastify/dist/ReactToastify.css";
@@ -29,24 +29,23 @@ const App = ({ toastMessage, showToastMessage, numberOfRequests }) => {
   }, [toastMessage])
   return (
     <div>
-      {numberOfRequests > 0 && <Loader/>}
-      <Router>
-        <ToastContainer />
-        <Switch>
-          <Route path="/sign-in" component={SignIn} />
-          <Route path="/sign-up" component={SignUp} />
-          {/* <Route path={["/home", "/home/:projectId", "/home/:projectId/:assetId"]} component={Home} /> */}
-          <PrivateRoute path="/home" component={Home} key="single-home"/>
-          <PrivateRoute path="/home/:projectId" component={Home} key="single-home-id"/>
-          <PrivateRoute path="/home/:projectId/:assetId" component={Home} key="double-home-id"/>
-         
-          <PrivateRoute path="/player/:assetId" component={Player} />
-          <PrivateRoute path="/accounts" component={Accounts} />
-          <PrivateRoute path="/test" component={Test} />
-          <Route path="/" component={HeroSection} exact />
-          <Redirect to= "/"/>
-        </Switch>
-      </Router>
+      {numberOfRequests > 0 && <Loader />}
+      <ToastContainer />
+      <Switch>
+        <Route path="/sign-in" component={SignIn} />
+        <Route path="/sign-up" component={SignUp} />
+        {/* <Route path={["/home", "/home/:projectId", "/home/:projectId/:assetId"]} component={Home} /> */}
+        <PrivateRoute path="/home" component={Home} key="single-home" />
+        <PrivateRoute path="/home/:projectId" component={Home} key="single-home-id" />
+        <PrivateRoute path="/home/:projectId/:assetId" component={Home} key="double-home-id" />
+
+        <PrivateRoute path="/player/:assetId" component={Player} />
+        <PrivateRoute path="/accounts" component={Accounts} />
+        <PrivateRoute path="/test" component={Test} />
+        <Route path="/" component={HeroSection} exact />
+        <Redirect to="/" />
+      </Switch>
+
     </div>
   );
 }

@@ -6,15 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
 import Axios from './utils/axios';
+import { BrowserRouter } from 'react-router-dom';
 
 // call axios in index will provide access to our whole app to get or send data with API requests
 Axios()
 ReactDOM.render(
- <Provider store = {store}>
-    <React.StrictMode>
-    <App />
-  </React.StrictMode>
- </Provider>,
+  <BrowserRouter >
+    <Provider store={store}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
