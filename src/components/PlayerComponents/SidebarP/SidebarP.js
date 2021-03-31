@@ -7,7 +7,7 @@ import TabsP from '../NavigationTabsP/TabsP';
 import CommentP from '../../PlayerComponents/CommentP/CommentP';
 
 function SidebarP({ comments, open }) {
-    console.log(comments)
+    // console.log(comments)
     // States For Video Description On Player Sidebar 
     const [editEnabled, setEditEnabled] = useState(false);
     const [description, setDescription] = useState('');
@@ -52,7 +52,7 @@ function SidebarP({ comments, open }) {
 
     // To Set The Height Of Comment Area Of SidebarP
     useEffect(() => {
-        console.log(comments)
+        // console.log(comments)
     }, [comments])
 
     return (

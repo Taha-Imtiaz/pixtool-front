@@ -88,7 +88,6 @@ function DropdownMenu(props) {
 
 
     function DropdownItem(props) {
-        console.log(props)
         return (
             <span className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>

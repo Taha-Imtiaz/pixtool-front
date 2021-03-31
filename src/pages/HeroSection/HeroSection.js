@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './HeroSection.scss'
 import billboardBG from '../../images/billboardBG-trans.png';
 import Logo from '../../images/logo.png';
@@ -7,19 +7,18 @@ import MoreGraphics from '../../images/more-graphics.jpg';
 import ButtonPoppins from "../../components/Button/ButtonPoppins";
 import FeaturesCard from '../../components/Cards/FeaturesCard/FeaturesCard';
 import { Link } from 'react-router-dom';
-import { checkUserAuthentication } from '../../Redux/user/userActions';
 
-function HeroSection({history}) {
-    useEffect(() => {
-        let checkUserAuth = checkUserAuthentication()
-       if(checkUserAuth) {
-           console.log(checkUserAuth)
-          history.push("/home")
-       }
-       else {
-          history.push("/sign-in")
-       }
-        },[])
+function HeroSection() {
+    // useEffect(() => {
+    //     let checkUserAuth = checkUserAuthentication()
+    //    if(checkUserAuth) {
+    //        console.log(checkUserAuth)
+    //       history.push("/home")
+    //    }
+    //    else {
+    //       history.push("/sign-in")
+    //    }
+    //     },[])
 
     const createNew = () => { }
 

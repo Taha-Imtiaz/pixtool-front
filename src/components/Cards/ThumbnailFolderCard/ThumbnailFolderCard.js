@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getAssets } from '../../../Redux/project/projectActions';
+import { getProjectAssets } from '../../../Redux/project/projectActions';
 
 import './ThumbnailFolderCard.scss';
 
 
-const ThumbnailFolderCard = ({ id, getAssets, resource, history,projectId }) => {
+const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectId, match: { params } }) => {
 
     const [thumbnailsLength, setThumbnailsLength] = useState(0)
     let { name, thumbnails } = resource
+
     useEffect(() => {
         if (thumbnails) {
             setThumbnailsLength(thumbnails.length)
@@ -19,36 +20,42 @@ const ThumbnailFolderCard = ({ id, getAssets, resource, history,projectId }) => 
     }, [thumbnails])
 
 
+
     // fetch assets of the given projects
     const fetchAssets = (projectId, assetId) => {
-        history.push(`/home/${projectId}/${assetId}`)
-        getAssets(assetId)
+        history.push(`/home/library/${projectId}/${assetId}`)
+        let assetObj = {
+            status: "in_progress",
+        }
+        getProjectAssets(assetId, assetObj)
     }
+    
+
     return (
         <div className="thumbnailFolderCard"
-        onClick={() => fetchAssets(projectId, id)}
+            onClick={() => fetchAssets(projectId, id)}
         >
 
 
             { thumbnails && <div className={thumbnailsLength <= 1 ? 'thumbnailFolderCard__thumbnailBox thumbnailFolderCard__thumbnailBox--1' : 'thumbnailFolderCard__thumbnailBox'}>
                 <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--1">
                     <img src={thumbnails[0]}
-                        className="thumbnailFolderCard__img thumbnailFolderCard__img--1" />
+                        alt="" className="thumbnailFolderCard__img thumbnailFolderCard__img--1" />
                 </span>
                 <span className={thumbnailsLength === 2 ? 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2 thumbnailFolderCard__imgBox--expand' : 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2'}>
                     <img src={thumbnails[1]}
-                        className="thumbnailFolderCard__img thumbnailFolderCard__img--2" />
+                        alt="" className="thumbnailFolderCard__img thumbnailFolderCard__img--2" />
                 </span>
                 {thumbnailsLength === 3 ?
                     <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--3">
-                        <img src={thumbnails[2]} className="thumbnailFolderCard__img thumbnailFolderCard__img--3" />
+                        <img src={thumbnails[2]} alt="" className="thumbnailFolderCard__img thumbnailFolderCard__img--3" />
                     </span>
                     :
                     null
                 }
                 {thumbnailsLength > 3 ?
                     <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--3">
-                        <span>+{thumbnailsLength -2 }</span>
+                        <span>+{thumbnailsLength - 2}</span>
                     </span>
                     :
                     null
@@ -72,10 +79,10 @@ const ThumbnailFolderCard = ({ id, getAssets, resource, history,projectId }) => 
     )
 }
 var mapStateToProps = (state) => ({
-    projectId: state.project && state.project.parentId
+    projectId: state.project && state.project.parentId,
 })
 var mapDispatchToProps = {
-    getAssets
+    getProjectAssets
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ThumbnailFolderCard))

@@ -7,8 +7,11 @@ import Dropdown from '../../Dropdown/Dropdown';
 import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
 import { withRouter } from 'react-router-dom';
 
+
 function HeaderP({ toggle, location, asset, history }) {
     // const history = useHistory();
+// const lastLocation = useLastLocation();
+
     const createNew = () => { }
 
     //This function is responsible for toggling sidebar
@@ -21,7 +24,8 @@ function HeaderP({ toggle, location, asset, history }) {
     }
 
     const goBack = () => {
-        // console.log(history)
+        // console.log(lastLocation.pathname)
+        // history.push(lastLocation.pathname)
         history.goBack()
         // let path = sessionStorage.getItem('path')
         // console.log(path)
@@ -47,7 +51,6 @@ function HeaderP({ toggle, location, asset, history }) {
         { rightIcon: '', leftIcon: '', value: 'Make Private', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Reveal in project', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Delete', goToMenu: '' }];
-    console.log(location)
     return (
         <div className="headerP">
             <div className="headerP__left-box">

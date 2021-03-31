@@ -46,7 +46,6 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, pa
 
     }
     const handleAddFolder = () => {
-        console.log(parentId) 
 
         const data = new FormData()
         data.append('data', JSON.stringify({

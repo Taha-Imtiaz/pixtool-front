@@ -1,7 +1,6 @@
 import React from 'react';
 import { Fragment } from 'react';
 import {  withRouter } from 'react-router-dom';
-import ThumbnailFolderCard from '../ThumbnailFolderCard/ThumbnailFolderCard';
 import './ThumbnailCard.scss';
 
 const ThumbnailCard = ({ resource, key,id, history }) => {

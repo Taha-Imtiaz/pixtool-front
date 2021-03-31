@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../Redux/user/userActions';
 import { withRouter } from 'react-router';
 
-function Header({ account, logout, history }) {
+function Header({ user, logout, history }) {
 
     const logOut = () => {
       history.push("/sign-in")
@@ -48,7 +48,7 @@ function Header({ account, logout, history }) {
             </div>
 
             <div className="profile">
-                {account && <span className="profile__text">{account.name}</span>}
+                {user && <span className="profile__text">{user.name}</span>}
                 <span className="profile__picture">
                     <img src={Profile} alt="Profile" onClick={toggleProfile} />
                     <i className="fas fa-angle-down profile__icon" onClick={toggleProfile}></i>
@@ -66,7 +66,7 @@ function Header({ account, logout, history }) {
     )
 }
 var mapStateToProps = (state) => ({
-    account: state.accounts && state.accounts.account
+    user: state.users && state.users.user
 })
 var mapDispatchToProps = {
     logout

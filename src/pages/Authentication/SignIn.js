@@ -4,9 +4,9 @@ import SignInBG from '../../images/signIn.png';
 import { Link } from 'react-router-dom';
 import ButtonLarge from '../../components/Button/ButtonLarge';
 import { connect } from 'react-redux';
-import { checkUserAuthentication, loginUser } from '../../Redux/user/userActions';
+import {  loginUser } from '../../Redux/user/userActions';
 
-const SignIn = ({loginUser, history}) => {
+const SignIn = ({loginUser}) => {
     const [authFormState, setAuthFormState] = useState({
         email: '',
         password: ''
@@ -60,7 +60,7 @@ const SignIn = ({loginUser, history}) => {
         let userObj = {
             email, password
         } 
-        loginUser(userObj,  () => history.push(`/home`))
+        loginUser(userObj)
 
     }
     return (
