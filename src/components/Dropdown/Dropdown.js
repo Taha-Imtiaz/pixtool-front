@@ -17,7 +17,7 @@ function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, assetId 
 
     // Function to check which dropdown value is Clicked
     const checkClick = (option) => {
-        console.log(option)
+
         // Check For Comment Privacy
         if (option === 'Everyone can see') {
             setCommentPrivacy('public');
@@ -33,7 +33,7 @@ function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, assetId 
         // Check For Video status
         if (option === 'Needs Review') {
             let obj = {
-                "status" : "needs_review"
+                "status": "needs_review"
             }
 
             addDescription(obj, assetId);
@@ -42,7 +42,7 @@ function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, assetId 
 
         } else if (option === 'In Progress') {
             let obj = {
-                "status" : "in_progress"
+                "status": "in_progress"
             }
 
             addDescription(obj, assetId);
@@ -51,7 +51,7 @@ function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, assetId 
 
         } else if (option === 'Approved') {
             let obj = {
-                "status" : "approved"
+                "status": "approved"
             }
 
             addDescription(obj, assetId);

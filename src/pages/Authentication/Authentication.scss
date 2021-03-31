@@ -2,7 +2,7 @@
 
 .auth {
     display: grid;
-    grid-template-columns: 50vw 50vw;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 100vh;
 
     font-family: 'Open Sans', sans-serif;
@@ -23,6 +23,10 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        
+        padding: 2rem;
 
         &--head {
             text-align: center;
@@ -30,55 +34,71 @@
     }
 }
 
+.heading-large {
+    font-size: 3.5rem;
+    color: $color-primary;
+}
+
+.heading-small {
+    font-size: 2.5rem;
+    color: rgba($color-white, 0.8);
+}
+
 .form {
-    text-align: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+
+    width: 45rem;
 
     &__group {
         position: relative;
+        width: 100%;
 
-        &:not(:last-child) {
+        /* &:not(:last-child) {
             margin-top: 3.5rem;
         }
 
         &:last-child {
             margin-top: 4rem;
             margin-bottom: 3rem;
-        }
+        } */
     }
 
     &__input {
-        width: 45rem;
-        font-size: 2rem;
+        width: 100%;
+        font-size: 1.7rem;
         color: rgba($color-white, .8);
-        padding: 1rem 2rem 1rem 5rem;
-        background-color: $color-secondary;
-        border: 2px;
+        padding: .8rem 2.5rem .8rem 4rem;
+        background-color: transparent;
         border: none;
-        border-bottom: 3px solid rgba($color-white, .8);
+        border-bottom: 2px solid rgba($color-white, .8);
         transition: border-bottom .3s;
 
         &:focus,
         &:hover {
             outline: none;
-            border-bottom: 3px solid $color-primary;
+            border-bottom: 2px solid $color-primary;
         }
 
         &::-webkit-input-placeholder {
             color: rgba($color-white, .8);
-            font-size: 2rem;
+            font-size: 1.7rem;
         }
     }
 
     &__absolute-icon {
         position: absolute;
         top: 1rem;
+        left: .5rem;
         color: $color-primary;
-        font-size: 2rem;
+        font-size: 1.7rem;
 
         &--eye {
-            margin-left: -2.5rem;
+            // margin-left: -2.5rem;
+            left: auto;
+            right: .5rem;
             transition: color .3s, cursor .3s;
 
             &:active,
@@ -92,12 +112,22 @@
 }
 
 .resetSignupTexts {
-    display: inline-block;
-    margin-top: 2rem;
+    align-self: flex-start;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    width: 100%;
+    margin: 1rem 0;
+
+    &--login {
+        justify-content: space-between;
+    }
 }
 
 .authLinks {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     color: rgba($color-white, .8);
 
     &--primary {
@@ -111,7 +141,7 @@
     &__text {
         font-size: 1.7rem;
         color: rgba($color-white, .8);
-        margin-bottom: 3rem;
+        margin-bottom: 1rem;
 
         &:before,
         &:after {
@@ -133,15 +163,15 @@
     }
 
     &__icons {
-        font-size: 2.5rem;
+        width: 4rem;
+        height: 4rem;
+        display: inline-block;
+        font-size: 2rem;
+        color: $color-primary;
+        text-align: center;
+        line-height: 3.5rem;
         border-radius: 50%;
         border: 2px solid $color-primary;
-        color: $color-primary;
-        line-height: 4.5rem;
-        width: 5rem;
-        height: 5rem;
-        text-align: center;
-        display: inline-block;
         cursor: pointer;
 
         &:not(:last-child) {

@@ -6,16 +6,15 @@ import ButtonLarge from '../../components/Button/ButtonLarge';
 import { connect } from 'react-redux';
 import { checkUserAuthentication, loginUser } from '../../Redux/user/userActions';
 
-const SignIn = ({loginUser, history}) => {
+const SignIn = ({ loginUser, history }) => {
+
+    // State To Store/ Set Values Of Form Fields
     const [authFormState, setAuthFormState] = useState({
         email: '',
         password: ''
-    })
- 
+    });
 
-  
-
-    const showHidePassword = () => {
+    /* const showHidePassword = () => {
         var input = document.getElementById("password");
         var x = document.getElementById("showPass");
         var y = document.getElementById("hidePass");
@@ -31,19 +30,29 @@ const SignIn = ({loginUser, history}) => {
             y.style.display = 'none';
         }
 
+    } */
+
+    // Function To Show/ Hide Password When Clicked On Eye Icons On Input Fields
+    const showHidePassword = () => {
+        // This can be done simply by toggling a state but here I don't want a redender
+
+        let passwordInput = document.getElementById("password");
+        let showPassEyeIcon = document.getElementById("showPassEyeIcon");
+        let hidePassEyeIcon = document.getElementById("hidePassEyeIcon");
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = "text";
+
+            showPassEyeIcon.style.display = 'none';
+            hidePassEyeIcon.style.display = 'inline-block';
+
+        } else {
+            passwordInput.type = "password";
+            showPassEyeIcon.style.display = 'inline-block';
+            hidePassEyeIcon.style.display = 'none';
+        }
     }
 
-    // const hidePassword = () => {
-    //     var input = document.getElementById("password");
-    //     var x = document.getElementById("showPass");
-    //     var y = document.getElementById("hidePass");
-
-    //     if (input.type === 'text') {
-           
-           
-    //     }
-        
-    // }
     // onChange handler for form fields
     const handleFormInput = (e) => {
         let { name, value } = e.target;
@@ -59,8 +68,8 @@ const SignIn = ({loginUser, history}) => {
         let { email, password } = authFormState
         let userObj = {
             email, password
-        } 
-        loginUser(userObj,  () => history.push(`/home`))
+        }
+        loginUser(userObj, () => history.push(`/home`))
 
     }
     return (
@@ -77,20 +86,20 @@ const SignIn = ({loginUser, history}) => {
 
                 <form className="form" onSubmit={handleFormSubmit}>
                     <div className="form__group">
-                        <i className="fas fa-user form__absolute-icon"></i>
-                        <input type="email" name="email" value={authFormState.email} onChange={handleFormInput} className="form__input" placeholder="Email" id="email" required></input>
+                        <i className="fas fa-envelope form__absolute-icon"></i>
+                        <input id="email" className="form__input" name="email" type="email" value={authFormState.email} onChange={handleFormInput} placeholder="Email" required></input>
                     </div>
 
                     <div className="form__group">
                         <i className="fas fa-lock form__absolute-icon"></i>
-                        <input id="password" name="password" value={authFormState.password} type="password" onChange={handleFormInput} className="form__input" placeholder="Password" required></input>
-                        <i id="showPass" className="fas fa-eye form__absolute-icon form__absolute-icon--eye" title="Show Password" onClick={showHidePassword}></i>
-                        <i id="hidePass" className="fas fa-eye-slash form__absolute-icon form__absolute-icon--eye dis-none" title="Hide Password" onClick={showHidePassword}></i>
+                        <input id="password" className="form__input" type="password" name="password" value={authFormState.password} onChange={handleFormInput} placeholder="Password" required></input>
+                        <i id="showPassEyeIcon" className="fas fa-eye form__absolute-icon form__absolute-icon--eye" title="Show Password" onClick={showHidePassword}></i>
+                        <i id="hidePassEyeIcon" className="fas fa-eye-slash form__absolute-icon form__absolute-icon--eye dis-none" title="Hide Password" onClick={showHidePassword}></i>
                     </div>
 
-                    <div className="resetSignupTexts">
+                    <div className="resetSignupTexts resetSignupTexts--login">
                         <span className="authLinks">Don't have an account?&nbsp;<Link to="/sign-up" className="authLinks"><strong>Sign Up</strong></Link></span>
-                        <a href="./#" className="authLinks authLinks--primary margin-l-large"><strong>Forgot Passsword</strong></a>
+                        <Link to="./#" className="authLinks authLinks--primary"><strong>Forgot Password</strong></Link>
                     </div>
 
                     <div className="form__group">

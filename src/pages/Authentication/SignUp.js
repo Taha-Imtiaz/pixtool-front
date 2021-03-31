@@ -1,55 +1,46 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import './Authentication.scss'
 import SignUpBG from '../../images/signUp.png'
 import ButtonLarge from '../../components/Button/ButtonLarge';
 import { connect } from 'react-redux';
-import {signupUser } from '../../Redux/user/userActions';
+import { signupUser } from '../../Redux/user/userActions';
 
 
 const SignUp = ({ signupUser, history }) => {
+
+    // State To Store/ Set Values Of Form Fields
     const [authFormState, setAuthFormState] = useState({
+        full_name: '',
         email: '',
-        name: '',
+        username: '',
         password: '',
-        confirmPassword: '',
-    })
-    
-   
+        confirm_password: '',
+    });
+
+    // Function To Show/ Hide Password When Clicked On Eye Icons On Input Fields
     const showHidePassword = () => {
-        var input = document.getElementById("password");
-        var inputC = document.getElementById("passwordConfirm");
-        var x = document.getElementById("showPass");
-        var y = document.getElementById("hidePass");
+        // This can be done simply by toggling a state but here I don't want a redender
 
-        if (input.type === 'password' || inputC.type === 'password') {
-            input.type = "text";
-            inputC.type = "text";
+        let passwordInput = document.getElementById("password");
+        let passwordInputC = document.getElementById("passwordConfirm");
+        let showPassEyeIcon = document.getElementById("showPassEyeIcon");
+        let hidePassEyeIcon = document.getElementById("hidePassEyeIcon");
 
-            x.style.display = 'none';
-            y.style.display = 'inline-block';
+        if (passwordInput.type === 'password' || passwordInputC.type === 'password') {
+            passwordInput.type = "text";
+            passwordInputC.type = "text";
+
+            showPassEyeIcon.style.display = 'none';
+            hidePassEyeIcon.style.display = 'inline-block';
+
+        } else {
+            passwordInput.type = "password";
+            passwordInputC.type = "password";
+            showPassEyeIcon.style.display = 'inline-block';
+            hidePassEyeIcon.style.display = 'none';
         }
-        else {
-            input.type = "password";
-            inputC.type = "password";
-            x.style.display = 'inline-block';
-            y.style.display = 'none';
-        }
-
     }
 
-    // const hidePassword = () => {
-    //     var input = document.getElementById("password");
-    //     var inputC = document.getElementById("passwordConfirm");
-    //     var x = document.getElementById("showPass");
-    //     var y = document.getElementById("hidePass");
-
-    //     if (input.type === 'text' || inputC.type === 'text') {
-    //         input.type = "password";
-    //         inputC.type = "password";
-    //         x.style.display = 'inline-block';
-    //         y.style.display = 'none';
-    //     }
-    // }
     // onChange handler for form fields
     const handleFormInput = (e) => {
         let { name, value } = e.target;
@@ -59,18 +50,19 @@ const SignUp = ({ signupUser, history }) => {
             [name]: value
         })
     }
+
     //form submit handler 
     const handleFormSubmit = (e) => {
         // prevent page from reloading
         e.preventDefault();
-        let { name, email, password, confirmPassword } = authFormState
-        if (password === confirmPassword) {
+        let { full_name, email, username, password, confirm_password } = authFormState
+        
+        if (password === confirm_password) {
             // send data to the server
             var userObj = {
-
-                name, email, password,
-
+                full_name, email, username, password,
             }
+
             signupUser(userObj, () => {
                 history.push(`/home`)
             })
@@ -95,28 +87,33 @@ const SignUp = ({ signupUser, history }) => {
                 <form className="form" onSubmit={handleFormSubmit}>
                     <div className="form__group">
                         <i className="fas fa-user form__absolute-icon"></i>
-                        <input type="email" name="email" value={authFormState.email} onChange={handleFormInput} className="form__input" placeholder="Email" id="email" required></input>
+                        <input id="fullName" className="form__input" type="text" name="full_name" value={authFormState.fullName} onChange={handleFormInput}  placeholder="Full Name" required></input>
+                    </div>
+
+                    <div className="form__group">
+                        <i className="fas fa-envelope form__absolute-icon"></i>
+                        <input id="email" className="form__input" type="email" name="email" value={authFormState.email} onChange={handleFormInput} placeholder="Email" required></input>
                     </div>
 
                     <div className="form__group">
                         <i className="fas fa-user form__absolute-icon"></i>
-                        <input type="text" name="name" value={authFormState.name} onChange={handleFormInput} className="form__input" placeholder="Username" id="username" required></input>
+                        <input id="username" className="form__input" type="text" name="username" value={authFormState.name} onChange={handleFormInput} placeholder="Username" required></input>
                     </div>
 
                     <div className="form__group">
                         <i className="fas fa-lock form__absolute-icon"></i>
-                        <input id="password" name="password" value={authFormState.password} onChange={handleFormInput} type="password" className="form__input" placeholder="Password" required></input>
-                        <i id="showPass" className="fas fa-eye form__absolute-icon form__absolute-icon--eye" title="Show Password" onClick={showHidePassword}></i>
-                        <i id="hidePass" className="fas fa-eye-slash form__absolute-icon form__absolute-icon--eye dis-none" title="Hide Password" onClick={showHidePassword}></i>
+                        <input id="password" className="form__input" type="password" name="password" value={authFormState.password} onChange={handleFormInput} placeholder="Password" required></input>
+                        <i id="showPassEyeIcon" className="fas fa-eye form__absolute-icon form__absolute-icon--eye" title="Show Password" onClick={showHidePassword}></i>
+                        <i id="hidePassEyeIcon" className="fas fa-eye-slash form__absolute-icon form__absolute-icon--eye dis-none" title="Hide Password" onClick={showHidePassword}></i>
                     </div>
 
                     <div className="form__group">
                         <i className="fas fa-lock form__absolute-icon"></i>
-                        <input id="passwordConfirm" name="confirmPassword" value={authFormState.confirmPassword} onChange={handleFormInput} type="password" className="form__input" placeholder="Confirm Password" required></input>
+                        <input id="passwordConfirm" className="form__input" type="password" name="confirm_password" value={authFormState.confirmPassword} onChange={handleFormInput} placeholder="Confirm Password" required></input>
                     </div>
 
-                    <div className="resetSignupTexts margin-r-huge">
-                        <input type="checkbox"></input>
+                    <div className="resetSignupTexts">
+                        <input type="checkbox" className="checkbox"></input>
                         <span className="authLinks">
                             &nbsp; I, agree with all the
                             <a href="./#" className="authLinks authLinks--blue">
@@ -130,15 +127,15 @@ const SignUp = ({ signupUser, history }) => {
                     </div>
                 </form>
 
-                {/* <div className="otherAuthOptions">
-                    <p className="otherAuthOptions__text">Or Sign In with</p>
+                <div className="otherAuthOptions">
+                    <p className="otherAuthOptions__text">Or Sign Up with</p>
                     <div>
                         <span className="otherAuthOptions__icons"><i className="fab fa-google"></i></span>
                         <span className="otherAuthOptions__icons"><i className="fab fa-apple"></i></span>
                     </div>
-                </div> */}
-            </div>
-        </div>
+                </div>
+            </div >
+        </div >
     )
 }
 var mapDispatchToProps = {
