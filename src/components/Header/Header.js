@@ -5,7 +5,7 @@ import { logout } from '../../Redux/user/userActions';
 
 import './Header.scss';
 
-function Header({ account, logout, history }) {
+function Header({ user, logout, history }) {
 
 
     const logOut = () => {
@@ -52,9 +52,9 @@ function Header({ account, logout, history }) {
             </div>
 
             <div className="profile">
-                {account && <span className="profile__text">{account.full_name}</span>}
+                {user && <span className="profile__text">{user.name}</span>}
                 <span className="profile__picture">
-                    {account && <img src={account.images.profile_image} alt="Profile" onClick={toggleProfile} />}
+                    {user && <img src={user.images.profile_image} alt="Profile" onClick={toggleProfile} />}
                     <i className="fas fa-angle-down profile__icon" onClick={toggleProfile}></i>
                     <div className="profileDropdown">
                         <ul className="profileDropdown__list">
@@ -70,7 +70,7 @@ function Header({ account, logout, history }) {
     )
 }
 var mapStateToProps = (state) => ({
-    account: state.accounts && state.accounts.account
+    user: state.users && state.users.user
 })
 var mapDispatchToProps = {
     logout

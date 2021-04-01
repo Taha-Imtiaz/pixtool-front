@@ -13,9 +13,9 @@ let userReducer = (state = initialState, { type, payload }) => {
 
         case LOGOUT:
             return initialState
-
+            
         case GET_USER_DATA:
-            return {...state, userData: payload }
+            return {...state, user: payload }
 
         default:
             return state

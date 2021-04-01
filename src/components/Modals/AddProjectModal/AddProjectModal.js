@@ -4,9 +4,10 @@ import './AddProjectModal.scss';
 import ButtonLight from '../../Button/ButtonLight';
 import { connect } from 'react-redux';
 import { addProject } from '../../../Redux/project/projectActions';
-import { getTeams } from '../../../Redux/team/teamActions';
+import { getAccount } from '../../../Redux/account/accountActions';
 
-const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addProject, getTeams, account }) => {
+
+const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addProject, getAccount, account }) => {
     // modal form state
     const [modalFormState, setModalFormState] = useState({
         projectName: ''
@@ -35,7 +36,7 @@ const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addPro
 
         addProject(teamId, data, () => {
             console.log("callback called")
-            getTeams(account_id[0]._id)
+            getAccount(account_id[0]._id)
         })
         modalToggler(e, teamId)
         
@@ -89,7 +90,7 @@ var mapStateToProps = (state) => ({
 
 var mapDispatchToProps = {
     addProject,
-    getTeams
+    getAccount
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProjectModal)

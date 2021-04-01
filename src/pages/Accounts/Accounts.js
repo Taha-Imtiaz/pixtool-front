@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom'
 
 import './Accounts.scss';
@@ -7,8 +7,6 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
 import Profile from '../../components/AccountsComponents/Profile/Profile';
 import Teams from '../../components/AccountsComponents/Teams/Teams';
-import { connect } from 'react-redux';
-import { getAccount } from '../../Redux/account/accountActions';
 
 
 /* Arrays To Pass The Sidebar Content In Props */
@@ -17,14 +15,14 @@ let sidebarMenu1 = [
     { icon: 'fas fa-user-circle', value: 'Profile' }
 ];
 
-const Accounts = ({getAccount}) => {
+const Accounts = () => {
     // For Find Path
     const location = useLocation();
-    
+
     //fetch the account of the user  
-    useEffect(() => {
-        getAccount()
-    }, [])
+    // useEffect(() => {
+    // getUser()
+    // }, [])
 
 
     return (
@@ -40,7 +38,4 @@ const Accounts = ({getAccount}) => {
         </div>
     )
 }
-var mapDispatchToProps = {
-    getAccount
-}
-export default connect(null, mapDispatchToProps)(Accounts)
+export default Accounts

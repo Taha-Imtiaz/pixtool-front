@@ -2,27 +2,16 @@ import Axios from "axios";
 import { showToastMessage } from "../utility/utilityActions";
 import { ACCOUNT } from "./accountConstants";
 
-//get all user project accounts details
-export const getAccount = () => async (dispatch) => {
+//get all teams
+export const getAccount = (accountId) => async (dispatch) => {
   try {
-    // set up headers for user token
-    // const config = {
-    //   handlerEnabled: true
-    // };
-
-    // send request to the server
-    const response = await Axios.get(`user`, {
-      config: {
-        handlerEnabled: true
-      }
-    })
-    // update app's state
-    dispatch({
-      type: ACCOUNT,
-      payload: response.data.data
-    })
-
-
+   
+      let response = await Axios.get(`account/${accountId}`)
+      dispatch({
+        type:ACCOUNT,
+        payload: response.data.data.teams
+      })
+    
   } catch (e) {
     if (e.response && e.response.data) {
       dispatch(showToastMessage(e.response.data.message))

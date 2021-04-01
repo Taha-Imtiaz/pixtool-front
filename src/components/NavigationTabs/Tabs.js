@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './NavigationTabs.scss';
 
 import Tab from './Tab';
+import { Link } from 'react-router-dom';
 
 class Tabs extends Component {
     static propTypes = {
@@ -14,38 +15,44 @@ class Tabs extends Component {
         super(props);
 
         this.state = {
-            activeTab: this.props.children[0].props.label,
+            activeTab: this.props && this.props.children && this.props.children.props && this.props.children.props.children[0] && this.props.children.props.children[0].props.label,
+            path: this.props && this.props.children && this.props.children.props && this.props.children.props.children[0] && this.props.children.props.children[0].props.path,
+
         };
     }
 
-    onClickTabItem = (tab) => {
+    onClickTabItem = (tab, index) => {
         this.setState({ activeTab: tab });
     }
 
     render() {
+     
         const {
             onClickTabItem,
             props: {
-                children,
+                children: { props: { children } },
             },
             state: {
                 activeTab,
             }
         } = this;
-
         return (
             <div className="tabs">
                 <ol className="tab-list">
                     {children.map((child) => {
-                        const { label } = child.props;
+                        const { label, path } = child.props;
 
                         return (
-                            <Tab
+
+                            <Link to = {path}> 
+                             <Tab
                                 activeTab={activeTab}
                                 key={label}
                                 label={label}
+                               
+
                                 onClick={onClickTabItem}
-                            />
+                            /></Link>
                         );
                     })}
                 </ol>
@@ -59,5 +66,6 @@ class Tabs extends Component {
         );
     }
 }
+
 
 export default Tabs;

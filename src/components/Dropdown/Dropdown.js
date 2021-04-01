@@ -123,7 +123,6 @@ function DropdownMenu({ menuItems, checkClick }) {
 
 
     function DropdownItem(props) {
-
         return (
             <span className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>

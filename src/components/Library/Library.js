@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import "./Library.scss";
@@ -9,7 +9,7 @@ import Button from "../../components/Button/Button";
 import Dropdown from "../Dropdown/Dropdown";
 import ThumbnailCard from "../../components/Cards/ThumbnailCard/ThumbnailCard";
 
-import { getAssets, getProject } from "../../Redux/project/projectActions";
+import { getProjectAssets, getProject } from "../../Redux/project/projectActions";
 // import ThumbnailFolderCard from '../Cards/ThumbnailFolderCard/ThumbnailFolderCard';
 import { uploadAsset } from "../../Redux/assets/assetActions";
 import ThumbnailFolderCard from "../Cards/ThumbnailFolderCard/ThumbnailFolderCard";
@@ -23,61 +23,67 @@ const Library = ({
   uploadAsset,
   project,
   addFolderModalToggle,
-  getAssets,
+  getProjectAssets,
   history,
-  location: { pathname },
-}) => {
-  const createNew = () => { };
+  location,
 
-  // const routeChange = history.listen((location, action) => {
-  //     console.log("on route change", location, action);
-  // });
+
+}) => {
+  var previousPath, currentPath
+  // const lastLocation = useLastLocation();
+  const createNew = () => { };
+  let { pathname } = location
 
   useEffect(() => {
-    //   this useeffect only runs if pathname changes (go back and forward)
-    //check pathname when we goBack(pathname !== the path of the page from which we are coming)
-    if (
-      sessionStorage.getItem("path") &&
-      pathname !== sessionStorage.getItem("path")
-    ) {
-      console.log("Call Api", pathname);
-      sessionStorage.setItem("path", pathname);
+    currentPath = sessionStorage.setItem('currentPath', pathname)
+    previousPath = sessionStorage.setItem('previousPath', '')
+  }, [])
 
-      let pathNameIdArray = pathname.split("/").slice(2, pathname.length);
-      let pathNameIdArrayLength = pathNameIdArray.length;
+  
 
-      if (pathNameIdArrayLength === 1) {
-        if (teams) {
-          let { projects } = teams[0];
 
-          getProject(projects[0]._id);
+  useEffect(() => {
+    if (project) {
+      // this useeffect only runs if pathname changes (go back and forward)
+      //check pathname when we goBack(pathname !== the path of the page from which we are coming)
+      if (
+        sessionStorage.getItem("path") &&
+        pathname !== sessionStorage.getItem("path")
+      ) {
+        sessionStorage.setItem("path", pathname);
+
+        let pathNameIdArray = pathname.split("/").slice(2, pathname.length);
+        let pathNameIdArrayLength = pathNameIdArray.length;
+        console.log(pathNameIdArrayLength)
+
+        if (pathNameIdArrayLength === 2) { //we are on home page not any nested folder
+          if (teams) {
+            let { projects } = teams;
+            getProject(projects[0]._id);
+          }
         }
+        else if (pathNameIdArrayLength === 3) {
+          //   this else part runs only if we go back
+          let assetObj = {
+            status: "in_progress",
+          }
+          getProjectAssets(pathNameIdArray[1], assetObj)  /*pass asset id in argument   */
+        }
+      } else {
+        sessionStorage.setItem("path", pathname);
       }
-      else /*if (pathNameIdArrayLength === 2)*/ {
-        //   this else part runs only if we go back
-        getAssets(pathNameIdArray[1])  /*pass asset id in argument   */
-      }
-    } else {
-      sessionStorage.setItem("path", pathname);
     }
+
   }, [pathname]);
 
-  //show all the resources (projects) of 1st team
-  useEffect(() => {
-    if (teams) {
-      // get all projects of first team
-      let { projects } = teams[0];
-      if (projects) {
-        history.push(`/home/${projects[0]._id}`);
-      }
-      // get resources of 1st project
-      getProject(projects[0]._id);
-    }
-  }, [teams]);
+
+
+
+
+
 
   const handleVideoUpload = async (e) => {
     let { parentId } = project;
-    console.log(parentId);
 
     if (e.target.files[0]) {
       let file = e.target.files[0];
@@ -198,8 +204,9 @@ const Library = ({
                     resource={resource}
                   />
                 ) : (
-                    <ThumbnailFolderCard id={resource._id} resource={resource} />
-                  )
+
+                  <ThumbnailFolderCard key={resource._id} id={resource._id} resource={resource} />
+                )
               ) : <img src={NoDataFoundImg} alt="No Data Found" className="margin-auto" />}
           </div>
         </div>
@@ -215,7 +222,7 @@ var mapStateToProps = (state) => ({
 var mapDispatchToProps = {
   getProject,
   uploadAsset,
-  getAssets
+  getProjectAssets
 };
 
 export default connect(

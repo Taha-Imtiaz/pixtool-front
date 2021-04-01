@@ -7,6 +7,7 @@ import { SET_CURRENT_USER, SET_LOGGEDIN_USER, LOGOUT, GET_USER_DATA } from "./us
 export const signupUser = (userObj, callback) => async (dispatch) => {
     try {
         let response = await Axios.post(`user`, userObj)
+        console.log(response.data.token, response.data.data)
         //save token in local storage
         localStorage.setItem("pixtool-token", response.data.token);
 
@@ -19,7 +20,7 @@ export const signupUser = (userObj, callback) => async (dispatch) => {
             payload: response.data.data
         })
         // navigate user to home page
-        callback()
+        // callback()
 
 
     } catch (e) {
@@ -46,7 +47,7 @@ export const loginUser = (userObj, callback) => async (dispatch) => {
             payload: response.data.data
         })
         // navigate user to home page
-        callback()
+        // callback()
 
 
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getAssets } from '../../../Redux/project/projectActions';
+import { getProjectAssets } from '../../../Redux/project/projectActions';
 
 import './ThumbnailFolderCard.scss';
 
 
-const ThumbnailFolderCard = ({ id, getAssets, resource, history, projectId }) => {
+const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectId, match: { params } }) => {
 
     const [thumbnailsLength, setThumbnailsLength] = useState(0)
 
@@ -20,13 +20,18 @@ const ThumbnailFolderCard = ({ id, getAssets, resource, history, projectId }) =>
     }, [thumbnails])
 
 
+
     // fetch assets of the given projects
     const fetchAssets = (projectId, assetId) => {
-        history.push(`/home/${projectId}/${assetId}`)
-        getAssets(assetId)
+        history.push(`/home/library/${projectId}/${assetId}`)
+        let assetObj = {
+            status: "in_progress",
+        }
+        getProjectAssets(assetId, assetObj)
     }
+    
 
-
+   
     return (
         <div className="thumbnailFolderCard" tabIndex="0" onClick={() => fetchAssets(projectId, id)} >
 
@@ -45,7 +50,7 @@ const ThumbnailFolderCard = ({ id, getAssets, resource, history, projectId }) =>
 
                 {thumbnailsLength === 3 ?
                     <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--3">
-                        <img src={thumbnails[2]} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--3" />
+                        <img src={thumbnails[2]} alt="" className="thumbnailFolderCard__img thumbnailFolderCard__img--3" />
                     </span>
                     :
                     null
@@ -74,10 +79,10 @@ const ThumbnailFolderCard = ({ id, getAssets, resource, history, projectId }) =>
 }
 
 var mapStateToProps = (state) => ({
-    projectId: state.project && state.project.parentId
+    projectId: state.project && state.project.parentId,
 })
 var mapDispatchToProps = {
-    getAssets
+    getProjectAssets
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ThumbnailFolderCard))

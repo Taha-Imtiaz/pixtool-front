@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import './Home.scss'
@@ -21,11 +21,12 @@ import Stages from '../../components/StagesComponents/Stages/Stages';
 import AddProjectModal from '../../components/Modals/AddProjectModal/AddProjectModal';
 import AddFolderModal from '../../components/Modals/AddFolderModal/AddFolderModal';
 
-import { getAccount } from '../../Redux/account/accountActions';
-import { getTeams } from '../../Redux/team/teamActions';
+
+import { Route, Switch } from 'react-router-dom';
 
 
-function Home({ getAccount, getTeams, account }) {
+
+function Home({ project, match: { path } }) {
 
     // This state is used to set teamId
     const [teamId, setTeamId] = useState(null)
@@ -34,33 +35,13 @@ function Home({ getAccount, getTeams, account }) {
     // This state is used to Show/ Hide the AddFolderModal
     const [showAddFolderModal, setShowAddFolderModal] = useState(false);
 
-    useEffect(() => {
-        getAccount()
 
-    }, [])
 
-    // get teams of account which is signed in currently(by default first team) 
-    useEffect(() => {
-        if (account) {
-            let { account_id } = account;
 
-            if (account_id[0]) {
-                getTeams(account_id[0]._id)
-
-            }
-        }
-
-    }, [account])
-
-    // const [show, setShow] = useState(false);
-    // const modalToggle = () => setShow(!show);
-
-    // close add project modal
 
 
     // This Function is responsible to Show/ Hide the AddProjectModal
     const addProjectModalToggle = (e, teamId) => {
-        console.log(e, teamId)
         setTeamId(teamId)
         // prevent parent component to render when open open a modal
         e.stopPropagation()
@@ -97,7 +78,6 @@ function Home({ getAccount, getTeams, account }) {
         { icon: 'far fa-file-alt', value: 'Shared with me' },
         { icon: 'fas fa-cog', value: 'Settings' }
     ];
-
     return (
         <div className="home page-wrapper">
             {/* Above "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
@@ -110,63 +90,62 @@ function Home({ getAccount, getTeams, account }) {
                 <Header className="header" />
 
                 {/* This is home's main tab which include Library, Shows & Stages */}
-                <Tabs className="tabs">
+                {project && <Tabs className="tabs">
 
-                    {/* Library Tab Content */}
-                    <div label="Library">
-                        <Library addFolderModalToggle={addFolderModalToggle} />
-                    </div>
+                    <Switch>
+                        <Route path={`${path}/library/${project._id}`} label="Library" >
+                            <Library addFolderModalToggle={addFolderModalToggle} />
+                        </Route>
+                        <Route path={`${path}/shows/${project._id}`} label="Shows" >
+                            <InnerTabs>
+                                {/* Shows - Overview Tab Content */}
+                                <div label="Overview">
+                                    <Overview />
+                                </div>
 
-                    {/* Shows Tab Content */}
-                    <div label="Shows">
-                        <InnerTabs>
-                            {/* Shows - Overview Tab Content */}
-                            <div label="Overview">
-                                <Overview />
-                            </div>
+                                {/* Shows - Settings Tab Content */}
+                                <div label="Settings">
+                                    <Settings />
+                                </div>
 
-                            {/* Shows - Settings Tab Content */}
-                            <div label="Settings">
-                                <Settings />
-                            </div>
+                                {/*Shows - Media Tab Content */}
+                                <div label="Media">
+                                    <Media />
+                                </div>
 
-                            {/*Shows - Media Tab Content */}
-                            <div label="Media">
-                                <Media />
-                            </div>
+                                {/*Shows -  Preview Tab Content */}
+                                <div label="Preview">
+                                    <Preview />
+                                </div>
 
-                            {/*Shows -  Preview Tab Content */}
-                            <div label="Preview">
-                                <Preview />
-                            </div>
+                                {/*Shows - Export Tab Content */}
+                                <div label="Export">
+                                    <Export />
+                                </div>
+                            </InnerTabs>
+                        </Route>
+                        <Route path={`${path}/stages/${project._id}`} label="Stages" >
+                            <InnerTabs>
+                                {/* Stages - Surfaces Tab Content */}
+                                <div label="Surfaces">
+                                    <Surfaces />
+                                </div>
 
-                            {/*Shows - Export Tab Content */}
-                            <div label="Export">
-                                <Export />
-                            </div>
-                        </InnerTabs>
-                    </div>
+                                {/* Stages - Screens Tab Content */}
+                                <div label="Screens">
+                                    <Screens />
+                                </div>
 
-                    {/* Stages Tab Content */}
-                    <div label="Stages">
-                        <InnerTabs>
-                            {/* Stages - Surfaces Tab Content */}
-                            <div label="Surfaces">
-                                <Surfaces />
-                            </div>
-
-                            {/* Stages - Screens Tab Content */}
-                            <div label="Screens">
-                                <Screens />
-                            </div>
-
-                            {/*Stages - Stages Tab Content */}
-                            <div label="Stages">
-                                <Stages />
-                            </div>
-                        </InnerTabs>
-                    </div>
+                                {/*Stages - Stages Tab Content */}
+                                <div label="Stages">
+                                    <Stages />
+                                </div>
+                            </InnerTabs>
+                        </Route>
+                    </Switch>
                 </Tabs>
+
+                }
             </div>
 
             {/* All The Modal Components Used In Home Page, All It's Tabs & Sidebar*/}
@@ -182,12 +161,9 @@ function Home({ getAccount, getTeams, account }) {
 }
 
 var mapStateToProps = (state) => ({
-    account: state.accounts && state.accounts.account,
+    project: state.project
 })
 
-var mapDispatchToProps = {
-    getAccount,
-    getTeams
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+
+export default connect(mapStateToProps)(Home)
