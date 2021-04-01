@@ -1,4 +1,4 @@
-import { GET_USER, LOGOUT, SET_CURRENT_USER, SET_LOGGEDIN_USER } from "./userConstants"
+import { LOGOUT, SET_CURRENT_USER, SET_LOGGEDIN_USER, GET_USER_DATA } from "./userConstants"
 
 let initialState = {
     user: null
@@ -10,10 +10,13 @@ let userReducer = (state = initialState, { type, payload }) => {
 
         case SET_LOGGEDIN_USER:
             return { ...state, user: payload }
+
         case LOGOUT:
             return initialState
-            case GET_USER:
-            return { ...state, user: payload }
+            
+        case GET_USER_DATA:
+            return {...state, user: payload }
+
         default:
             return state
     }

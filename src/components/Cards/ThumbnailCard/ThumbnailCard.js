@@ -5,28 +5,27 @@ import './ThumbnailCard.scss';
 
 const ThumbnailCard = ({ resource, key,id, history }) => {
     
-    
     let { thumbnail, name } = resource
+    
     return (
-        <div className="thumbnailCard" key={key} onClick = {() => history.push(`/player/${id}`)}>
+        <div className="thumbnailCard" tabIndex="0" key={key} onClick = {() => history.push(`/player/${id}`)}>
            <Fragment>
-              
                 <div className="thumbnailCard__status">
                     Needs Approval
-            </div>
+                </div>
+
                 <div className="thumbnailCard__imgBox">
                   {thumbnail ? <img src={thumbnail} alt="Thumbnail" className="thumbnailCard__img" /> :  <img src="" alt="Thumbnail" className="thumbnailCard__img" />}
                 </div>
+
                 <div className="thumbnailCard__text">
                     <div className="thumbnailCard__name truncate">{name}</div>
                     <div className="thumbnailCard__datail">
                         <span>John</span>
-                    &nbsp;-&nbsp;
-                    <span>01 Jan 2021</span>
+                        &nbsp;-&nbsp;
+                        <span>01 Jan 2021</span>
                     </div>
                 </div>
-                
-               
             </Fragment> 
         </div>
     )

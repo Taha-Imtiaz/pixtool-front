@@ -1,7 +1,7 @@
 
 import Axios from "axios"
 import { showToastMessage } from "../utility/utilityActions"
-import { SET_CURRENT_USER, SET_LOGGEDIN_USER, LOGOUT, GET_USER } from "./userConstants"
+import { SET_CURRENT_USER, SET_LOGGEDIN_USER, LOGOUT, GET_USER_DATA } from "./userConstants"
 
 // set current user in redux store(who is signed up first time)
 export const signupUser = (userObj, callback) => async (dispatch) => {
@@ -59,41 +59,40 @@ export const loginUser = (userObj, callback) => async (dispatch) => {
     }
 }
 
-export const logout = () => (dispatch) =>  {
+export const logout = () => (dispatch) => {
     // remove token from local 
     localStorage.removeItem("pixtool-token")
     dispatch({
-    type: LOGOUT,
+        type: LOGOUT,
     })
 }
 // check user auth
 export const checkUserAuthentication = () => {
     let token = localStorage.getItem("pixtool-token");
-    if(token) return true
+    if (token) return true
     else return false
-    }
+}
 
-    //get all user project accounts details
-export const getUser = () => async (dispatch) => {
+
+// To Get The User Data
+export const getUserData = () => async (dispatch) => {
     try {
-      // send request to the server
-      const response = await Axios.get(`user`, {
-        config: {
-          handlerEnabled: true
-        }
-      })
-      // update app's state
-      dispatch({
-        type: GET_USER,
-        payload: response.data.data
-      })
-  
-  
+        let response = await Axios.get(`user`, {
+            config: {
+                handlerEnabled: true
+            }
+        })
+
+        // update app state
+        dispatch({
+            type: GET_USER_DATA,
+            payload: response.data.data
+        });
+
     } catch (e) {
-      if (e.response && e.response.data) {
-        dispatch(showToastMessage(e.response.data.message))
-  
-      }
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
+
+        }
     }
-  }
-  
+}

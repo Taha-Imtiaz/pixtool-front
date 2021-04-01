@@ -2,7 +2,7 @@ import { React, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getAssetDetails, getCommentDetails } from '../../Redux/assets/assetActions';
 
-import './Postmortem.scss';
+import './Player.scss';
 
 import HeaderP from '../../components/PlayerComponents/HeaderP/HeaderP';
 import SidebarP from '../../components/PlayerComponents/SidebarP/SidebarP';
@@ -10,6 +10,7 @@ import PlayerP from '../../components/PlayerComponents/PlayerP/PlayerP';
 
 
 const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDetails, asset }) => {
+    
     // This state is responsible for toggling sidebar
     sessionStorage.setItem('previousRoute', 'player')
     const [drawer, setDrawer] = useState(true)
@@ -22,17 +23,18 @@ const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDet
     const toggle = () => {
         setDrawer(!drawer)
     }
+    
     return (
-        <div className="postmortem page-wrapper">
+        <div className="player page-wrapper">
             {/* "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
 
-            <div className="postmortem__header">
+            <div className="player__header">
                 <HeaderP toggle={toggle} asset={asset} />
             </div>
-            <div className="postmortem__sidebar">
-                <SidebarP open={drawer} />
+            <div className="player__sidebar">
+                <SidebarP open={drawer} asset={asset} />
             </div>
-            <div className="postmortem__body">
+            <div className="player__body">
                 <PlayerP />
             </div>
 

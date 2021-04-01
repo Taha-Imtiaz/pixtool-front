@@ -17,7 +17,7 @@ import Player from './pages/Player/Player';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import store from './Redux/store';
 import { getTeamData } from './Redux/team/teamActions';
-import { checkUserAuthentication, getUser } from './Redux/user/userActions';
+import { checkUserAuthentication, getUserData } from './Redux/user/userActions';
 import { getProject } from './Redux/project/projectActions';
 import { getAccount } from './Redux/account/accountActions';
 
@@ -37,7 +37,7 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
 
     let checkUserAuth = checkUserAuthentication()
     if (checkUserAuth) {
-      store.dispatch(getUser())
+      store.dispatch(getUserData())
     }
     else {
       // <Redirect to = '/sign-in'/>
@@ -52,7 +52,7 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
       console.log(user)
       let { account_id } = user
       console.log(account_id[0])
-      if (account_id[0] && account_id[0]._id) {
+      if (account_id[0] &&  account_id[0]._id) {
         console.log("get account api called")
         store.dispatch(getAccount(account_id[0]._id))
       }
@@ -92,7 +92,7 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
           <PrivateRoute path="/home" component={Home} />
-          <PrivateRoute path='project/:projectId/:assetId' />
+          
           <PrivateRoute path="/player/:assetId" component={Player} />
           <PrivateRoute path="/accounts" component={Accounts} />
           <PrivateRoute path="/test" component={Test} />

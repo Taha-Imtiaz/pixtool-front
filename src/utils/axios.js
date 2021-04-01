@@ -20,8 +20,10 @@ const Axios = () => {
     axios.defaults.baseURL = 'https://pixtool.herokuapp.com/api/';
     // axios.defaults.baseURL = 'http://192.168.43.136:3001/api/';
     // axios.defaults.baseURL = 'http://10.0.6.197:3001/api/';
-
+    
     // axios.defaults.baseURL = 'http://localhost:3001/api/';
+
+    // axios.defaults.baseURL = 'http://10.0.5.128:3001/api/';
 
     // Request Interceptors(before we send a request)
     axios.interceptors.request.use((req) => {

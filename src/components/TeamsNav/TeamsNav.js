@@ -5,14 +5,12 @@ import './TeamsNav.scss';
 
 const TeamsNav = ({ addProjectModalToggle, show, getProject, account }) => {
 
+
     // This state is used for toggling Sidebar Team Nav Lists
     const [teamItemIndex, setTeamItemIndex] = useState(null)
 
     // This Function is responsible for toggling Sidebar Team Nav Lists
     const toggleTeamNav = (index) => {
-
-
-
         if (index === teamItemIndex) {
             setTeamItemIndex(-1)
         }
@@ -31,7 +29,8 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, account }) => {
                             <span className="teamsNav__icon">
                                 {index === teamItemIndex ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-right"></i>}
                             </span>
-                            <span className="teamsNav__text">{account.name}</span>
+                            
+                            <span className="teamsNav__text truncate" title={account.name}>{account.name}</span>
                             <span className="teamsNav__addBtn" >
                                 <i className="fas fa-plus-circle" onClick={(e) => addProjectModalToggle(e, account._id)}></i>
                             </span>
@@ -47,8 +46,6 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, account }) => {
                           
                         </ul>
                     </div>}
-
-
                 </li>)}
 
                

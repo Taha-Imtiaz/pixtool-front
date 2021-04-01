@@ -28,10 +28,10 @@ import { Route, Switch } from 'react-router-dom';
 
 function Home({ project, match: { path } }) {
 
-    // This state is used to Show/ Hide the AddProjectModal
-    const [showAddProjectModal, setShowAddProjectModal] = useState(false);
     // This state is used to set teamId
     const [teamId, setTeamId] = useState(null)
+    // This state is used to Show/ Hide the AddProjectModal
+    const [showAddProjectModal, setShowAddProjectModal] = useState(false);
     // This state is used to Show/ Hide the AddFolderModal
     const [showAddFolderModal, setShowAddFolderModal] = useState(false);
 
@@ -148,7 +148,7 @@ function Home({ project, match: { path } }) {
                 }
             </div>
 
-            {/* All The Modal Components Used In Home Page, All Its Tabs & Sidebar*/}
+            {/* All The Modal Components Used In Home Page, All It's Tabs & Sidebar*/}
 
             {/* This is AddProjectModal */}
             <AddProjectModal showModal={showAddProjectModal} setShowModal={setShowAddProjectModal} modalToggler={addProjectModalToggle} teamId={teamId} />
@@ -159,6 +159,7 @@ function Home({ project, match: { path } }) {
         </div>
     )
 }
+
 var mapStateToProps = (state) => ({
     project: state.project
 })

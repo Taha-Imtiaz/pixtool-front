@@ -8,15 +8,16 @@ import { GET_PROJECT, ADD_PROJECT } from "./projectConstants"
 export const getProject = (projectId) => async (dispatch) => {
     try {
         let response = await Axios.get(`project/${projectId}`)
-        // console.log("in file")
         let projectObj = {
            parentId: projectId,
             ...response.data.data
         }
+
         dispatch({
             type:GET_PROJECT,
             payload: projectObj
         })
+
     } catch (e) {
         if (e.response && e.response.data) {
             dispatch(showToastMessage(e.response.data.message))

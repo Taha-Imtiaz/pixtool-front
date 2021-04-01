@@ -9,13 +9,13 @@ import './ThumbnailFolderCard.scss';
 const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectId, match: { params } }) => {
 
     const [thumbnailsLength, setThumbnailsLength] = useState(0)
+
     let { name, thumbnails } = resource
 
     useEffect(() => {
         if (thumbnails) {
             setThumbnailsLength(thumbnails.length)
         }
-
 
     }, [thumbnails])
 
@@ -31,21 +31,23 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
     }
     
 
+   
     return (
-        <div className="thumbnailFolderCard"
-            onClick={() => fetchAssets(projectId, id)}
-        >
-
+        <div className="thumbnailFolderCard" tabIndex="0" onClick={() => fetchAssets(projectId, id)} >
 
             { thumbnails && <div className={thumbnailsLength <= 1 ? 'thumbnailFolderCard__thumbnailBox thumbnailFolderCard__thumbnailBox--1' : 'thumbnailFolderCard__thumbnailBox'}>
                 <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--1">
-                    <img src={thumbnails[0]}
-                        alt="" className="thumbnailFolderCard__img thumbnailFolderCard__img--1" />
+                    <img src={thumbnails[0]} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--1" />
                 </span>
-                <span className={thumbnailsLength === 2 ? 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2 thumbnailFolderCard__imgBox--expand' : 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2'}>
-                    <img src={thumbnails[1]}
-                        alt="" className="thumbnailFolderCard__img thumbnailFolderCard__img--2" />
-                </span>
+
+                {thumbnailsLength >= 2 ?
+                    <span className={thumbnailsLength === 2 ? 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2 thumbnailFolderCard__imgBox--expand' : 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2'}>
+                        <img src={thumbnails[1]} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--2" />
+                    </span>
+                    :
+                    null
+                }
+
                 {thumbnailsLength === 3 ?
                     <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--3">
                         <img src={thumbnails[2]} alt="" className="thumbnailFolderCard__img thumbnailFolderCard__img--3" />
@@ -53,6 +55,7 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
                     :
                     null
                 }
+
                 {thumbnailsLength > 3 ?
                     <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--3">
                         <span>+{thumbnailsLength - 2}</span>
@@ -61,11 +64,7 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
                     null
                 }
             </div>
-
             }
-
-
-
 
             <div className="thumbnailFolderCard__text">
                 <div className="thumbnailFolderCard__name truncate">{name}</div>
@@ -78,6 +77,7 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
         </div>
     )
 }
+
 var mapStateToProps = (state) => ({
     projectId: state.project && state.project.parentId,
 })

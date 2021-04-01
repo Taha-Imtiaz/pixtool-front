@@ -1,11 +1,12 @@
 import { React, useEffect } from 'react'
-import './Header.scss';
-import Profile from '../../images/profile.png';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from '../../Redux/user/userActions';
-import { withRouter } from 'react-router';
+
+import './Header.scss';
 
 function Header({ user, logout, history }) {
+
 
     const logOut = () => {
       history.push("/sign-in")
@@ -17,11 +18,13 @@ function Header({ user, logout, history }) {
         // Get parent element and check if click happened outside parent only
         const parent = document.querySelector(".profile__picture");
         let profileDropdown = document.querySelector('.profileDropdown');
+        
         if (parent && !parent.contains(event.target)) {
             profileDropdown.style.display = 'none';
         }
     }
 
+    // To close the Profile Dropdown whenever clicked outside it
     useEffect(() => {
         // Listener to close the Profile Dropdown whenever clicked outside it
         document.addEventListener('click', (e) => closeProfileDropdown(e), false);
@@ -31,6 +34,7 @@ function Header({ user, logout, history }) {
     // Function To Toggle The Profile Dropdown
     const toggleProfile = () => {
         let profileDropdown = document.querySelector('.profileDropdown');
+        
         if (profileDropdown.style.display === 'none') {
             profileDropdown.style.display = 'block';
 
@@ -50,7 +54,7 @@ function Header({ user, logout, history }) {
             <div className="profile">
                 {user && <span className="profile__text">{user.name}</span>}
                 <span className="profile__picture">
-                    <img src={Profile} alt="Profile" onClick={toggleProfile} />
+                    {user && <img src={user.images.profile_image} alt="Profile" onClick={toggleProfile} />}
                     <i className="fas fa-angle-down profile__icon" onClick={toggleProfile}></i>
                     <div className="profileDropdown">
                         <ul className="profileDropdown__list">
