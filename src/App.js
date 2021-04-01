@@ -40,7 +40,6 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
       store.dispatch(getUserData())
     }
     else {
-      // <Redirect to = '/sign-in'/>
       history.push('/')
     }
 
@@ -49,11 +48,9 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
   // get teams of account which is signed in currently(by default first team) 
   useEffect(() => {
     if (user) {
-      console.log(user)
       let { account_id } = user
-      console.log(account_id[0])
+
       if (account_id[0] &&  account_id[0]._id) {
-        console.log("get account api called")
         store.dispatch(getAccount(account_id[0]._id))
       }
     }
@@ -76,11 +73,10 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
         }))
 
       }
-
-
-
     }
   }, [account]);
+
+
   return (
     <div>
       {numberOfRequests > 0 && <Loader />}

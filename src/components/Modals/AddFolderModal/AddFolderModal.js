@@ -12,7 +12,8 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, pa
     const [modalFormFields, setModalFormFields] = useState({
         projectName: '',
         projectDescription: ""
-    })
+    });
+    
     // Modal Back-drop Styling
     const backDropStyle = {
         opacity: showModal ? '1' : '',

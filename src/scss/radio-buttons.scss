@@ -1,0 +1,38 @@
+@import './variables.scss';
+
+// Radio Button 
+input[type="radio"]:checked::-ms-check {
+    font-size: larger;
+    color: $color-primary;
+    border: 2px solid $color-primary;
+    opacity: 1;
+}
+
+input[type="radio"] {
+    outline: none;
+    cursor: pointer;
+
+    /* remove standard background appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* create custom radio button appearance */
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    padding: 4px;
+
+    /* background-color only for content */
+    background-clip: content-box;
+    border: 2px solid $color-secondary;
+    opacity: 0.4;
+    vertical-align: bottom;
+    border-radius: 50%;
+}
+
+/* appearance for checked Radio button */
+input[type="radio"]:checked,
+input[type="radio"]:disabled:checked {
+    background-color: $color-primary;
+    border: 2px solid $color-primary;
+    opacity: 1;
+}

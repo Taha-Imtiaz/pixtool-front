@@ -43,6 +43,7 @@ function Header({ user, logout, history }) {
         }
     }
 
+
     return (
 
         <div className="header">
@@ -52,7 +53,7 @@ function Header({ user, logout, history }) {
             </div>
 
             <div className="profile">
-                {user && <span className="profile__text">{user.name}</span>}
+                {user && <span className="profile__text">{user.full_name}</span>}
                 <span className="profile__picture">
                     {user && <img src={user.images.profile_image} alt="Profile" onClick={toggleProfile} />}
                     <i className="fas fa-angle-down profile__icon" onClick={toggleProfile}></i>
