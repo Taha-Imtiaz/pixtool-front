@@ -411,10 +411,10 @@ const PlayerP = ({ asset, addComment, getUserData, userImage, match: { params: {
 
 
     // To Get The User Data
-    useEffect(() => {
-        getUserData();
+    // useEffect(() => {
+    //     getUserData();
 
-    }, [])
+    // }, [])
 
     
     /* -------------------------------------------------------------------------------------------- */
@@ -556,7 +556,7 @@ var mapStateToProps = (state) => ({
 
 var mapDispatchToProps = {
     addComment,
-    getUserData
+    // getUserData
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PlayerP))
