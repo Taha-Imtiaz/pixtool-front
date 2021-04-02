@@ -66,16 +66,14 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
   useEffect(() => {
     if (user) {
       let { account_id } = user
-<<<<<<< HEAD
       if (account_id[0] && account_id[0]._id) {
         console.log("get account api called")
-=======
 
-      if (account_id[0] &&  account_id[0]._id) {
->>>>>>> f466d92a78d76b189352e25047a89b20382bd47c
+    
         store.dispatch(getAccount(account_id[0]._id))
-      }
+      
     }
+  }
 
   }, [user])
 
