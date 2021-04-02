@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './AddProjectModal.scss';
-
-import ButtonLight from '../../Button/ButtonLight';
 import { connect } from 'react-redux';
 import { addProject } from '../../../Redux/project/projectActions';
 import { getAccount } from '../../../Redux/account/accountActions';
+
+import './AddProjectModal.scss';
+
+import ButtonLight from '../../Button/ButtonLight';
 
 
 const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addProject, getAccount, account }) => {
@@ -46,6 +47,7 @@ const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addPro
     const closeModal = (event) => {
         const backDrop = document.querySelector(".backDrop1");
         const modal = document.querySelector(".modal");
+        
         if (backDrop && event.target === backDrop && !event.target !== modal) {
             setShowModal(false);
         }
