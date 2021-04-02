@@ -25,7 +25,9 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
     const fetchAssets = (projectId, assetId) => {
         history.push(`/home/library/${projectId}/${assetId}`)
         let assetObj = {
-            status: "in_progress",
+            filters:{
+                status: "all",
+            }
         }
         getProjectAssets(assetId, assetObj)
     }

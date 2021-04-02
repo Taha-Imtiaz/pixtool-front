@@ -64,7 +64,9 @@ const Library = ({
         else if (pathNameIdArrayLength === 3) {
           //   this else part runs only if we go back
           let assetObj = {
-            status: "in_progress",
+            filters:{
+              status: "all",
+            }
           }
           getProjectAssets(pathNameIdArray[2], assetObj)  /*pass asset id in argument   */
         }
