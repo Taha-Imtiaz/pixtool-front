@@ -116,13 +116,15 @@ function CommentP({ asset, comment, addReply, deleteComments }) {
             {/* For Normal/ Main Comment */}
             <div className="comment" tabIndex="0">
                 <div className="comment__head">
+                    <Avatar profileImg={comment.user.images.profile_image} />
+                    <span className="truncate">
+                        <div className="comment__name truncate">{comment.user.full_name}</div>
+                        <div className="comment__time">
+                            <TimeAgo date={comment.createdAt} minPeriod={10} />
+                        </div>
+                    </span>
                     <span className="comment__check">
                         <input type="checkBox" className="checkbox" />
-                    </span>
-                    <Avatar profileImg={comment.user.images.profile_image} />
-                    <span className="comment__name">{comment.user.name}</span>
-                    <span className="comment__time">
-                        <TimeAgo date={comment.createdAt} minPeriod={10} />
                     </span>
                 </div>
 
@@ -165,13 +167,15 @@ function CommentP({ asset, comment, addReply, deleteComments }) {
                 comment.replies.map((reply) => <div className="replyComment" tabIndex="1" key={reply._id}>
                     <div className="comment replyComment__content">
                         <div className="comment__head">
+                            <Avatar profileImg={reply.user.images.profile_image} />
+                            <span className="truncate">
+                                <div className="comment__name truncate">{reply.user.full_name}</div>
+                                <div className="comment__time">
+                                    <TimeAgo date={reply.createdAt} minPeriod={10} />
+                                </div>
+                            </span>
                             <span className="comment__check">
                                 <input type="checkBox" className="checkbox" />
-                            </span>
-                            <Avatar profileImg={reply.user.images.profile_image} />
-                            <span className="comment__name">{reply.user.name}</span>
-                            <span className="comment__time">
-                                <TimeAgo date={reply.createdAt} minPeriod={10} />
                             </span>
                         </div>
 

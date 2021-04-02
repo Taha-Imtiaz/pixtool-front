@@ -1,9 +1,14 @@
 import React from 'react'
 
-function ButtonSmallPrimary(props) {
+function ButtonSmallPrimary({ text, type = "button", ...props }) {
+
     return (
         <div>
-            <button className="btn btn--small btn--primary" onClick={() => props.click()}>{props.text}</button>
+            { props.click ?
+                <button className="btn btn--small btn--primary" type={type} onClick={() => props.click()}>{text}</button>
+                : 
+                <button className="btn btn--small btn--primary" type={type}>{text}</button>
+            }
         </div>
     )
 }

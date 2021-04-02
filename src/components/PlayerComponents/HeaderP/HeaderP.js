@@ -54,6 +54,8 @@ function HeaderP({ toggle, location, asset, history, addDescription }) {
         { rightIcon: '', leftIcon: '', value: 'Make Private', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Reveal in project', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Delete', goToMenu: '' }];
+
+
     return (
         <div className="headerP">
             <div className="headerP__left-box">

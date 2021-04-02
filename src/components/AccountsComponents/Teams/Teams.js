@@ -28,8 +28,8 @@ const Teams = () => {
                 {/* Team Members Tab Content */}
                 <div label="Team Members">
                     <div className="topBtns">
-                        <ButtonSmall text="Manage Collaborators" onClick={createNew} />
-                        <ButtonSmallPrimary text="Invite Users" onClick={createNew} />
+                        <ButtonSmall text="Manage Collaborators" click={createNew} />
+                        <ButtonSmallPrimary text="Invite Users" click={createNew} />
                     </div>
 
                     <div className="teamMembers">

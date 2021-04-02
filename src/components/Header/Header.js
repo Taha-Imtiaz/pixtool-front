@@ -43,6 +43,7 @@ function Header({ user, logout, history }) {
         }
     }
 
+
     return (
 
         <div className="header">
