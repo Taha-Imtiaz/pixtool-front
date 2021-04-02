@@ -1,0 +1,119 @@
+@import '../../../scss/variables.scss';
+@import '../Modals.scss';
+
+.shareModal {
+    width: 60rem;
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
+    background-color: $color-white-dull;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 2rem;
+        font-weight: 600;
+        color: rgba($color-white, .8);
+        background-color: $color-primary;
+    }
+
+    &__heading {
+        padding: 1.2rem 2rem;
+
+    }
+
+    &__closeBtn {
+        font-size: 3rem;
+        font-weight: 100;
+        padding: 1.2rem 2rem;
+        transition: cursor .3s;
+
+        &:focus,
+        &:active,
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__body {
+        padding: 1.2rem 2rem;
+        border-bottom: 1px solid $color-secondary;
+    }
+
+    &__text {
+        font-size: 1.7rem;
+        font-weight: 500;
+        color: rgba($color-secondary, .8);
+        padding: .5rem 0;
+
+        &--dark {
+            color: $color-secondary;
+        }
+    }
+
+    &__linkBox {
+        padding: 4rem 0;
+    }
+
+    &__linkWrapper {
+        display: grid;
+        grid-template-columns: 1fr 2rem min-content;
+        align-items: center;
+        gap: 1rem;
+
+        border-radius: 5px;
+        border: 1px solid $color-secondary;
+    }
+
+    &__shareLink {
+        font-size: 1.7rem;
+        padding: .5rem;
+        
+    }
+
+    &__copyIcon {
+        font-size: 2rem;
+        color: $color-secondary;
+        transition: cursor .3s, color.3s;
+
+        &:active, 
+        &:focus,
+        &:hover {
+            outline: none;
+            cursor: pointer;
+            color: $color-primary;
+        }
+    }
+
+    &__linkDropdown {
+        border-left: 1px solid $color-secondary;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: center;
+        padding: 1.2rem 2rem;
+
+        &>* {
+            width: 100%;
+        }
+
+        & button {
+            width: 100%;
+            border: 1px solid $color-primary;
+            transition: border .3s;
+        }
+    }
+
+    // Chrome Auto-complete Styles
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+        background: transparent;
+        -webkit-text-fill-color: rgba($color-secondary, 0.8);
+        transition: background-color 5000s ease-in-out 0s;
+    }
+
+    .modal {
+        min-width: 50rem;
+    }
+}

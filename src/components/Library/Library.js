@@ -23,6 +23,7 @@ const Library = ({
   uploadAsset,
   project,
   addFolderModalToggle,
+  shareModalToggle,
   getProjectAssets,
   history,
   location,
@@ -30,7 +31,6 @@ const Library = ({
 
 }) => {
   // var previousPath, currentPath
-  const createNew = () => { };
   let { pathname } = location
 
   // useEffect(() => {
@@ -184,7 +184,7 @@ const Library = ({
             </div>
 
             <div className="library__head__buttons">
-              <Button text="Share" click={createNew} />
+              <Button text="Share" click={shareModalToggle} />
               {/* <Button text="New" click={createNew} /> */}
               <Dropdown text="New" menuItems={newUpload} />
             </div>

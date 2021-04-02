@@ -18,8 +18,10 @@ import Surfaces from '../../components/StagesComponents/Surfaces/Surfaces';
 import Screens from '../../components/StagesComponents/Screens/Screens';
 import Stages from '../../components/StagesComponents/Stages/Stages';
 
+// Modal Imports
 import AddProjectModal from '../../components/Modals/AddProjectModal/AddProjectModal';
 import AddFolderModal from '../../components/Modals/AddFolderModal/AddFolderModal';
+import ShareModal from '../../components/Modals/ShareModal/ShareModal';
 
 
 import { Route, Switch } from 'react-router-dom';
@@ -34,6 +36,8 @@ function Home({ project, match: { path } }) {
     const [showAddProjectModal, setShowAddProjectModal] = useState(false);
     // This state is used to Show/ Hide the AddFolderModal
     const [showAddFolderModal, setShowAddFolderModal] = useState(false);
+    // This state is used to Show/ Hide the ShareModal
+    const [showShareModal, setShowShareModal] = useState(false);
 
 
 
@@ -72,12 +76,29 @@ function Home({ project, match: { path } }) {
         setShowAddFolderModal(!showAddFolderModal);
     };
 
+    // This Function is responsible to Show/ Hide the ShareModal
+    const shareModalToggle = () => {
+
+        if (showShareModal) {
+            // Allow to scroll when closing the modal
+            document.body.style.removeProperty('overflow');
+
+        } else {
+            // Disable scrolling on the `body` element when opening a modal
+            document.body.style.overflow = 'hidden';
+        }
+
+        setShowShareModal(!showShareModal);
+    };
+
     /* Arrays To Pass The Sidebar Content In Props */
     let sidebarMenu1 = [
         { icon: 'fas fa-book', value: 'My Library' },
         { icon: 'far fa-file-alt', value: 'Shared with me' },
         { icon: 'fas fa-cog', value: 'Settings' }
     ];
+
+
     return (
         <div className="home page-wrapper">
             {/* Above "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
@@ -94,7 +115,7 @@ function Home({ project, match: { path } }) {
 
                     <Switch>
                         <Route path={`${path}/library/${project._id}`} label="Library" >
-                            <Library addFolderModalToggle={addFolderModalToggle} />
+                            <Library addFolderModalToggle={addFolderModalToggle} shareModalToggle={shareModalToggle} />
                         </Route>
                         <Route path={`${path}/shows/${project._id}`} label="Shows" >
                             <InnerTabs>
@@ -155,6 +176,9 @@ function Home({ project, match: { path } }) {
 
             {/* This is AddNewFolderModal */}
             <AddFolderModal showModal={showAddFolderModal} setShowModal={setShowAddFolderModal} modalToggler={addFolderModalToggle} />
+
+            {/* This is ShareModal */}
+            <ShareModal showModal={showShareModal} setShowModal={setShowShareModal} modalToggler={shareModalToggle} />
 
         </div>
     )
