@@ -10,7 +10,7 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
 
     const [thumbnailsLength, setThumbnailsLength] = useState(0)
 
-    let { name, thumbnails } = resource
+    let { name, thumbnails, uploaded_at, uploader } = resource
 
     useEffect(() => {
         if (thumbnails) {
@@ -29,9 +29,9 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
         }
         getProjectAssets(assetId, assetObj)
     }
-    
 
-   
+
+
     return (
         <div className="thumbnailFolderCard" tabIndex="0" onClick={() => fetchAssets(projectId, id)} >
 
@@ -69,9 +69,9 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
             <div className="thumbnailFolderCard__text">
                 <div className="thumbnailFolderCard__name truncate">{name}</div>
                 <div className="thumbnailFolderCard__datail">
-                    <span>John</span>
+                    <span>{uploader}</span>
                     &nbsp;-&nbsp;
-                    <span>01 Jan 2021</span>
+                    <span>{uploaded_at}</span>
                 </div>
             </div>
         </div>

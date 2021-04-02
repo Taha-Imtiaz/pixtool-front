@@ -149,7 +149,7 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">Uploader</td>
-                                        <td className="file-info__table--content">{asset.asset_info.uploader}</td>
+                                        <td className="file-info__table--content">{asset.uploader}</td>
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">Uploaded</td>

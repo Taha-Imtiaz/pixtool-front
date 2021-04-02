@@ -60,8 +60,9 @@ export const loginUser = (userObj, callback) => async (dispatch) => {
 }
 
 export const logout = () => (dispatch) => {
-    // remove token from local 
-    localStorage.removeItem("pixtool-token")
+    // clear localand sessionStorage 
+    localStorage.clear()
+    sessionStorage.clear()
     dispatch({
         type: LOGOUT,
     })

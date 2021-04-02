@@ -29,15 +29,14 @@ const Library = ({
 
 
 }) => {
-  var previousPath, currentPath
-  // const lastLocation = useLastLocation();
+  // var previousPath, currentPath
   const createNew = () => { };
   let { pathname } = location
 
-  useEffect(() => {
-    currentPath = sessionStorage.setItem('currentPath', pathname)
-    previousPath = sessionStorage.setItem('previousPath', '')
-  }, [])
+  // useEffect(() => {
+  //   currentPath = sessionStorage.setItem('currentPath', pathname)
+  //   previousPath = sessionStorage.setItem('previousPath', '')
+  // }, [])
 
   
 
@@ -67,7 +66,7 @@ const Library = ({
           let assetObj = {
             status: "in_progress",
           }
-          getProjectAssets(pathNameIdArray[1], assetObj)  /*pass asset id in argument   */
+          getProjectAssets(pathNameIdArray[2], assetObj)  /*pass asset id in argument   */
         }
       } else {
         sessionStorage.setItem("path", pathname);

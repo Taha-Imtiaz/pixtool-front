@@ -22,8 +22,8 @@ import { GET_TEAMS } from "./teamConstants"
     try {
      
         let response = await Axios.get(`team/${teamId}`)
-       sessionStorage.setItem('team_id', teamId)
-       sessionStorage.setItem('project_id', projectId)
+      //  sessionStorage.setItem('team_id', teamId)
+      //  sessionStorage.setItem('project_id', projectId)
 
 
         dispatch({

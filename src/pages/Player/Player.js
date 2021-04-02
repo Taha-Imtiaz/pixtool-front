@@ -12,7 +12,6 @@ import PlayerP from '../../components/PlayerComponents/PlayerP/PlayerP';
 const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDetails, asset }) => {
     
     // This state is responsible for toggling sidebar
-    sessionStorage.setItem('previousRoute', 'player')
     const [drawer, setDrawer] = useState(true)
 
     useEffect(() => {

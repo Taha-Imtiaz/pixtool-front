@@ -7,7 +7,7 @@ import { uploadAsset } from '../../../Redux/assets/assetActions';
 
 
 const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, parentId }) => {
-    
+
 
     const [modalFormFields, setModalFormFields] = useState({
         projectName: '',
@@ -38,7 +38,7 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, pa
     }, []);
 
     const handleModalForm = (e) => {
-        let {name, value} = e.target
+        let { name, value } = e.target
         setModalFormFields({
             ...modalFormFields,
             [name]: value
@@ -50,12 +50,16 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, pa
         const data = new FormData()
         data.append('data', JSON.stringify({
             parent_id: parentId,
-            name:modalFormFields.projectName,
+            name: modalFormFields.projectName,
             description: modalFormFields.projectDescription,
         }))
-      
+
         uploadAsset(data)
         // close modal
+        setModalFormFields({
+            projectName: '',
+            projectDescription: ""
+        })
         modalToggler()
     }
     return (
@@ -71,8 +75,8 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, pa
                         </div>
                         <div className="addFolderModal__body">
                             <div>
-                                <input type="text" name="projectName" value = {modalFormFields.projectName} onChange = {handleModalForm} className="addFolderModal__input addFolderModal__input--name" placeholder="Enter Folder Name" />
-                                <textarea name="projectDescription" value = {modalFormFields.projectDescription} onChange = {handleModalForm}
+                                <input type="text" name="projectName" value={modalFormFields.projectName} onChange={handleModalForm} className="addFolderModal__input addFolderModal__input--name" placeholder="Enter Folder Name" />
+                                <textarea name="projectDescription" value={modalFormFields.projectDescription} onChange={handleModalForm}
                                     rows={5}
                                     cols={5}
                                     className="addFolderModal__input addFolderModal__input--name">
