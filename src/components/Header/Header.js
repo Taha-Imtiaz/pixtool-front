@@ -59,7 +59,7 @@ function Header({ user, logout, history }) {
                     <i className="fas fa-angle-down profile__icon" onClick={toggleProfile}></i>
                     <div className="profileDropdown">
                         <ul className="profileDropdown__list">
-                            <li className="profileDropdown__listItem"><span className="profileDropdown__listOption"><i className="fas fa-user-circle pd-r-1-5"></i> Account Settings</span></li>
+                            <li className="profileDropdown__listItem" onClick = {() => history.push('/accounts')}><span className="profileDropdown__listOption"><i className="fas fa-user-circle pd-r-1-5"></i> Account Settings</span></li>
                             <li className="profileDropdown__listItem"><span className="profileDropdown__listOption"><i className="fas fa-headset pd-r-1-5"></i> Support FAQ</span></li>
                             <li className="profileDropdown__listItem" onClick={() => logOut()}><span className="profileDropdown__listOption"><i className="fas fa-sign-out-alt pd-r-1-5"></i> Log out</span></li>
                         </ul>

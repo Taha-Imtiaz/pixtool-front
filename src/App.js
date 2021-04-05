@@ -34,15 +34,15 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
   }, [toastMessage])
 
 
-  useEffect(() => {
-    window.onbeforeunload = function() {
-        return true;
-    };
+//   useEffect(() => {
+//     window.onbeforeunload = function() {
+//         return true;
+//     };
 
-    return () => {
-        window.onbeforeunload = null;
-    };
-}, []);
+//     return () => {
+//         window.onbeforeunload = null;
+//     };
+// }, []);
 
 
   // the below 2 useeffects loads data only once 
@@ -129,8 +129,7 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
       <Switch>
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
-        <PrivateRoute path="/home" component={Home} />
-
+        <PrivateRoute path="/home/library/:projectId" component={Home} />
         <PrivateRoute path="/player/:assetId" component={Player} />
         <PrivateRoute path="/accounts" component={Accounts} />
         <PrivateRoute path="/test" component={Test} />

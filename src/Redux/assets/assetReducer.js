@@ -24,8 +24,8 @@ let assetReducer = (state = initialState, { type, payload }) => {
         case ADD_DESCRIPTION:
             return { ...state, description: payload }
 
-        case GET_DESCRIPTION:
-            return { ...state, description: payload }
+        // case GET_DESCRIPTION:
+        //     return { ...state, description: payload }
 
         default:
             return state

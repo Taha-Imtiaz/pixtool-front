@@ -158,7 +158,7 @@ export const addDescription = (data, assetId) => async (dispatch) => {
             }
         })
         dispatch({
-            type: ADD_DESCRIPTION,
+            type: GET_ASSET_DETAILS,
             payload: response.data.data
         })
     } catch (e) {
@@ -169,18 +169,18 @@ export const addDescription = (data, assetId) => async (dispatch) => {
 }
 
 
-// For Getting Video/ Asset Description From Backend
-export const getDescription = (assetId) => async (dispatch) => {
-    try {
-        let response = await Axios.get(`/asset/${assetId}`)
-        dispatch({
-            type: GET_DESCRIPTION,
-            payload: response.data.data
-        })
-    } catch (e) {
-        if (e.response && e.response.data) {
-            dispatch(showToastMessage(e.response.data.message))
+// // For Getting Video/ Asset Description From Backend
+// export const getDescription = (assetId) => async (dispatch) => {
+//     try {
+//         let response = await Axios.get(`/asset/${assetId}`)
+//         dispatch({
+//             type: GET_DESCRIPTION,
+//             payload: response.data.data
+//         })
+//     } catch (e) {
+//         if (e.response && e.response.data) {
+//             dispatch(showToastMessage(e.response.data.message))
 
-        }
-    }
-}
+//         }
+//     }
+// }

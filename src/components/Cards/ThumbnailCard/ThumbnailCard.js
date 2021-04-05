@@ -1,21 +1,24 @@
 import React from 'react';
 import { Fragment } from 'react';
-import {  withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { changeStatusCase } from '../../../utils/helperfunctions';
 import './ThumbnailCard.scss';
 
-const ThumbnailCard = ({ resource, key,id, history }) => {
-    
-    let { thumbnail, name, uploaded_at,uploader } = resource
-    
+const ThumbnailCard = ({ resource, key, id, history }) => {
+
+    let { thumbnail, name, uploaded_at, uploader, status } = resource
+    // change the case of status
+   
+
     return (
-        <div className="thumbnailCard" tabIndex="0" key={key} onClick = {() => history.push(`/player/${id}`)}>
-           <Fragment>
+        <div className="thumbnailCard" tabIndex="0" key={key} onClick={() => history.push(`/player/${id}`)}>
+            <Fragment>
                 <div className="thumbnailCard__status">
-                    Needs Approval
+                    {changeStatusCase(status)}
                 </div>
 
                 <div className="thumbnailCard__imgBox">
-                  {thumbnail ? <img src={thumbnail} alt="Thumbnail" className="thumbnailCard__img" /> :  <img src="" alt="Thumbnail" className="thumbnailCard__img" />}
+                    {thumbnail ? <img src={thumbnail} alt="Thumbnail" className="thumbnailCard__img" /> : <img src="" alt="Thumbnail" className="thumbnailCard__img" />}
                 </div>
 
                 <div className="thumbnailCard__text">
@@ -26,7 +29,7 @@ const ThumbnailCard = ({ resource, key,id, history }) => {
                         <span>{uploaded_at}</span>
                     </div>
                 </div>
-            </Fragment> 
+            </Fragment>
         </div>
     )
 }
