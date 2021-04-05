@@ -9,5 +9,7 @@ export const changeStatusCase = (status) => {
             return "Approved"
         case "all":
             return "All"
+            default:
+                return status
     }
 }

@@ -13,7 +13,7 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, pa
         projectName: '',
         projectDescription: ""
     });
-    
+
     // Modal Back-drop Styling
     const backDropStyle = {
         opacity: showModal ? '1' : '',
@@ -35,7 +35,7 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, pa
         // Listener to close the Modal whenever Backdrop clicked
         const backDrop = document.querySelector(".backDrop2");
         backDrop.addEventListener('click', (e) => closeModal(e), false);
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleModalForm = (e) => {

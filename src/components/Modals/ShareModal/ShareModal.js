@@ -31,13 +31,13 @@ const ShareModal = ({ showModal, setShowModal, modalToggler }) => {
         // Listener to close the Modal whenever Backdrop clicked
         const backDrop = document.querySelector(".backDrop3");
         backDrop.addEventListener('click', (e) => closeModal(e), false);
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Dropdown Option Values
     let shareLinkPrivacy = [
-        { rightIcon: '', leftIcon: <i class="fas fa-globe-europe"></i>, value: 'Public', goToMenu: '' },
-        { rightIcon: '', leftIcon: <i class="fas fa-times"></i>, value: 'Disabled', goToMenu: '' }];
+        { rightIcon: '', leftIcon: <i className="fas fa-globe-europe"></i>, value: 'Public', goToMenu: '' },
+        { rightIcon: '', leftIcon: <i className="fas fa-times"></i>, value: 'Disabled', goToMenu: '' }];
 
     return (
         <div className="modal__backDrop backDrop3" style={backDropStyle} >
@@ -57,7 +57,7 @@ const ShareModal = ({ showModal, setShowModal, modalToggler }) => {
                                 <div className="shareModal__linkWrapper">
                                     <a href="./#" className="shareModal__shareLink">f.io/mTbdxMiL</a>
                                     <div className="shareModal__copyIcon">
-                                        <i class="far fa-copy"></i>
+                                        <i className="far fa-copy"></i>
                                     </div>
                                     <div className="shareModal__linkDropdown">
                                         <Dropdown text="Privacy" menuItems={shareLinkPrivacy} />

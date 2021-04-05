@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { GET_PROJECT } from '../project/projectConstants';
 import { showToastMessage } from '../utility/utilityActions';
-import { GET_ASSET_DETAILS, ADD_COMMENT, GET_COMMENTS, ADD_REPLY, DELETE_COMMENT, ADD_DESCRIPTION, GET_DESCRIPTION } from './assetConstants';
+import { GET_ASSET_DETAILS, ADD_COMMENT, GET_COMMENTS, DELETE_COMMENT } from './assetConstants';
 
 // get all assets of  single project (which is in folder) by passing projectId
 // export const getAllProjectAssests = (projectId) => async (dispatch) => {
