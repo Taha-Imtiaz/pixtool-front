@@ -16,6 +16,8 @@ function Filter({ parentId, getProjectAssets, history }) {
     // state for dropdown menu options
     const [dropdownOptionValue, setDropDownOptionValue] = useState("all")
 
+    const [defaultCheckedState , setDefaultCheckedState] = useState(true)
+
     // state for date
     const [selectedDate, setSelectedDate] = useState(new Date())
 
@@ -23,9 +25,9 @@ function Filter({ parentId, getProjectAssets, history }) {
     const toggleFilter = () => {
         setShowFilter(!showFilter);
         // by default all is checked
-        setDropDownOptionValue("all")
-        setSelectedDate(new Date())
-        setCheckBoxState(false)
+        // setDropDownOptionValue("all")
+        // setSelectedDate(new Date())
+        // setCheckBoxState(false)
     }
     const resetFilters = () => {
         setShowFilter(false);
@@ -79,6 +81,7 @@ function Filter({ parentId, getProjectAssets, history }) {
     const handleChangeFilterValue = (e) => {
         console.log(e.target.value)
         setDropDownOptionValue(e.target.value)
+        // setDefaultCheckedAttribute()
     }
 
 
@@ -87,6 +90,12 @@ function Filter({ parentId, getProjectAssets, history }) {
         let { name, value } = e.target
         console.log(name, value)
         setSelectedDate(new Date(value))
+    }
+    // check for default checked attribute
+    const setDefaultCheckedAttribute = () => {
+         let inputTag = document.querySelector("#all")
+        console.log(inputTag.hasAttribute('defaultChecked'))
+    //    inputTag.hasAttribute('defaultChecked')
     }
     return (
         <div className="filter">
@@ -109,22 +118,22 @@ function Filter({ parentId, getProjectAssets, history }) {
                         <div className="filter__options"  >
 
                             <div className="filter__items">
-                                <input type="radio" name="status" id="all" value="all" onChange={handleChangeFilterValue} defaultChecked />
+                                <input type="radio" name="status" id="all" value="all" onChange={handleChangeFilterValue} defaultChecked = {dropdownOptionValue == 'all'} />
                                 <label htmlFor="all">All</label>
                             </div>
 
                             <div className="filter__items" >
-                                <input type="radio" name="status" id="inProgress" value="in_progress" onChange={handleChangeFilterValue} />
+                                <input type="radio" name="status" id="inProgress" value="in_progress" onChange={handleChangeFilterValue} defaultChecked = {dropdownOptionValue == 'in_progress'}   />
                                 <label htmlFor="inProgress">In Progress</label>
                             </div>
 
                             <div className="filter__items">
-                                <input type="radio" name="status" id="needsReview" value="needs_review" onChange={handleChangeFilterValue} />
+                                <input type="radio" name="status" id="needsReview" value="needs_review" onChange={handleChangeFilterValue} defaultChecked = {dropdownOptionValue == 'needs_review'}  />
                                 <label htmlFor="needsReview">Needs Review</label>
                             </div>
 
                             <div className="filter__items" >
-                                <input type="radio" name="status" id="approved" value="approved" onChange={handleChangeFilterValue} />
+                                <input type="radio" name="status" id="approved" value="approved" onChange={handleChangeFilterValue} defaultChecked = {dropdownOptionValue == 'approved'}   />
                                 <label htmlFor="approved">Approved</label>
                             </div>
 

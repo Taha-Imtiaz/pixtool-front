@@ -60,7 +60,7 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
     else {
       history.push('/')
     }
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accountId])
 
   // get teams of account which is signed in currently(by default first team) 
@@ -95,6 +95,7 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
       }
 
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account]);
 
   history.listen((location, action) => {

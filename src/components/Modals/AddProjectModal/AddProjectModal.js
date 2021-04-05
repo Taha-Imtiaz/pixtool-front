@@ -57,7 +57,7 @@ const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addPro
         // Listener to close the Modal whenever Backdrop clicked
         const backDrop = document.querySelector(".backDrop1");
         backDrop.addEventListener('click', (e) => closeModal(e), false);
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

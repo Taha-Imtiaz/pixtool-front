@@ -19,6 +19,7 @@ const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDet
         sessionStorage.setItem('path', pathname)
         getAssetDetails(assetId)
         getCommentDetails(assetId)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const toggle = () => {

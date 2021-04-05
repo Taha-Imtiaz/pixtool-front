@@ -2,7 +2,6 @@ import { React, useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addComment } from '../../../Redux/assets/assetActions';
-import { getUserData } from '../../../Redux/user/userActions';
 
 import './PlayerP.scss';
 import 'emoji-mart/css/emoji-mart.css';
@@ -15,7 +14,7 @@ import { Picker } from 'emoji-mart';
 import PlayerControls from '../../../images/player-icons/sprite.svg';
 
 
-const PlayerP = ({ asset, addComment, getUserData, userImage, match: { params: { assetId } } }) => {
+const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } } }) => {
 
 
     /* ------------------------------ ENTIRE FILE SCOPE VARIABLES ------------------------------ */
@@ -323,7 +322,6 @@ const PlayerP = ({ asset, addComment, getUserData, userImage, match: { params: {
         }
         document.querySelector(".player").addEventListener("click", handleClickEvent);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-
     }, [emojiBox])
 
     // Function To Add & Append Emojis To Comments TextArea

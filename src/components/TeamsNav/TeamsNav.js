@@ -23,7 +23,7 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, account }) => {
     return (
         <div className="teamsNav">
             <ul className="teamsNav__list">
-                {account && account.map((account, index) => <li  className="teamsNav__item">
+                {account && account.map((account, index) => <li key = {account._id} className="teamsNav__item">
                     <div className="teamsNav__item__head" onClick={() => toggleTeamNav(index)}>
                         <div className="teamsNav__center">
                             <span className="teamsNav__icon">
