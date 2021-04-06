@@ -92,8 +92,13 @@ export const getUserData = () => async (dispatch) => {
 
     } catch (e) {
         if (e.response && e.response.data) {
-            dispatch(showToastMessage(e.response.data.message))
-
+            // dispatch(showToastMessage(e.response.data.message))
+            localStorage.clear()
+            sessionStorage.clear()
+            dispatch({
+                type: LOGOUT,
+            })
+            window.location.href = '/';
         }
     }
 }

@@ -20,6 +20,7 @@ import { getTeamData } from './Redux/team/teamActions';
 import { checkUserAuthentication, getUserData } from './Redux/user/userActions';
 import { getProject } from './Redux/project/projectActions';
 import { getAccount } from './Redux/account/accountActions';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 const App = ({ toastMessage, numberOfRequests, user, account, history, accountId, location: { pathname } }) => {
   const notify = (message) => toast.dark(message);
@@ -34,15 +35,15 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
   }, [toastMessage])
 
 
-//   useEffect(() => {
-//     window.onbeforeunload = function() {
-//         return true;
-//     };
+  //   useEffect(() => {
+  //     window.onbeforeunload = function() {
+  //         return true;
+  //     };
 
-//     return () => {
-//         window.onbeforeunload = null;
-//     };
-// }, []);
+  //     return () => {
+  //         window.onbeforeunload = null;
+  //     };
+  // }, []);
 
 
   // the below 2 useeffects loads data only once 
@@ -69,11 +70,11 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
       if (account_id[0] && account_id[0]._id) {
         console.log("get account api called")
 
-    
+
         store.dispatch(getAccount(account_id[0]._id))
-      
+
+      }
     }
-  }
 
   }, [user])
 
@@ -100,12 +101,12 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
   history.listen((location, action) => {
     // if (window.performance) {
     //   if (performance.navigation.type === 1) {
-        
+
     //    let pageUrl=  sessionStorage.getItem("currentUrl")
     //    console.log(pageUrl)
     //    history.push(pageUrl)
     //    sessionStorage.setItem("currentUrl", pageUrl)
-        
+
 
 
     //   }
@@ -116,8 +117,8 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
     //   e.returnValue = '';
     // };
     // else {
-      // console.log(object)
-      sessionStorage.setItem("currentUrl", location.pathname)
+    // console.log(object)
+    sessionStorage.setItem("currentUrl", location.pathname)
     // }
   });
 
@@ -128,14 +129,18 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
       <ToastContainer />
 
       <Switch>
-        <Route path="/sign-in" component={SignIn} />
-        <Route path="/sign-up" component={SignUp} />
-        <PrivateRoute path="/home/library/:projectId" component={Home} />
-        <PrivateRoute path="/player/:assetId" component={Player} />
-        <PrivateRoute path="/accounts" component={Accounts} />
-        <PrivateRoute path="/test" component={Test} />
-        <Route path="/" component={HeroSection} exact />
-        <Redirect to="/" />
+        <ErrorBoundary>
+
+          <Route path="/sign-in" component={SignIn} />
+          <Route path="/sign-up" component={SignUp} />
+          <PrivateRoute path="/home/library/:projectId" component={Home} />
+          <PrivateRoute path="/player/:assetId" component={Player} />
+          <PrivateRoute path="/accounts" component={Accounts} />
+          <PrivateRoute path="/test" component={Test} />
+          <Route path="/" component={HeroSection} exact />
+          <Redirect to="/" />
+        </ErrorBoundary>
+
       </Switch>
 
     </div>
