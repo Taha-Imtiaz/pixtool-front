@@ -10,7 +10,7 @@ const ThumbnailCard = ({ resource, key, id, history, showCheckbox }) => {
 
 
     return (
-        <div className="thumbnailCard" tabIndex="0" key={key} onClick={() => history.push(`/player/${id}`)}>
+        <div className="thumbnailCard" tabIndex="0" key={key} onDoubleClick={() => history.push(`/player/${id}`)}>
             <Fragment>
                 <div className="thumbnailCard__status">
                     {changeStatusCase(status)}
