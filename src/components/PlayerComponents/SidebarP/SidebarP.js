@@ -54,13 +54,16 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
     // Function To Set The Height Of Comment Area Of SidebarP
     const setCommentsHeight = () => {
         let windowHeight = window.innerHeight;
+        let sidebarPHead = document.getElementById('sidebarPHead');
+        let comments = document.getElementById('comments');
+        let tabListP = document.querySelector('.tab-listP');
+        let headerP = document.querySelector('.headerP');
+        let sidebarHeadHeight;
 
-        setTimeout(() => {
-            let comments = document.getElementById('comments');
-            let sidebarHeadHeight = (windowHeight - (document.getElementById('sidebarPHead').offsetHeight + document.querySelector('.tab-listP').offsetHeight + document.querySelector('.headerP').offsetHeight)).toString();
-
-            if (comments) comments.style.maxHeight = (sidebarHeadHeight + 'px');
-        });
+        if (windowHeight && sidebarPHead && comments && tabListP && headerP) {
+            sidebarHeadHeight = (windowHeight - (sidebarPHead.offsetHeight + tabListP.offsetHeight + headerP.offsetHeight)).toString();
+            comments.style.maxHeight = (sidebarHeadHeight + 'px');
+        }
     }
 
     // To Set The Height Of Comment Area Of SidebarP
