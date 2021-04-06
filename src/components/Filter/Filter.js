@@ -37,12 +37,12 @@ function Filter({ parentId, getProjectAssets }) {
     } */
     // form submit handler
     const onFormSubmit = (event) => {
-      
+
         event.preventDefault();
         console.log("Form Submit")
         let assetObj;
         if(checkboxState) {
-           assetObj = {
+            assetObj = {
                 filters: {
                     status: dropdownOptionValue,
                     uploaded_at: date.toDateString()
@@ -52,11 +52,11 @@ function Filter({ parentId, getProjectAssets }) {
         }
         else {
             // filter assets on the basis of status
-         assetObj = {
-            filters: {
-                status: dropdownOptionValue,
+            assetObj = {
+                filters: {
+                    status: dropdownOptionValue,
+                }
             }
-        }
         }
         console.log(assetObj)
         getProjectAssets(parentId, assetObj)

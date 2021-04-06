@@ -66,7 +66,9 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
     // To Set The Height Of Comment Area Of SidebarP
     useEffect(() => {
         let sidebarP = document.getElementById('sidebarP');
-        if (sidebarP) {
+        let comments = document.getElementById('comments');
+        if (sidebarP && comments) {
+            setCommentsHeight();
             window.addEventListener('load', setCommentsHeight, false);
             sidebarP.addEventListener('click', setCommentsHeight, false);
         }

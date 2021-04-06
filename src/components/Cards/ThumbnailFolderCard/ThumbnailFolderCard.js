@@ -35,7 +35,7 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
 
 
     return (
-        <div className="thumbnailFolderCard" tabIndex="0" onClick={() => fetchAssets(projectId, id)} >
+        <div className="thumbnailFolderCard" tabIndex="0" onDoubleClick={() => fetchAssets(projectId, id)} >
 
             { thumbnails && <div className={thumbnailsLength <= 1 ? 'thumbnailFolderCard__thumbnailBox thumbnailFolderCard__thumbnailBox--1' : 'thumbnailFolderCard__thumbnailBox'}>
                 <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--1">

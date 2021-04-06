@@ -38,6 +38,8 @@ function Home({ project, match: { path } }) {
     const [showAddFolderModal, setShowAddFolderModal] = useState(false);
     // This state is used to Show/ Hide the ShareModal
     const [showShareModal, setShowShareModal] = useState(false);
+    // This is State is used to Show/ Hide the Share Checkbox On ThumbnailCard
+    const [showCheckbox, setShowCheckbox] = useState(false);
 
 
 
@@ -115,7 +117,9 @@ function Home({ project, match: { path } }) {
 
                     <Switch>
                         <Route path={`${path}/library/${project._id}`} label="Library" >
-                            <Library addFolderModalToggle={addFolderModalToggle} shareModalToggle={shareModalToggle} />
+                            <Library
+                                addFolderModalToggle={addFolderModalToggle} shareModalToggle={shareModalToggle}
+                                showCheckbox={showCheckbox} setShowCheckbox={setShowCheckbox} />
                         </Route>
                         <Route path={`${path}/shows/${project._id}`} label="Shows" >
                             <InnerTabs>

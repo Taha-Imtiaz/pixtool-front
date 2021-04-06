@@ -1,5 +1,8 @@
-import React, { useEffect } from "react";
+import { React, useEffect, useState, Fragment } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { uploadAsset } from "../../Redux/assets/assetActions";
+import { getProjectAssets, getProject } from "../../Redux/project/projectActions";
 
 import "./Library.scss";
 
@@ -8,12 +11,8 @@ import Avatar from "../../components/Avatar/Avatar";
 import Button from "../../components/Button/Button";
 import Dropdown from "../Dropdown/Dropdown";
 import ThumbnailCard from "../../components/Cards/ThumbnailCard/ThumbnailCard";
-
-import { getProjectAssets, getProject } from "../../Redux/project/projectActions";
-// import ThumbnailFolderCard from '../Cards/ThumbnailFolderCard/ThumbnailFolderCard';
-import { uploadAsset } from "../../Redux/assets/assetActions";
 import ThumbnailFolderCard from "../Cards/ThumbnailFolderCard/ThumbnailFolderCard";
-import { withRouter } from "react-router-dom";
+
 import NoDataFoundImg from "../../images/no-data-found.png"
 
 const Library = ({
@@ -27,18 +26,22 @@ const Library = ({
   getProjectAssets,
   history,
   location,
-
-
+  showCheckbox,
+  setShowCheckbox,
 }) => {
+
+
+  // State To Toggle Bottom Share Bar
+  const [showShareBar, setShowShareBar] = useState(false)
+
   // var previousPath, currentPath
   let { pathname } = location
+
 
   // useEffect(() => {
   //   currentPath = sessionStorage.setItem('currentPath', pathname)
   //   previousPath = sessionStorage.setItem('previousPath', '')
   // }, [])
-
-  
 
 
   useEffect(() => {
@@ -64,7 +67,7 @@ const Library = ({
         else if (pathNameIdArrayLength === 3) {
           //   this else part runs only if we go back
           let assetObj = {
-            filters:{
+            filters: {
               status: "all",
             }
           }
@@ -76,11 +79,6 @@ const Library = ({
     }
 
   }, [pathname]);
-
-
-
-
-
 
 
   const handleVideoUpload = async (e) => {
@@ -171,8 +169,14 @@ const Library = ({
     });
   };
 
+  // Function To Enable Share Library
+  const shareLibrary = () => {
+    setShowCheckbox(!showCheckbox);
+    setShowShareBar(!showShareBar);
+  }
+
   return (
-    <div>
+    <Fragment>
       <div className="library">
         <div className="library__head">
           <Filter />
@@ -186,8 +190,7 @@ const Library = ({
             </div>
 
             <div className="library__head__buttons">
-              <Button text="Share" click={shareModalToggle} />
-              {/* <Button text="New" click={createNew} /> */}
+              <Button text="Share" click={shareLibrary} />
               <Dropdown text="New" menuItems={newUpload} />
             </div>
           </div>
@@ -195,6 +198,7 @@ const Library = ({
 
         <div className="library__main">
           <div className="thumbnail-container">
+
             {resources &&
               resources.length > 0 ?
               resources.map((resource) =>
@@ -203,6 +207,7 @@ const Library = ({
                     key={resource._id}
                     id={resource._id}
                     resource={resource}
+                    showCheckbox={showCheckbox}
                   />
                 ) : (
 
@@ -212,7 +217,19 @@ const Library = ({
           </div>
         </div>
       </div>
-    </div>
+
+      {showShareBar ?
+        <div className="shareBar">
+          <div className="shareBar__selectedItems">0 Items Selected</div>
+          <div className="shareBar__btns">
+            <Button text="Cancel" click={shareLibrary} />
+            <Button text="Share" click={shareModalToggle} />
+          </div>
+        </div>
+        :
+        null
+      }
+    </Fragment>
   );
 };
 var mapStateToProps = (state) => ({
