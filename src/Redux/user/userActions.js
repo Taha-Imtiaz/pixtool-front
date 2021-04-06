@@ -1,7 +1,7 @@
 
 import Axios from "axios"
 import { showToastMessage } from "../utility/utilityActions"
-import { SET_CURRENT_USER, SET_LOGGEDIN_USER, LOGOUT, GET_USER_DATA } from "./userConstants"
+import { SET_CURRENT_USER, SET_LOGGEDIN_USER, LOGOUT, GET_USER_DATA, UPDATE_USER_PROFILE } from "./userConstants"
 
 // set current user in redux store(who is signed up first time)
 export const signupUser = (userObj, callback) => async (dispatch) => {
@@ -97,3 +97,29 @@ export const getUserData = () => async (dispatch) => {
         }
     }
 }
+// update user profile
+
+export const updateUserProfile = (userObj) => async (dispatch) => {
+    try {
+        let response = await Axios.put(`user/profile`, userObj, {
+            config: {
+                handlerEnabled: true
+            }
+        })
+        //show toast notification (by updating utilities state in redux)
+        dispatch(showToastMessage(response.data.message))
+
+        // update app state
+        dispatch({
+            type: UPDATE_USER_PROFILE,
+            payload: response.data.data
+        });
+
+    } catch (e) {
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
+
+        }
+    }
+}
+
