@@ -1,17 +1,19 @@
-import {React, useState} from 'react';
-import { Fragment } from 'react';
+import { React, useState, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
+import { changeStatusCase } from '../../../utils/helperfunctions';
 import './ThumbnailCard.scss';
 
 const ThumbnailCard = ({ resource, key, id, history, showCheckbox }) => {
 
-    let { thumbnail, name, uploaded_at, uploader } = resource;
+    let { thumbnail, name, uploaded_at, uploader, status } = resource;
+    // change the case of status
+
 
     return (
-        <div className="thumbnailCard" tabIndex="0" key={key} onDoubleClick={() => history.push(`/player/${id}`)}>
+        <div className="thumbnailCard" tabIndex="0" key={key} onClick={() => history.push(`/player/${id}`)}>
             <Fragment>
                 <div className="thumbnailCard__status">
-                    Needs Approval
+                    {changeStatusCase(status)}
                 </div>
 
                 <div className="thumbnailCard__imgBox">
@@ -19,11 +21,11 @@ const ThumbnailCard = ({ resource, key, id, history, showCheckbox }) => {
                 </div>
 
                 <div className="thumbnailCard__bottom">
-                    { showCheckbox ?
+                    {showCheckbox ?
                         <input type="checkbox" name="share_select_checkBox" id="checkBox" className="checkbox"></input>
                         :
                         null
-                        }
+                    }
                     <div className="thumbnailCard__text">
                         <div className="thumbnailCard__name truncate">{name}</div>
                         <div className="thumbnailCard__datail">

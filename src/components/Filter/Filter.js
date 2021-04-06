@@ -2,9 +2,11 @@ import { React, useState } from 'react';
 import { connect } from 'react-redux';
 import { getProjectAssets } from '../../Redux/project/projectActions';
 import ButtonSmallPrimary from '../Button/ButtonSmallPrimary';
+import date from 'date-and-time'
 import './Filter.scss';
+import { withRouter } from 'react-router';
 
-function Filter({ parentId, getProjectAssets }) {
+function Filter({ parentId, getProjectAssets, history }) {
     // State To Store The Filter Value
     const [showFilter, setShowFilter] = useState(false);
 
@@ -14,38 +16,50 @@ function Filter({ parentId, getProjectAssets }) {
     // state for dropdown menu options
     const [dropdownOptionValue, setDropDownOptionValue] = useState("all")
 
+    const [defaultCheckedState, setDefaultCheckedState] = useState(true)
+
     // state for date
-    const [date, setDate] = useState(new Date())
+    const [selectedDate, setSelectedDate] = useState(new Date())
 
     // Function to Toggle the Filter
     const toggleFilter = () => {
         setShowFilter(!showFilter);
         // by default all is checked
-        setDropDownOptionValue("all")
-        setDate(new Date())
+        // setDropDownOptionValue("all")
+        // setSelectedDate(new Date())
+        // setCheckBoxState(false)
     }
+    const resetFilters = () => {
+        setShowFilter(false);
+        // by default all is checked
+        setDropDownOptionValue("all")
+        setSelectedDate(new Date())
+        setCheckBoxState(false)
+    }
+    // on route change
+    history.listen((location, action) => {
+        resetFilters()
+    })
 
     // toggle checkBox state
     const toggleCheckBoxState = () => {
         setCheckBoxState(!checkboxState)
 
     }
-    /* const saveFilter = (event) => {
-        let filterForm = document.getElementById("filterForm");
-        filterForm.submit();
-        event.preventDefault();
-    } */
+
+
     // form submit handler
     const onFormSubmit = (event) => {
 
         event.preventDefault();
         console.log("Form Submit")
+        let formattedDate = date.format(selectedDate, 'ddd, MMM DD YYYY')
         let assetObj;
-        if(checkboxState) {
+        if (checkboxState) {
             assetObj = {
                 filters: {
                     status: dropdownOptionValue,
-                    uploaded_at: date.toDateString()
+                    uploaded_at: formattedDate
                 }
             }
 
@@ -67,11 +81,21 @@ function Filter({ parentId, getProjectAssets }) {
     const handleChangeFilterValue = (e) => {
         console.log(e.target.value)
         setDropDownOptionValue(e.target.value)
+        // setDefaultCheckedAttribute()
     }
+
+
+    // handler for changing the value of date
     const handleDateFilter = (e) => {
-        let {name, value} = e.target
+        let { name, value } = e.target
         console.log(name, value)
-        setDate(new Date(value))
+        setSelectedDate(new Date(value))
+    }
+    // check for default checked attribute
+    const setDefaultCheckedAttribute = () => {
+        let inputTag = document.querySelector("#all")
+        console.log(inputTag.hasAttribute('defaultChecked'))
+        //    inputTag.hasAttribute('defaultChecked')
     }
     return (
         <div className="filter">
@@ -92,25 +116,28 @@ function Filter({ parentId, getProjectAssets }) {
                         <legend className="filter__legend">Filter by Status</legend>
 
                         <div className="filter__options"  >
+
+                            <div className="filter__items">
+                                <input type="radio" name="status" id="all" value="all" onChange={handleChangeFilterValue} defaultChecked={dropdownOptionValue == 'all'} />
+                                <label htmlFor="all">All</label>
+                            </div>
+
                             <div className="filter__items" >
-                                <input type="radio" name="status" id="inProgress" value="in_progress" onChange={handleChangeFilterValue} />
+                                <input type="radio" name="status" id="inProgress" value="in_progress" onChange={handleChangeFilterValue} defaultChecked={dropdownOptionValue == 'in_progress'} />
                                 <label htmlFor="inProgress">In Progress</label>
                             </div>
 
                             <div className="filter__items">
-                                <input type="radio" name="status" id="needsReview" value="needs_review" onChange={handleChangeFilterValue} />
+                                <input type="radio" name="status" id="needsReview" value="needs_review" onChange={handleChangeFilterValue} defaultChecked={dropdownOptionValue == 'needs_review'} />
                                 <label htmlFor="needsReview">Needs Review</label>
                             </div>
 
                             <div className="filter__items" >
-                                <input type="radio" name="status" id="approved" value="approved" onChange={handleChangeFilterValue} />
+                                <input type="radio" name="status" id="approved" value="approved" onChange={handleChangeFilterValue} defaultChecked={dropdownOptionValue == 'approved'} />
                                 <label htmlFor="approved">Approved</label>
                             </div>
 
-                            <div className="filter__items">
-                                <input type="radio" name="status" id="all" value="all" onChange={handleChangeFilterValue} defaultChecked />
-                                <label htmlFor="all">All</label>
-                            </div>
+
                         </div>
                     </fieldset>
 
@@ -123,7 +150,7 @@ function Filter({ parentId, getProjectAssets }) {
                             <div className="filter__items">
                                 {/* <label htmlFor="date">Date</label> */}
                                 <input type="checkbox" className="checkbox" name="date" checked={checkboxState} onChange={toggleCheckBoxState} />
-                                <input type="date" name="date" id="date" onChange={handleDateFilter} value={date.toISOString().split('T')[0]} />
+                                <input type="date" name="date" id="date" onChange={handleDateFilter} value={selectedDate.toISOString().split('T')[0]} />
                             </div>
                         </div>
                     </fieldset>
@@ -145,4 +172,4 @@ var mapStateToProps = (state) => ({
 var mapDispatchToProps = {
     getProjectAssets
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Filter)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Filter))

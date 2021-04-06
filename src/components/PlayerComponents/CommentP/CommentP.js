@@ -65,7 +65,6 @@ function CommentP({ asset, comment, addReply, deleteComments }) {
         }
         document.querySelector(".player").addEventListener("click", handleClickEvent);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-
     }, [emojiBox])
 
     // Function To Add & Append Emojis To Comments TextArea

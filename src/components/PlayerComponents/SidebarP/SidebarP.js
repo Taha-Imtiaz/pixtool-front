@@ -1,7 +1,7 @@
 import { React, useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addDescription, getDescription } from '../../../Redux/assets/assetActions';
+import { addDescription } from '../../../Redux/assets/assetActions';
 import TimeAgo from 'react-timeago';
 
 import './SidebarP.scss';
@@ -41,7 +41,7 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
 
     // For Getting The Saved Description, From Backend
     useEffect(() => {
-        getDescription(assetId);
+        // getDescription(assetId);
         if (assetDescription) {
             setDescription(assetDescription);
 
@@ -211,7 +211,7 @@ var mapStateToProps = (state) => ({
 
 var mapDispatchToProps = {
     addDescription,
-    getDescription
+    // getDescription
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SidebarP))

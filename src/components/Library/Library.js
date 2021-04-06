@@ -48,10 +48,13 @@ const Library = ({
     if (project) {
       // this useeffect only runs if pathname changes (go back and forward)
       //check pathname when we goBack(pathname !== the path of the page from which we are coming)
+      console.log(pathname, sessionStorage.getItem("path"), sessionStorage.getItem("currentUrl"))
       if (
         sessionStorage.getItem("path") &&
         pathname !== sessionStorage.getItem("path")
       ) {
+        console.log(sessionStorage.getItem("path") &&
+          pathname !== sessionStorage.getItem("path"))
         sessionStorage.setItem("path", pathname);
 
         let pathNameIdArray = pathname.split("/").slice(2, pathname.length);
@@ -77,7 +80,7 @@ const Library = ({
         sessionStorage.setItem("path", pathname);
       }
     }
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
 
@@ -198,9 +201,7 @@ const Library = ({
 
         <div className="library__main">
           <div className="thumbnail-container">
-
-            {resources &&
-              resources.length > 0 ?
+            {resources && (resources.length > 0 ?
               resources.map((resource) =>
                 resource._type === "file" ? (
                   <ThumbnailCard
@@ -213,7 +214,7 @@ const Library = ({
 
                   <ThumbnailFolderCard key={resource._id} id={resource._id} resource={resource} />
                 )
-              ) : <img src={NoDataFoundImg} alt="No Data Found" className="margin-auto" />}
+              ) : <img src={NoDataFoundImg} alt="No Data Found" className="margin-auto" />)}
           </div>
         </div>
       </div>

@@ -11,10 +11,12 @@ import Dropdown from '../../Dropdown/Dropdown';
 
 import Logo from '../../../images/logo.png';
 import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
+import { changeStatusCase } from '../../../utils/helperfunctions';
 
-function HeaderP({ toggle, location, asset, history, addDescription }) {
+function HeaderP({ toggle, location, asset, history, addDescription, assetStatus }) {
+    console.log(asset && asset.status)
     // const history = useHistory();
-// const lastLocation = useLastLocation();
+    // const lastLocation = useLastLocation();
 
     const createNew = () => { }
 
@@ -55,7 +57,7 @@ function HeaderP({ toggle, location, asset, history, addDescription }) {
         { rightIcon: '', leftIcon: '', value: 'Reveal in project', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Delete', goToMenu: '' }];
 
-
+   
     return (
         <div className="headerP">
             <div className="headerP__left-box">
@@ -67,7 +69,7 @@ function HeaderP({ toggle, location, asset, history, addDescription }) {
             </div>
 
             <div className="headerP__right-box">
-                {asset && asset._id && <Dropdown text="Status" menuItems={status} addDescription={addDescription} assetId={asset._id}/>}
+                {asset && asset._id && <Dropdown text={changeStatusCase(asset.status)} menuItems={status} addDescription={addDescription} assetId={asset._id} />}
 
                 <Dropdown text="---" menuItems={options} />
 
@@ -86,7 +88,7 @@ function HeaderP({ toggle, location, asset, history, addDescription }) {
 }
 
 var mapStateToProps = (state) => ({
-    assetStatus: state.assets && state.assets.description && state.assets.description.status
+    assetStatus: state.assets && state.assets.asset && state.assets.asset.status
 })
 
 var mapDispatchToProps = {

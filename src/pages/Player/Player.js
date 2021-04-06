@@ -9,14 +9,17 @@ import SidebarP from '../../components/PlayerComponents/SidebarP/SidebarP';
 import PlayerP from '../../components/PlayerComponents/PlayerP/PlayerP';
 
 
-const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDetails, asset }) => {
+const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDetails, asset, location:{pathname} }) => {
     
     // This state is responsible for toggling sidebar
     const [drawer, setDrawer] = useState(true)
 
     useEffect(() => {
+        // set the current path
+        sessionStorage.setItem('path', pathname)
         getAssetDetails(assetId)
         getCommentDetails(assetId)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const toggle = () => {

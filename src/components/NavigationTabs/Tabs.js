@@ -44,7 +44,7 @@ class Tabs extends Component {
 
                         return (
 
-                            <Link to = {path}> 
+                            <Link to = {path} key ={label}> 
                              <Tab
                                 activeTab={activeTab}
                                 key={label}
