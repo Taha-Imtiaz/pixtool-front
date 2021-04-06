@@ -202,13 +202,14 @@ const Library = ({
         <div className="library__main">
           <div className="thumbnail-container">
             {resources && (resources.length > 0 ?
-              resources.map((resource) =>
+              resources.map((resource, index) =>
                 resource._type === "file" ? (
                   <ThumbnailCard
                     key={resource._id}
                     id={resource._id}
                     resource={resource}
                     showCheckbox={showCheckbox}
+                    index = {index}
                   />
                 ) : (
 

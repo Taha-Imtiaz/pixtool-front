@@ -38,6 +38,7 @@ function Home({ project, match: { path } }) {
     const [showAddFolderModal, setShowAddFolderModal] = useState(false);
     // This state is used to Show/ Hide the ShareModal
     const [showShareModal, setShowShareModal] = useState(false);
+    
     // This is State is used to Show/ Hide the Share Checkbox On ThumbnailCard
     const [showCheckbox, setShowCheckbox] = useState(false);
 
