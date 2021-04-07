@@ -4,8 +4,10 @@ import './ShareModal.scss';
 
 import ButtonLight from '../../Button/ButtonLight';
 import Dropdown from '../../Dropdown/Dropdown';
+import { connect } from 'react-redux';
+import { Fragment } from 'react';
 
-const ShareModal = ({ showModal, setShowModal, modalToggler }) => {
+const ShareModal = ({ showModal, setShowModal, modalToggler, sharelink }) => {
 
     const clickMe = () => { }
 
@@ -28,19 +30,25 @@ const ShareModal = ({ showModal, setShowModal, modalToggler }) => {
     }
 
     useEffect(() => {
-        // Listener to close the Modal whenever Backdrop clicked
+        if(sharelink) {
+              // Listener to close the Modal whenever Backdrop clicked
         const backDrop = document.querySelector(".backDrop3");
         backDrop.addEventListener('click', (e) => closeModal(e), false);
+        }
+      
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [sharelink]);
 
     // Dropdown Option Values
     let shareLinkPrivacy = [
-        { rightIcon: '', leftIcon: <i className="fas fa-globe-europe"></i>, value: 'Public', goToMenu: '' },
-        { rightIcon: '', leftIcon: <i className="fas fa-times"></i>, value: 'Disabled', goToMenu: '' }];
+        { rightIcon: '', leftIcon: <i className="fas fa-globe-europe"></i>, value: sharelink && sharelink.privacy, goToMenu: '' },
+        { rightIcon: '', leftIcon: <i className="fas fa-times"></i>, value: sharelink && sharelink.privacy === "public" ? "Private" : "Public", goToMenu: '' }];
+
+   
 
     return (
-        <div className="modal__backDrop backDrop3" style={backDropStyle} >
+        <Fragment>
+         { sharelink && <div className="modal__backDrop backDrop3" style={backDropStyle} >
             <div className="modal">
                 <div className="modal__content">
                     <div className="shareModal">
@@ -51,16 +59,19 @@ const ShareModal = ({ showModal, setShowModal, modalToggler }) => {
                             </span>
                         </div>
                         <div className="shareModal__body">
-                            <div className="shareModal__text shareModal__text--dark">Sample_Video.mp4</div>
+                            <div className="shareModal__text shareModal__text--dark">
+                            {sharelink && sharelink.assets.map((asset) => asset.name).join(' , ')}
+
+                            </div>
                             <div className="shareModal__linkBox">
                                 <div className="shareModal__text">Link Access</div>
                                 <div className="shareModal__linkWrapper">
-                                    <a href="./#" className="shareModal__shareLink">f.io/mTbdxMiL</a>
+                                    <a href="./#" className="shareModal__shareLink">{sharelink.short_url}</a>
                                     <div className="shareModal__copyIcon">
                                         <i className="far fa-copy"></i>
                                     </div>
                                     <div className="shareModal__linkDropdown">
-                                        <Dropdown text="Privacy" menuItems={shareLinkPrivacy} />
+                                        <Dropdown text={sharelink.privacy} menuItems={shareLinkPrivacy} />
                                     </div>
                                 </div>
                             </div>
@@ -72,8 +83,12 @@ const ShareModal = ({ showModal, setShowModal, modalToggler }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>}
+        </Fragment>
     )
 }
+var mapStateToProps = (state) =>({
+    sharelink: state.assets && state.assets.shareablelink
+})
 
-export default ShareModal
+export default connect(mapStateToProps)(ShareModal)

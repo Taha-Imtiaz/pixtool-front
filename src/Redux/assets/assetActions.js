@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { GET_PROJECT } from '../project/projectConstants';
 import { showToastMessage } from '../utility/utilityActions';
-import { GET_ASSET_DETAILS, ADD_COMMENT, GET_COMMENTS, DELETE_COMMENT } from './assetConstants';
+import { GET_ASSET_DETAILS, ADD_COMMENT, GET_COMMENTS, DELETE_COMMENT, GET_LINK } from './assetConstants';
 
 // get all assets of  single project (which is in folder) by passing projectId
 // export const getAllProjectAssests = (projectId) => async (dispatch) => {
@@ -184,3 +184,18 @@ export const addDescription = (data, assetId) => async (dispatch) => {
 //         }
 //     }
 // }
+export const getLink = (assetIdObj) => async (dispatch) => {
+    try {
+    let response = await Axios.post('review', assetIdObj)
+    console.log(response.data.data,assetIdObj)
+    dispatch({
+        type: GET_LINK,
+        payload: response.data.data
+    })
+    } catch (e) {
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
+
+        }
+    }
+}

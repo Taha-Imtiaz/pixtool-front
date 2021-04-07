@@ -164,6 +164,7 @@ function DropdownMenu({ menuItems, checkClick }) {
                                 rightIcon={x.rightIcon}
                                 upload={x.isUpload}
                                 leftIcon={x.leftIcon}
+                                
                                 goToMenu={x.goToMenu}
                                 key={index}
                                 checkClick={checkClick}

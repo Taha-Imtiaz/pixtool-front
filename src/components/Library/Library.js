@@ -1,7 +1,7 @@
 import { React, useEffect, useState, Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { uploadAsset } from "../../Redux/assets/assetActions";
+import { getLink, uploadAsset } from "../../Redux/assets/assetActions";
 import { getProjectAssets, getProject } from "../../Redux/project/projectActions";
 
 import "./Library.scss";
@@ -19,6 +19,7 @@ const Library = ({
   resources,
   teams,
   getProject,
+
   uploadAsset,
   project,
   addFolderModalToggle,
@@ -26,6 +27,7 @@ const Library = ({
   getProjectAssets,
   history,
   location,
+  getLink,
   showCheckbox,
   setShowCheckbox,
 }) => {
@@ -33,6 +35,11 @@ const Library = ({
 
   // State To Toggle Bottom Share Bar
   const [showShareBar, setShowShareBar] = useState(false)
+  const [shareAssetIds, setShareAssetIds] = useState([])
+
+  // state for checkbox
+  //  const [checkBoxState, setCheckBoxState] = useState('')
+
 
   // var previousPath, currentPath
   let { pathname } = location
@@ -174,8 +181,47 @@ const Library = ({
 
   // Function To Enable Share Library
   const shareLibrary = () => {
-    setShowCheckbox(!showCheckbox);
-    setShowShareBar(!showShareBar);
+    // setShowCheckbox(!showCheckbox);
+    let temp = !showShareBar;
+    setShowShareBar(temp);
+    console.log(showShareBar)
+
+    if (temp === true) {
+      setShowCheckbox(true);
+
+    }
+    else {
+      setShowCheckbox(false);
+      setShareAssetIds([])
+    }
+  }
+
+  const setAssetIds = (id) => {
+
+    let arr = shareAssetIds.slice();
+    let index = shareAssetIds.findIndex(x => id === x)
+
+    if (index !== -1) {
+      arr.splice(index, 1)
+      setShareAssetIds(arr)
+      console.log(arr)
+
+    } else {
+      arr.push(id)
+      setShareAssetIds(arr)
+      console.log(arr)
+
+    }
+  }
+  const shareLink = () => {
+    if (shareAssetIds.length > 0) {
+      let assetIdObj = {
+        asset_ids: shareAssetIds
+      }
+      getLink(assetIdObj)
+      shareModalToggle()
+    }
+
   }
 
   return (
@@ -205,11 +251,15 @@ const Library = ({
               resources.map((resource, index) =>
                 resource._type === "file" ? (
                   <ThumbnailCard
+                    shareAssetIds={shareAssetIds}
+                    setAssetIds={setAssetIds}
+
                     key={resource._id}
                     id={resource._id}
                     resource={resource}
                     showCheckbox={showCheckbox}
-                    index = {index}
+                    index={index}
+
                   />
                 ) : (
 
@@ -222,10 +272,10 @@ const Library = ({
 
       {showShareBar ?
         <div className="shareBar">
-          <div className="shareBar__selectedItems">0 Items Selected</div>
+          <div className="shareBar__selectedItems">{shareAssetIds.length} Items Selected</div>
           <div className="shareBar__btns">
             <Button text="Cancel" click={shareLibrary} />
-            <Button text="Share" click={shareModalToggle} />
+            <Button text="Share" click={shareLink} />
           </div>
         </div>
         :
@@ -238,11 +288,13 @@ var mapStateToProps = (state) => ({
   resources: state.project && state.project.resources,
   teams: state.teams && state.teams.teamList,
   project: state.project,
+
 });
 var mapDispatchToProps = {
   getProject,
   uploadAsset,
-  getProjectAssets
+  getProjectAssets,
+  getLink
 };
 
 export default connect(

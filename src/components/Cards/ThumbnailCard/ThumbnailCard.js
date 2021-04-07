@@ -3,40 +3,16 @@ import { withRouter } from 'react-router-dom';
 import { changeStatusCase } from '../../../utils/helperfunctions';
 import './ThumbnailCard.scss';
 
-const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index }) => {
+const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index, setAssetIds,shareAssetIds }) => {
 
     let { thumbnail, name, uploaded_at, uploader, status } = resource;
-    let assetArr = []
-    
-    const [assetArr, setAssetArr] = useState([])
-
-    // state for setting asset index
-    const [assetIndex, setAssetIndex] = useState(0)
-
-    // state for checkbox
-    const [checkBoxState, setCheckBoxState] = useState(false)
-
-
 
     const updateAssetIndex = (assetId, index) => {
-
-
-        if (index !== assetIndex) {
-            setAssetIndex(index)
-            setCheckBoxState(true)
-            assetArr.push({
-                ...assetArr, assetId
-            })
-            console.log(assetArr)
-        }
-        else {
-            setAssetIndex(-1)
-            setCheckBoxState(false)
-        }
+        // setCheckBoxState(!checkBoxState)
+        setAssetIds(assetId);
     }
 
-
-    console.log(checkBoxState, assetIndex)
+// console.log(checkBoxState)
     return (
         <div className="thumbnailCard" tabIndex="0" key={key} onDoubleClick={() => history.push(`/player/${id}`)}>
             <Fragment>
@@ -50,7 +26,8 @@ const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index }) => {
 
                 <div className="thumbnailCard__bottom">
                     {showCheckbox ?
-                        <input type="checkbox" name="share_select_checkBox" id="checkBox" className="checkbox" checked={checkBoxState} onClick={() => updateAssetIndex(resource._id, index)} ></input>
+                        <input type="checkbox" name="share_select_checkBox" id="checkBox" className="checkbox"
+                         onClick={() => updateAssetIndex(resource._id)} ></input>
                         :
                         null
                     }

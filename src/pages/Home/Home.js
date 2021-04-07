@@ -23,7 +23,6 @@ import AddProjectModal from '../../components/Modals/AddProjectModal/AddProjectM
 import AddFolderModal from '../../components/Modals/AddFolderModal/AddFolderModal';
 import ShareModal from '../../components/Modals/ShareModal/ShareModal';
 
-
 import { Route, Switch } from 'react-router-dom';
 
 
