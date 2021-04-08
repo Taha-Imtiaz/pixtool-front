@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addDescription } from '../../../Redux/assets/assetActions';
@@ -13,8 +13,8 @@ import Logo from '../../../images/logo.png';
 import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
 import { changeStatusCase } from '../../../utils/helperfunctions';
 
-function HeaderP({ toggle, location, asset, history, addDescription, assetStatus }) {
-    console.log(asset && asset.status)
+function HeaderP({ toggle, location, asset, history, addDescription, assetStatus, setAssetPrivacy }) {
+    // console.log(asset && asset.status)
     // const history = useHistory();
     // const lastLocation = useLastLocation();
 
@@ -39,6 +39,23 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
     }
 
     // Dropdown Option Values
+    /* let privacy = 'Make Public';
+    // let options = [];
+
+    useEffect(() => {
+        console.log("hi")
+        if (asset) {
+            if (asset.private) {
+                privacy = 'Make Private';
+
+            } else {
+                privacy = 'Make Public';
+            }
+        }
+        console.log(privacy)
+
+    }, [asset]); */
+
     let status = [
         { rightIcon: '', leftIcon: '', value: 'Needs Review', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'In Progress', goToMenu: '' },
@@ -53,11 +70,10 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
                 { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' },
                 { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' }]
         },
-        { rightIcon: '', leftIcon: '', value: 'Make Private', goToMenu: '' },
+        { rightIcon: '', leftIcon: '', value: asset.private? 'Make Public' : 'Make Private', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Reveal in project', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Delete', goToMenu: '' }];
 
-   
     return (
         <div className="headerP">
             <div className="headerP__left-box">
@@ -71,7 +87,7 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
             <div className="headerP__right-box">
                 {asset && asset._id && <Dropdown text={changeStatusCase(asset.status)} menuItems={status} addDescription={addDescription} assetId={asset._id} />}
 
-                <Dropdown text="---" menuItems={options} />
+                <Dropdown text="---" menuItems={options} setAssetPrivacy={setAssetPrivacy} />
 
                 <Button text="Share" click={createNew} />
 

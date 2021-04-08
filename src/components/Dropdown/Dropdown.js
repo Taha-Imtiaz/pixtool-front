@@ -9,7 +9,7 @@ import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 import { Fragment } from 'react';
 
 
-function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, assetId }) {
+function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAssetPrivacy, assetId }) {
     // State For Dropdowns toggling
     const [open, setOpen] = useState(false);
     // State For Dropdown Text
@@ -58,6 +58,11 @@ function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, assetId 
             setOpen(!open);
             setDropText('Approved');
         }
+
+        // Check For Video Privacy
+        if (option === 'Make Private' || option === 'Make Public') {
+            setAssetPrivacy();
+        } 
     }
 
     // Function To Position Dropdown Upwards/ Downwards w.r.t. Space Available
