@@ -23,13 +23,13 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, account }) => {
     return (
         <div className="teamsNav">
             <ul className="teamsNav__list">
-                {account && account.map((account, index) => <li key = {account._id} className="teamsNav__item">
+                {account && account.map((account, index) => <li key={account._id} className="teamsNav__item">
                     <div className="teamsNav__item__head" onClick={() => toggleTeamNav(index)}>
                         <div className="teamsNav__center">
                             <span className="teamsNav__icon">
                                 {index === teamItemIndex ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-right"></i>}
                             </span>
-                            
+
                             <span className="teamsNav__text truncate" title={account.name}>{account.name}</span>
                             <span className="teamsNav__addBtn" >
                                 <i className="fas fa-plus-circle" onClick={(e) => addProjectModalToggle(e, account._id)}></i>
@@ -39,16 +39,16 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, account }) => {
 
                     {index === teamItemIndex && <div className="teamsNav__item__body">
                         <ul className="project__list">
-                            {account.projects && account.projects.map((project) => <li key={project._id} className="project__item">
-                                <span className="project__item--name" onClick={() => getProject(project._id)}>{project.name}</span>
-                                <span className="project__item--icon"><i className="fas fa-ellipsis-v"></i></span>
+                            {account.projects && account.projects.map((project) => <li key={project._id} onClick={() => getProject(project._id)} className="project__item">
+                                <span className="project__item--name">{project.name}</span>
+                                {/* <span className="project__item--icon"><i className="fas fa-ellipsis-v"></i></span> */}
                             </li>)}
-                          
+
                         </ul>
                     </div>}
                 </li>)}
 
-               
+
             </ul>
         </div>
     )

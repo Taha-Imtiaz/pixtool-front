@@ -42,14 +42,13 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
     // For Getting The Saved Description, From Backend
     useEffect(() => {
         // getDescription(assetId);
-        if (assetDescription) {
-            setDescription(assetDescription);
-
+        if (asset) {
+            setDescription(asset.description);
         } else {
             setDescription('');
         }
 
-    }, [assetDescription])
+    }, [asset])
 
     // Function To Set The Height Of Comment Area Of SidebarP
     const setCommentsHeight = () => {
@@ -106,7 +105,7 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
                                 </div>
                                 :
                                 <div className="sidebarP__description--2">
-                                    <div className="description__text">{description}</div>
+                                    <div className="description__text">{asset.description}</div>
                                     <span className="description__edit-icon" onClick={() => editDescription()}><i className="far fa-edit"></i></span>
                                 </div>
                             }

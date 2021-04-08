@@ -5,6 +5,10 @@ import ButtonSmallPrimary from '../Button/ButtonSmallPrimary';
 import date from 'date-and-time'
 import './Filter.scss';
 import { withRouter } from 'react-router';
+import moment from 'moment'
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 function Filter({ parentId, getProjectAssets, history }) {
     // State To Store The Filter Value
@@ -23,7 +27,7 @@ function Filter({ parentId, getProjectAssets, history }) {
     // Function to Toggle the Filter
     const toggleFilter = () => {
         setShowFilter(!showFilter);
-       
+
     }
     const resetFilters = () => {
         setShowFilter(false);
@@ -76,17 +80,21 @@ function Filter({ parentId, getProjectAssets, history }) {
     const handleChangeFilterValue = (e) => {
         console.log(e.target.value)
         setDropDownOptionValue(e.target.value)
-
     }
 
 
     // handler for changing the value of date
-    const handleDateFilter = (e) => {
-        let { name, value } = e.target
-        console.log(name, value)
-        setSelectedDate(new Date(value))
-    }
-  
+    // const handleDateFilter = (e) => {
+    //     let { name, value } = e.target
+    //     console.log(name, value)
+    //     var m = moment(value, 'YYYY-MM-DD');
+    //     // f
+    //     if (m.isValid()) {
+    //         console.log(new Date(value))
+    //         setSelectedDate(new Date(value))
+    //     }
+    // }
+
     return (
         <div className="filter">
             <div className="filter__head" onClick={toggleFilter}>
@@ -108,22 +116,22 @@ function Filter({ parentId, getProjectAssets, history }) {
                         <div className="filter__options"  >
 
                             <div className="filter__items">
-                                <input type="radio" name="status" id="all" value="all" onChange={handleChangeFilterValue} defaultChecked = {dropdownOptionValue === 'all'} />
+                                <input type="radio" name="status" id="all" value="all" onChange={handleChangeFilterValue} defaultChecked={dropdownOptionValue === 'all'} />
                                 <label htmlFor="all">All</label>
                             </div>
 
                             <div className="filter__items" >
-                                <input type="radio" name="status" id="inProgress" value="in_progress" onChange={handleChangeFilterValue} defaultChecked = {dropdownOptionValue === 'in_progress'}   />
+                                <input type="radio" name="status" id="inProgress" value="in_progress" onChange={handleChangeFilterValue} defaultChecked={dropdownOptionValue === 'in_progress'} />
                                 <label htmlFor="inProgress">In Progress</label>
                             </div>
 
                             <div className="filter__items">
-                                <input type="radio" name="status" id="needsReview" value="needs_review" onChange={handleChangeFilterValue} defaultChecked = {dropdownOptionValue === 'needs_review'}  />
+                                <input type="radio" name="status" id="needsReview" value="needs_review" onChange={handleChangeFilterValue} defaultChecked={dropdownOptionValue === 'needs_review'} />
                                 <label htmlFor="needsReview">Needs Review</label>
                             </div>
 
                             <div className="filter__items" >
-                                <input type="radio" name="status" id="approved" value="approved" onChange={handleChangeFilterValue} defaultChecked = {dropdownOptionValue === 'approved'}   />
+                                <input type="radio" name="status" id="approved" value="approved" onChange={handleChangeFilterValue} defaultChecked={dropdownOptionValue === 'approved'} />
                                 <label htmlFor="approved">Approved</label>
                             </div>
 
@@ -140,7 +148,8 @@ function Filter({ parentId, getProjectAssets, history }) {
                             <div className="filter__items">
                                 {/* <label htmlFor="date">Date</label> */}
                                 <input type="checkbox" className="checkbox" name="date" checked={checkboxState} onChange={toggleCheckBoxState} />
-                                <input type="date" name="date" id="date" onChange={handleDateFilter} value={selectedDate.toISOString().split('T')[0]} />
+                                {/* <input type="date" name="date" id="date" onChange={handleDateFilter} value={selectedDate.toISOString().substr(0,10)} /> */}
+                                <DatePicker selected={selectedDate} onChange={date => setSelectedDate(date)} />
                             </div>
                         </div>
                     </fieldset>
