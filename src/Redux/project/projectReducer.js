@@ -7,10 +7,7 @@ let projectReducer = (state = initialState, { type, payload }) => {
         
         case GET_PROJECT:
             return {...state,...payload }
-        case ADD_PROJECT:
-            
-            return {...state, project: payload}
-
+       
         default:
             return state
     }
