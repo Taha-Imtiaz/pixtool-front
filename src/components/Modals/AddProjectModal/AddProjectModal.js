@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { addProject } from '../../../Redux/project/projectActions';
-import { getAccount } from '../../../Redux/account/accountActions';
+import { addProject, getAccount } from '../../../Redux/account/accountActions';
 
 import './AddProjectModal.scss';
 

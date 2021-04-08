@@ -48,29 +48,3 @@ export const getProjectAssets = (assetId, assetObj) => async (dispatch) => {
     }
 }
 
-// add new Project to the team whose teamId is passed
-
-export const addProject = (teamId, data,callback) => async (dispatch) => {
-    try {
-        let response =  await Axios.post(`project/${teamId}`, data , {
-            config: {
-              handlerEnabled: true
-            }
-          })
-        // update app's state
-        dispatch({
-            type: ADD_PROJECT,
-            payload:response.data.data
-        })
-
-        dispatch(showToastMessage(response.data.message))
-        if(response.status === 202) {
-            callback()
-        }
-    } catch (e) {
-        if (e.response && e.response.data) {
-            dispatch(showToastMessage(e.response.data.message))
-      
-          }
-    }
-}
