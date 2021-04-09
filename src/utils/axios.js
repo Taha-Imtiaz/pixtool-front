@@ -24,11 +24,7 @@ const Axios = () => {
     // axios.defaults.baseURL = 'http://localhost:3001/api/';
 
     // axios.defaults.baseURL = 'http://10.0.5.194:3001/api/';
-<<<<<<< HEAD
-    axios.defaults.baseURL = 'http://10.0.5.13:3001/api/';
-=======
     // axios.defaults.baseURL = 'http://10.0.3.59:3001/api/';
->>>>>>> 20933734c47632220cc38a6126de914c158df2bf
 
 
     // Request Interceptors(before we send a request)
