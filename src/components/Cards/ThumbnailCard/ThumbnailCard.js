@@ -1,4 +1,4 @@
-import { React, useState, Fragment } from 'react';
+import { React, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { changeStatusCase } from '../../../utils/helperfunctions';
 import './ThumbnailCard.scss';

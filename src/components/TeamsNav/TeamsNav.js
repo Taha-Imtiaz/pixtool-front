@@ -39,8 +39,13 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, account }) => {
 
                     {index === teamItemIndex && <div className="teamsNav__item__body">
                         <ul className="project__list">
+<<<<<<< HEAD
                             {account.projects && account.projects.map((project) => <li key={project._id} className="project__item">
                                 <span className="project__item--name" onClick={() => getProject(project._id)}>{project.name}</span>
+=======
+                            {account.projects && account.projects.map((project) => <li key={project._id} onClick={() => getProject(project._id)} className="project__item">
+                                <span className="project__item--name">{project.name}</span>
+>>>>>>> 20933734c47632220cc38a6126de914c158df2bf
                                 <span className="project__item--icon"><i className="fas fa-ellipsis-v"></i></span>
                             </li>)}
 

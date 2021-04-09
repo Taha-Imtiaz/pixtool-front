@@ -5,7 +5,6 @@ import ButtonSmallPrimary from '../Button/ButtonSmallPrimary';
 import date from 'date-and-time'
 import './Filter.scss';
 import { withRouter } from 'react-router';
-import moment from 'moment'
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";

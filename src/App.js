@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter,useParams } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 import "react-toastify/dist/ReactToastify.css";
@@ -21,10 +21,10 @@ import { checkUserAuthentication, getUserData } from './Redux/user/userActions';
 import { getProject } from './Redux/project/projectActions';
 import { getAccount } from './Redux/account/accountActions';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import Review from './pages/Review/Review';
 
 const App = ({ toastMessage, numberOfRequests, user, account, history, accountId, location: { pathname } }) => {
   const notify = (message) => toast.dark(message);
-
   // show toast when toastMessage state changes
 
   useEffect(() => {
@@ -35,16 +35,12 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
   }, [toastMessage])
 
 
-  //   useEffect(() => {
-  //     window.onbeforeunload = function() {
-  //         return true;
-  //     };
-
-  //     return () => {
-  //         window.onbeforeunload = null;
-  //     };
-  // }, []);
-
+ 
+// on route change
+// history.listen((location, action) => {
+//   console.log(location.pathname)
+//   history.push(location.pathname)
+// })
 
   // the below 2 useeffects loads data only once 
   // get account of the user
@@ -54,13 +50,15 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
 
     let checkUserAuth = checkUserAuthentication()
     if (checkUserAuth) {
-      console.log(checkUserAuth)
       store.dispatch(getUserData())
     }
+    // else if (pathname === `/review/${id}` && (checkUserAuth === true || checkUserAuth === false)) {
+    //   history.push(`/review/${id}`)
+    // }
     else {
       history.push('/')
     }
-// eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accountId])
 
   // get teams of account which is signed in currently(by default first team) 
@@ -68,9 +66,8 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
     if (user) {
       let { account_id } = user
       if (account_id[0] && account_id[0]._id) {
-        console.log("get account api called")
 
-
+        // get account
         store.dispatch(getAccount(account_id[0]._id))
 
       }
@@ -133,12 +130,14 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
 
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
+          <Route path="/review/:id" component={Review} />
           <PrivateRoute path="/home/library/:projectId" component={Home} />
           <PrivateRoute path="/player/:assetId" component={Player} />
           <PrivateRoute path="/accounts" component={Accounts} />
           <PrivateRoute path="/test" component={Test} />
+
           <Route path="/" component={HeroSection} exact />
-          <Redirect to="/" />
+          {/* <Redirect to="/" /> */}
         </ErrorBoundary>
 
       </Switch>
