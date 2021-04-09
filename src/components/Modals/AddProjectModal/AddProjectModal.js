@@ -32,13 +32,12 @@ const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addPro
             name: modalFormState.projectName
         }
 
-        var { account_id } = account
+        
 
         addProject(teamId, data, () => {
-            console.log("callback called")
-            getAccount(account_id[0]._id)
+            modalToggler(e, teamId)
         })
-        modalToggler(e, teamId)
+      
         
     }
 

@@ -1,6 +1,6 @@
 import Axios from "axios"
 import { showToastMessage } from "../utility/utilityActions"
-import { GET_PROJECT, ADD_PROJECT } from "./projectConstants"
+import { GET_PROJECT } from "./projectConstants"
 
 
 

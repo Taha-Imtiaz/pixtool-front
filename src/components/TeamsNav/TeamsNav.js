@@ -41,7 +41,7 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, account }) => {
                         <ul className="project__list">
                             {account.projects && account.projects.map((project) => <li key={project._id} onClick={() => getProject(project._id)} className="project__item">
                                 <span className="project__item--name">{project.name}</span>
-                                {/* <span className="project__item--icon"><i className="fas fa-ellipsis-v"></i></span> */}
+                                <span className="project__item--icon"><i className="fas fa-ellipsis-v"></i></span>
                             </li>)}
 
                         </ul>

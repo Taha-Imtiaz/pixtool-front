@@ -55,7 +55,6 @@ const Library = ({
     if (project) {
       // this useeffect only runs if pathname changes (go back and forward)
       //check pathname when we goBack(pathname !== the path of the page from which we are coming)
-      console.log(pathname, sessionStorage.getItem("path"), sessionStorage.getItem("currentUrl"))
       if (
         sessionStorage.getItem("path") &&
         pathname !== sessionStorage.getItem("path")
@@ -239,7 +238,7 @@ const Library = ({
             </div>
 
             <div className="library__head__buttons">
-              <Button text="Share" click={shareLibrary} />
+            <Button text="Share" click={shareLibrary} />
               <Dropdown text="New" menuItems={newUpload} />
             </div>
           </div>

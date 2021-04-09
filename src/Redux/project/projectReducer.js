@@ -1,4 +1,4 @@
-import { ADD_PROJECT, GET_PROJECT } from "./projectConstants"
+import {  GET_PROJECT } from "./projectConstants"
 
 var initialState = null
 
