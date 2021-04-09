@@ -80,6 +80,10 @@
             margin-bottom: .5rem;
         }
 
+        &--name {
+            flex: 1 1;
+        }
+
         &--icon {
             color: $color-secondary;
             transition: cursor .3s, color .3s;

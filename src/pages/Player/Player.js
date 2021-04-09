@@ -11,7 +11,6 @@ import PlayerP from '../../components/PlayerComponents/PlayerP/PlayerP';
 
 
 const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDetails, addDescription, asset, location: { pathname } }) => {
-    console.log(asset)
 
     // This state is responsible for toggling sidebar
     const [drawer, setDrawer] = useState(true)
@@ -30,7 +29,6 @@ const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDet
 
     // For Making The Video Public/ Private
     const setAssetPrivacy = () => {
-        console.log("setAssetPrivacy Called");
         let obj = {};
 
         if (!asset.private) {

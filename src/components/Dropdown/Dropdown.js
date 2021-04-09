@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { withRouter } from 'react-router';
 
 import './Dropdown.scss';
 
@@ -9,7 +10,8 @@ import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 import { Fragment } from 'react';
 
 
-function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAssetPrivacy, assetId }) {
+function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAssetPrivacy, deleteAsset, match: { params: { assetId } }, history }) {
+console.log(history)
     // State For Dropdowns toggling
     const [open, setOpen] = useState(false);
     // State For Dropdown Text
@@ -21,12 +23,10 @@ function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAsset
         // Check For Comment Privacy
         if (option === 'Everyone can see') {
             setCommentPrivacy('public');
-            setOpen(!open);
             setDropText('Everyone can see');
 
         } else if (option === 'Team only') {
             setCommentPrivacy('private');
-            setOpen(!open);
             setDropText('Team only');
         }
 
@@ -37,7 +37,6 @@ function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAsset
             }
 
             addDescription(obj, assetId);
-            setOpen(!open);
             setDropText('Needs Review');
 
         } else if (option === 'In Progress') {
@@ -46,7 +45,6 @@ function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAsset
             }
 
             addDescription(obj, assetId);
-            setOpen(!open);
             setDropText('In Progress');
 
         } else if (option === 'Approved') {
@@ -55,14 +53,26 @@ function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAsset
             }
 
             addDescription(obj, assetId);
-            setOpen(!open);
             setDropText('Approved');
         }
 
         // Check For Video Privacy
         if (option === 'Make Private' || option === 'Make Public') {
             setAssetPrivacy();
-        } 
+        }
+
+        // Check For Reveal In Project
+        if (option === 'Reveal in project') {
+            window.open(window.location.origin, "_blank");
+        }
+
+        // Check For Asset Delete
+        if (option === 'Delete') {
+            deleteAsset(assetId);
+            history.goBack()
+        }
+
+        setOpen(!open);
     }
 
     // Function To Position Dropdown Upwards/ Downwards w.r.t. Space Available
@@ -169,7 +179,7 @@ function DropdownMenu({ menuItems, checkClick }) {
                                 rightIcon={x.rightIcon}
                                 upload={x.isUpload}
                                 leftIcon={x.leftIcon}
-                                
+
                                 goToMenu={x.goToMenu}
                                 key={index}
                                 checkClick={checkClick}
@@ -201,4 +211,4 @@ function DropdownMenu({ menuItems, checkClick }) {
     );
 }
 
-export default Dropdown
+export default withRouter(Dropdown)

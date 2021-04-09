@@ -16,14 +16,14 @@ const Profile = ({ user, updateUserProfile }) => {
         bio: ''
     })
     useEffect(() => {
-       if(user) {
-        let { full_name, location, bio } = user
-        setUseState({
-            fullName: full_name,
-            location: location,
-            bio: bio
-        })
-       }
+        if (user) {
+            let { full_name, location, bio } = user
+            setUseState({
+                fullName: full_name,
+                location: location,
+                bio: bio
+            })
+        }
     }, [user])
 
 
@@ -44,38 +44,45 @@ const Profile = ({ user, updateUserProfile }) => {
             JSON.stringify({
                 full_name: fullName, location, bio
             })
-          );
-     
+        );
+
         updateUserProfile(data)
     }
 
     // let { full_name, images: { profile_image } } = user
     return (
-     <Fragment>
-        {user &&  <div className="profileTab">
-            <div className="profileInfo">
-                <img src={user.images.profile_image} alt="Display Profile" className="profileInfo__img" />
-                <div className="profileInfo__headName">{userState.fullName}</div>
-                <div className="profileInfo__inputsBox">
-                    <div className="profileInfo__inputsGroup profileInfo__inputsGroup--half">
-                        <label htmlFor="name" className="profileInfo__label">Name</label>
-                        <input type="text" className="profileInfo__input" name="fullName" value={userState.fullName} onChange={handleFormInput} />
+        <Fragment>
+            {user && <div className="profileTab">
+                <div className="profileInfo">
+                    <figure className="profileInfo__shape">
+                        <img src={user.images.profile_image} alt="Display Profile" className="profileInfo__img" />
+                        <figcaption className="profileInfo__caption"><i className="fas fa-camera"></i></figcaption>
+                    </figure>
+                    <input type="file" id="imageUploadInput" className="profileInfo__imageUploadInput" accept=".png" />
+
+                    <div className="profileInfo__headName">{userState.fullName}</div>
+
+                    <div className="profileInfo__inputsBox">
+                        <div className="profileInfo__inputsGroup profileInfo__inputsGroup--half">
+                            <label htmlFor="name" className="profileInfo__label">Name</label>
+                            <input type="text" className="profileInfo__input" name="fullName" value={userState.fullName} onChange={handleFormInput} />
+                        </div>
+                        <div className="profileInfo__inputsGroup profileInfo__inputsGroup--half">
+                            <label htmlFor="location" className="profileInfo__label">Location</label>
+                            <input type="text" className="profileInfo__input" name="location" value={userState.location} onChange={handleFormInput} />
+                        </div>
+                        <div className="profileInfo__inputsGroup profileInfo__inputsGroup--bio">
+                            <label htmlFor="bio" className="profileInfo__label ">Bio</label>
+                            <textarea name="bio" value={userState.bio} onChange={handleFormInput} id="" className="profileInfo__input profileInfo__input--bio" cols="30" rows="10"></textarea>
+                        </div>
                     </div>
-                    <div className="profileInfo__inputsGroup profileInfo__inputsGroup--half">
-                        <label htmlFor="location" className="profileInfo__label">Location</label>
-                        <input type="text" className="profileInfo__input" name="location" value={userState.location} onChange={handleFormInput} />
-                    </div>
-                    <div className="profileInfo__inputsGroup profileInfo__inputsGroup--bio">
-                        <label htmlFor="bio" className="profileInfo__label ">Bio</label>
-                        <textarea name="bio" value={userState.bio} onChange={handleFormInput} id="" className="profileInfo__input profileInfo__input--bio" cols="30" rows="10"></textarea>
+
+                    <div className="profileInfo__btn">
+                        <Button text="Save" click={updateProfile} />
                     </div>
                 </div>
-                <div className="profileInfo__btn">
-                    <Button text="Save" click={updateProfile} />
-                </div>
-            </div>
-        </div>}
-     </Fragment>
+            </div>}
+        </Fragment>
     )
 }
 var mapStateToProps = (state) => ({

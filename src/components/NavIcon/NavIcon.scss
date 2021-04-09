@@ -26,7 +26,8 @@
     //ICON
     &__icon {
         position: relative;
-        margin-top: 2.1rem;
+        margin-top: 2rem;
+        background-color: transparent;
 
         &,
         &::before,
@@ -34,7 +35,7 @@
             display: inline-block;
             width: 2rem;
             height: 2px;
-            background-color: $color-secondary;
+            // background-color: $color-secondary;
         }
 
         &::before,
@@ -43,36 +44,46 @@
             position: absolute;
             left: 0;
             transition: all .2s;
+            background-color: $color-secondary;
         }
 
         &::before {
-            top: .8rem;
+            // top: .8rem;
+            top: 0;
+            transform: rotate(135deg);
         }
 
         &::after {
-            top: -.8rem;
+            // top: -.8rem;
+            top: 0;
+            transform: rotate(-135deg);
         }
     }
 
     &__button:hover &__icon::before {
-        top: 1rem;
+        // top: 1rem;
     }
 
     &__button:hover &__icon::after {
-        top: -1rem;
+        // top: -1rem;
     }
 
     &__checkbox:checked+&__button &__icon {
-        background-color: transparent;
+        // background-color: transparent;
+        background-color: $color-secondary;
     }
 
     &__checkbox:checked+&__button &__icon::before {
-        top: 0;
-        transform: rotate(135deg);
+        // top: 0;
+        // transform: rotate(135deg);
+        top: .8rem;
+        transform: rotate(0);
     }
 
     &__checkbox:checked+&__button &__icon::after {
-        top: 0;
-        transform: rotate(-135deg);
+        // top: 0;
+        // transform: rotate(-135deg);
+        top: -.8rem;
+        transform: rotate(0);
     }
 }

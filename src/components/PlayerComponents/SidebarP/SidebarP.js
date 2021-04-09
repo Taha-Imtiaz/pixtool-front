@@ -149,51 +149,51 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
                                 <tbody>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">File Name</td>
-                                        <td className="file-info__table--content">{asset.name}</td>
+                                        <td className="file-info__table--content">{asset?.name}</td>
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">Uploader</td>
-                                        <td className="file-info__table--content">{asset.uploader}</td>
+                                        <td className="file-info__table--content">{asset?.uploader}</td>
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">Uploaded</td>
-                                        <td className="file-info__table--content">{asset.createdAt.split('T')[0]} at {asset.createdAt.split('T')[1].split('.')[0]}</td>
+                                        <td className="file-info__table--content">{asset?.createdAt.split('T')[0]} at {asset?.createdAt.split('T')[1].split('.')[0]}</td>
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">Codec</td>
-                                        <td className="file-info__table--content">{asset.asset_info.codec}</td>
+                                        <td className="file-info__table--content">{asset?.asset_info?.codec}</td>
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">RES</td>
-                                        <td className="file-info__table--content">{asset.asset_info.resolution}</td>
+                                        <td className="file-info__table--content">{asset?.asset_info?.resolution}</td>
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">FPS</td>
-                                        <td className="file-info__table--content">{asset.asset_info.fps}</td>
+                                        <td className="file-info__table--content">{asset?.asset_info?.fps}</td>
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">Audio Format</td>
-                                        <td className="file-info__table--content">{asset.asset_info.audio_format}</td>
+                                        <td className="file-info__table--content">{asset?.asset_info?.audio_format}</td>
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">Size</td>
-                                        <td className="file-info__table--content">{(asset.asset_info.file_size / 1024).toFixed(2)} MB</td>
+                                        <td className="file-info__table--content">{(asset?.asset_info?.file_size / 1024).toFixed(2)} MB</td>
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">TC In</td>
-                                        <td className="file-info__table--content">{asset.asset_info.tc.tc_in}</td>
+                                        <td className="file-info__table--content">{asset?.asset_info?.tc?.tc_in}</td>
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">TC Out</td>
-                                        <td className="file-info__table--content">{asset.asset_info.tc.tc_out}</td>
+                                        <td className="file-info__table--content">{asset?.asset_info?.tc?.tc_out}</td>
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">Duration</td>
-                                        <td className="file-info__table--content">{asset.asset_info.duration}</td>
+                                        <td className="file-info__table--content">{asset?.asset_info?.duration}</td>
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">Frames</td>
-                                        <td className="file-info__table--content">{asset.asset_info.frames}</td>
+                                        <td className="file-info__table--content">{asset?.asset_info?.frames}</td>
                                     </tr>
                                 </tbody>
                             </table>

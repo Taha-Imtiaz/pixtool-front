@@ -20,12 +20,11 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
     }, [thumbnails])
 
 
-
     // fetch assets of the given projects
     const fetchAssets = (projectId, assetId) => {
         history.push(`/home/library/${projectId}/${assetId}`)
         let assetObj = {
-            filters:{
+            filters: {
                 status: "all",
             }
         }
@@ -33,18 +32,20 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
     }
 
 
-
     return (
         <div className="thumbnailFolderCard" tabIndex="0" onDoubleClick={() => fetchAssets(projectId, id)} >
 
             { thumbnails && <div className={thumbnailsLength <= 1 ? 'thumbnailFolderCard__thumbnailBox thumbnailFolderCard__thumbnailBox--1' : 'thumbnailFolderCard__thumbnailBox'}>
-                <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--1">
-                    <img src={thumbnails[0]} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--1" />
-                </span>
+                {thumbnailsLength >= 1 ?
+                    <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--1">
+                        <img src={thumbnails[0].url} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--1" />
+                    </span>
+                    : null
+                }
 
                 {thumbnailsLength >= 2 ?
                     <span className={thumbnailsLength === 2 ? 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2 thumbnailFolderCard__imgBox--expand' : 'thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--2'}>
-                        <img src={thumbnails[1]} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--2" />
+                        <img src={thumbnails[1].url} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--2" />
                     </span>
                     :
                     null
@@ -52,7 +53,7 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
 
                 {thumbnailsLength === 3 ?
                     <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--3">
-                        <img src={thumbnails[2]} alt="" className="thumbnailFolderCard__img thumbnailFolderCard__img--3" />
+                        <img src={thumbnails[2].url} alt="" className="thumbnailFolderCard__img thumbnailFolderCard__img--3" />
                     </span>
                     :
                     null

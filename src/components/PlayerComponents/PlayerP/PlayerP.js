@@ -424,7 +424,7 @@ const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } } 
             If this is not included, the first frame of the video will be used instead. */}
 
             <video id="myVideo" className="playerP__video" poster={videoThumbNail} onClick={() => playPause()}>
-                {videoSource && asset._id === assetId
+                {videoSource && asset && asset._id === assetId
                     ?
                     <source src={videoSource} type="video/mp4" key={videoSource} />
                     :
