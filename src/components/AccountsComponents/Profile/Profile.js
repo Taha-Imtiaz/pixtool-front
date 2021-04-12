@@ -9,24 +9,27 @@ import { Fragment } from 'react';
 
 
 const Profile = ({ user, updateUserProfile }) => {
+
     // user state for autofill form
     let [userState, setUseState] = useState({
+        profileImg: '',
         fullName: '',
         location: '',
         bio: ''
     })
+
     useEffect(() => {
         if (user) {
-            let { full_name, location, bio } = user
+            let { full_name, location, bio } = user;
+
             setUseState({
+                profileImg: user.images.profile_image,
                 fullName: full_name,
                 location: location,
                 bio: bio
             })
         }
     }, [user])
-
-
 
     // handler for changing formInput
     const handleFormInput = (e) => {
@@ -36,6 +39,7 @@ const Profile = ({ user, updateUserProfile }) => {
             [name]: value
         })
     }
+
     const updateProfile = () => {
         let { fullName, location, bio } = userState
         const data = new FormData();
@@ -49,16 +53,28 @@ const Profile = ({ user, updateUserProfile }) => {
         updateUserProfile(data)
     }
 
+    const uploadProfileImg = () => {
+        document.getElementById('imageUploadInput').click();
+    }
+
+    const setProfileImg = (event) => {
+        let {name, files} = event.target;
+        console.log(name, files[0].name)
+        const data = new FormData();
+        data.append( "file",files[0], files[0].name);
+        updateUserProfile(data)
+    }
+
     // let { full_name, images: { profile_image } } = user
     return (
         <Fragment>
             {user && <div className="profileTab">
                 <div className="profileInfo">
-                    <figure className="profileInfo__shape">
-                        <img src={user.images.profile_image} alt="Display Profile" className="profileInfo__img" />
+                    <figure className="profileInfo__shape" onClick={uploadProfileImg}>
+                        <img src={userState.profileImg} alt="Display Profile" className="profileInfo__img" />
                         <figcaption className="profileInfo__caption"><i className="fas fa-camera"></i></figcaption>
                     </figure>
-                    <input type="file" id="imageUploadInput" className="profileInfo__imageUploadInput" accept=".png" />
+                    <input type="file" id="imageUploadInput" className="profileInfo__imageUploadInput" accept="image/png, image/jpeg" name="profileImg"  onChange={setProfileImg} />
 
                     <div className="profileInfo__headName">{userState.fullName}</div>
 

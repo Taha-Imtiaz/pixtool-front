@@ -74,15 +74,6 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
             </div>
             }
 
-            {/* <div className="thumbnailFolderCard__text">
-                <div className="thumbnailFolderCard__name truncate">{name}</div>
-                <div className="thumbnailFolderCard__datail">
-                    <span>{uploader}</span>
-                    &nbsp;-&nbsp;
-                    <span>{uploaded_at}</span>
-                </div>
-            </div> */}
-
             <div className="thumbnailFolderCard__bottom">
                 {showCheckbox ?
                     <input type="checkbox" name="share_select_checkBox" id="checkBox" className="checkbox"
