@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { changeStatusCase } from '../../../utils/helperfunctions';
 import './ThumbnailCard.scss';
 
-const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index, setAssetIds,shareAssetIds }) => {
+const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index, setAssetIds, shareAssetIds }) => {
 
     let { thumbnail, name, uploaded_at, uploader, status } = resource;
 
@@ -12,7 +12,7 @@ const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index, setAss
         setAssetIds(assetId);
     }
 
-// console.log(checkBoxState)
+    // console.log(checkBoxState)
     return (
         <div className="thumbnailCard" tabIndex="0" key={key} onDoubleClick={() => history.push(`/player/${id}`)}>
             <Fragment>
@@ -27,7 +27,7 @@ const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index, setAss
                 <div className="thumbnailCard__bottom">
                     {showCheckbox ?
                         <input type="checkbox" name="share_select_checkBox" id="checkBox" className="checkbox"
-                         onClick={() => updateAssetIndex(resource._id)} ></input>
+                            onClick={() => updateAssetIndex(resource._id)} ></input>
                         :
                         null
                     }
@@ -35,8 +35,8 @@ const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index, setAss
                         <div className="thumbnailCard__name truncate">{name}</div>
                         <div className="thumbnailCard__datail">
                             <span>{uploader}</span>
-                        &nbsp;-&nbsp;
-                        <span>{uploaded_at}</span>
+                            &nbsp;-&nbsp;
+                            <span>{uploaded_at}</span>
                         </div>
                     </div>
                 </div>

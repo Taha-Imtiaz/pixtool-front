@@ -81,13 +81,19 @@
         background-color: #292929;
     }
 
-    &__text {
-        grid-row: 3 / span 1;
+    &__bottom {
+        grid-row: 3/ span 1;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        overflow: hidden;
+    }
 
+    &__text {
         color: rgba($color-white, .8);
         font-family: 'Segoe UI', 'Open Sans', sans-serif;
         font-weight: 600;
-        padding: 1rem 2rem;
     }
 
     &__name {
@@ -99,9 +105,5 @@
         color: inherit;
         font-size: 1.4rem;
         margin-top: 5px;
-    }
-
-    &:hover {
-        cursor: pointer;
     }
 }

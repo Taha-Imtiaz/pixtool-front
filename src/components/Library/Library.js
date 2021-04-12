@@ -262,7 +262,7 @@ const Library = ({
                   />
                 ) : (
 
-                  <ThumbnailFolderCard key={resource._id} id={resource._id} resource={resource} />
+                  <ThumbnailFolderCard key={resource._id} id={resource._id} resource={resource} setAssetIds={setAssetIds} showCheckbox={showCheckbox}/>
                 )
               ) : <img src={NoDataFoundImg} alt="No Data Found" className="margin-auto" />)}
           </div>

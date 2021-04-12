@@ -6,7 +6,7 @@ import { getProjectAssets } from '../../../Redux/project/projectActions';
 import './ThumbnailFolderCard.scss';
 
 
-const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectId, match: { params } }) => {
+const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectId, match: { params }, showCheckbox, setAssetIds }) => {
 
     const [thumbnailsLength, setThumbnailsLength] = useState(0)
 
@@ -29,6 +29,11 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
             }
         }
         getProjectAssets(assetId, assetObj)
+    }
+
+    const updateAssetIndex = (assetId, index) => {
+        // setCheckBoxState(!checkBoxState)
+        setAssetIds(assetId);
     }
 
 
@@ -69,12 +74,29 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
             </div>
             }
 
-            <div className="thumbnailFolderCard__text">
+            {/* <div className="thumbnailFolderCard__text">
                 <div className="thumbnailFolderCard__name truncate">{name}</div>
                 <div className="thumbnailFolderCard__datail">
                     <span>{uploader}</span>
                     &nbsp;-&nbsp;
                     <span>{uploaded_at}</span>
+                </div>
+            </div> */}
+
+            <div className="thumbnailFolderCard__bottom">
+                {showCheckbox ?
+                    <input type="checkbox" name="share_select_checkBox" id="checkBox" className="checkbox"
+                        onClick={() => updateAssetIndex(resource._id)} ></input>
+                    :
+                    null
+                }
+                <div className="thumbnailFolderCard__text">
+                    <div className="thumbnailFolderCard__name truncate">{name}</div>
+                    <div className="thumbnailFolderCard__datail">
+                        <span>{uploader}</span>
+                        &nbsp;-&nbsp;
+                        <span>{uploaded_at}</span>
+                    </div>
                 </div>
             </div>
         </div>
