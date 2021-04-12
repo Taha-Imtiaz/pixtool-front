@@ -31,6 +31,8 @@ function Home({ project, match: { path } }) {
 
     // This state is used to set teamId
     const [teamId, setTeamId] = useState(null)
+
+
     // This state is used to Show/ Hide the AddProjectModal
     const [showAddProjectModal, setShowAddProjectModal] = useState(false);
     // This state is used to Show/ Hide the AddFolderModal
@@ -38,14 +40,13 @@ function Home({ project, match: { path } }) {
     // This state is used to Show/ Hide the ShareModal
     const [showShareModal, setShowShareModal] = useState(false);
     
+
     // This is State is used to Show/ Hide the Share Checkbox On ThumbnailCard
     const [showCheckbox, setShowCheckbox] = useState(false);
 
 
 
-
-
-
+    
     // This Function is responsible to Show/ Hide the AddProjectModal
     const addProjectModalToggle = (e, teamId) => {
         setTeamId(teamId)

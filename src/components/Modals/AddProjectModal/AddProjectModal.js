@@ -12,6 +12,8 @@ const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addPro
     const [modalFormState, setModalFormState] = useState({
         projectName: ''
     })
+
+    
     // Modal Back-drop Styling
     const backDropStyle = {
         opacity: showModal ? '1' : '',
@@ -19,33 +21,12 @@ const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addPro
         overflow: showModal ? 'auto' : '',
         zIndex: showModal ? '2000' : '',
     };
-    const handleModalInput = (e) => {
-        let { name, value } = e.target;
-        setModalFormState({
-            ...modalFormState,
-            [name]: value
-        })
-    }
-    // add new project to the selected team
-    const handleAddProject = (e) => {
-        let data = {
-            name: modalFormState.projectName
-        }
-
-        
-
-        addProject(teamId, data, () => {
-            modalToggler(e, teamId)
-        })
-      
-        
-    }
 
     // Function to close the Modal whenever Backdrop clicked
     const closeModal = (event) => {
-        const backDrop = document.querySelector(".backDrop1");
+        const backDrop = document.querySelector(".backDrop2");
         const modal = document.querySelector(".modal");
-        
+
         if (backDrop && event.target === backDrop && !event.target !== modal) {
             setShowModal(false);
         }
@@ -53,13 +34,34 @@ const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addPro
 
     useEffect(() => {
         // Listener to close the Modal whenever Backdrop clicked
-        const backDrop = document.querySelector(".backDrop1");
+        const backDrop = document.querySelector(".backDrop2");
         backDrop.addEventListener('click', (e) => closeModal(e), false);
-// eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    
+    const handleModalInput = (e) => {
+        let { name, value } = e.target;
+        setModalFormState({
+            ...modalFormState,
+            [name]: value
+        })
+    }
+
+    // add new project to the selected team
+    const handleAddProject = (e) => {
+        let data = {
+            name: modalFormState.projectName
+        }
+
+        addProject(teamId, data, () => {
+            modalToggler(e, teamId)
+        })
+    }
+
+
     return (
-        <div className="modal__backDrop backDrop1" style={backDropStyle} >
+        <div className="modal__backDrop backDrop2" style={backDropStyle} >
             <div className="modal">
                 <div className="modal__content">
                     <div className="addProjectModal">

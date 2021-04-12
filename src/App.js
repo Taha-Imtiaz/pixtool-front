@@ -34,11 +34,11 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
 
   }, [toastMessage])
 
+  
 
  
 // on route change
 // history.listen((location, action) => {
-//   console.log(location.pathname)
 //   history.push(location.pathname)
 // })
 

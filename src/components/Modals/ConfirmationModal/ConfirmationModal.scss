@@ -1,0 +1,64 @@
+@import '../../../scss/variables.scss';
+@import '../Modals.scss';
+
+.confirmationModal {
+    width: 60rem;
+    font-family: 'Segoe UI', 'Open Sans', sans-serif;
+    background-color: $color-white-dull;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 2rem;
+        font-weight: 600;
+        color: rgba($color-white, .8);
+        background-color: $color-primary;
+    }
+
+    &__heading {
+        padding: 1.2rem 2rem;
+
+    }
+
+    &__closeBtn {
+        font-size: 3rem;
+        font-weight: 100;
+        padding: 1.2rem 2rem;
+        transition: cursor .3s;
+
+        &:focus,
+        &:active,
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__body {
+        padding: 1.2rem 2rem;
+    }
+
+    &__text {
+        padding: 1.2rem 2rem;
+        font-family: 'Open Sans', 'Segoe UI', sans-serif;
+        font-size: 1.7rem;
+        color: $color-secondary;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: center;
+        padding: 1.2rem 2rem;
+        gap: 2rem;
+
+        &>* {
+            width: 100%;
+        }
+
+        & button {
+            width: 100%;
+            border: 1px solid $color-primary;
+            transition: border .3s;
+        }
+    }
+}

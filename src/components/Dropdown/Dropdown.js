@@ -10,7 +10,8 @@ import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 import { Fragment } from 'react';
 
 
-function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAssetPrivacy, deleteAsset, match: { params: { assetId } }, history }) {
+function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAssetPrivacy, match: { params: { assetId } }, history, setShowConfirm }) {
+
     // State For Dropdowns toggling
     const [open, setOpen] = useState(false);
     // State For Dropdown Text
@@ -19,59 +20,67 @@ function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAsset
     // Function to check which dropdown value is Clicked
     const checkClick = (option) => {
 
-        // Check For Comment Privacy
-        if (option === 'Everyone can see') {
-            setCommentPrivacy('public');
-            setDropText('Everyone can see');
+        try {
+            // Check For Comment Privacy
+            if (option === 'Everyone can see') {
+                setCommentPrivacy('public');
 
-        } else if (option === 'Team only') {
-            setCommentPrivacy('private');
-            setDropText('Team only');
-        }
-
-        // Check For Video status
-        if (option === 'Needs Review') {
-            let obj = {
-                "status": "needs_review"
+            } else if (option === 'Team only') {
+                setCommentPrivacy('private');
             }
 
-            addDescription(obj, assetId);
-            setDropText('Needs Review');
+            // Check For Video status
+            if (option === 'Needs Review') {
+                let obj = {
+                    "status": "needs_review"
+                }
 
-        } else if (option === 'In Progress') {
-            let obj = {
-                "status": "in_progress"
+                addDescription(obj, assetId);
+
+            } else if (option === 'In Progress') {
+                let obj = {
+                    "status": "in_progress"
+                }
+
+                addDescription(obj, assetId);
+
+            } else if (option === 'Approved') {
+                let obj = {
+                    "status": "approved"
+                }
+
+                addDescription(obj, assetId);
             }
 
-            addDescription(obj, assetId);
-            setDropText('In Progress');
+            setDropText(option);
 
-        } else if (option === 'Approved') {
-            let obj = {
-                "status": "approved"
+        } catch (err) {
+            window.alert(err.message);
+        }
+
+        try {
+            // Check For Video Privacy
+            if (option === 'Make Private' || option === 'Make Public') {
+                setAssetPrivacy();
             }
 
-            addDescription(obj, assetId);
-            setDropText('Approved');
-        }
+            // Check For Reveal In Project
+            if (option === 'Reveal in project') {
+                window.open(window.location.origin, "_blank");
+            }
 
-        // Check For Video Privacy
-        if (option === 'Make Private' || option === 'Make Public') {
-            setAssetPrivacy();
-        }
+            // Check For Asset Delete
+            if (option === 'Delete') {
+                /* deleteAssets(assetId);
+                history.goBack() */
+                setShowConfirm(true);
+            }
 
-        // Check For Reveal In Project
-        if (option === 'Reveal in project') {
-            window.open(window.location.origin, "_blank");
-        }
+            setOpen(!open);
 
-        // Check For Asset Delete
-        if (option === 'Delete') {
-            deleteAsset(assetId);
-            history.goBack()
+        } catch (err) {
+            window.alert(err.message);
         }
-
-        setOpen(!open);
     }
 
     // Function To Position Dropdown Upwards/ Downwards w.r.t. Space Available

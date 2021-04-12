@@ -49,6 +49,7 @@ const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDet
         }
         addDescription(obj, asset._id);
     }
+    
  // This Function is responsible to Show/ Hide the ShareModal
  const shareModalToggle = () => {
 
