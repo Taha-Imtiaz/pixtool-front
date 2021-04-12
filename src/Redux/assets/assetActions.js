@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { GET_PROJECT } from '../project/projectConstants';
 import { showToastMessage } from '../utility/utilityActions';
-import { GET_ASSET_DETAILS, ADD_COMMENT, GET_COMMENTS, DELETE_COMMENT, GET_LINK, DELETE_ASSET } from './assetConstants';
+import { GET_ASSET_DETAILS, ADD_COMMENT, GET_COMMENTS, DELETE_COMMENT, GET_LINK, DELETE_ASSET, DOWNLOAD_ASSET } from './assetConstants';
 
 // get all assets of  single project (which is in folder) by passing projectId
 // export const getAllProjectAssests = (projectId) => async (dispatch) => {
@@ -201,7 +201,7 @@ export const getLink = (assetIdObj) => async (dispatch) => {
 
 // For Deleting Asset From The Backend
 export const deleteAsset = (assetId) => async (dispatch) => {
-console.log(assetId)
+    console.log(assetId)
     try {
         let response = await Axios.delete(`asset/${assetId}`, {
             config: {
@@ -211,6 +211,42 @@ console.log(assetId)
         console.log(response);
         dispatch({
             type: DELETE_ASSET,
+            payload: response.data.data
+        })
+    } catch (e) {
+        if (e.response && e.response.data) {
+            dispatch(showToastMessage(e.response.data.message))
+        }
+    }
+}
+// download Asset
+export const downloadFile = (assetId) => async (dispatch) => {
+    try {
+        let response = await Axios.get(`asset/download/video/${assetId}`, {
+            config: {
+                handlerEnabled: true
+            }
+        })
+        console.log( response.data.url)
+        // Convert the data into 'blob'
+        const blob = response.data.url
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `test.mp4`);
+        document.body.appendChild(link);
+        link.click();
+
+        // var video = document.getElementById('video');
+        // var a = document.createElement("a");
+        // const a = document.createElement('a');
+        // document.body.appendChild(a);
+        // a.style = "display: none";
+        // a.href = response.data.url;
+        // a.download = 'video.mp4';
+        // a.click();
+        dispatch({
+            type: DOWNLOAD_ASSET,
             payload: response.data.data
         })
     } catch (e) {

@@ -1,7 +1,7 @@
 import { React } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addDescription, deleteAsset, getLink } from '../../../Redux/assets/assetActions';
+import { addDescription, deleteAsset, getLink , downloadFile} from '../../../Redux/assets/assetActions';
 
 import './HeaderP.scss';
 
@@ -14,7 +14,7 @@ import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
 import { changeStatusCase } from '../../../utils/helperfunctions';
 
 
-function HeaderP({ toggle, location, asset, history, addDescription, assetStatus, setAssetPrivacy, deleteAsset, getLink, shareModalToggle }) {
+function HeaderP({ toggle, location, asset, history, addDescription, assetStatus, setAssetPrivacy, deleteAsset,downloadFile,  getLink, shareModalToggle }) {
 
 
 
@@ -82,7 +82,7 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
             <div className="headerP__right-box">
                 {asset && asset._id && <Dropdown text={changeStatusCase(asset.status)} menuItems={status} addDescription={addDescription} />}
 
-                <Dropdown text="---" menuItems={options} setAssetPrivacy={setAssetPrivacy} deleteAsset={deleteAsset} />
+                <Dropdown text="---" menuItems={options} setAssetPrivacy={setAssetPrivacy} deleteAsset={deleteAsset} downloadFile = {downloadFile} />
 
                 <Button text="Share" click={() => shareLink()} />
 
@@ -105,7 +105,8 @@ var mapStateToProps = (state) => ({
 var mapDispatchToProps = {
     addDescription,
     deleteAsset,
-    getLink
+    getLink,
+    downloadFile
 
 }
 
