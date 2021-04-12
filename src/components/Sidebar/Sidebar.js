@@ -1,13 +1,14 @@
 import { React, useState } from 'react';
+import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+
 import './Sidebar.scss';
 
 import Logo from '../../images/logo.png';
 import NavIcon from '../NavIcon/NavIcon';
 
 
-function Sidebar({children, menu1}) {
-
-     
+function Sidebar({ children, menu1, history, projectID }) {
 
     // This state is used for toggling sidebar
     const [drawer, setDrawer] = useState(true)
@@ -16,12 +17,13 @@ function Sidebar({children, menu1}) {
     const toggleSidebar = (e) => {
         setDrawer(!drawer)
     }
-  
+
+
     return (
         <div className={drawer ? 'sidebar' : 'sidebarCollapse sidebar'}>
             <div className={drawer ? 'sidebar__top' : 'sidebar__top just-cont-cen'}>
                 <div className={drawer ? 'sidebar__logo' : 'dis-none'}>
-                    <img src={Logo} alt="Logo" className="logo-img" />
+                    <img src={Logo} alt="Logo" className="logo-img" onClick={() => history.push(`/home/library/${projectID}`)} />
                 </div>
 
                 <NavIcon toggle={(e) => toggleSidebar(e)} />
@@ -50,4 +52,9 @@ function Sidebar({children, menu1}) {
 }
 
 
-export default Sidebar
+var mapStateToProps = (state) => ({
+    projectID: state.project && state.project._id
+})
+
+
+export default connect(mapStateToProps)(withRouter(Sidebar))
