@@ -9,7 +9,7 @@ import 'emoji-mart/css/emoji-mart.css';
 import Avatar from '../../Avatar/Avatar';
 import { Picker } from 'emoji-mart';
 
-function CommentP({ asset, comment, addReply, deleteComments }) {
+function CommentP({ asset, comment, addReply, deleteComments, setPlay }) {
 
 
     /* ---------------------------- ALL STATES FOR COMMENTP COMPONENT---------------------------- */
@@ -30,6 +30,7 @@ function CommentP({ asset, comment, addReply, deleteComments }) {
 
     /* ---------------------------- ALL FUNCTIONS FOR COMMENTP COMPONENT---------------------------- */
 
+    console.log(comment)
 
     // Function For Main Comment Reply TextArea Toggling 
     const reply = () => {
@@ -106,6 +107,19 @@ function CommentP({ asset, comment, addReply, deleteComments }) {
         deleteComments(assetId, comment);
     }
 
+    // Function To set Video Current Time To That Of Comment
+    const gotoTimespan = () => {
+        let myVideo = document.getElementById('myVideo');
+        // myVideo.currentTime = comment.video_current_time;
+
+        let timespan = comment.video_current_time;
+        timespan = timespan.split(":")
+
+        myVideo.currentTime = (timespan[0] * 60) + Number(timespan[1]);
+        myVideo.pause()
+        setPlay(false);
+    }
+
 
     /* -------------------------------------------------------------------------------------------- */
 
@@ -128,7 +142,7 @@ function CommentP({ asset, comment, addReply, deleteComments }) {
                 </div>
 
                 <div className="comment__main">
-                    <span className="comment__timespan">{comment.video_current_time}</span>
+                    <span className="comment__timespan" onClick={gotoTimespan}>{comment.video_current_time}</span>
                     <span className="comment__text">{comment.comment}</span>
                 </div>
 

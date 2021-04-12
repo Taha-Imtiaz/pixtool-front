@@ -67,6 +67,12 @@
     &__text {
         font-size: 1.4rem;
         font-family: 'Open Sans', 'Segoe UI', sans-serif;
+        transition: cursor .3s;
+
+        &:focus,
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     &__bottom {

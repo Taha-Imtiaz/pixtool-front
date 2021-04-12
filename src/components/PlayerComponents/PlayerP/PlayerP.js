@@ -14,7 +14,7 @@ import { Picker } from 'emoji-mart';
 import PlayerControls from '../../../images/player-icons/sprite.svg';
 
 
-const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } } }) => {
+const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } }, play, setPlay }) => {
 
 
     /* ------------------------------ ENTIRE FILE SCOPE VARIABLES ------------------------------ */
@@ -25,7 +25,7 @@ const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } } 
 
 
     // States For Video Player Controls
-    const [play, setPlay] = useState(false);
+    // const [play, setPlay] = useState(false);
     const [loop, setLoop] = useState(false);
     const [volume, setVolume] = useState('medium');
     const [volumeValue, setVolumeValue] = useState(1);
@@ -353,7 +353,6 @@ const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } } 
             if (curmins < 10) { curmins = "0" + curmins; }
 
             setTimespan(curmins + ":" + cursecs);
-
         }
     }
 

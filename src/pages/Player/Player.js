@@ -18,6 +18,8 @@ const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDet
     const [drawer, setDrawer] = useState(true)
     // This state is used to Show/ Hide the ShareModal
     const [showShareModal, setShowShareModal] = useState(false);
+    // This state is Video Play Video Play/ Pause
+    const [play, setPlay] = useState(false);
 
     useEffect(() => {
         // set the current path
@@ -70,12 +72,12 @@ const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDet
                 <HeaderP toggle={toggle} asset={asset} setAssetPrivacy={setAssetPrivacy} shareModalToggle={shareModalToggle} />
             </div>
             <div className="player__sidebar">
-                <SidebarP open={drawer} asset={asset} />
+                <SidebarP open={drawer} asset={asset} setPlay={setPlay} />
             </div>
             <div className="player__body">
-                <PlayerP />
+                <PlayerP play={play} setPlay={setPlay} />
             </div>
-            
+
             {/* This is ShareModal */}
             <ShareModal showModal={showShareModal} setShowModal={setShowShareModal} modalToggler={shareModalToggle} />
         </div>

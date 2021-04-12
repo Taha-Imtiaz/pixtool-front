@@ -39,12 +39,7 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
         shareModalToggle()
     }
     const goBack = () => {
-        // console.log(lastLocation.pathname)
-        // history.push(lastLocation.pathname)
         history.goBack()
-        // let path = sessionStorage.getItem('path')
-        // console.log(path)
-        // history.push(path);
     }
 
     // Dropdown Option Values
@@ -91,7 +86,7 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
                     <a href="./#" className="txt-dec-none"><i className="fas fa-question"></i></a>
                 </span>
 
-                <NavIcon toggle={(e) => toggleSidebar(e)} />
+                <NavIcon toggle={(e) => toggle()} />
             </div>
         </div>
     )
