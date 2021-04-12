@@ -14,6 +14,8 @@ const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDet
 
     // This state is responsible for toggling sidebar
     const [drawer, setDrawer] = useState(true)
+    // This state is Video Play Video Play/ Pause
+    const [play, setPlay] = useState(false);
 
     useEffect(() => {
         // set the current path
@@ -52,10 +54,10 @@ const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDet
                 <HeaderP toggle={toggle} asset={asset} setAssetPrivacy={setAssetPrivacy} />
             </div>
             <div className="player__sidebar">
-                <SidebarP open={drawer} asset={asset} />
+                <SidebarP open={drawer} asset={asset} setPlay={setPlay} />
             </div>
             <div className="player__body">
-                <PlayerP />
+                <PlayerP play={play} setPlay={setPlay} />
             </div>
 
         </div>

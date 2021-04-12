@@ -9,7 +9,7 @@ import './SidebarP.scss';
 import TabsP from '../NavigationTabsP/TabsP';
 import CommentP from '../../PlayerComponents/CommentP/CommentP';
 
-function SidebarP({ asset, comments, open, addDescription, getDescription, assetDescription, match: { params: { assetId } } }) {
+function SidebarP({ asset, comments, open, addDescription, getDescription, assetDescription, match: { params: { assetId } }, setPlay }) {
 
     // States For Video Description On Player Sidebar 
     const [enableEditor, setEnableEditor] = useState(false);
@@ -133,7 +133,7 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
 
                         <div className="comments__body">
                             {comments ? comments.map((comment) =>
-                                <CommentP comment={comment} key={comment._id} />
+                                <CommentP comment={comment} key={comment._id} setPlay={setPlay} />
                             )
                                 : null
                             }
