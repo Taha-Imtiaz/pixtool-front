@@ -14,28 +14,11 @@ import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
 import { changeStatusCase } from '../../../utils/helperfunctions';
 
 function HeaderP({ toggle, location, asset, history, addDescription, assetStatus, setAssetPrivacy, deleteAsset }) {
-    // console.log(asset && asset.status)
-    // const history = useHistory();
-    // const lastLocation = useLastLocation();
 
     const createNew = () => { }
 
-    //This function is responsible for toggling sidebar
-    const toggleSidebar = (e) => {
-        // e.stopPropagation()
-        // e.preventDefault()
-        // setDrawer(!drawer)
-
-        toggle()
-    }
-
     const goBack = () => {
-        // console.log(lastLocation.pathname)
-        // history.push(lastLocation.pathname)
         history.goBack()
-        // let path = sessionStorage.getItem('path')
-        // console.log(path)
-        // history.push(path);
     }
 
     // Dropdown Option Values
@@ -82,7 +65,7 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
                     <a href="./#" className="txt-dec-none"><i className="fas fa-question"></i></a>
                 </span>
 
-                <NavIcon toggle={(e) => toggleSidebar(e)} />
+                <NavIcon toggle={(e) => toggle()} />
             </div>
         </div>
     )
