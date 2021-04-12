@@ -177,7 +177,7 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">Size</td>
-                                        <td className="file-info__table--content">{(asset?.asset_info?.file_size / 1024).toFixed(2)} MB</td>
+                                        <td className="file-info__table--content">{asset?.asset_info?.file_size} </td>
                                     </tr>
                                     <tr className="file-info__table--row">
                                         <td className="file-info__table--name">TC In</td>
