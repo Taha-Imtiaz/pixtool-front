@@ -18,7 +18,7 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
 
 
 
-   
+
 
 
     //This function is responsible for toggling sidebar
@@ -31,7 +31,7 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
     }
     // share Link
     const shareLink = () => {
-      
+
         let assetIdObj = {
             asset_ids: asset._id
         }
@@ -50,17 +50,23 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
         { rightIcon: '', leftIcon: '', value: 'Approved', goToMenu: '' }];
 
     let options = [
-        {
-            rightIcon: <ChevronIcon />, leftIcon: '', value: 'Download', goToMenu: 'download',
-            child: [
-                { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' },
-                { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' },
-                { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' },
-                { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' }]
-        },
+        { rightIcon: '', leftIcon: '', value: 'Download', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: asset?.private ? 'Make Public' : 'Make Private', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Reveal in project', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Delete', goToMenu: '' }];
+
+    // let options = [
+    //     {
+    //         rightIcon: <ChevronIcon />, leftIcon: '', value: 'Download', goToMenu: 'download',
+    //         child: [
+    //             { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' },
+    //             { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' },
+    //             { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' },
+    //             { rightIcon: '', leftIcon: '', value: 'AVC 1920x1080', goToMenu: '' }]
+    //     },
+    //     { rightIcon: '', leftIcon: '', value: asset?.private ? 'Make Public' : 'Make Private', goToMenu: '' },
+    //     { rightIcon: '', leftIcon: '', value: 'Reveal in project', goToMenu: '' },
+    //     { rightIcon: '', leftIcon: '', value: 'Delete', goToMenu: '' }];
 
 
     return (
