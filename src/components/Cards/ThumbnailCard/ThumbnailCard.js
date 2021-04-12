@@ -31,7 +31,7 @@ const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index, setAss
                         :
                         null
                     }
-                    <div className="thumbnailCard__text">
+                    <div className="thumbnailCard__text truncate">
                         <div className="thumbnailCard__name truncate">{name}</div>
                         <div className="thumbnailCard__datail">
                             <span>{uploader}</span>

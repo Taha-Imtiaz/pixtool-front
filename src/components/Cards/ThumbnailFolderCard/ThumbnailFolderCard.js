@@ -81,7 +81,7 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
                     :
                     null
                 }
-                <div className="thumbnailFolderCard__text">
+                <div className="thumbnailFolderCard__text truncate">
                     <div className="thumbnailFolderCard__name truncate">{name}</div>
                     <div className="thumbnailFolderCard__datail">
                         <span>{uploader}</span>
