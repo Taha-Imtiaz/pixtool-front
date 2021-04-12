@@ -1,7 +1,7 @@
 import { React } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addDescription, deleteAsset } from '../../../Redux/assets/assetActions';
+import { addDescription, deleteAsset, getLink } from '../../../Redux/assets/assetActions';
 
 import './HeaderP.scss';
 
@@ -13,12 +13,13 @@ import Logo from '../../../images/logo.png';
 import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
 import { changeStatusCase } from '../../../utils/helperfunctions';
 
-function HeaderP({ toggle, location, asset, history, addDescription, assetStatus, setAssetPrivacy, deleteAsset }) {
-    // console.log(asset && asset.status)
-    // const history = useHistory();
-    // const lastLocation = useLastLocation();
 
-    const createNew = () => { }
+function HeaderP({ toggle, location, asset, history, addDescription, assetStatus, setAssetPrivacy, deleteAsset, getLink, shareModalToggle }) {
+
+
+
+   
+
 
     //This function is responsible for toggling sidebar
     const toggleSidebar = (e) => {
@@ -28,7 +29,15 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
 
         toggle()
     }
-
+    // share Link
+    const shareLink = () => {
+      
+        let assetIdObj = {
+            asset_ids: asset._id
+        }
+        getLink(assetIdObj)
+        shareModalToggle()
+    }
     const goBack = () => {
         // console.log(lastLocation.pathname)
         // history.push(lastLocation.pathname)
@@ -74,7 +83,7 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
 
                 <Dropdown text="---" menuItems={options} setAssetPrivacy={setAssetPrivacy} deleteAsset={deleteAsset} />
 
-                <Button text="Share" click={createNew} />
+                <Button text="Share" click={() => shareLink()} />
 
                 <span className="headerP__notification"><i className="fas fa-bell"></i> <span className="notificationCount">1</span></span>
 
@@ -94,7 +103,9 @@ var mapStateToProps = (state) => ({
 
 var mapDispatchToProps = {
     addDescription,
-    deleteAsset
+    deleteAsset,
+    getLink
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HeaderP))

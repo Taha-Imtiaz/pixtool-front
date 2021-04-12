@@ -11,7 +11,6 @@ import { Fragment } from 'react';
 
 
 function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAssetPrivacy, deleteAsset, match: { params: { assetId } }, history }) {
-console.log(history)
     // State For Dropdowns toggling
     const [open, setOpen] = useState(false);
     // State For Dropdown Text

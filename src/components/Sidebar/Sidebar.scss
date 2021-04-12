@@ -15,7 +15,7 @@ a {
     height: 100vh;
     width: 20vw;
     background-color: $color-secondary-dark;
-    overflow: auto;
+    // overflow-y: auto;
     transition: width .3s ease-in;
 
     &__top {
