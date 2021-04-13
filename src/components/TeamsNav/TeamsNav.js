@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState} from 'react';
 import { connect } from 'react-redux';
 import { getProject } from '../../Redux/project/projectActions';
+
 import './TeamsNav.scss';
 
-const TeamsNav = ({ addProjectModalToggle, show, getProject, account }) => {
+const TeamsNav = ({ addProjectModalToggle, show, getProject, account, showProjectMenu, setShowProjectMenu }) => {
 
 
     // This state is used for toggling Sidebar Team Nav Lists
-    const [teamItemIndex, setTeamItemIndex] = useState(null)
-    const [showTeamDropdown, setShowTeamDropdown] = useState(false)
+    const [teamItemIndex, setTeamItemIndex] = useState(null);
+
+    // const [showTeamDropdown, setShowTeamDropdown] = useState(false)
 
     // This Function is responsible for toggling Sidebar Team Nav Lists
     const toggleTeamNav = (index) => {
@@ -21,7 +23,7 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, account }) => {
         }
     }
 
-    const toggleTeamDropdown = () => { setShowTeamDropdown(!showTeamDropdown) }
+    /* const toggleTeamDropdown = () => { setShowTeamDropdown(!showTeamDropdown) }
 
     // Function to close the Team Dropdown whenever clicked outside it
     const closeTeamDropdown = (event) => {
@@ -39,34 +41,34 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, account }) => {
         // Listener to close the Profile Dropdown whenever clicked outside it
         document.addEventListener('click', (e) => closeTeamDropdown(e), false);
 
-    }, []);
+    }, []); */
 
 
     return (
-        <div className="teamsNav">
-            <ul className="teamsNav__list">
-                {account && account.map((account, index) => <li key={account._id} className="teamsNav__item">
-                    <div className="teamsNav__item__head" onClick={() => toggleTeamNav(index)}>
-                        <div className="teamsNav__center">
-                            <span className="teamsNav__icon">
-                                {index === teamItemIndex ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-right"></i>}
-                            </span>
+            <div className="teamsNav">
+                <ul className="teamsNav__list">
+                    {account && account.map((account, index) => <li key={account._id} className="teamsNav__item">
+                        <div className="teamsNav__item__head" onClick={() => toggleTeamNav(index)}>
+                            <div className="teamsNav__center">
+                                <span className="teamsNav__icon">
+                                    {index === teamItemIndex ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-right"></i>}
+                                </span>
 
-                            <span className="teamsNav__text truncate" title={account.name}>{account.name}</span>
-                            <span className="teamsNav__addBtn" >
-                                <i className="fas fa-plus-circle" onClick={(e) => addProjectModalToggle(e, account._id)}></i>
-                            </span>
+                                <span className="teamsNav__text truncate" title={account.name}>{account.name}</span>
+                                <span className="teamsNav__addBtn" >
+                                    <i className="fas fa-plus-circle" onClick={(e) => addProjectModalToggle(e, account._id)}></i>
+                                </span>
+                            </div>
                         </div>
-                    </div>
 
-                    {index === teamItemIndex && <div className="teamsNav__item__body">
-                        <ul className="project__list">
-                            {account.projects && account.projects.map((project) => <li key={project._id} className="project__item">
-                                <span className="project__item--name" onClick={() => getProject(project._id)}>{project.name}</span>
-                                <span className={`project__item--icon ${!showTeamDropdown ? "" : " project__item--icon-active"}`} >
-                                    <i className="fas fa-ellipsis-v" onClick={toggleTeamDropdown}></i>
+                        {index === teamItemIndex && <div className="teamsNav__item__body">
+                            <ul className="project__list">
+                                {account.projects && account.projects.map((project) => <li key={project._id} className="project__item">
+                                    <span className="project__item--name" onClick={() => getProject(project._id)}>{project.name}</span>
+                                    <span className="project__item--icon" >
+                                        <i className="fas fa-ellipsis-v" onClick={() => {setShowProjectMenu(!showProjectMenu)}}></i>
 
-                                    {showTeamDropdown ?
+                                        {/* {showTeamDropdown ?
                                         <div className={`teamDropdown ${!showTeamDropdown ? "" : "teamDropdown-active"}`}>
                                             <ul >
                                                 <li className="teamDropdown__listItem" ><span className="teamDropdown__listOption"><i className="fas fa-user-circle pd-r-1-5"></i> Account Settings</span></li>
@@ -76,16 +78,16 @@ const TeamsNav = ({ addProjectModalToggle, show, getProject, account }) => {
                                         </div>
                                         :
                                         null
-                                    }
-                                </span>
-                            </li>)}
-                        </ul>
-                    </div>}
-                </li>)}
+                                    } */}
+                                    </span>
+                                </li>)}
+                            </ul>
+                        </div>}
+                    </li>)}
 
 
-            </ul>
-        </div>
+                </ul>
+            </div>
     )
 }
 var mapStateToProps = (state) => ({

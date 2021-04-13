@@ -23,6 +23,7 @@ import Stages from '../../components/StagesComponents/Stages/Stages';
 import AddProjectModal from '../../components/Modals/AddProjectModal/AddProjectModal';
 import AddFolderModal from '../../components/Modals/AddFolderModal/AddFolderModal';
 import ShareModal from '../../components/Modals/ShareModal/ShareModal';
+import ProjectOptionsModal from '../../components/Modals/ProjectOptionsModal/ProjectOptionsModal';
 
 
 
@@ -39,14 +40,16 @@ function Home({ project, match: { path } }) {
     const [showAddFolderModal, setShowAddFolderModal] = useState(false);
     // This state is used to Show/ Hide the ShareModal
     const [showShareModal, setShowShareModal] = useState(false);
-    
+    // This state is used to Show/ Hide ProjectOptionsModal
+    const [showProjectMenu, setShowProjectMenu] = useState(false);
+
 
     // This is State is used to Show/ Hide the Share Checkbox On ThumbnailCard
     const [showCheckbox, setShowCheckbox] = useState(false);
 
 
 
-    
+
     // This Function is responsible to Show/ Hide the AddProjectModal
     const addProjectModalToggle = (e, teamId) => {
         setTeamId(teamId)
@@ -94,6 +97,21 @@ function Home({ project, match: { path } }) {
         setShowShareModal(!showShareModal);
     };
 
+    // This Function is responsible to Show/ Hide the ProjectOptionsModal
+    const projectOptionsModalToggle = () => {
+
+        if (showProjectMenu) {
+            // Allow to scroll when closing the modal
+            document.body.style.removeProperty('overflow');
+
+        } else {
+            // Disable scrolling on the `body` element when opening a modal
+            document.body.style.overflow = 'hidden';
+        }
+
+        setShowProjectMenu(false);
+    };
+
     /* Arrays To Pass The Sidebar Content In Props */
     let sidebarMenu1 = [
         { icon: 'fas fa-book', value: 'My Library' },
@@ -107,7 +125,10 @@ function Home({ project, match: { path } }) {
             {/* Above "page-wrapper" class is added only to tell dropdowns that it is the main wrapper and to make them function properly */}
 
             <Sidebar menu1={sidebarMenu1}>
-                <TeamsNav showAddProjectModal={showAddProjectModal} addProjectModalToggle={addProjectModalToggle} />
+                <TeamsNav
+                    showAddProjectModal={showAddProjectModal} addProjectModalToggle={addProjectModalToggle}
+                    showProjectMenu={showProjectMenu} setShowProjectMenu={setShowProjectMenu}
+                />
             </Sidebar>
 
             <div>
@@ -184,6 +205,9 @@ function Home({ project, match: { path } }) {
 
             {/* This is ShareModal */}
             <ShareModal showModal={showShareModal} setShowModal={setShowShareModal} modalToggler={shareModalToggle} />
+
+            {/* This is ProjectOptionsModal */}
+            <ProjectOptionsModal showModal={showProjectMenu} setShowModal={setShowProjectMenu} modalToggler={projectOptionsModalToggle} />
 
         </div>
     )
