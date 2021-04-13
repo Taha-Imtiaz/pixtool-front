@@ -72,9 +72,9 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
     return (
         <Fragment>
             <div className="headerP">
-                <div className="headerP__left-box">
+                <div className="headerP__left-box truncate">
                     <span className="headerP__back-btn" onClick={goBack}><i className="fas fa-less-than"></i></span>
-                    <span className="headerP__title .truncate">{asset && asset.name}</span>
+                    <span className="headerP__title truncate" title={asset && asset.name}>{asset && asset.name}</span>
                 </div>
                 <div className="headerP__logo">
                     <img src={Logo} alt="Logo" className="logo-img" />
