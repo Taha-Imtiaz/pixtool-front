@@ -1,7 +1,7 @@
 import { React, useState, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addDescription, deleteAsset, getLink } from '../../../Redux/assets/assetActions';
+import { addDescription, deleteAsset, downloadVideo, getLink } from '../../../Redux/assets/assetActions';
 import { changeStatusCase } from '../../../utils/helperfunctions';
 
 import './HeaderP.scss';
@@ -15,7 +15,7 @@ import Logo from '../../../images/logo.png';
 // import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
 
 
-function HeaderP({ toggle, location, asset, history, addDescription, assetStatus, setAssetPrivacy, deleteAsset, getLink, shareModalToggle }) {
+function HeaderP({ toggle, location, asset, history, addDescription, assetStatus, downloadVideo, setAssetPrivacy, deleteAsset, getLink, shareModalToggle }) {
 
     //This state is responsible for toggling Confirmation Modal
     const [showConfirm, setShowConfirm] = useState(false);
@@ -83,7 +83,7 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
                 <div className="headerP__right-box">
                     {asset && asset._id && <Dropdown text={changeStatusCase(asset.status)} menuItems={status} addDescription={addDescription} />}
 
-                    <Dropdown text="---" menuItems={options} setAssetPrivacy={setAssetPrivacy} setShowConfirm={setShowConfirm} />
+                    <Dropdown text="---" menuItems={options} setAssetPrivacy={setAssetPrivacy} downloadVideo = {downloadVideo} setShowConfirm={setShowConfirm} />
 
                     <Button text="Share" click={() => shareLink()} />
 
@@ -109,7 +109,8 @@ var mapStateToProps = (state) => ({
 var mapDispatchToProps = {
     addDescription,
     deleteAsset,
-    getLink
+    getLink,
+    downloadVideo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HeaderP))

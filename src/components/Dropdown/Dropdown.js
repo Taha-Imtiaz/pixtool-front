@@ -10,7 +10,7 @@ import { ReactComponent as ArrowIcon } from '../../icons/arrow.svg';
 import { Fragment } from 'react';
 
 
-function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAssetPrivacy, match: { params: { assetId } }, history, setShowConfirm }) {
+function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAssetPrivacy, downloadVideo, match: { params: { assetId } }, history, setShowConfirm }) {
 
     // State For Dropdowns toggling
     const [open, setOpen] = useState(false);
@@ -59,6 +59,12 @@ function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAsset
         }
 
         try {
+
+            // check for download
+            if(option === "Download") {
+                downloadVideo(assetId)
+            }
+
             // Check For Video Privacy
             if (option === 'Make Private' || option === 'Make Public') {
                 setAssetPrivacy();
