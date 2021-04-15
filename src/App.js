@@ -38,9 +38,9 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
 
  
 // on route change
-// history.listen((location, action) => {
-//   history.push(location.pathname)
-// })
+history.listen((location, action) => {
+  history.push(location.pathname)
+})
 
   // the below 2 useeffects loads data only once 
   // get account of the user
@@ -83,7 +83,7 @@ const App = ({ toastMessage, numberOfRequests, user, account, history, accountId
       // we extract _id from account[0] means first team
       if (projects) {
 
-        history.push(`/home/library/${projects[0]._id}`)
+        // history.push(`/home/library/${projects[0]._id}`)
         // get resources of 1st project
         store.dispatch(getTeamData(_id, projects[0]._id, () => {
           store.dispatch(getProject(projects[0]._id));

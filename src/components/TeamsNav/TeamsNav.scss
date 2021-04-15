@@ -1,145 +1,152 @@
 @import "../../scss/variables.scss";
 
 .teamsNav {
-    font-family: 'Segoe UI', 'Open Sans', sans-serif;
-    color: rgba($color-white, .8);
-    padding: 1rem 0;
+  font-family: "Segoe UI", "Open Sans", sans-serif;
+  color: rgba($color-white, 0.8);
+  padding: 1rem 0;
 
-    &__center {
-        display: grid;
-        grid-template-columns: minmax(2rem, min-content) 1fr min-content;
-        gap: 2rem;
+  &__center {
+    display: grid;
+    grid-template-columns: minmax(2rem, min-content) 1fr min-content;
+    gap: 2rem;
 
-        width: 75%;
-        margin: 0 auto;
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  &__addBtn {
+    transition: cursor 0.3s, color 0.3s;
+
+    &:active,
+    &:focus,
+    &:hover {
+      cursor: pointer;
+      color: $color-primary-dark;
+    }
+  }
+
+  &__item {
+    padding: 0.5rem 0;
+
+    &__head {
+      font-size: 2rem;
+      font-weight: 600;
+      padding: 1rem 0;
+
+      transition: cursor 0.3s, color 0.3s, background-color 0.3s;
+
+      &:hover,
+      &:active,
+      &:focus {
+        cursor: pointer;
+        color: $color-secondary-dark;
+        background-color: rgba($color-secondary-light, 0.8);
+      }
     }
 
-    &__addBtn {
-        transition: cursor .3s, color .3s;
-
-        &:active,
-        &:focus,
-        &:hover {
-            cursor: pointer;
-            color: $color-primary-dark;
-        }
+    &__body {
+      padding: 1rem 0;
     }
-
-    &__item {
-        padding: .5rem 0;
-
-        &__head {
-
-            font-size: 2rem;
-            font-weight: 600;
-            padding: 1rem 0;
-
-            transition: cursor .3s, color .3s, background-color .3s;
-
-            &:hover,
-            &:active,
-            &:focus {
-                cursor: pointer;
-                color: $color-secondary-dark;
-                background-color: rgba($color-secondary-light, .8);
-            }
-        }
-
-        &__body {
-            padding: 1rem 0;
-        }
-    }
+  }
 }
 
 .project {
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
 
-    &__item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 2rem;
+    width: 75%;
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: $color-secondary;
+    transition: cursor 0.3s, color 0.3s, background-color 0.3s;
 
-        width: 75%;
-        font-size: 1.8rem;
-        font-weight: 500;
-        padding: .5rem 1rem;
-        margin: 0 auto;
-        border-radius: 5px;
-        background-color: $color-secondary;
-        transition: cursor .3s, color .3s, background-color .3s;
-
-        &:hover,
-        &:active,
-        &:focus {
-            cursor: pointer;
-            color: $color-secondary-dark;
-            background-color: rgba($color-secondary-light, .8);
-        }
-
-        &:not(:last-child) {
-            margin-bottom: .5rem;
-        }
-
-        &--name {
-            flex: 1 1;
-        }
-
-        &--icon {
-            color: $color-secondary;
-            transition: cursor .3s, color .3s;
-            position: relative;
-
-            &:hover,
-            &:active,
-            &:focus {
-                cursor: pointer;
-                color: $color-primary-dark;
-            }
-        }
+    &:hover,
+    &:active,
+    &:focus {
+      cursor: pointer;
+      color: $color-secondary-dark;
+      background-color: rgba($color-secondary-light, 0.8);
     }
+
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+
+    &--name {
+      flex: 1 1;
+    }
+
+    &--icon {
+      color: $color-secondary;
+      transition: cursor 0.3s, color 0.3s;
+      position: relative;
+
+      &:hover,
+      &:active,
+      &:focus {
+        cursor: pointer;
+        color: $color-primary-dark;
+      }
+    }
+  }
 }
 
 .teamDropdown {
-    position: absolute;
-    right: -3.5rem;
-    top: 3.5rem;
-    min-width: 27rem;
-    padding: 2rem;
-    border-radius: 1.2rem;
-    background-color: $color-secondary-light;
-    z-index: 100;
-    // clip-path: polygon(89% 0, 94% 4%, 100% 4%, 100% 100%, 0 100%, 0 4%, 84% 4%);
+  position: absolute;
+  right: -3.5rem;
+  top: 3.5rem;
+  min-width: 27rem;
+  padding: 2rem;
+  border-radius: 1.2rem;
+  background-color: $color-secondary-light;
+  z-index: 100;
+  // clip-path: polygon(89% 0, 94% 4%, 100% 4%, 100% 100%, 0 100%, 0 4%, 84% 4%);
 
-    &__listItem {
+  &__listItem {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: $color-secondary-dark;
+    // border-radius: 1rem;
+    transition: cursor 0.3s, background-color 0.3s;
 
-        font-family: 'Segoe UI', sans-serif;
-        font-size: 2rem;
-        font-weight: 600;
-        color: $color-secondary-dark;
-        // border-radius: 1rem;
-        transition: cursor .3s, background-color .3s;
-
-        &:active,
-        &:focus,
-        &:hover {
-            cursor: pointer;
-            background-color: rgba($color-secondary, .2);
-        }
+    &:active,
+    &:focus,
+    &:hover {
+      cursor: pointer;
+      background-color: rgba($color-secondary, 0.2);
     }
+  }
 
-    &__listOption {
-        display: inline-block;
-        min-width: 100%;
-        min-height: 5rem;
-        line-height: 5rem;
-        padding-left: 1rem;
-        border-left: 5px solid transparent;
-        transition: border-left .3s ease-in-out;
+  &__listOption {
+    display: inline-block;
+    min-width: 100%;
+    min-height: 5rem;
+    line-height: 5rem;
+    padding-left: 1rem;
+    border-left: 5px solid transparent;
+    transition: border-left 0.3s ease-in-out;
 
-        &:active,
-        &:focus,
-        &:hover {
-            border-left: 5px solid $color-primary-dark;
-        }
+    &:active,
+    &:focus,
+    &:hover {
+      border-left: 5px solid $color-primary-dark;
     }
+  }
+}
+.teamPopOverMenu {
+  width: 15rem;
+  height: 4rem;
+  display: grid;
+  grid-template-columns: 20fr 80fr;
+  font-size: 1.3rem !important;
+  padding-top: 1rem !important;
+  border-radius: 0.4rem;
+  transition: all 0.3s ease-in-out;
 }
