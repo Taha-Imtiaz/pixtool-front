@@ -15,7 +15,6 @@ import PlayerControls from '../../../images/player-icons/sprite.svg';
 
 
 const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } }, play, setPlay }) => {
-    console.log(userImage)
 
     /* ------------------------------ ENTIRE FILE SCOPE VARIABLES ------------------------------ */
     var commentPrivacy;
