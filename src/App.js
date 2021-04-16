@@ -80,24 +80,37 @@ const App = ({
     if (account) {
       // get all projects of first team
       let { projects, _id } = account[0];
-      console.log(pathname)
+      console.log(pathname);
       // we extract _id from account[0] means first team
-      if (projects && pathname === `/home/library/${projects[0]._id}` ) {
-        history.push(`/home/library/${projects[0]._id}`);
-        // get resources of 1st project
-        store.dispatch(
-          getTeamData(_id, projects[0]._id, () => {
-            store.dispatch(getProject(projects[0]._id));
-          })
-        );
-      } else {
+      if (projects) {
+        // if navigate from /sign-in or /sign-up or /
+        if (
+          pathname === "/sign-in" ||
+          pathname === "/sign-up" ||
+          pathname === "/"
+        ) {
+          history.push(`/home/library/${projects[0]._id}`);
+        }
+        // call api only if pathname === '/home/library/project[0].id'
+        if (
+          sessionStorage.getItem("currentUrl") ===
+          `/home/library/${projects[0]._id}`
+        ) {
+          // get resources of 1st project
+          store.dispatch(
+            getTeamData(_id, projects[0]._id, () => {
+              store.dispatch(getProject(projects[0]._id));
+            })
+          );
+        }
+        // if pathname !== `/home/library/${projects[0]._id}` then navigate to the location of pathname
+      } else if (projects && pathname !== `/home/library/${projects[0]._id}`) {
         history.push(pathname);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account]);
 
-  
   return (
     <div>
       {numberOfRequests > 0 && <Loader />}
