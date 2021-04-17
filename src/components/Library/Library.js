@@ -238,7 +238,7 @@ const Library = ({
             </div>
 
             <div className="library__head__buttons">
-            <Button text="Share" click={shareLibrary} />
+              <Button text="Share" click={shareLibrary} />
               <Dropdown text="New" menuItems={newUpload} />
             </div>
           </div>
@@ -262,8 +262,8 @@ const Library = ({
                   />
                 ) : (
 
-                  <ThumbnailFolderCard key={resource._id} id={resource._id} resource={resource} setAssetIds={setAssetIds} showCheckbox={showCheckbox}/>
-                )
+                    <ThumbnailFolderCard key={resource._id} id={resource._id} resource={resource} shareAssetIds={shareAssetIds} setAssetIds={setAssetIds} showCheckbox={showCheckbox} />
+                  )
               ) : <img src={NoDataFoundImg} alt="No Data Found" className="margin-auto" />)}
           </div>
         </div>

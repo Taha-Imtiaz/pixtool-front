@@ -1,18 +1,44 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { getProject } from "../../Redux/project/projectActions";
+import { deleteProject } from "../../Redux/account/accountActions";
+
 import "./TeamsNav.scss";
 import ReactTooltip from "react-tooltip";
 import { Fragment } from "react";
+import Popover from '@material-ui/core/Popover';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  typography: {
+    padding: theme.spacing(2),
+  },
+}));
 
 const TeamsNav = ({
   addProjectModalToggle,
   getProject,
   account,
-  
+  deleteProject
 }) => {
   // This state is used for toggling Sidebar Team Nav Lists
   const [teamItemIndex, setTeamItemIndex] = useState(null);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [projectToDelete, setProjectToDelete] = React.useState(null);
+
+  const handleClick = (event, id) => {
+    setProjectToDelete(id)
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   // const [showTeamDropdown, setShowTeamDropdown] = useState(false)
 
@@ -27,6 +53,9 @@ const TeamsNav = ({
     }
   };
 
+  const deleteP = () => {
+    console.log(anchorEl)
+  }
   /* const toggleTeamDropdown = () => { setShowTeamDropdown(!showTeamDropdown) }
 
     // Function to close the Team Dropdown whenever clicked outside it
@@ -53,6 +82,7 @@ const TeamsNav = ({
   ];
 
   const [tooltipState, setToolTipState] = useState(false);
+  const classes = useStyles();
 
   return (
     <div className="teamsNav">
@@ -69,8 +99,8 @@ const TeamsNav = ({
                     {index === teamItemIndex ? (
                       <i className="fas fa-chevron-down"></i>
                     ) : (
-                      <i className="fas fa-chevron-right"></i>
-                    )}
+                        <i className="fas fa-chevron-right"></i>
+                      )}
                   </span>
 
                   <span
@@ -101,48 +131,70 @@ const TeamsNav = ({
                             {project.name}
                           </span>
                           <span className="project__item--icon">
-                        
-
                             <i
                               data-tip
                               data-for="happyFace"
                               className="fas fa-ellipsis-v"
-                              onClick={() => setToolTipState(!tooltipState)}
-                              onMouseEnter={() => setToolTipState(false)}
+                              // onClick={() => setToolTipState(!tooltipState)}
+                              // onMouseEnter={() => setToolTipState(false)}
+                              onClick={(e) => handleClick(e, project._id)}
                             ></i>
-                            {tooltipState && (
-                              <ReactTooltip id="happyFace" place="bottom">
-                                {sidebarMenu1.map((sidebarOption) => (
-                                  <Fragment>
-                                    <div className="teamPopOverMenu">
-                                      <div>
-                                        {" "}
-                                        <i
-                                          className={sidebarOption.icon}
-                                        ></i>{" "}
-                                      </div>
-                                      <div>
-                                        <p>{sidebarOption.value}</p>
-                                      </div>
-                                    </div>
-                                  </Fragment>
-                                ))}
-                              </ReactTooltip>
-                            )}
-                            {/* {showTeamDropdown ?
-                                        <div className={`teamDropdown ${!showTeamDropdown ? "" : "teamDropdown-active"}`}>
-                                            <ul >
-                                                <li className="teamDropdown__listItem" ><span className="teamDropdown__listOption"><i className="fas fa-user-circle pd-r-1-5"></i> Account Settings</span></li>
-                                                <li className="teamDropdown__listItem"><span className="teamDropdown__listOption"><i className="fas fa-headset pd-r-1-5"></i> Support FAQ</span></li>
-                                                <li className="teamDropdown__listItem" ><span className="teamDropdown__listOption"><i className="fas fa-sign-out-alt pd-r-1-5"></i> Log out</span></li>
-                                            </ul>
-                                        </div>
-                                        :
-                                        null
-                                    } */}
                           </span>
                         </li>
                       ))}
+                    {/* {tooltipState && ( */}
+                    {/* <ReactTooltip id="happyFace" place="bottom">
+                        {sidebarMenu1.map((sidebarOption) => (
+                          <Fragment>
+                            <div className="teamPopOverMenu">
+                              <div>
+                                {" "}
+                                <i
+                                  className={sidebarOption.icon}
+                                ></i>{" "}
+                              </div>
+                              <div>
+                                <p>{sidebarOption.value}</p>
+                              </div>
+                            </div>
+                          </Fragment>
+                        ))}
+                      </ReactTooltip> */}
+                    {/* )} */}
+                    <Popover
+                      id={id}
+                      open={open}
+                      anchorEl={anchorEl}
+                      onClose={handleClose}
+                      anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                      }}
+                      transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                      }}
+                    >
+                      {/* {sidebarMenu1.map((sidebarOption) => (
+                        <Fragment>
+                          <div className="teamPopOverMenu">
+                            <div>
+                              {" "}
+                              <i
+                                className={sidebarOption.icon}
+                              ></i>{" "}
+                            </div>
+                            <div>
+                              <p>{sidebarOption.value}</p>
+                            </div>
+                          </div>
+                        </Fragment>
+                      ))} */}
+                      <Typography className={classes.typography}>
+                        {/* <h3  >Add Member</h3> */}
+                        <h3 onClick={() => deleteProject(projectToDelete, () => handleClose())}>Delete</h3>
+                      </Typography>
+                    </Popover>
                   </ul>
                 </div>
               )}
@@ -157,6 +209,7 @@ var mapStateToProps = (state) => ({
 });
 var mapDispatchToProps = {
   getProject,
+  deleteProject
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TeamsNav);
