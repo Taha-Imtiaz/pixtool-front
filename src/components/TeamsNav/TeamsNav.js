@@ -4,7 +4,6 @@ import { getProject } from "../../Redux/project/projectActions";
 import { deleteProject } from "../../Redux/account/accountActions";
 
 import "./TeamsNav.scss";
-import ReactTooltip from "react-tooltip";
 import { Fragment } from "react";
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
@@ -60,9 +59,9 @@ const TeamsNav = ({
     }
   };
 
-  const deleteP = () => {
-    console.log(anchorEl)
-  }
+  // const deleteP = () => {
+  //   console.log(anchorEl)
+  // }
   /* const toggleTeamDropdown = () => { setShowTeamDropdown(!showTeamDropdown) }
 
     // Function to close the Team Dropdown whenever clicked outside it
@@ -82,13 +81,13 @@ const TeamsNav = ({
         document.addEventListener('click', (e) => closeTeamDropdown(e), false);
 
     }, []); */
-  let sidebarMenu1 = [
-    { icon: "fas fa-book", value: "My Library" },
-    { icon: "far fa-file-alt", value: "Shared with me" },
-    { icon: "fas fa-cog", value: "Settings" },
-  ];
+  // let sidebarMenu1 = [
+  //   { icon: "fas fa-book", value: "My Library" },
+  //   { icon: "far fa-file-alt", value: "Shared with me" },
+  //   { icon: "fas fa-cog", value: "Settings" },
+  // ];
 
-  const [tooltipState, setToolTipState] = useState(false);
+  // const [tooltipState, setToolTipState] = useState(false);
   const [openModal, setOpen] = useState(false);
 
   const classes = useStyles();
