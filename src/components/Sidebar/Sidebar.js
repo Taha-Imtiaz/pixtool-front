@@ -6,7 +6,7 @@ import './Sidebar.scss';
 
 import Logo from '../../images/logo.png';
 import NavIcon from '../NavIcon/NavIcon';
-
+import { Link } from 'react-router-dom';
 
 function Sidebar({ children, menu1, history, projectID }) {
 
@@ -37,10 +37,12 @@ function Sidebar({ children, menu1, history, projectID }) {
                 <ul className="sidebar__list">
                     {menu1.map((x, i) =>
                         <li className='sidebar__item' key={i}>
-                            <div className={drawer ? 'sidebar__option' : 'sidebar__option just-cont-cen'}>
-                                <i className={x.icon}></i>
-                                <span className={drawer ? 'sidebar__text' : 'dis-none'}>{x.value}</span>
-                            </div>
+                            <Link to={x.route ? x.route : `/home/library/${projectID}`}>
+                                <div className={drawer ? 'sidebar__option' : 'sidebar__option just-cont-cen'}>
+                                    <i className={x.icon}></i>
+                                    <span className={drawer ? 'sidebar__text' : 'dis-none'}>{x.value}</span>
+                                </div>
+                            </Link>
                         </li>
                     )}
                 </ul>

@@ -10,6 +10,13 @@ import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+
 const useStyles = makeStyles((theme) => ({
   typography: {
     padding: theme.spacing(2),
@@ -82,68 +89,80 @@ const TeamsNav = ({
   ];
 
   const [tooltipState, setToolTipState] = useState(false);
+  const [openModal, setOpen] = useState(false);
+
   const classes = useStyles();
 
+  const handleClickOpen = () => {
+    setOpen(true);
+    handleClose();
+  };
+
+  const handleModalClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div className="teamsNav">
-      <ul className="teamsNav__list">
-        {account &&
-          account.map((account, index) => (
-            <li key={account._id} className="teamsNav__item">
-              <div
-                className="teamsNav__item__head"
-                onClick={() => toggleTeamNav(index)}
-              >
-                <div className="teamsNav__center">
-                  <span className="teamsNav__icon">
-                    {index === teamItemIndex ? (
-                      <i className="fas fa-chevron-down"></i>
-                    ) : (
-                        <i className="fas fa-chevron-right"></i>
-                      )}
-                  </span>
+    <Fragment>
+      <div className="teamsNav">
+        <ul className="teamsNav__list">
+          {account &&
+            account.map((account, index) => (
+              <li key={account._id} className="teamsNav__item">
+                <div
+                  className="teamsNav__item__head"
+                  onClick={() => toggleTeamNav(index)}
+                >
+                  <div className="teamsNav__center">
+                    <span className="teamsNav__icon">
+                      {index === teamItemIndex ? (
+                        <i className="fas fa-chevron-down"></i>
+                      ) : (
+                          <i className="fas fa-chevron-right"></i>
+                        )}
+                    </span>
 
-                  <span
-                    className="teamsNav__text truncate"
-                    title={account.name}
-                  >
-                    {account.name}
-                  </span>
-                  <span className="teamsNav__addBtn">
-                    <i
-                      className="fas fa-plus-circle"
-                      onClick={(e) => addProjectModalToggle(e, account._id)}
-                    ></i>
-                  </span>
+                    <span
+                      className="teamsNav__text truncate"
+                      title={account.name}
+                    >
+                      {account.name}
+                    </span>
+                    <span className="teamsNav__addBtn">
+                      <i
+                        className="fas fa-plus-circle"
+                        onClick={(e) => addProjectModalToggle(e, account._id)}
+                      ></i>
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              {index === teamItemIndex && (
-                <div className="teamsNav__item__body">
-                  <ul className="project__list">
-                    {account.projects &&
-                      account.projects.map((project, index) => (
-                        <li key={project._id} className="project__item">
-                          <span
-                            className="project__item--name"
-                            onClick={() => getProject(project._id)}
-                          >
-                            {project.name}
-                          </span>
-                          <span className="project__item--icon">
-                            <i
-                              data-tip
-                              data-for="happyFace"
-                              className="fas fa-ellipsis-v"
-                              // onClick={() => setToolTipState(!tooltipState)}
-                              // onMouseEnter={() => setToolTipState(false)}
-                              onClick={(e) => handleClick(e, project._id)}
-                            ></i>
-                          </span>
-                        </li>
-                      ))}
-                    {/* {tooltipState && ( */}
-                    {/* <ReactTooltip id="happyFace" place="bottom">
+                {index === teamItemIndex && (
+                  <div className="teamsNav__item__body">
+                    <ul className="project__list">
+                      {account.projects &&
+                        account.projects.map((project, index) => (
+                          <li key={project._id} className="project__item">
+                            <span
+                              className="project__item--name"
+                              onClick={() => getProject(project._id)}
+                            >
+                              {project.name}
+                            </span>
+                            <span className="project__item--icon">
+                              <i
+                                data-tip
+                                data-for="happyFace"
+                                className="fas fa-ellipsis-v"
+                                // onClick={() => setToolTipState(!tooltipState)}
+                                // onMouseEnter={() => setToolTipState(false)}
+                                onClick={(e) => handleClick(e, project._id)}
+                              ></i>
+                            </span>
+                          </li>
+                        ))}
+                      {/* {tooltipState && ( */}
+                      {/* <ReactTooltip id="happyFace" place="bottom">
                         {sidebarMenu1.map((sidebarOption) => (
                           <Fragment>
                             <div className="teamPopOverMenu">
@@ -160,22 +179,22 @@ const TeamsNav = ({
                           </Fragment>
                         ))}
                       </ReactTooltip> */}
-                    {/* )} */}
-                    <Popover
-                      id={id}
-                      open={open}
-                      anchorEl={anchorEl}
-                      onClose={handleClose}
-                      anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                      }}
-                      transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'center',
-                      }}
-                    >
-                      {/* {sidebarMenu1.map((sidebarOption) => (
+                      {/* )} */}
+                      <Popover
+                        id={id}
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                          vertical: 'bottom',
+                          horizontal: 'center',
+                        }}
+                        transformOrigin={{
+                          vertical: 'top',
+                          horizontal: 'center',
+                        }}
+                      >
+                        {/* {sidebarMenu1.map((sidebarOption) => (
                         <Fragment>
                           <div className="teamPopOverMenu">
                             <div>
@@ -190,18 +209,43 @@ const TeamsNav = ({
                           </div>
                         </Fragment>
                       ))} */}
-                      <Typography className={classes.typography}>
-                        {/* <h3  >Add Member</h3> */}
-                        <h3 onClick={() => deleteProject(projectToDelete, () => handleClose())}>Delete</h3>
-                      </Typography>
-                    </Popover>
-                  </ul>
-                </div>
-              )}
-            </li>
-          ))}
-      </ul>
-    </div>
+                        <Typography className={classes.typography}>
+                          {/* <h3  >Add Member</h3> */}
+                          {/* <h3 onClick={() => deleteProject(projectToDelete, () => handleClose())}>Delete</h3> */}
+                          {account.projects.length > 1 ? <h3 onClick={() => handleClickOpen()}>Delete</h3> : null}
+                          <h3>Settings</h3>
+                          <h3>Share</h3>
+                        </Typography>
+                      </Popover>
+                    </ul>
+                  </div>
+                )}
+              </li>
+            ))}
+        </ul>
+      </div>
+      <Dialog
+        open={openModal}
+        onClose={handleModalClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to delete this project?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleModalClose} color="primary">
+            Close
+          </Button>
+          <Button onClick={() => deleteProject(projectToDelete, () => handleModalClose())} color="primary" autoFocus>
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Fragment >
   );
 };
 var mapStateToProps = (state) => ({

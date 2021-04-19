@@ -11,8 +11,8 @@ import Teams from '../../components/AccountsComponents/Teams/Teams';
 
 /* Arrays To Pass The Sidebar Content In Props */
 let sidebarMenu1 = [
-    { icon: 'fas fa-users', value: 'Teams' },
-    { icon: 'fas fa-user-circle', value: 'Profile' }
+    { icon: 'fas fa-users', value: 'Teams', route: '/accounts/team' },
+    { icon: 'fas fa-user-circle', value: 'Profile', route: '/accounts' }
 ];
 
 const Accounts = () => {
