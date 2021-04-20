@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 
 import "./Review.scss";
@@ -6,12 +6,19 @@ import "./Review.scss";
 import Header from "../../components/Header/Header";
 import ThumbnailCard from "../../components/Cards/ThumbnailCard/ThumbnailCard";
 import ThumbnailFolderCard from "../../components/Cards/ThumbnailFolderCard/ThumbnailFolderCard";
+
 // import ThumbnailCard from "../../components/Cards/ThumbnailCard/ThumbnailCard";
 // import ThumbnailFolderCard from "../../components/Cards/ThumbnailFolderCard/ThumbnailFolderCard";
 
 import NoDataFoundImg from "../../images/no-data-found.png";
+import { getReviewAssets } from "../../Redux/review/reviewActions";
 
-const Review = ({ user, resources }) => {
+const Review = ({ user, reviewAssets, getReviewAssets, match:{params:{id}} ,location:{pathname} }) => {
+  useEffect(() => {
+    sessionStorage.setItem("currentUrl", pathname)
+    // console.log(id)
+    getReviewAssets(id)
+  }, [])
   return (
     <Fragment>
       <Header className="header" />
@@ -25,29 +32,29 @@ const Review = ({ user, resources }) => {
         </div>
 
         <div className="review__gallery">
-            
-          {resources &&
-            (resources.length > 0 ? (
-              resources.map((resource, index) =>
-                resource._type === "file" ? (
-                  <ThumbnailCard
-                  // shareAssetIds={shareAssetIds}
-                  // setAssetIds={setAssetIds}
 
-                  key={resource._id}
-                  id={resource._id}
-                  resource={resource}
+          {reviewAssets &&
+            (reviewAssets.length > 0 ? (
+              reviewAssets.map((reviewAsset, index) =>
+                reviewAsset._type === "file" ? (
+                  <ThumbnailCard
+                    // shareAssetIds={shareAssetIds}
+                    // setAssetIds={setAssetIds}
+
+                    key={reviewAsset._id}
+                    id={reviewAsset._id}
+                    resource={reviewAsset}
                   // showCheckbox={showCheckbox}
                   // index={index}
                   />
                 ) : (
                   <ThumbnailFolderCard
-                    key={resource._id}
-                    id={resource._id}
-                    resource={resource}
-                    // shareAssetIds={shareAssetIds}
-                    // setAssetIds={setAssetIds}
-                    // showCheckbox={showCheckbox}
+                    key={reviewAsset._id}
+                    id={reviewAsset._id}
+                    resource={reviewAsset}
+                  // shareAssetIds={shareAssetIds}
+                  // setAssetIds={setAssetIds}
+                  // showCheckbox={showCheckbox}
                   />
                 )
               )
@@ -65,8 +72,10 @@ const Review = ({ user, resources }) => {
 };
 
 var mapStateToProps = (state) => ({
-  resources: state.project && state.project.resources,
+  reviewAssets: state.reviewAssets && state.reviewAssets.assets,
   user: state.users && state.users.user,
 });
-
-export default connect(mapStateToProps)(Review);
+var mapDispatchToProps = {
+  getReviewAssets
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Review);

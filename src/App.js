@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Route, Switch, withRouter, useParams } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { connect } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
@@ -34,7 +34,6 @@ const App = ({
 }) => {
   const notify = (message) => toast.dark(message);
   // show toast when toastMessage state changes
-
   useEffect(() => {
     if (toastMessage) {
       notify(toastMessage);
@@ -42,14 +41,16 @@ const App = ({
   }, [toastMessage]);
 
   // on route change
-  history.listen((location, action) => {
-    // console.log(location.pathname)
-    // setTimeout(() => {
-    //   history.push(location.pathname)
-    // }, 1000);
-
-    sessionStorage.setItem("currentUrl", location.pathname);
-  });
+  // useEffect(() => {
+   
+      history.listen((location) => {
+        console.log(location.pathname)
+        
+        // sessionStorage.setItem("currentUrl", location.pathname);
+      });
+    
+   
+  // },[])
 
   // the below 2 useeffects loads data only once
   // get account of the user
@@ -78,6 +79,7 @@ const App = ({
   // show all the resources (projects) of 1st team
   useEffect(() => {
     if (account) {
+      
       // get all projects of first team
       let { projects, _id } = account[0];
       console.log(pathname);
@@ -92,8 +94,8 @@ const App = ({
           history.push(`/home/library/${projects[0]._id}`);
         }
         // call api only if pathname === '/home/library/project[0].id'
-        if (
-          sessionStorage.getItem("currentUrl") ===
+       if (
+          pathname ===
           `/home/library/${projects[0]._id}`
         ) {
           // get resources of 1st project
@@ -104,10 +106,12 @@ const App = ({
           );
         }
         // if pathname !== `/home/library/${projects[0]._id}` then navigate to the location of pathname
-      } else if (projects && pathname !== `/home/library/${projects[0]._id}`) {
+      }  else {
         history.push(pathname);
+        
       }
     }
+    sessionStorage.setItem("currentUrl",pathname)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, pathname]);
 

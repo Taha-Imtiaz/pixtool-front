@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { getProjectAssets } from '../../../Redux/project/projectActions';
-
+import { getReviewProjectAssets } from '../../../Redux/review/reviewActions';
 import './ThumbnailFolderCard.scss';
 
 
-const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectId, match: { params }, showCheckbox, setAssetIds, shareAssetIds }) => {
+const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectId, match: { params }, getReviewProjectAssets, location: { pathname }, showCheckbox, setAssetIds, shareAssetIds }) => {
 
     const [thumbnailsLength, setThumbnailsLength] = useState(0)
 
     let { name, thumbnails, uploaded_at, uploader } = resource
+    console.log(pathname)
 
     useEffect(() => {
         if (thumbnails) {
@@ -22,13 +23,26 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
 
     // fetch assets of the given projects
     const fetchAssets = (projectId, assetId) => {
-        history.push(`/home/library/${projectId}/${assetId}`)
-        let assetObj = {
-            filters: {
-                status: "all",
+        if (sessionStorage.getItem("currentUrl") === `/home/library/${projectId}`) {
+            history.push(`/home/library/${projectId}/${assetId}`)
+            let assetObj = {
+                filters: {
+                    status: "all",
+                }
             }
+            getProjectAssets(assetId, assetObj)
         }
-        getProjectAssets(assetId, assetObj)
+        else {
+            history.push(`${pathname}/${assetId}`)
+            let assetObj = {
+                filters: {
+                    status: "all",
+                }
+            }
+            getReviewProjectAssets(assetId, assetObj)
+        }
+
+        
     }
 
     const updateAssetIndex = (e, assetId) => {
@@ -101,7 +115,8 @@ var mapStateToProps = (state) => ({
     projectId: state.project && state.project.parentId,
 })
 var mapDispatchToProps = {
-    getProjectAssets
+    getProjectAssets,
+    getReviewProjectAssets
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ThumbnailFolderCard))

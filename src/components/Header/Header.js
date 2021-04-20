@@ -15,7 +15,6 @@ function Header({
     params: { projectId },
   },
 }) {
-  console.log(projectId, pathname);
   const logOut = () => {
     history.push("/sign-in");
     logout();

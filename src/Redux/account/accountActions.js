@@ -72,7 +72,7 @@ export const deleteProject = (projectId, callback) => async (dispatch, getState)
     let { projects } = account[0]
 
     let projectsClone = cloneDeep(projects)
-    let index = projectsClone.findIndex(x => x._id == projectId)
+    let index = projectsClone.findIndex(x => x._id === projectId)
     projectsClone.splice(index, 1)
     // projectsClone.push(response.data.data)
     let accountObj = {
