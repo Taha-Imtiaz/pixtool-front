@@ -16,7 +16,6 @@ import PlayerControls from '../../../images/player-icons/sprite.svg';
 
 const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } }, play, setPlay }) => {
 
-
     /* ------------------------------ ENTIRE FILE SCOPE VARIABLES ------------------------------ */
     var commentPrivacy;
 
@@ -548,7 +547,7 @@ const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } },
 }
 var mapStateToProps = (state) => ({
     asset: state.assets && state.assets.asset,
-    userImage: state.users && state.users.userData && state.users.userData.images && state.users.userData.images.profile_image
+    userImage: state.users && state.users.user && state.users.user.images && state.users.user.images.img_32
 })
 
 var mapDispatchToProps = {

@@ -6,7 +6,7 @@ import { getProjectAssets } from '../../../Redux/project/projectActions';
 import './ThumbnailFolderCard.scss';
 
 
-const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectId, match: { params }, showCheckbox, setAssetIds }) => {
+const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectId, match: { params }, showCheckbox, setAssetIds, shareAssetIds }) => {
 
     const [thumbnailsLength, setThumbnailsLength] = useState(0)
 
@@ -31,16 +31,18 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
         getProjectAssets(assetId, assetObj)
     }
 
-    const updateAssetIndex = (assetId, index) => {
+    const updateAssetIndex = (e, assetId) => {
         // setCheckBoxState(!checkBoxState)
+        // e.preventDefault();
+        e.stopPropagation();
         setAssetIds(assetId);
     }
 
 
     return (
-        <div className="thumbnailFolderCard" tabIndex="0" onDoubleClick={() => fetchAssets(projectId, id)} >
+        <div className="thumbnailFolderCard" tabIndex="0" onClick={() => fetchAssets(projectId, id)} >
 
-            { thumbnails && <div className={thumbnailsLength <= 1 ? 'thumbnailFolderCard__thumbnailBox thumbnailFolderCard__thumbnailBox--1' : 'thumbnailFolderCard__thumbnailBox'}>
+            {thumbnails && <div className={thumbnailsLength <= 1 ? 'thumbnailFolderCard__thumbnailBox thumbnailFolderCard__thumbnailBox--1' : 'thumbnailFolderCard__thumbnailBox'}>
                 {thumbnailsLength >= 1 ?
                     <span className="thumbnailFolderCard__imgBox thumbnailFolderCard__imgBox--1">
                         <img src={thumbnails[0].url} alt="Thumbnail" className="thumbnailFolderCard__img thumbnailFolderCard__img--1" />
@@ -76,12 +78,13 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
 
             <div className="thumbnailFolderCard__bottom">
                 {showCheckbox ?
-                    <input type="checkbox" name="share_select_checkBox" id="checkBox" className="checkbox"
-                        onClick={() => updateAssetIndex(resource._id)} ></input>
+                    <input type="checkbox" name="share_select_checkBox" id="checkBox"
+                        defaultChecked={shareAssetIds.includes(resource._id)} className="checkbox"
+                        onClick={(e) => updateAssetIndex(e, resource._id)} ></input>
                     :
                     null
                 }
-                <div className="thumbnailFolderCard__text">
+                <div className="thumbnailFolderCard__text truncate">
                     <div className="thumbnailFolderCard__name truncate">{name}</div>
                     <div className="thumbnailFolderCard__datail">
                         <span>{uploader}</span>

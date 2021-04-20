@@ -24,7 +24,7 @@ const ShareModal = ({ showModal, setShowModal, modalToggler, sharelink }) => {
 
     // Function to close the Modal whenever Backdrop clicked
     const closeModal = (event) => {
-        const backDrop = document.querySelector(".backDrop1");
+        const backDrop = document.querySelector(".backDrop3");
         const modal = document.querySelector(".modal");
 
         if (backDrop && event.target === backDrop && !event.target !== modal) {

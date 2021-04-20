@@ -24,7 +24,7 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, pa
 
     // Function to close the Modal whenever Backdrop clicked
     const closeModal = (event) => {
-        const backDrop = document.querySelector(".backDrop2");
+        const backDrop = document.querySelector(".backDrop1");
         const modal = document.querySelector(".modal");
         if (backDrop && event.target === backDrop && !event.target !== modal) {
             setShowModal(false);
@@ -33,7 +33,7 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, pa
 
     useEffect(() => {
         // Listener to close the Modal whenever Backdrop clicked
-        const backDrop = document.querySelector(".backDrop2");
+        const backDrop = document.querySelector(".backDrop1");
         backDrop.addEventListener('click', (e) => closeModal(e), false);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -64,7 +64,7 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, pa
         modalToggler()
     }
     return (
-        <div className="modal__backDrop backDrop2" style={backDropStyle} >
+        <div className="modal__backDrop backDrop1" style={backDropStyle} >
             <div className="modal">
                 <div className="modal__content">
                     <div className="addFolderModal">

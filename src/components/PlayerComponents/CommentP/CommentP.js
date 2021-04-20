@@ -30,7 +30,6 @@ function CommentP({ asset, comment, addReply, deleteComments, setPlay }) {
 
     /* ---------------------------- ALL FUNCTIONS FOR COMMENTP COMPONENT---------------------------- */
 
-    console.log(comment)
 
     // Function For Main Comment Reply TextArea Toggling 
     const reply = () => {

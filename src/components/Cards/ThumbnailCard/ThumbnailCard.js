@@ -7,14 +7,16 @@ const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index, setAss
 
     let { thumbnail, name, uploaded_at, uploader, status } = resource;
 
-    const updateAssetIndex = (assetId, index) => {
+    const updateAssetIndex = (e, assetId) => {
         // setCheckBoxState(!checkBoxState)
+        // e.preventDefault();
+        e.stopPropagation();
         setAssetIds(assetId);
     }
 
     // console.log(checkBoxState)
     return (
-        <div className="thumbnailCard" tabIndex="0" key={key} onDoubleClick={() => history.push(`/player/${id}`)}>
+        <div className="thumbnailCard" tabIndex="0" key={key} onClick={() => history.push(`/player/${id}`)}>
             <Fragment>
                 <div className="thumbnailCard__status">
                     {changeStatusCase(status)}
@@ -26,12 +28,13 @@ const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index, setAss
 
                 <div className="thumbnailCard__bottom">
                     {showCheckbox ?
-                        <input type="checkbox" name="share_select_checkBox" id="checkBox" className="checkbox"
-                            onClick={() => updateAssetIndex(resource._id)} ></input>
+                        <input type="checkbox" name="share_select_checkBox" id="checkBox"
+                            defaultChecked={shareAssetIds.includes(resource._id)} className="checkbox"
+                            onClick={(e) => updateAssetIndex(e, resource._id)} ></input>
                         :
                         null
                     }
-                    <div className="thumbnailCard__text">
+                    <div className="thumbnailCard__text truncate">
                         <div className="thumbnailCard__name truncate">{name}</div>
                         <div className="thumbnailCard__datail">
                             <span>{uploader}</span>
