@@ -13,7 +13,7 @@ import ShareModal from '../../components/Modals/ShareModal/ShareModal';
 
 
 const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDetails, addDescription, asset, location: { pathname } }) => {
-
+console.log(assetId)
     // This state is responsible for toggling sidebar
     const [drawer, setDrawer] = useState(true)
     // This state is used to Show/ Hide the ShareModal

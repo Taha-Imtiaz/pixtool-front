@@ -6,7 +6,7 @@ import { getReviewProjectAssets } from '../../../Redux/review/reviewActions';
 import './ThumbnailFolderCard.scss';
 
 
-const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectId, match: { params }, getReviewProjectAssets, location: { pathname }, showCheckbox, setAssetIds, shareAssetIds }) => {
+const ThumbnailFolderCard = ({ resourceId, getProjectAssets, reviewAssetId, resource, history, projectId, match: { params }, getReviewProjectAssets, location: { pathname }, showCheckbox, setAssetIds, shareAssetIds }) => {
 
     const [thumbnailsLength, setThumbnailsLength] = useState(0)
 
@@ -33,13 +33,14 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
             getProjectAssets(assetId, assetObj)
         }
         else {
-            history.push(`${pathname}/${assetId}`)
+            console.log(reviewAssetId)
+            history.push(`${pathname}/${reviewAssetId}`)
             let assetObj = {
                 filters: {
                     status: "all",
                 }
             }
-            getReviewProjectAssets(assetId, assetObj)
+            getReviewProjectAssets(reviewAssetId, assetObj)
         }
 
         
@@ -54,7 +55,7 @@ const ThumbnailFolderCard = ({ id, getProjectAssets, resource, history, projectI
 
 
     return (
-        <div className="thumbnailFolderCard" tabIndex="0" onClick={() => fetchAssets(projectId, id)} >
+        <div className="thumbnailFolderCard" tabIndex="0" onClick={() => fetchAssets(projectId, resourceId)} >
 
             {thumbnails && <div className={thumbnailsLength <= 1 ? 'thumbnailFolderCard__thumbnailBox thumbnailFolderCard__thumbnailBox--1' : 'thumbnailFolderCard__thumbnailBox'}>
                 {thumbnailsLength >= 1 ?

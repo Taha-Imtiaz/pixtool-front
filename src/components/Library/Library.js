@@ -254,7 +254,7 @@ const Library = ({
                     setAssetIds={setAssetIds}
 
                     key={resource._id}
-                    id={resource._id}
+                    resourceId={resource._id}
                     resource={resource}
                     showCheckbox={showCheckbox}
                     index={index}
@@ -262,7 +262,7 @@ const Library = ({
                   />
                 ) : (
 
-                    <ThumbnailFolderCard key={resource._id} id={resource._id} resource={resource} shareAssetIds={shareAssetIds} setAssetIds={setAssetIds} showCheckbox={showCheckbox} />
+                    <ThumbnailFolderCard key={resource._id} resourceId={resource._id} resource={resource} shareAssetIds={shareAssetIds} setAssetIds={setAssetIds} showCheckbox={showCheckbox} />
                   )
               ) : <img src={NoDataFoundImg} alt="No Data Found" className="margin-auto" />)}
           </div>

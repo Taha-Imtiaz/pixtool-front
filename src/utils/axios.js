@@ -20,7 +20,7 @@ const Axios = () => {
     axios.defaults.baseURL = 'https://pixtool.herokuapp.com/api/';
     // axios.defaults.baseURL = 'http://10.0.6.197:3001/api/';
     // axios.defaults.baseURL = 'http://localhost:3001/api/';
-    axios.defaults.baseURL = 'http://10.0.5.85:3001/api/';
+    // axios.defaults.baseURL = 'http://10.0.5.69:3001/api/';
 
 
 

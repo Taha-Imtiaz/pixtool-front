@@ -44,7 +44,7 @@ const App = ({
   // useEffect(() => {
    
       history.listen((location) => {
-        console.log(location.pathname)
+        // console.log(location.pathname)
         
         // sessionStorage.setItem("currentUrl", location.pathname);
       });
@@ -82,7 +82,7 @@ const App = ({
       
       // get all projects of first team
       let { projects, _id } = account[0];
-      console.log(pathname);
+      // console.log(pathname);
       // we extract _id from account[0] means first team
       if (projects) {
         // if navigate from /sign-in or /sign-up or /
@@ -124,9 +124,13 @@ const App = ({
         <ErrorBoundary>
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
-          <Route path="/review/:id" component={Review} />
+          <Route path="/review/:id"  component={Review} />
+          {/* <Route path = "/review/:id/player/:assetId" component = {Player}/> */}
           <PrivateRoute path="/home/library/:projectId" component={Home} />
-          <PrivateRoute path="/player/:assetId" component={Player} />
+          <PrivateRoute 
+          // path="/player/:assetId" 
+          path={["/player/:assetId", "/review/player/:assetId"]}
+          component={Player} />
           <PrivateRoute path="/accounts" component={Accounts} />
           <PrivateRoute path="/test" component={Test} />
 

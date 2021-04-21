@@ -12,6 +12,8 @@ import ThumbnailFolderCard from "../../components/Cards/ThumbnailFolderCard/Thum
 
 import NoDataFoundImg from "../../images/no-data-found.png";
 import { getReviewAssets } from "../../Redux/review/reviewActions";
+import ReviewHeader from "../../components/ReviewHeader/ReviewHeader";
+
 
 const Review = ({ user, reviewAssets, getReviewAssets, match:{params:{id}} ,location:{pathname} }) => {
   useEffect(() => {
@@ -21,7 +23,7 @@ const Review = ({ user, reviewAssets, getReviewAssets, match:{params:{id}} ,loca
   }, [])
   return (
     <Fragment>
-      <Header className="header" />
+      <ReviewHeader  />
       <div className="review">
         <div className="review__header">
           <h3>{`Review Link ${new Date().toDateString()}`} </h3>
@@ -42,7 +44,7 @@ const Review = ({ user, reviewAssets, getReviewAssets, match:{params:{id}} ,loca
                     // setAssetIds={setAssetIds}
 
                     key={reviewAsset._id}
-                    id={reviewAsset._id}
+                    reviewAssetId={reviewAsset._id}
                     resource={reviewAsset}
                   // showCheckbox={showCheckbox}
                   // index={index}
@@ -50,7 +52,7 @@ const Review = ({ user, reviewAssets, getReviewAssets, match:{params:{id}} ,loca
                 ) : (
                   <ThumbnailFolderCard
                     key={reviewAsset._id}
-                    id={reviewAsset._id}
+                    reviewAssetId={reviewAsset._id}
                     resource={reviewAsset}
                   // shareAssetIds={shareAssetIds}
                   // setAssetIds={setAssetIds}

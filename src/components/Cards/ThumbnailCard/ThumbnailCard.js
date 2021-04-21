@@ -1,9 +1,10 @@
 import { React, Fragment } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { changeStatusCase } from '../../../utils/helperfunctions';
 import './ThumbnailCard.scss';
 
-const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index, setAssetIds, shareAssetIds }) => {
+const ThumbnailCard = ({ resource, key, resourceId, reviewAssetId, history, showCheckbox, setAssetIds, shareAssetIds, location: { pathname }, match: { params: { id } } }) => {
 
     let { thumbnail, name, uploaded_at, uploader, status } = resource;
 
@@ -13,10 +14,21 @@ const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index, setAss
         e.stopPropagation();
         setAssetIds(assetId);
     }
+    const navigateUrl = pathname => {
+        if (pathname.includes(`/review/${id}`)) {
+            console.log(pathname, id, reviewAssetId)
+            history.push(`/review/player/${reviewAssetId}`)
+        }
+        else {
+            history.push(`/player/${resourceId}`)
+        }
+    }
 
-    // console.log(checkBoxState)
+    // console.log(pathname, pathname.includes(`/review/${id}`))
     return (
-        <div className="thumbnailCard" tabIndex="0" key={key} onClick={() => history.push(`/player/${id}`)}>
+        <div className="thumbnailCard" tabIndex="0" key={key} onClick={() => navigateUrl(pathname)}
+
+        >
             <Fragment>
                 <div className="thumbnailCard__status">
                     {changeStatusCase(status)}
@@ -47,5 +59,8 @@ const ThumbnailCard = ({ resource, key, id, history, showCheckbox, index, setAss
         </div>
     )
 }
+var mapStateToProps = (state) => ({
+    parentId: state.project && state.project.parentId,
+})
 
-export default withRouter(ThumbnailCard)
+export default connect(mapStateToProps)(withRouter(ThumbnailCard))

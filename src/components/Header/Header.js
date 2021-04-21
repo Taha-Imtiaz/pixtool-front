@@ -50,7 +50,7 @@ function Header({
 
   return (
     <div className="header">
-      {pathname === `/home/library/${projectId}` ? (
+      
         <div className="search">
           <i className="fas fa-search search__icon"></i>
           <input
@@ -60,14 +60,14 @@ function Header({
             placeholder="Search"
           ></input>
         </div>
-      ) : (
-        <div className='sidebar__logo'>
+      
+        {/* <div className='sidebar__logo'>
         <img src={Logo} alt="Logo" className="logo-img" onClick={() => history.push(`/home/library/${projectId}`)} />
-    </div>
+    </div> */}
 
-      )}
+    
       <div className= "profile">
-        {user && pathname === `/home/library/${projectId}` && (
+        {user  && (
           <span className="profile__text">{user.full_name}</span>
         )}
         <span className="profile__picture">
@@ -109,12 +109,12 @@ function Header({
             </ul>
           </div>
         </span>
-        {pathname === `/home/library/${projectId}` && (
+       
           <span className="profile__notification">
             <i className="fas fa-bell"></i>{" "}
             <span className="countNotification">1</span>
           </span>
-        )}
+       
       </div>
     </div>
   );
