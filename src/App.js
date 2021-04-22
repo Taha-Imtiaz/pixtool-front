@@ -27,10 +27,9 @@ const App = ({
   toastMessage,
   numberOfRequests,
   user,
-  account,
+
   history,
   accountId,
-  location: { pathname },
 }) => {
   const notify = (message) => toast.dark(message);
   // show toast when toastMessage state changes
@@ -42,14 +41,14 @@ const App = ({
 
   // on route change
   // useEffect(() => {
-   
-      history.listen((location) => {
-        // console.log(location.pathname)
-        
-        // sessionStorage.setItem("currentUrl", location.pathname);
-      });
-    
-   
+
+  history.listen((location) => {
+    // console.log(location.pathname)
+
+    sessionStorage.setItem("currentUrl", location.pathname);
+  });
+
+
   // },[])
 
   // the below 2 useeffects loads data only once
@@ -59,6 +58,7 @@ const App = ({
     let checkUserAuth = checkUserAuthentication();
     if (checkUserAuth) {
       store.dispatch(getUserData());
+      // history.push("/home")
     } else {
       history.push("/");
     }
@@ -77,43 +77,49 @@ const App = ({
   }, [user]);
 
   // show all the resources (projects) of 1st team
-  useEffect(() => {
-    if (account) {
-      
-      // get all projects of first team
-      let { projects, _id } = account[0];
-      // console.log(pathname);
-      // we extract _id from account[0] means first team
-      if (projects) {
-        // if navigate from /sign-in or /sign-up or /
-        if (
-          pathname === "/sign-in" ||
-          pathname === "/sign-up" ||
-          pathname === "/"
-        ) {
-          history.push(`/home/library/${projects[0]._id}`);
-        }
-        // call api only if pathname === '/home/library/project[0].id'
-       if (
-          pathname ===
-          `/home/library/${projects[0]._id}`
-        ) {
-          // get resources of 1st project
-          store.dispatch(
-            getTeamData(_id, projects[0]._id, () => {
-              store.dispatch(getProject(projects[0]._id));
-            })
-          );
-        }
-        // if pathname !== `/home/library/${projects[0]._id}` then navigate to the location of pathname
-      }  else {
-        history.push(pathname);
-        
-      }
-    }
-    sessionStorage.setItem("currentUrl",pathname)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account, pathname]);
+  // useEffect(() => {
+  //   if (account) {
+
+  //     // get all projects of first team
+  //     let { projects, _id } = account[0];
+  //     // console.log(pathname);
+  //     // we extract _id from account[0] means first team
+  //     console.log(projects)
+  //     if (projects) {
+  //       store.dispatch(
+  //         getTeamData(_id, projects[0]._id, () => {
+  //           store.dispatch(getProject(projects[0]._id));
+  //         })
+  //       );
+  // if navigate from /sign-in or /sign-up or /
+  // if (
+  //   pathname === "/sign-in" ||
+  //   pathname === "/sign-up" ||
+  //   pathname === "/"
+  // ) {
+  //   history.push(`/library/${projects[0]._id}`);
+  // }
+  // call api only if pathname === '/home/library/project[0].id'
+  // if (
+  //   pathname ===
+  //   `/library/${projects[0]._id}`
+  // ) {
+  //   // get resources of 1st project
+  //   store.dispatch(
+  //     getTeamData(_id, projects[0]._id, () => {
+  //       store.dispatch(getProject(projects[0]._id));
+  //     })
+  //   );
+  // }
+  // if pathname !== `/home/library/${projects[0]._id}` then navigate to the location of pathname
+  //     } else {
+  //       history.push(pathname);
+
+  //     }
+  //   }
+  //   sessionStorage.setItem("currentUrl", pathname)
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [account, pathname]);
 
   return (
     <div>
@@ -122,19 +128,21 @@ const App = ({
 
       <Switch>
         <ErrorBoundary>
+          <Route path="/" component={HeroSection} exact />
+          <Route path="/home" component={Home} />
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
-          <Route path="/review/:id"  component={Review} />
+          <Route path="/review/:id" component={Review} />
           {/* <Route path = "/review/:id/player/:assetId" component = {Player}/> */}
-          <PrivateRoute path="/home/library/:projectId" component={Home} />
-          <PrivateRoute 
-          // path="/player/:assetId" 
-          path={["/player/:assetId", "/review/player/:assetId"]}
-          component={Player} />
+          {/* <PrivateRoute path="/home/library/:projectId" component={Home} /> */}
+          <PrivateRoute
+            // path="/player/:assetId" 
+            path={["/player/:assetId", "/review/player/:assetId"]}
+            component={Player} />
           <PrivateRoute path="/accounts" component={Accounts} />
           <PrivateRoute path="/test" component={Test} />
 
-          <Route path="/" component={HeroSection} exact />
+          {/* <Route path="/" component={HeroSection} exact /> */}
           {/* <Redirect to="/" /> */}
         </ErrorBoundary>
       </Switch>

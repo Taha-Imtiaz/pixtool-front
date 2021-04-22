@@ -52,6 +52,7 @@ const Library = ({
 
 
   useEffect(() => {
+    console.log('Library')
     if (project) {
       // this useeffect only runs if pathname changes (go back and forward)
       //check pathname when we goBack(pathname !== the path of the page from which we are coming)

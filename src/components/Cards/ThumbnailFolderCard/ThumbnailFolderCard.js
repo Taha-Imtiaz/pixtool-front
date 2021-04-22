@@ -11,7 +11,7 @@ const ThumbnailFolderCard = ({ resourceId, getProjectAssets, reviewAssetId, reso
     const [thumbnailsLength, setThumbnailsLength] = useState(0)
 
     let { name, thumbnails, uploaded_at, uploader } = resource
-    console.log(pathname)
+    // console.log(pathname)
 
     useEffect(() => {
         if (thumbnails) {
@@ -23,7 +23,8 @@ const ThumbnailFolderCard = ({ resourceId, getProjectAssets, reviewAssetId, reso
 
     // fetch assets of the given projects
     const fetchAssets = (projectId, assetId) => {
-        if (sessionStorage.getItem("currentUrl") === `/home/library/${projectId}`) {
+        console.log(projectId, assetId)
+        // if (sessionStorage.getItem("currentUrl") === `/home/library/${projectId}`) {
             history.push(`/home/library/${projectId}/${assetId}`)
             let assetObj = {
                 filters: {
@@ -31,17 +32,17 @@ const ThumbnailFolderCard = ({ resourceId, getProjectAssets, reviewAssetId, reso
                 }
             }
             getProjectAssets(assetId, assetObj)
-        }
-        else {
-            console.log(reviewAssetId)
-            history.push(`${pathname}/${reviewAssetId}`)
-            let assetObj = {
-                filters: {
-                    status: "all",
-                }
-            }
-            getReviewProjectAssets(reviewAssetId, assetObj)
-        }
+        // }
+        // else {
+        //     console.log(reviewAssetId)
+        //     history.push(`${pathname}/${reviewAssetId}`)
+        //     let assetObj = {
+        //         filters: {
+        //             status: "all",
+        //         }
+        //     }
+        //     getReviewProjectAssets(reviewAssetId, assetObj)
+        // }
 
         
     }

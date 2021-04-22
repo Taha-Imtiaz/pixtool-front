@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./Home.scss";
@@ -25,7 +25,12 @@ import AddFolderModal from "../../components/Modals/AddFolderModal/AddFolderModa
 import ShareModal from "../../components/Modals/ShareModal/ShareModal";
 import ProjectOptionsModal from "../../components/Modals/ProjectOptionsModal/ProjectOptionsModal";
 
-function Home({ project, match: { path } }) {
+import { Fragment } from "react";
+import { getTeamData } from "../../Redux/team/teamActions";
+import { getProject } from "../../Redux/project/projectActions";
+
+function Home({ project, match: { path }, getTeamData, getProject,location:{pathname} , account}) {
+  // console.log(path)
   // This state is used to set teamId
   const [teamId, setTeamId] = useState(null);
 
@@ -102,6 +107,26 @@ function Home({ project, match: { path } }) {
     { icon: "far fa-file-alt", value: "Shared with me" },
     { icon: "fas fa-cog", value: "Settings" },
   ];
+  useEffect(() => {
+    if (account) {
+
+      // get all projects of first team
+      let { projects, _id } = account[0];
+      // console.log(pathname);
+      // we extract _id from account[0] means first team
+      
+      if (projects) {
+
+        getTeamData(_id, projects[0]._id, () => {
+          getProject(projects[0]._id);
+        })
+
+
+      }
+      sessionStorage.setItem("currentUrl", pathname)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }
+  }, [account]);
 
   return (
     <div className="home page-wrapper">
@@ -121,64 +146,68 @@ function Home({ project, match: { path } }) {
 
         {/* This is home's main tab which include Library, Shows & Stages */}
         {project && (
-          <Tabs className="tabs">
-            <Switch>
-              <Route path={`${path}/library/${project._id}`} label="Library">
-                <Library
+          // <Tabs className="tabs">
+          // </Tabs>
+
+          //  <Switch>
+          <Fragment>
+            <Route path={`${path}/`} render={() => <Redirect to={`${path}/library/${project._id}`} />} exact />
+            <Route path={`${path}/library/:id`} label="Library" component={Library} />
+            {/* <Library
                   addFolderModalToggle={addFolderModalToggle}
                   shareModalToggle={shareModalToggle}
                   showCheckbox={showCheckbox}
                   setShowCheckbox={setShowCheckbox}
-                />
-              </Route>
-              <Route path={`${path}/shows/${project._id}`} label="Shows">
-                <InnerTabs>
-                  {/* Shows - Overview Tab Content */}
-                  <div label="Overview">
-                    <Overview />
-                  </div>
+                /> */}
+            {/* </Route> */}
+            <Route path={`${path}/shows/${project._id}`} label="Shows">
+              <InnerTabs>
+                {/* Shows - Overview Tab Content */}
+                <div label="Overview">
+                  <Overview />
+                </div>
 
-                  {/* Shows - Settings Tab Content */}
-                  <div label="Settings">
-                    <Settings />
-                  </div>
+                {/* Shows - Settings Tab Content */}
+                <div label="Settings">
+                  <Settings />
+                </div>
 
-                  {/*Shows - Media Tab Content */}
-                  <div label="Media">
-                    <Media />
-                  </div>
+                {/*Shows - Media Tab Content */}
+                <div label="Media">
+                  <Media />
+                </div>
 
-                  {/*Shows -  Preview Tab Content */}
-                  <div label="Preview">
-                    <Preview />
-                  </div>
+                {/*Shows -  Preview Tab Content */}
+                <div label="Preview">
+                  <Preview />
+                </div>
 
-                  {/*Shows - Export Tab Content */}
-                  <div label="Export">
-                    <Export />
-                  </div>
-                </InnerTabs>
-              </Route>
-              <Route path={`${path}/stages/${project._id}`} label="Stages">
-                <InnerTabs>
-                  {/* Stages - Surfaces Tab Content */}
-                  <div label="Surfaces">
-                    <Surfaces />
-                  </div>
+                {/*Shows - Export Tab Content */}
+                <div label="Export">
+                  <Export />
+                </div>
+              </InnerTabs>
+            </Route>
+            <Route path={`${path}/stages/${project._id}`} label="Stages">
+              <InnerTabs>
+                {/* Stages - Surfaces Tab Content */}
+                <div label="Surfaces">
+                  <Surfaces />
+                </div>
 
-                  {/* Stages - Screens Tab Content */}
-                  <div label="Screens">
-                    <Screens />
-                  </div>
+                {/* Stages - Screens Tab Content */}
+                <div label="Screens">
+                  <Screens />
+                </div>
 
-                  {/*Stages - Stages Tab Content */}
-                  <div label="Stages">
-                    <Stages />
-                  </div>
-                </InnerTabs>
-              </Route>
-            </Switch>
-          </Tabs>
+                {/*Stages - Stages Tab Content */}
+                <div label="Stages">
+                  <Stages />
+                </div>
+              </InnerTabs>
+            </Route>
+          </Fragment>
+          // </Switch>
         )}
       </div>
 
@@ -218,6 +247,11 @@ function Home({ project, match: { path } }) {
 
 var mapStateToProps = (state) => ({
   project: state.project,
+  account: state.accounts && state.accounts.account,
 });
+var mapDispatchToProps = {
+  getTeamData,
+  getProject
+}
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
