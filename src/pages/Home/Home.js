@@ -118,7 +118,7 @@ function Home({ project, match: { path }, getTeamData, getProject,location:{path
       if (projects) {
 
         getTeamData(_id, projects[0]._id, () => {
-          getProject(projects[0]._id);
+          getProject(sessionStorage.getItem("selectedProjectId"));
         })
 
 
@@ -152,7 +152,7 @@ function Home({ project, match: { path }, getTeamData, getProject,location:{path
           //  <Switch>
           <Fragment>
             <Route path={`${path}/`} render={() => <Redirect to={`${path}/library/${project._id}`} />} exact />
-            <Route path={`${path}/library/:id`} label="Library" component={Library} />
+            <Route path={`${path}/library/:id/:assetId?`} label="Library" component={Library} />
             {/* <Library
                   addFolderModalToggle={addFolderModalToggle}
                   shareModalToggle={shareModalToggle}

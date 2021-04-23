@@ -26,12 +26,12 @@ const ThumbnailFolderCard = ({ resourceId, getProjectAssets, reviewAssetId, reso
         console.log(projectId, assetId)
         // if (sessionStorage.getItem("currentUrl") === `/home/library/${projectId}`) {
             history.push(`/home/library/${projectId}/${assetId}`)
-            let assetObj = {
-                filters: {
-                    status: "all",
-                }
-            }
-            getProjectAssets(assetId, assetObj)
+            // let assetObj = {
+            //     filters: {
+            //         status: "all",
+            //     }
+            // }
+            // getProjectAssets(assetId, assetObj)
         // }
         // else {
         //     console.log(reviewAssetId)

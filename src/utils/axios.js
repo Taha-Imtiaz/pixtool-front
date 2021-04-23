@@ -30,7 +30,7 @@ const Axios = () => {
         if (navigator.onLine) {
             // if user has internet connection then send request
             requestHandler(req)
-            store.dispatch({type: SHOW_LOADER})
+            store.dispatch({ type: SHOW_LOADER })
         }
         else {
             // internet connectivity error
@@ -39,17 +39,17 @@ const Axios = () => {
         return req
     }, error => {
         // if the request is failed to send
-        store.dispatch({type:HIDE_LOADER})
+        store.dispatch({ type: HIDE_LOADER })
         return Promise.reject(error)
     })
 
     // response interceptor (when responseis sent back) 
     axios.interceptors.response.use((res) => {
-        store.dispatch({type:HIDE_LOADER})
+        store.dispatch({ type: HIDE_LOADER })
         return res
     }, error => {
 
-    store.dispatch({ type: HIDE_LOADER })
+        store.dispatch({ type: HIDE_LOADER })
 
         if (axios.isCancel(error)) { }
         else {

@@ -1,5 +1,5 @@
 import { React, useEffect, useState, Fragment } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getLink, uploadAsset } from "../../Redux/assets/assetActions";
 import { getProjectAssets, getProject } from "../../Redux/project/projectActions";
@@ -40,7 +40,6 @@ const Library = ({
   // state for checkbox
   //  const [checkBoxState, setCheckBoxState] = useState('')
 
-
   // var previousPath, currentPath
   let { pathname } = location
 
@@ -49,39 +48,44 @@ const Library = ({
   //   currentPath = sessionStorage.setItem('currentPath', pathname)
   //   previousPath = sessionStorage.setItem('previousPath', '')
   // }, [])
+  const { id, assetId } = useParams();
 
 
   useEffect(() => {
-    console.log('Library')
+
+    console.log(id, assetId)
+    console.log('Library', pathname, sessionStorage.getItem("path"))
     if (project) {
       // this useeffect only runs if pathname changes (go back and forward)
       //check pathname when we goBack(pathname !== the path of the page from which we are coming)
       if (
-        sessionStorage.getItem("path") &&
-        pathname !== sessionStorage.getItem("path")
+        sessionStorage.getItem("path")
       ) {
         console.log(sessionStorage.getItem("path") &&
           pathname !== sessionStorage.getItem("path"))
         sessionStorage.setItem("path", pathname);
 
-        let pathNameIdArray = pathname.split("/").slice(2, pathname.length);
-        let pathNameIdArrayLength = pathNameIdArray.length;
-        console.log(pathNameIdArrayLength)
+        // let pathNameIdArray = pathname.split("/");
+        // console.log(pathNameIdArray)
+        // let pathNameIdArrayLength = pathNameIdArray.length;
+        // console.log(pathNameIdArrayLength)
 
-        if (pathNameIdArrayLength === 2) { //we are on home page not any nested folder
+        if (id && assetId === undefined) { //we are on home page not any nested folder
+          console.log('Get Project')
           if (teams) {
             let { projects } = teams;
             getProject(projects[0]._id);
           }
         }
-        else if (pathNameIdArrayLength === 3) {
+        else if (id && assetId) {
           //   this else part runs only if we go back
+          console.log('Get Project Assets')
           let assetObj = {
             filters: {
               status: "all",
             }
           }
-          getProjectAssets(pathNameIdArray[2], assetObj)  /*pass asset id in argument   */
+          getProjectAssets(assetId, assetObj)  /*pass asset id in argument   */
         }
       } else {
         sessionStorage.setItem("path", pathname);
@@ -263,8 +267,8 @@ const Library = ({
                   />
                 ) : (
 
-                    <ThumbnailFolderCard key={resource._id} resourceId={resource._id} resource={resource} shareAssetIds={shareAssetIds} setAssetIds={setAssetIds} showCheckbox={showCheckbox} />
-                  )
+                  <ThumbnailFolderCard key={resource._id} resourceId={resource._id} resource={resource} shareAssetIds={shareAssetIds} setAssetIds={setAssetIds} showCheckbox={showCheckbox} />
+                )
               ) : <img src={NoDataFoundImg} alt="No Data Found" className="margin-auto" />)}
           </div>
         </div>
