@@ -1,6 +1,5 @@
 import { React, useState } from 'react';
 import { withRouter } from "react-router-dom";
-import { connect } from 'react-redux';
 
 import './Sidebar.scss';
 
@@ -8,7 +7,7 @@ import Logo from '../../images/logo.png';
 import NavIcon from '../NavIcon/NavIcon';
 import { Link } from 'react-router-dom';
 
-function Sidebar({ children, menu1, history, projectID }) {
+function Sidebar({ children, menu1, history }) {
 
     // This state is used for toggling sidebar
     const [drawer, setDrawer] = useState(true)
@@ -23,7 +22,7 @@ function Sidebar({ children, menu1, history, projectID }) {
         <div className={drawer ? 'sidebar' : 'sidebarCollapse sidebar'}>
             <div className={drawer ? 'sidebar__top' : 'sidebar__top just-cont-cen'}>
                 <div className={drawer ? 'sidebar__logo' : 'dis-none'}>
-                    <img src={Logo} alt="Logo" className="logo-img" onClick={() => history.push(`/home/library/${projectID}`)} />
+                    <img src={Logo} alt="Logo" className="logo-img" onClick={() => history.push(`/home/library/${sessionStorage.getItem("selectedProjectId")}`)} />
                 </div>
 
                 <NavIcon toggle={(e) => toggleSidebar(e)} />
@@ -37,7 +36,7 @@ function Sidebar({ children, menu1, history, projectID }) {
                 <ul className="sidebar__list">
                     {menu1.map((x, i) =>
                         <li className='sidebar__item' key={i}>
-                            <Link to={x.route ? x.route : `/home/library/${projectID}`}>
+                            <Link to={x.route ? x.route : `/home/library/${sessionStorage.getItem("selectedProjectId")}`}>
                                 <div className={drawer ? 'sidebar__option' : 'sidebar__option just-cont-cen'}>
                                     <i className={x.icon}></i>
                                     <span className={drawer ? 'sidebar__text' : 'dis-none'}>{x.value}</span>
@@ -54,9 +53,7 @@ function Sidebar({ children, menu1, history, projectID }) {
 }
 
 
-var mapStateToProps = (state) => ({
-    projectID: state.project && state.project._id
-})
 
 
-export default connect(mapStateToProps)(withRouter(Sidebar))
+
+export default (withRouter(Sidebar))

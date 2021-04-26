@@ -20,7 +20,7 @@ export const signupUser = (userObj, callback) => async (dispatch) => {
             payload: response.data.data
         })
         // navigate user to home page
-        // callback()
+        callback()
 
 
     } catch (e) {
@@ -47,7 +47,7 @@ export const loginUser = (userObj, callback) => async (dispatch) => {
             payload: response.data.data
         })
         // navigate user to home page
-        // callback()
+        callback()
 
 
 

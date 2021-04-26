@@ -74,7 +74,11 @@ const Library = ({
           console.log('Get Project')
           if (teams) {
             let { projects } = teams;
-            getProject(projects[0]._id);
+          if(projects) {
+            console.log(projects)
+            console.log(sessionStorage.getItem("selectedProjectId"))
+            getProject( sessionStorage.getItem("selectedProjectId") ? sessionStorage.getItem("selectedProjectId") : projects[0]._id);
+          }
           }
         }
         else if (id && assetId) {

@@ -16,8 +16,8 @@ const ThumbnailCard = ({ resource, key, resourceId, reviewAssetId, history, show
     }
     const navigateUrl = pathname => {
         if (pathname.includes(`/review/${id}`)) {
-            console.log(pathname, reviewAssetId)
-            history.push(`/review/player/${reviewAssetId}`)
+            console.log(pathname.includes(`/review/${id}`), reviewAssetId)
+            history.push(`/review/player/${id}/${reviewAssetId}`)
         }
         else {
             history.push(`/player/${resourceId}`)

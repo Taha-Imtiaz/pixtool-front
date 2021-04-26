@@ -3,12 +3,10 @@ import { connect } from "react-redux";
 
 import "./Review.scss";
 
-import Header from "../../components/Header/Header";
 import ThumbnailCard from "../../components/Cards/ThumbnailCard/ThumbnailCard";
 import ThumbnailFolderCard from "../../components/Cards/ThumbnailFolderCard/ThumbnailFolderCard";
 
-// import ThumbnailCard from "../../components/Cards/ThumbnailCard/ThumbnailCard";
-// import ThumbnailFolderCard from "../../components/Cards/ThumbnailFolderCard/ThumbnailFolderCard";
+
 
 import NoDataFoundImg from "../../images/no-data-found.png";
 import { getReviewAssets } from "../../Redux/review/reviewActions";
@@ -18,9 +16,12 @@ import ReviewHeader from "../../components/ReviewHeader/ReviewHeader";
 const Review = ({ user, reviewAssets, getReviewAssets, match:{params:{id}} ,location:{pathname} }) => {
   useEffect(() => {
     sessionStorage.setItem("currentUrl", pathname)
-    // console.log(id)
-    getReviewAssets(id)
-  }, [])
+    console.log(id)
+    if(pathname === `/review/${id}`) {
+        getReviewAssets(id) 
+    }
+ 
+  }, [pathname])
   return (
     <Fragment>
       <ReviewHeader  />

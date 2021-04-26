@@ -29,7 +29,7 @@ import { Fragment } from "react";
 import { getTeamData } from "../../Redux/team/teamActions";
 import { getProject } from "../../Redux/project/projectActions";
 
-function Home({ project, match: { path }, getTeamData, getProject,location:{pathname} , account}) {
+function Home({ project, match: { path }, getTeamData, getProject, location: { pathname }, account }) {
   // console.log(path)
   // This state is used to set teamId
   const [teamId, setTeamId] = useState(null);
@@ -114,11 +114,12 @@ function Home({ project, match: { path }, getTeamData, getProject,location:{path
       let { projects, _id } = account[0];
       // console.log(pathname);
       // we extract _id from account[0] means first team
-      
+
       if (projects) {
 
         getTeamData(_id, projects[0]._id, () => {
-          getProject(sessionStorage.getItem("selectedProjectId"));
+
+          sessionStorage.getItem("selectedProjectId") && getProject(sessionStorage.getItem("selectedProjectId"));
         })
 
 
@@ -149,10 +150,15 @@ function Home({ project, match: { path }, getTeamData, getProject,location:{path
           // <Tabs className="tabs">
           // </Tabs>
 
-          //  <Switch>
+          
           <Fragment>
+              <Switch>
             <Route path={`${path}/`} render={() => <Redirect to={`${path}/library/${project._id}`} />} exact />
-            <Route path={`${path}/library/:id/:assetId?`} label="Library" component={Library} />
+            <Route path={`${path}/library/:id/:assetId?`} label="Library" render={(props) =>
+              <Library {...props} addFolderModalToggle={addFolderModalToggle}
+                shareModalToggle={shareModalToggle}
+                showCheckbox={showCheckbox}
+                setShowCheckbox={setShowCheckbox} />} />
             {/* <Library
                   addFolderModalToggle={addFolderModalToggle}
                   shareModalToggle={shareModalToggle}
@@ -206,8 +212,9 @@ function Home({ project, match: { path }, getTeamData, getProject,location:{path
                 </div>
               </InnerTabs>
             </Route>
-          </Fragment>
-          // </Switch>
+           </Switch>
+           </Fragment>
+          
         )}
       </div>
 

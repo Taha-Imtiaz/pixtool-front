@@ -6,7 +6,7 @@ import ButtonLarge from '../../components/Button/ButtonLarge';
 import { connect } from 'react-redux';
 import {  loginUser } from '../../Redux/user/userActions';
 
-const SignIn = ({loginUser}) => {
+const SignIn = ({loginUser, history}) => {
     const [authFormState, setAuthFormState] = useState({
         email: '',
         password: ''
@@ -50,7 +50,7 @@ const SignIn = ({loginUser}) => {
         let userObj = {
             email, password
         } 
-        loginUser(userObj)
+        loginUser(userObj, () => history.push(`/home`))
 
     }
     return (

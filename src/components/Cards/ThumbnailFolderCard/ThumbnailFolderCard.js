@@ -6,12 +6,12 @@ import { getReviewProjectAssets } from '../../../Redux/review/reviewActions';
 import './ThumbnailFolderCard.scss';
 
 
-const ThumbnailFolderCard = ({ resourceId, getProjectAssets, reviewAssetId, resource, history, projectId, match: { params }, getReviewProjectAssets, location: { pathname }, showCheckbox, setAssetIds, shareAssetIds }) => {
+const ThumbnailFolderCard = ({ resourceId, getProjectAssets, reviewAssetId, resource, history, projectId, match: { params:{id} }, getReviewProjectAssets, location: { pathname }, showCheckbox, setAssetIds, shareAssetIds }) => {
 
     const [thumbnailsLength, setThumbnailsLength] = useState(0)
 
     let { name, thumbnails, uploaded_at, uploader } = resource
-    // console.log(pathname)
+    console.log(id)
 
     useEffect(() => {
         if (thumbnails) {
@@ -24,14 +24,27 @@ const ThumbnailFolderCard = ({ resourceId, getProjectAssets, reviewAssetId, reso
     // fetch assets of the given projects
     const fetchAssets = (projectId, assetId) => {
         console.log(projectId, assetId)
+
         // if (sessionStorage.getItem("currentUrl") === `/home/library/${projectId}`) {
+        if (pathname.includes(`/review/${id}`)) {
+            console.log(reviewAssetId)
+                history.push(`/review/${id}/${reviewAssetId}`)
+                let assetObj = {
+                    filters: {
+                        status: "all",
+                    }
+                }
+                getReviewProjectAssets(reviewAssetId, assetObj)
+        }
+        else {
             history.push(`/home/library/${projectId}/${assetId}`)
-            // let assetObj = {
-            //     filters: {
-            //         status: "all",
-            //     }
-            // }
-            // getProjectAssets(assetId, assetObj)
+        }
+        // let assetObj = {
+        //     filters: {
+        //         status: "all",
+        //     }
+        // }
+        // getProjectAssets(assetId, assetObj)
         // }
         // else {
         //     console.log(reviewAssetId)
@@ -44,7 +57,7 @@ const ThumbnailFolderCard = ({ resourceId, getProjectAssets, reviewAssetId, reso
         //     getReviewProjectAssets(reviewAssetId, assetObj)
         // }
 
-        
+
     }
 
     const updateAssetIndex = (e, assetId) => {

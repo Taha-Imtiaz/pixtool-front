@@ -132,12 +132,13 @@ const App = ({
           <Route path="/home" component={Home} />
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
-          <Route path="/review/:id" component={Review} />
+          <Route path="/review/:id/:assetId?" component={Review} exact/>
           {/* <Route path = "/review/:id/player/:assetId" component = {Player}/> */}
           {/* <PrivateRoute path="/home/library/:projectId" component={Home} /> */}
           <PrivateRoute
             // path="/player/:assetId" 
-            path={["/player/:assetId", "/review/player/:assetId"]}
+        //  path =   {"/player/:assetId" | "/review/player/:assetId" }
+            path={["/player/:assetId", "/review/player/:id/:assetId"]}
             component={Player} />
           <PrivateRoute path="/accounts" component={Accounts} />
           <PrivateRoute path="/test" component={Test} />

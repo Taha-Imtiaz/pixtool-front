@@ -99,10 +99,13 @@ const TeamsNav = ({
         console.log(sessionStorage.getItem("selectedProjectId") , sessionStorage.getItem("selectedProjectIndex"))
         setSelectedProjectIndex(parseInt(sessionStorage.getItem("selectedProjectIndex")))
         getProject(sessionStorage.getItem("selectedProjectId"))
+       
         // history.push(`/home/library/${sessionStorage.getItem("selectedProjectId")}`)
       } else{
         setSelectedProjectIndex(0)
       getProject(projects[0]._id)
+      sessionStorage.setItem("selectedProjectId", projects[0]._id)
+    sessionStorage.setItem("selectedProjectIndex", 0)
       // history.push(`/home/library/${projects[0]._id}`)
 
       }
@@ -145,9 +148,9 @@ const TeamsNav = ({
         <ul className="teamsNav__list">
           {account &&
             account.map((account, index) => (
-              <li key={account._id} className= "teamsNav__item">
+              <li key={account._id} className= "teamsNav__item" >
                 <div
-                  className="teamsNav__item__head"
+                  className="teamsNav__item__head" 
                   onClick={() => toggleTeamNav(index)}
                 >
                   <div className="teamsNav__center" >

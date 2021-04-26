@@ -4,11 +4,12 @@ import { withRouter } from 'react-router'
 import Logo from '../../images/logo.png'
 import "./Reviewheader.scss"
 
-const ReviewHeader = () => {
+const ReviewHeader = ({history}) => {
+
     return (
         <div className  = "review__navbar">
         <div className='sidebar__logo'>
-        <img src={Logo} alt="Logo" className="logo-img"  />
+        <img src={Logo} alt="Logo" className="logo-img" onClick = {() => history.push(`/home/library/${sessionStorage.getItem("selectedProjectId")}`)} />
     </div>
     </div>
     )
