@@ -25,12 +25,12 @@ const Teams = ({ teamName }) => {
         <div className="teams">
             {/* This is Account Page's main tab which include Team Members & Teams */}
             {/* <Tabs className="tabs"> */}
-            <div>
-                {teamName}
-            </div>
+          
             {/* Team Members Tab Content */}
             <div label="Team Members">
-
+            <div className = "teamName">
+                {teamName}
+            </div>
                 <div className="topBtns">
                     <ButtonSmall text="Manage Collaborators" click={createNew} />
                     <ButtonSmallPrimary text="Invite Users" click={createNew} />

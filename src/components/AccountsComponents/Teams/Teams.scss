@@ -10,13 +10,19 @@
     z-index: 10001;
 }
 .teamName {
-    // display: flex;
-    // gap: 2rem;
+  
 
-    // position: absolute;
-    // // top: 10.5rem;
-    // right: 2rem;
-    // z-index: 10001;
+   height: 5vh;
+   
+    position: relative;
+    display:flex; 
+    justify-content:center; 
+    align-items:center;
+    font-size: 1.8rem;
+    color: rgba($color-white, 1);
+    text-transform: capitalize;
+    background-color: rgba($color-secondary, .9);
+
 }
 .teamMembers {
     padding: 2rem;
