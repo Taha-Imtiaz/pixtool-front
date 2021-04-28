@@ -153,6 +153,7 @@ function Home({ projectId, match: { path }, getTeamData, getProject, location: {
        
           <Fragment> 
               <Link  to ={`${path}/library/${projectId}`}>Library</Link>
+              
               <Link  to ={`${path}/shows/${projectId}`}>Stages</Link>
               <Link  to ={`${path}/stages/${projectId}`}>Shows</Link>
 
