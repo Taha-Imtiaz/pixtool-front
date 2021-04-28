@@ -1,19 +1,19 @@
 import Axios from "axios"
 import { showToastMessage } from "../utility/utilityActions"
-import { GET_PROJECT } from "./projectConstants"
+import { GET_PROJECT, SET_PROJECT_ID } from "./projectConstants"
 
 // get all assets of  single project by passing projectId(asset of type file)
 export const getProject = (projectId) => async (dispatch) => {
     try {
         let response = await Axios.get(`project/${projectId}`)
-        let projectObj = {
-            parentId: projectId,
-            ...response.data.data
-        }
+        // let projectObj = {
+        //     parentId: projectId,
+        //     ...response.data.data
+        // }
 
         dispatch({
             type: GET_PROJECT,
-            payload: projectObj
+            payload: response.data.data
         })
 
     } catch (e) {
@@ -31,7 +31,7 @@ export const getProjectAssets = (assetId, assetObj) => async (dispatch) => {
         // console.log("in folder")
 
         let projectObj = {
-            parentId: assetId,
+        //     parentId: assetId,
             resources: response.data.data
         }
         dispatch({
@@ -65,5 +65,13 @@ export const deleteProject = (projectId) => async (dispatch) => {
 
         }
     }
+}
+
+export const setProjectId = (projectId) => async (dispatch) => {
+ dispatch({
+     type:SET_PROJECT_ID,
+     payload: projectId
+ })
+    
 }
 

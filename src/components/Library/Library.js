@@ -48,59 +48,65 @@ const Library = ({
   //   currentPath = sessionStorage.setItem('currentPath', pathname)
   //   previousPath = sessionStorage.setItem('previousPath', '')
   // }, [])
-  const { id, assetId } = useParams();
+  const { projectId, assetId } = useParams();
 
 
   useEffect(() => {
-
-    console.log(id, assetId)
-    console.log('Library', pathname, sessionStorage.getItem("path"))
+    let sessionPath = sessionStorage.getItem("path")
+    console.log(projectId, assetId, sessionPath, pathname)
     if (project) {
       // this useeffect only runs if pathname changes (go back and forward)
       //check pathname when we goBack(pathname !== the path of the page from which we are coming)
       if (
-        sessionStorage.getItem("path")
+        sessionPath
       ) {
-        console.log(sessionStorage.getItem("path") &&
-          pathname !== sessionStorage.getItem("path"))
+
         sessionStorage.setItem("path", pathname);
 
-        // let pathNameIdArray = pathname.split("/");
-        // console.log(pathNameIdArray)
-        // let pathNameIdArrayLength = pathNameIdArray.length;
-        // console.log(pathNameIdArrayLength)
 
-        if (id && assetId === undefined) { //we are on home page not any nested folder
-          console.log('Get Project')
-          if (teams) {
-            let { projects } = teams;
-          if(projects) {
-            console.log(projects)
-            console.log(sessionStorage.getItem("selectedProjectId"))
-            getProject( sessionStorage.getItem("selectedProjectId") ? sessionStorage.getItem("selectedProjectId") : projects[0]._id);
-          }
-          }
-        }
-        else if (id && assetId) {
-          //   this else part runs only if we go back
+        // if (projectId && assetId === undefined) { //we are on home page not any nested folder
+        //   console.log('Get Project')
+        //   if (teams) {
+        //     let { projects } = teams;
+        //   if(projects) {
+        //     console.log(projects)
+        //     console.log(sessionStorage.getItem("selectedProjectId"))
+        //     getProject( sessionStorage.getItem("selectedProjectId") ? sessionStorage.getItem("selectedProjectId") : projects[0]._id);
+        //   }
+        //   }
+        // }
+
+      
+          console.log(projectId, assetId)
           console.log('Get Project Assets')
           let assetObj = {
             filters: {
               status: "all",
             }
           }
-          getProjectAssets(assetId, assetObj)  /*pass asset id in argument   */
-        }
-      } else {
+          getProjectAssets(assetId ? assetId : projectId, assetObj)  /*pass asset id in argument   */
+      }
+       else {
         sessionStorage.setItem("path", pathname);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+  }, [pathname, projectId]);
 
+  // useEffect(() => {
+  //   if (projectId) {
+  //     console.log(projectId)
+  //     let assetObj = {
+  //       filters: {
+  //         status: "all",
+  //       }
+  //     }
+  //     getProjectAssets(projectId, assetObj)
+  //   }
+
+  // }, [projectId])
 
   const handleVideoUpload = async (e) => {
-    let { parentId } = project;
 
     if (e.target.files[0]) {
       let file = e.target.files[0];
@@ -113,7 +119,7 @@ const Library = ({
       data.append(
         "data",
         JSON.stringify({
-          parent_id: parentId,
+          parent_id: assetId ? assetId : projectId,
         })
       );
 

@@ -11,30 +11,7 @@ import {
   DOWNLOAD_VIDEO,
 } from "./assetConstants";
 
-// get all assets of  single project (which is in folder) by passing projectId
-// export const getAllProjectAssests = (projectId) => async (dispatch) => {
-//     try {
-//         let response = await Axios.get(`project/${projectId}`)
-//         console.log(response.data.data)
-//         // let assetsObj = {
-//         //     projectId: projectId,
-//         //     assets:response.data.data.resources
-//         // }
-//         let assetObj = {
-//             parentId: projectId,
-//             assets: response.data.data.resources
-//         }
-//         dispatch({
-//             type:GET_PROJECT_ASSETS,
-//             payload: assetObj
-//         })
-//     } catch (e) {
-//         if (e.response && e.response.data) {
-//             dispatch(showToastMessage(e.response.data.message))
 
-//           }
-//     }
-// }
 
 export const getAssetDetails = (assetId) => async (dispatch) => {
   try {

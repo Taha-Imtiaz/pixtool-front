@@ -59,8 +59,5 @@ const ThumbnailCard = ({ resource, key, resourceId, reviewAssetId, history, show
         </div>
     )
 }
-var mapStateToProps = (state) => ({
-    parentId: state.project && state.project.parentId,
-})
 
-export default connect(mapStateToProps)(withRouter(ThumbnailCard))
+export default withRouter(ThumbnailCard)

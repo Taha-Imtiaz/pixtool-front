@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Link, Redirect, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./Home.scss";
@@ -29,8 +29,8 @@ import { Fragment } from "react";
 import { getTeamData } from "../../Redux/team/teamActions";
 import { getProject } from "../../Redux/project/projectActions";
 
-function Home({ project, match: { path }, getTeamData, getProject, location: { pathname }, account }) {
-  // console.log(path)
+function Home({ projectId, match: { path }, getTeamData, getProject, location: { pathname }, account }) {
+  // console.log(assetId)
   // This state is used to set teamId
   const [teamId, setTeamId] = useState(null);
 
@@ -111,19 +111,19 @@ function Home({ project, match: { path }, getTeamData, getProject, location: { p
     if (account) {
 
       // get all projects of first team
-      let { projects, _id } = account[0];
+      // let { projects, _id } = account[0];
       // console.log(pathname);
       // we extract _id from account[0] means first team
 
-      if (projects) {
+      // if (projects) {
 
-        getTeamData(_id, projects[0]._id, () => {
+      //   getTeamData(_id, projects[0]._id, () => {
 
-          sessionStorage.getItem("selectedProjectId") && getProject(sessionStorage.getItem("selectedProjectId"));
-        })
+      //     sessionStorage.getItem("selectedProjectId") && getProject(sessionStorage.getItem("selectedProjectId"));
+      //   })
 
 
-      }
+      // }
       sessionStorage.setItem("currentUrl", pathname)
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }
@@ -146,27 +146,25 @@ function Home({ project, match: { path }, getTeamData, getProject, location: { p
         <Header className="header" />
 
         {/* This is home's main tab which include Library, Shows & Stages */}
-        {project && (
+        {projectId && (
           // <Tabs className="tabs">
           // </Tabs>
 
-          
-          <Fragment>
+       
+          <Fragment> 
+              <Link  to ={`${path}/library/${projectId}`}>Library</Link>
+              <Link  to ={`${path}/shows/${projectId}`}>Stages</Link>
+              <Link  to ={`${path}/stages/${projectId}`}>Shows</Link>
+
               <Switch>
-            <Route path={`${path}/`} render={() => <Redirect to={`${path}/library/${project._id}`} />} exact />
-            <Route path={`${path}/library/:id/:assetId?`} label="Library" render={(props) =>
+            <Route path={`${path}/`} render={() => <Redirect to={`${path}/library/${projectId}`} />} exact />
+            <Route path={`${path}/library/:projectId/:assetId?`} label="Library" render={(props) =>
               <Library {...props} addFolderModalToggle={addFolderModalToggle}
                 shareModalToggle={shareModalToggle}
                 showCheckbox={showCheckbox}
                 setShowCheckbox={setShowCheckbox} />} />
-            {/* <Library
-                  addFolderModalToggle={addFolderModalToggle}
-                  shareModalToggle={shareModalToggle}
-                  showCheckbox={showCheckbox}
-                  setShowCheckbox={setShowCheckbox}
-                /> */}
-            {/* </Route> */}
-            <Route path={`${path}/shows/${project._id}`} label="Shows">
+           
+            <Route path={`${path}/shows/${projectId}`} label="Shows">
               <InnerTabs>
                 {/* Shows - Overview Tab Content */}
                 <div label="Overview">
@@ -194,7 +192,7 @@ function Home({ project, match: { path }, getTeamData, getProject, location: { p
                 </div>
               </InnerTabs>
             </Route>
-            <Route path={`${path}/stages/${project._id}`} label="Stages">
+            <Route path={`${path}/stages/${projectId}`} label="Stages">
               <InnerTabs>
                 {/* Stages - Surfaces Tab Content */}
                 <div label="Surfaces">
@@ -233,6 +231,7 @@ function Home({ project, match: { path }, getTeamData, getProject, location: { p
         showModal={showAddFolderModal}
         setShowModal={setShowAddFolderModal}
         modalToggler={addFolderModalToggle}
+      
       />
 
       {/* This is ShareModal */}
@@ -253,7 +252,7 @@ function Home({ project, match: { path }, getTeamData, getProject, location: { p
 }
 
 var mapStateToProps = (state) => ({
-  project: state.project,
+  projectId: state.project && state.project.projectId,
   account: state.accounts && state.accounts.account,
 });
 var mapDispatchToProps = {

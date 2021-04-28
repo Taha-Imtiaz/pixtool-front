@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { getProject } from "../../Redux/project/projectActions";
+import { getProject, setProjectId } from "../../Redux/project/projectActions";
 import { deleteProject } from "../../Redux/account/accountActions";
 
 import "./TeamsNav.scss";
@@ -29,7 +29,8 @@ const TeamsNav = ({
   account,
   projects,
   deleteProject,
-  history
+  history,
+  setProjectId
 }) => {
   // This state is used for toggling Sidebar Team Nav Lists
   const [teamItemIndex, setTeamItemIndex] = useState(null);
@@ -93,20 +94,21 @@ const TeamsNav = ({
   // const [tooltipState, setToolTipState] = useState(false);
   // this useEffect is used for highlighting 1st project by defaults
   useEffect(() => {
-    if(projects) {
+    if (projects) {
 
       if (sessionStorage.getItem("selectedProjectId") && sessionStorage.getItem("selectedProjectIndex")) {
-        console.log(sessionStorage.getItem("selectedProjectId") , sessionStorage.getItem("selectedProjectIndex"))
+        console.log(sessionStorage.getItem("selectedProjectId"), sessionStorage.getItem("selectedProjectIndex"))
         setSelectedProjectIndex(parseInt(sessionStorage.getItem("selectedProjectIndex")))
-        getProject(sessionStorage.getItem("selectedProjectId"))
-       
+        // getProject(sessionStorage.getItem("selectedProjectId"))
+        setProjectId(sessionStorage.getItem("selectedProjectId"))
         // history.push(`/home/library/${sessionStorage.getItem("selectedProjectId")}`)
-      } else{
+      } else {
         setSelectedProjectIndex(0)
-      getProject(projects[0]._id)
-      sessionStorage.setItem("selectedProjectId", projects[0]._id)
-    sessionStorage.setItem("selectedProjectIndex", 0)
-      // history.push(`/home/library/${projects[0]._id}`)
+        // getProject(projects[0]._id)
+        setProjectId(projects[0]._id)
+        sessionStorage.setItem("selectedProjectId", projects[0]._id)
+        sessionStorage.setItem("selectedProjectIndex", 0)
+        // history.push(`/home/library/${projects[0]._id}`)
 
       }
     }
@@ -130,14 +132,14 @@ const TeamsNav = ({
   const handleModalClose = () => {
     setOpen(false);
   };
-  const highlightSelectedProject = (projectId,index) => {
+  const highlightSelectedProject = (projectId, index) => {
     console.log(projectId, index)
     setSelectedProjectIndex(index)
     sessionStorage.setItem("selectedProjectId", projectId)
     sessionStorage.setItem("selectedProjectIndex", index)
     history.push(`/home/library/${projectId}`)
 
-    getProject(projectId)
+    // getProject(projectId)
 
 
   }
@@ -148,9 +150,9 @@ const TeamsNav = ({
         <ul className="teamsNav__list">
           {account &&
             account.map((account, index) => (
-              <li key={account._id} className= "teamsNav__item" >
+              <li key={account._id} className="teamsNav__item" >
                 <div
-                  className="teamsNav__item__head" 
+                  className="teamsNav__item__head"
                   onClick={() => toggleTeamNav(index)}
                 >
                   <div className="teamsNav__center" >
@@ -158,8 +160,8 @@ const TeamsNav = ({
                       {index === teamItemIndex ? (
                         <i className="fas fa-chevron-down"></i>
                       ) : (
-                          <i className="fas fa-chevron-right"></i>
-                        )}
+                        <i className="fas fa-chevron-right"></i>
+                      )}
                     </span>
 
                     <span
@@ -183,10 +185,10 @@ const TeamsNav = ({
                       {account.projects &&
                         account.projects.map((project, index) => (
                           <li key={project._id} className={index === selectedProjectIndex ? "project__item project__highlight" : "project__item"} >
-                            <span 
+                            <span
                               className="project__item--name"
                               // onClick={() => getProject(project._id)}
-                              onClick = {() => highlightSelectedProject(project._id, index)}
+                              onClick={() => highlightSelectedProject(project._id, index)}
                             >
                               {project.name}
                             </span>
@@ -295,7 +297,8 @@ var mapStateToProps = (state) => ({
 });
 var mapDispatchToProps = {
   getProject,
-  deleteProject
+  deleteProject,
+  setProjectId
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TeamsNav));

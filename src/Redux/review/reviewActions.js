@@ -26,12 +26,7 @@ export const getReviewAssets = (id) => async (dispatch) => {
 export const getReviewProjectAssets = (assetId, assetObj) => async (dispatch) => {
     try {
         let response = await Axios.post(`child/${assetId}`, assetObj)
-        // console.log("in folder")
-
-        // let projectObj = {
-        //     parentId: assetId,
-        //     resources: response.data.data
-        // }
+       
         dispatch({
             type: GET_REVIEW_PROJECT_ASSETS,
             payload: response.data.data

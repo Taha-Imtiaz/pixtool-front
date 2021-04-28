@@ -4,9 +4,10 @@ import './AddFolderModal.scss';
 import ButtonLight from '../../Button/ButtonLight';
 import { connect } from 'react-redux';
 import { uploadAsset } from '../../../Redux/assets/assetActions';
+import { withRouter } from 'react-router';
 
 
-const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, parentId }) => {
+const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, location:{pathname} }) => {
 
 
     const [modalFormFields, setModalFormFields] = useState({
@@ -15,6 +16,8 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, pa
     });
 
     // Modal Back-drop Styling
+    let pathNameArray = pathname.split('/')
+    let pathNameLastIndex = pathNameArray[pathNameArray.length -1 ]
     const backDropStyle = {
         opacity: showModal ? '1' : '',
         visibility: showModal ? 'visible' : '',
@@ -50,7 +53,7 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, pa
 
         const data = new FormData()
         data.append('data', JSON.stringify({
-            parent_id: parentId,
+            parent_id: pathNameLastIndex,
             name: modalFormFields.projectName,
             description: modalFormFields.projectDescription,
         }))
@@ -94,10 +97,8 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, pa
         </div>
     )
 }
-var mapStateToProps = (state) => ({
-    parentId: state.project && state.project.parentId
-})
+
 var mapDispatchToProps = {
     uploadAsset
 }
-export default connect(mapStateToProps, mapDispatchToProps)(AddFolderModal)
+export default connect(null, mapDispatchToProps)(withRouter(AddFolderModal))

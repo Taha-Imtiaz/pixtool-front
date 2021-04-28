@@ -9,7 +9,7 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-function Filter({ parentId, getProjectAssets, history }) {
+function Filter({  getProjectAssets, history, location:{pathname} }) {
     // State To Store The Filter Value
     const [showFilter, setShowFilter] = useState(false);
 
@@ -45,7 +45,8 @@ function Filter({ parentId, getProjectAssets, history }) {
         setCheckBoxState(!checkboxState)
 
     }
-
+    let pathNameArray = pathname.split('/')
+    let pathNameLastIndex = pathNameArray[pathNameArray.length -1 ]
     // form submit handler
     const onFormSubmit = (event) => {
 
@@ -71,7 +72,7 @@ function Filter({ parentId, getProjectAssets, history }) {
             }
         }
         console.log(assetObj)
-        getProjectAssets(parentId, assetObj)
+        getProjectAssets(pathNameLastIndex, assetObj)
         //   hide filter modal
         setShowFilter(false)
     }
@@ -82,17 +83,7 @@ function Filter({ parentId, getProjectAssets, history }) {
     }
 
 
-    // handler for changing the value of date
-    // const handleDateFilter = (e) => {
-    //     let { name, value } = e.target
-    //     console.log(name, value)
-    //     var m = moment(value, 'YYYY-MM-DD');
-    //     // f
-    //     if (m.isValid()) {
-    //         console.log(new Date(value))
-    //         setSelectedDate(new Date(value))
-    //     }
-    // }
+  
 
     return (
         <div className="filter">
@@ -164,10 +155,8 @@ function Filter({ parentId, getProjectAssets, history }) {
         </div>
     )
 }
-var mapStateToProps = (state) => ({
-    parentId: state.project && state.project.parentId
-})
+
 var mapDispatchToProps = {
     getProjectAssets
 }
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Filter))
+export default connect(null, mapDispatchToProps)(withRouter(Filter))

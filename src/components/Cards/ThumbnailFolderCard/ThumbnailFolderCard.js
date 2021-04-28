@@ -127,7 +127,7 @@ const ThumbnailFolderCard = ({ resourceId, getProjectAssets, reviewAssetId, reso
 }
 
 var mapStateToProps = (state) => ({
-    projectId: state.project && state.project.parentId,
+    projectId: state.project && state.project.projectId,
 })
 var mapDispatchToProps = {
     getProjectAssets,
