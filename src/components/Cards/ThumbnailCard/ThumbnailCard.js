@@ -1,12 +1,15 @@
-import { React, Fragment } from 'react';
-import { connect } from 'react-redux';
+import { React, Fragment, useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import { changeStatusCase } from '../../../utils/helperfunctions';
+
 import './ThumbnailCard.scss';
+
+import { changeStatusCase } from '../../../utils/helperfunctions';
 
 const ThumbnailCard = ({ resource, key, resourceId, reviewAssetId, history, showCheckbox, setAssetIds, shareAssetIds, location: { pathname }, match: { params: { id } } }) => {
 
     let { thumbnail, name, uploaded_at, uploader, status } = resource;
+
+    const [videoStatusState, setVideoStatusState] = useState('');
 
     const updateAssetIndex = (e, assetId) => {
         // setCheckBoxState(!checkBoxState)
@@ -24,15 +27,39 @@ const ThumbnailCard = ({ resource, key, resourceId, reviewAssetId, history, show
         }
     }
 
+    useEffect(() => {
+        let videoStatus = changeStatusCase(status);
+
+        if (videoStatus) {
+            if (videoStatus === 'Needs Review') {
+                setVideoStatusState('bg-red-tomato');
+
+            } else if (videoStatus === 'In Progress') {
+                setVideoStatusState('bg-green');
+
+            } else if (videoStatus === 'Approved') {
+                setVideoStatusState('bg-blue');
+
+            } else {
+                setVideoStatusState('bg-silver');
+            }
+        }
+
+    }, [])
+
+
     // console.log(pathname, pathname.includes(`/review/${id}`))
     return (
         <div className="thumbnailCard" tabIndex="0" key={key} onClick={() => navigateUrl(pathname)}
 
         >
             <Fragment>
-                <div className="thumbnailCard__status">
-                    {changeStatusCase(status)}
-                </div>
+
+                {videoStatusState &&
+                    <div id="thumbnailCardStatus" className={`thumbnailCard__status ${videoStatusState}`}>
+                        {changeStatusCase(status)}
+                    </div>
+                }
 
                 <div className="thumbnailCard__imgBox">
                     {thumbnail ? <img src={thumbnail} alt="Thumbnail" className="thumbnailCard__img" /> : <img src="" alt="Thumbnail" className="thumbnailCard__img" />}
