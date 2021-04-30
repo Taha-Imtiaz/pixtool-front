@@ -6,6 +6,8 @@
     display: grid;
     grid-template-rows: min-content 1fr min-content;
 
+    min-height: calc(100% - 10rem);
+
     &__head {
         position: sticky;
         top: 14.5rem;
@@ -63,6 +65,8 @@
     // justify-content: space-between;
     flex-wrap: wrap;
     gap: 2.5rem;
+
+    min-height: 100%;
 }
 
 .shareBar {
@@ -92,4 +96,30 @@
         gap: 2rem;
     }
 
+}
+
+.noDataFound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+
+    margin: auto;
+
+    &__img {
+        height: auto;
+        width: 12rem;
+        filter: invert(1) brightness(100);
+    }
+
+    &__text {
+        font-size: 1.6rem;
+        color: $color-white-dull;
+
+        &--primary {
+            color: $color-primary;
+            font-weight: bold;
+        }
+    }
 }

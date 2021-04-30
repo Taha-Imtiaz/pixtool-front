@@ -235,8 +235,12 @@ const Library = ({
       getLink(assetIdObj)
       shareModalToggle()
     }
-
   }
+
+  const clickFileUpload = () => {
+    document.getElementById('fileUploadInput').click();
+  }
+
 
   return (
     <Fragment>
@@ -275,11 +279,24 @@ const Library = ({
                     index={index}
 
                   />
-                ) : (
-
-                  <ThumbnailFolderCard key={resource._id} resourceId={resource._id} resource={resource} shareAssetIds={shareAssetIds} setAssetIds={setAssetIds} showCheckbox={showCheckbox} />
                 )
-              ) : <img src={NoDataFoundImg} alt="No Data Found" className="margin-auto" />)}
+                  :
+                  (
+                    <ThumbnailFolderCard key={resource._id} resourceId={resource._id} resource={resource} shareAssetIds={shareAssetIds} setAssetIds={setAssetIds} showCheckbox={showCheckbox} />
+                  )
+              )
+              :
+              <div className="noDataFound">
+                <img src={NoDataFoundImg} alt="No Data Found" className="noDataFound__img" />
+                <div className="txt-align-center">
+                  <p className="noDataFound__text noDataFound__text--primary">Folder is empty!</p>
+                  <p className="noDataFound__text">Upload files to begin.</p>
+                </div>
+                <input id="fileUploadInput" type="file" className="dropdown__uploadInput inputTag" onChange={(e) => handleVideoUpload(e)} accept="video/*" />
+                <Button text="Upload Files" click={clickFileUpload} />
+              </div>
+            )
+            }
           </div>
         </div>
       </div>
