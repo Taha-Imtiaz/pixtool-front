@@ -55,40 +55,40 @@ const Library = ({
     let sessionPath = sessionStorage.getItem("path")
     console.log(projectId, assetId, sessionPath, pathname)
     if (project) {
+      console.log('Inside')
       // this useeffect only runs if pathname changes (go back and forward)
       //check pathname when we goBack(pathname !== the path of the page from which we are coming)
-      if (
-        sessionPath
-      ) {
+      // if (
+      //   sessionPath
+      // ) {
+      //   sessionStorage.setItem("path", pathname);
+      // }
+      // else {
+      //   sessionStorage.setItem("path", pathname);
+      // }
 
-        sessionStorage.setItem("path", pathname);
+
+      // if (projectId && assetId === undefined) { //we are on home page not any nested folder
+      //   console.log('Get Project')
+      //   if (teams) {
+      //     let { projects } = teams;
+      //   if(projects) {
+      //     console.log(projects)
+      //     console.log(sessionStorage.getItem("selectedProjectId"))
+      //     getProject( sessionStorage.getItem("selectedProjectId") ? sessionStorage.getItem("selectedProjectId") : projects[0]._id);
+      //   }
+      //   }
+      // }
 
 
-        // if (projectId && assetId === undefined) { //we are on home page not any nested folder
-        //   console.log('Get Project')
-        //   if (teams) {
-        //     let { projects } = teams;
-        //   if(projects) {
-        //     console.log(projects)
-        //     console.log(sessionStorage.getItem("selectedProjectId"))
-        //     getProject( sessionStorage.getItem("selectedProjectId") ? sessionStorage.getItem("selectedProjectId") : projects[0]._id);
-        //   }
-        //   }
-        // }
-
-      
-          console.log(projectId, assetId)
-          console.log('Get Project Assets')
-          let assetObj = {
-            filters: {
-              status: "all",
-            }
-          }
-          getProjectAssets(assetId ? assetId : projectId, assetObj)  /*pass asset id in argument   */
+      console.log(projectId, assetId)
+      console.log('Get Project Assets')
+      let assetObj = {
+        filters: {
+          status: "all",
+        }
       }
-       else {
-        sessionStorage.setItem("path", pathname);
-      }
+      getProjectAssets(assetId ? assetId : projectId, assetObj)  /*pass asset id in argument   */
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, projectId]);

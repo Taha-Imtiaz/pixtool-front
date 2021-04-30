@@ -150,70 +150,71 @@ function Home({ projectId, match: { path }, getTeamData, getProject, location: {
           // <Tabs className="tabs">
           // </Tabs>
 
-       
-          <Fragment> 
-              <Link  to ={`${path}/library/${projectId}`}>Library</Link>
+
+          <Fragment>
+            <Link to={`${path}/library/${projectId}`}>Library</Link>
+
+            <Link to={`${path}/shows/${projectId}`}>Stages</Link>
+            <Link to={`${path}/stages/${projectId}`}>Shows</Link>
+
+            <Switch>
+              <Route path={`${path}/`} render={() => <Redirect to={`${path}/library/${projectId}`} />} exact />
+              <Route path={`${path}/library/:projectId/:assetId?`} label="Library" render={(props) =>
+                <Library {...props} addFolderModalToggle={addFolderModalToggle}
+                  shareModalToggle={shareModalToggle}
+                  showCheckbox={showCheckbox}
+                  setShowCheckbox={setShowCheckbox} />} />
+
+              <Route path={`${path}/shows/${projectId}`} label="Shows">
+                <InnerTabs>
+                  {/* Shows - Overview Tab Content */}
+                  <div label="Overview">
+                    <Overview />
+                  </div>
+
+                  {/* Shows - Settings Tab Content */}
+                  <div label="Settings">
+                    <Settings />
+                  </div>
+
+                  {/*Shows - Media Tab Content */}
+                  <div label="Media">
+                    <Media />
+                  </div>
+
+                  {/*Shows -  Preview Tab Content */}
+                  <div label="Preview">
+                    <Preview />
+                  </div>
+
+                  {/*Shows - Export Tab Content */}
+                  <div label="Export">
+                    <Export />
+                  </div>
+                </InnerTabs>
+              </Route>
+              <Route path={`${path}/stages/${projectId}`} label="Stages">
+                <InnerTabs>
+                  {/* Stages - Surfaces Tab Content */}
+                  <div label="Surfaces">
+                    <Surfaces />
+                  </div>
+
+                  {/* Stages - Screens Tab Content */}
+                  <div label="Screens">
+                    <Screens />
+                  </div>
+
+                  {/*Stages - Stages Tab Content */}
+                  <div label="Stages">
+                    <Stages />
+                  </div>
+                </InnerTabs>
+              </Route>
               
-              <Link  to ={`${path}/shows/${projectId}`}>Stages</Link>
-              <Link  to ={`${path}/stages/${projectId}`}>Shows</Link>
+            </Switch>
+          </Fragment>
 
-              <Switch>
-            <Route path={`${path}/`} render={() => <Redirect to={`${path}/library/${projectId}`} />} exact />
-            <Route path={`${path}/library/:projectId/:assetId?`} label="Library" render={(props) =>
-              <Library {...props} addFolderModalToggle={addFolderModalToggle}
-                shareModalToggle={shareModalToggle}
-                showCheckbox={showCheckbox}
-                setShowCheckbox={setShowCheckbox} />} />
-           
-            <Route path={`${path}/shows/${projectId}`} label="Shows">
-              <InnerTabs>
-                {/* Shows - Overview Tab Content */}
-                <div label="Overview">
-                  <Overview />
-                </div>
-
-                {/* Shows - Settings Tab Content */}
-                <div label="Settings">
-                  <Settings />
-                </div>
-
-                {/*Shows - Media Tab Content */}
-                <div label="Media">
-                  <Media />
-                </div>
-
-                {/*Shows -  Preview Tab Content */}
-                <div label="Preview">
-                  <Preview />
-                </div>
-
-                {/*Shows - Export Tab Content */}
-                <div label="Export">
-                  <Export />
-                </div>
-              </InnerTabs>
-            </Route>
-            <Route path={`${path}/stages/${projectId}`} label="Stages">
-              <InnerTabs>
-                {/* Stages - Surfaces Tab Content */}
-                <div label="Surfaces">
-                  <Surfaces />
-                </div>
-
-                {/* Stages - Screens Tab Content */}
-                <div label="Screens">
-                  <Screens />
-                </div>
-
-                {/*Stages - Stages Tab Content */}
-                <div label="Stages">
-                  <Stages />
-                </div>
-              </InnerTabs>
-            </Route>
-           </Switch>
-           </Fragment>
-          
         )}
       </div>
 
@@ -232,7 +233,7 @@ function Home({ projectId, match: { path }, getTeamData, getProject, location: {
         showModal={showAddFolderModal}
         setShowModal={setShowAddFolderModal}
         modalToggler={addFolderModalToggle}
-      
+
       />
 
       {/* This is ShareModal */}
