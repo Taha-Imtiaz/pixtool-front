@@ -2,7 +2,12 @@
 @import '../../scss/animations.scss';
 
 .modal {
-
+    width: 100vw !important;
+//   background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
     &__backDrop {
         position: fixed;
         top: 0;

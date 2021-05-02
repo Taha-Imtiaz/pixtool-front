@@ -71,7 +71,9 @@ const AddFolderModal = ({ showModal, setShowModal, modalToggler, uploadAsset, lo
             <div className="modal">
                 <div className="modal__content">
                     <div className="addFolderModal">
-                        <div className="addFolderModal__header">
+                        <div
+                         className="addFolderModal__header"
+                         >
                             <span className="addFolderModal__heading">Add New Folder</span>
                             <span className="addFolderModal__closeBtn" onClick={modalToggler}>
                                 <i className="fas fa-times"></i>

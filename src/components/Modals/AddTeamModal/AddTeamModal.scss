@@ -1,7 +1,7 @@
 @import '../../../scss/variables.scss';
 @import '../Modals.scss';
 
-.addProjectModal {
+.addTeamModal {
     width: 60rem;
     font-family: 'Segoe UI', 'Open Sans', sans-serif;
     background-color: $color-white-dull;
@@ -44,17 +44,17 @@
         &--name {
             width: 100%;
             font-size: 1.7rem;
-            // color: rgba($color-secondary, .8);
+            color: rgba($color-secondary, .8);
             padding: 1rem 1.2rem;
             border-radius: 5px;
-            // border: 1px solid $color-secondary-dark;
-            // transition: box-shadow .3s;
+            border: 1px solid $color-secondary;
+            transition: box-shadow .3s;
 
             &:active,
             &:focus,
             &:hover {
                 outline: none;
-                // box-shadow: 0px 0px 5px rgba($color-primary, .8);
+                box-shadow: 0px 0px 5px rgba($color-primary, .8);
             }
 
             &::placeholder {
