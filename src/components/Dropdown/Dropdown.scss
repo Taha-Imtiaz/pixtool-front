@@ -80,6 +80,7 @@ ul {
     padding: .4rem;
     border-radius: 50%;
     background-color: $color-secondary-dark;
+    transition: transform .3s;
 }
 
 .icon-arrow svg {
@@ -214,4 +215,9 @@ ul {
 .menu-secondary-exit-active {
     transform: translateX(110%);
     transition: all var(--speed) ease;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+    transition: transform .3s;
 }

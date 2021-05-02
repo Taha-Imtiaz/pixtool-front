@@ -32,7 +32,6 @@
         font-size: 1.2rem;
         font-weight: 500;
         color: rgba($color-white, .8);
-        background-color: $color-red;
         padding: .5rem 1rem;
         z-index: 1;
         transition: filter .3s;
@@ -72,4 +71,21 @@
         font-size: 1.4rem;
         margin-top: 5px;
     }
+}
+
+.bg-red-tomato {
+    background-color: $color-red-tomato;
+    ;
+}
+
+.bg-blue {
+    background-color: $color-blue;
+}
+
+.bg-green {
+    background-color: $color-primary;
+}
+
+.bg-silver {
+    background-color: $color-silver;
 }

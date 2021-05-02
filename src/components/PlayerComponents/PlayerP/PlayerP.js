@@ -236,11 +236,15 @@ const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } },
     useEffect(() => {
         let myVideo = document.getElementById('myVideo');
 
+
         // For Seeking & Updating Time Duration (Initially 00:00 / 00:00)
         myVideo.addEventListener('timeupdate', seekTimeUpdate, false);
 
         // For Resetting The Player State When Video Ends
         myVideo.addEventListener('ended', resetPlayer, false);
+
+        // For Initially Looping The Video
+        loopVideo();
 
     }, [])
 

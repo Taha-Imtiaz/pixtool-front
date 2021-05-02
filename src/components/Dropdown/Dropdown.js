@@ -135,7 +135,7 @@ function Dropdown({ text, menuItems, setCommentPrivacy, addDescription, setAsset
             <ul className="navbar-nav">
                 {dropText}
                 <li id="nav-item" className="nav-item">
-                    <span className="icon-arrow" onClick={() => setOpen(!open)}>
+                    <span className={`icon-arrow ${open ? "rotate-180" : ""} `} onClick={() => setOpen(!open)}>
                         {<CaretIcon />}
                     </span>
 
