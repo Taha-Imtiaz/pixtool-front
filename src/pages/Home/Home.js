@@ -26,12 +26,12 @@ import ShareModal from "../../components/Modals/ShareModal/ShareModal";
 import ProjectOptionsModal from "../../components/Modals/ProjectOptionsModal/ProjectOptionsModal";
 
 import { Fragment } from "react";
-import { getTeamData } from "../../Redux/team/teamActions";
+import { getTeam } from "../../Redux/team/teamActions";
 import { getProject } from "../../Redux/project/projectActions";
 import AddTeamModal from "../../components/Modals/AddTeamModal/AddTeamModal";
 import { Backdrop, Fade, Modal } from "@material-ui/core";
 
-function Home({ projectId, match: { path }, getTeamData, getProject, location: { pathname }, account }) {
+function Home({ projectId, match: { path }, getTeam, getProject, location: { pathname }, account }) {
   // console.log(assetId)
   // This state is used to set teamId
   const [teamId, setTeamId] = useState(null);
@@ -40,8 +40,8 @@ function Home({ projectId, match: { path }, getTeamData, getProject, location: {
   const [showAddProjectModal, setShowAddProjectModal] = useState(false);
   // This state is used to Show/ Hide the AddFolderModal
   const [showAddFolderModal, setShowAddFolderModal] = useState(false);
-// This state is used to Show/ Hide the AddTeamModal
-const [showAddTeamModal, setShowAddTeamModal] = useState(false);
+  // This state is used to Show/ Hide the AddTeamModal
+  const [showAddTeamModal, setShowAddTeamModal] = useState(false);
 
 
   // This state is used to Show/ Hide the ShareModal
@@ -135,7 +135,7 @@ const [showAddTeamModal, setShowAddTeamModal] = useState(false);
 
       // if (projects) {
 
-      //   getTeamData(_id, projects[0]._id, () => {
+      //   getTeam(_id, projects[0]._id, () => {
 
       //     sessionStorage.getItem("selectedProjectId") && getProject(sessionStorage.getItem("selectedProjectId"));
       //   })
@@ -168,71 +168,71 @@ const [showAddTeamModal, setShowAddTeamModal] = useState(false);
           // <Tabs className="tabs">
           // </Tabs>
 
-       
-          <Fragment> 
-              <Link  to ={`${path}/library/${projectId}`}>Library</Link>
-              <Link  to ={`${path}/shows/${projectId}`}>Stages</Link>
-              <Link  to ={`${path}/stages/${projectId}`}>Shows</Link>
 
-              <Switch>
-            <Route path={`${path}/`} render={() => <Redirect to={`${path}/library/${projectId}`} />} exact />
-            <Route path={`${path}/library/:projectId/:assetId?`} label="Library" render={(props) =>
-              <Library {...props}
-               addFolderModalToggle={addFolderModalToggle}
-                shareModalToggle={shareModalToggle}
-                addTeamModalToggle = {addTeamModalToggle}
-                showCheckbox={showCheckbox}
-                setShowCheckbox={setShowCheckbox} />} />
-           
-            <Route path={`${path}/shows/${projectId}`} label="Shows">
-              <InnerTabs>
-                {/* Shows - Overview Tab Content */}
-                <div label="Overview">
-                  <Overview />
-                </div>
+          <Fragment>
+            <Link to={`${path}/library/${projectId}`}>Library</Link>
+            <Link to={`${path}/shows/${projectId}`}>Stages</Link>
+            <Link to={`${path}/stages/${projectId}`}>Shows</Link>
 
-                {/* Shows - Settings Tab Content */}
-                <div label="Settings">
-                  <Settings />
-                </div>
+            <Switch>
+              <Route path={`${path}/`} render={() => <Redirect to={`${path}/library/${projectId}`} />} exact />
+              <Route path={`${path}/library/:projectId/:assetId?`} label="Library" render={(props) =>
+                <Library {...props}
+                  addFolderModalToggle={addFolderModalToggle}
+                  shareModalToggle={shareModalToggle}
+                  addTeamModalToggle={addTeamModalToggle}
+                  showCheckbox={showCheckbox}
+                  setShowCheckbox={setShowCheckbox} />} />
 
-                {/*Shows - Media Tab Content */}
-                <div label="Media">
-                  <Media />
-                </div>
+              <Route path={`${path}/shows/${projectId}`} label="Shows">
+                <InnerTabs>
+                  {/* Shows - Overview Tab Content */}
+                  <div label="Overview">
+                    <Overview />
+                  </div>
 
-                {/*Shows -  Preview Tab Content */}
-                <div label="Preview">
-                  <Preview />
-                </div>
+                  {/* Shows - Settings Tab Content */}
+                  <div label="Settings">
+                    <Settings />
+                  </div>
 
-                {/*Shows - Export Tab Content */}
-                <div label="Export">
-                  <Export />
-                </div>
-              </InnerTabs>
-            </Route>
-            <Route path={`${path}/stages/${projectId}`} label="Stages">
-              <InnerTabs>
-                {/* Stages - Surfaces Tab Content */}
-                <div label="Surfaces">
-                  <Surfaces />
-                </div>
+                  {/*Shows - Media Tab Content */}
+                  <div label="Media">
+                    <Media />
+                  </div>
 
-                {/* Stages - Screens Tab Content */}
-                <div label="Screens">
-                  <Screens />
-                </div>
+                  {/*Shows -  Preview Tab Content */}
+                  <div label="Preview">
+                    <Preview />
+                  </div>
 
-                {/*Stages - Stages Tab Content */}
-                <div label="Stages">
-                  <Stages />
-                </div>
-              </InnerTabs>
-            </Route>
-           </Switch>
-           </Fragment>
-          
+                  {/*Shows - Export Tab Content */}
+                  <div label="Export">
+                    <Export />
+                  </div>
+                </InnerTabs>
+              </Route>
+              <Route path={`${path}/stages/${projectId}`} label="Stages">
+                <InnerTabs>
+                  {/* Stages - Surfaces Tab Content */}
+                  <div label="Surfaces">
+                    <Surfaces />
+                  </div>
+
+                  {/* Stages - Screens Tab Content */}
+                  <div label="Screens">
+                    <Screens />
+                  </div>
+
+                  {/*Stages - Stages Tab Content */}
+                  <div label="Stages">
+                    <Stages />
+                  </div>
+                </InnerTabs>
+              </Route>
+            </Switch>
+          </Fragment>
+
         )}
       </div>
 
@@ -245,8 +245,8 @@ const [showAddTeamModal, setShowAddTeamModal] = useState(false);
         modalToggler={addProjectModalToggle}
         teamId={teamId}
       /> */}
-        <Modal
-         className="modal"
+      <Modal
+        className="modal"
         // className={classes.modal}
         open={showAddProjectModal}
         onClose={() => setShowAddProjectModal(false)}
@@ -258,14 +258,14 @@ const [showAddTeamModal, setShowAddTeamModal] = useState(false);
       >
         <Fade in={showAddProjectModal}>
           <div >
-          <AddProjectModal
-        showModal={showAddProjectModal}
-        setShowModal={setShowAddProjectModal}
-        modalToggler={addProjectModalToggle}
-        teamId={teamId}
-      />
+            <AddProjectModal
+              showModal={showAddProjectModal}
+              setShowModal={setShowAddProjectModal}
+              modalToggler={addProjectModalToggle}
+              teamId={teamId}
+            />
           </div>
-       
+
         </Fade>
       </Modal>
 
@@ -276,8 +276,8 @@ const [showAddTeamModal, setShowAddTeamModal] = useState(false);
         modalToggler={addFolderModalToggle}
       
       /> */}
-        <Modal
-         className="modal"
+      <Modal
+        className="modal"
         // className={classes.modal}
         open={showAddFolderModal}
         onClose={() => setShowAddFolderModal(false)}
@@ -289,50 +289,22 @@ const [showAddTeamModal, setShowAddTeamModal] = useState(false);
       >
         <Fade in={showAddFolderModal}>
           <div >
-          <AddFolderModal
-        showModal={showAddFolderModal}
-        setShowModal={setShowAddFolderModal}
-        modalToggler={addFolderModalToggle}
-      
-      /> 
+            <AddFolderModal
+              showModal={showAddFolderModal}
+              setShowModal={setShowAddFolderModal}
+              modalToggler={addFolderModalToggle}
+
+            />
           </div>
 
         </Fade>
       </Modal>
 
+     
+
+     
       <Modal
-         className="modal"
-        // className={classes.modal}
-        open={showAddProjectModal}
-        onClose={() => setShowAddProjectModal(false)}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={showAddProjectModal}>
-          <div >
-          <AddProjectModal
-        showModal={showAddProjectModal}
-        setShowModal={setShowAddProjectModal}
-        modalToggler={addProjectModalToggle}
-        teamId={teamId}
-      />
-          </div>
-       
-        </Fade>
-      </Modal>
-
-      {/* This is AddNewFolderModal */}
-      {/* <AddFolderModal
-        showModal={showAddFolderModal}
-        setShowModal={setShowAddFolderModal}
-        modalToggler={addFolderModalToggle}
-      
-      /> */}
-        <Modal
-         className="modal"
+        className="modal"
         // className={classes.modal}
         open={showAddTeamModal}
         onClose={() => setShowAddTeamModal(false)}
@@ -344,27 +316,49 @@ const [showAddTeamModal, setShowAddTeamModal] = useState(false);
       >
         <Fade in={showAddTeamModal}>
           <div >
-          <AddTeamModal
-        showModal={showAddTeamModal}
-        setShowModal={setShowAddTeamModal}
-        modalToggler={addTeamModalToggle}/>
+            <AddTeamModal
+              showModal={showAddTeamModal}
+              setShowModal={setShowAddTeamModal}
+              modalToggler={addTeamModalToggle} />
           </div>
 
         </Fade>
       </Modal>
-      
+
       {/* <AddTeamModal
         showModal={showAddTeamModal}
         setShowModal={setShowAddTeamModal}
         modalToggler={addTeamModalToggle}/> */}
 
-      {/* This is ShareModal */}
-      <ShareModal
+     
+      <Modal
+        className="modal"
+        // className={classes.modal}
+        open={showShareModal}
+        onClose={() => setShowShareModal(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={showShareModal}>
+          <div >
+          <ShareModal
         showModal={showShareModal}
         setShowModal={setShowShareModal}
         modalToggler={shareModalToggle}
       />
+          </div>
 
+        </Fade>
+      </Modal>
+       {/* This is ShareModal */}
+      {/* <ShareModal
+        showModal={showShareModal}
+        setShowModal={setShowShareModal}
+        modalToggler={shareModalToggle}
+      /> */}
       {/* This is ProjectOptionsModal */}
       <ProjectOptionsModal
         showModal={showProjectMenu}
@@ -380,7 +374,7 @@ var mapStateToProps = (state) => ({
   account: state.accounts && state.accounts.account,
 });
 var mapDispatchToProps = {
-  getTeamData,
+  getTeam,
   getProject
 }
 

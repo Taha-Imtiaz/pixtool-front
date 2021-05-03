@@ -16,7 +16,7 @@ import Loader from "./components/Loader/Loader";
 import Player from "./pages/Player/Player";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import store from "./Redux/store";
-import { getTeamData } from "./Redux/team/teamActions";
+import { getTeam } from "./Redux/team/teamActions";
 import { checkUserAuthentication, getUserData } from "./Redux/user/userActions";
 import { getProject } from "./Redux/project/projectActions";
 import { getAccount } from "./Redux/account/accountActions";
@@ -87,7 +87,7 @@ const App = ({
   //     console.log(projects)
   //     if (projects) {
   //       store.dispatch(
-  //         getTeamData(_id, projects[0]._id, () => {
+  //         getTeam(_id, projects[0]._id, () => {
   //           store.dispatch(getProject(projects[0]._id));
   //         })
   //       );
@@ -106,7 +106,7 @@ const App = ({
   // ) {
   //   // get resources of 1st project
   //   store.dispatch(
-  //     getTeamData(_id, projects[0]._id, () => {
+  //     getTeam(_id, projects[0]._id, () => {
   //       store.dispatch(getProject(projects[0]._id));
   //     })
   //   );
@@ -156,7 +156,7 @@ var mapStateToProps = (state) => ({
   user: state.users && state.users.user,
   account: state.accounts && state.accounts.account,
   team: state.teams && state.teams.team,
-  accountId: state.users && state.users.user && state.users.account_id,
+  accountId: state.users && state.users.user && state.users.user.account_id,
 });
 
 export default connect(mapStateToProps)(withRouter(App));

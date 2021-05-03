@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux';
+import { addNewTeamMember } from '../../../Redux/team/teamActions';
 import ButtonLight from '../../Button/ButtonLight';
 import "./AddTeamModal.scss"
 
-const AddTeamModal = ({showModal,setShowModal, modalToggler}) => {
+const AddTeamModal = ({showModal,setShowModal, modalToggler,teamId,addNewTeamMember}) => {
     // teamState
     const [teamMemberEmail, setTeamMemberEmail] = useState('')
     const backDropStyle = {
@@ -33,6 +35,14 @@ const AddTeamModal = ({showModal,setShowModal, modalToggler}) => {
         console.log(name, value)
        setTeamMemberEmail(value)
     }
+    const handleAddTeam = () => {
+        console.log(teamId)
+        let newTeamMember = {
+            email: teamMemberEmail,
+            teamId:teamId
+        }
+        addNewTeamMember(newTeamMember)
+    }
     return (
         <div className="modal__backDrop backDrop2" style={backDropStyle} >
         <div className="modal">
@@ -51,7 +61,7 @@ const AddTeamModal = ({showModal,setShowModal, modalToggler}) => {
                     </div>
                     <div className="addTeamModal__footer">
                         <ButtonLight text="Add Member"
-                        //  click={handleAddTeam} 
+                         click={handleAddTeam} 
                          />
                     </div>
                 </div>
@@ -60,5 +70,10 @@ const AddTeamModal = ({showModal,setShowModal, modalToggler}) => {
     </div>
     )
 }
-
-export default AddTeamModal
+var mapStateToProps = (state) => ({
+    teamId: state.accounts && state.accounts.account && state.accounts.account[0] && state.accounts.account[0]._id
+})
+var mapDispatchToProps = {
+    addNewTeamMember
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AddTeamModal)

@@ -12,6 +12,7 @@ import Dropdown from '../../Dropdown/Dropdown';
 import ConfirmationModal from '../../Modals/ConfirmationModal/ConfirmationModal'
 
 import Logo from '../../../images/logo.png';
+import { Backdrop, Fade, Modal } from '@material-ui/core';
 // import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
 
 
@@ -96,8 +97,26 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
                     <NavIcon toggle={toggle} />
                 </div>
             </div>
+            <Modal
+        className="modal"
+        // className={classes.modal}
+        open={showConfirm}
+        onClose={() => setShowConfirm(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={showConfirm}>
+          <div >
+          <ConfirmationModal show={showConfirm} setShow={setShowConfirm} confirmFunc={deleteAssetFunc} />
+          </div>
 
-            <ConfirmationModal show={showConfirm} setShow={setShowConfirm} confirmFunc={deleteAssetFunc} />
+        </Fade>
+      </Modal>
+
+          
         </Fragment>
     )
 }

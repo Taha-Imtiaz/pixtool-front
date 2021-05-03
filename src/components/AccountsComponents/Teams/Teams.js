@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './Teams.scss';
 
-import Tabs from '../../NavigationTabs/Tabs';
 import ButtonSmall from '../../Button/ButtonSmall';
 import ButtonSmallPrimary from '../../Button/ButtonSmallPrimary';
 import Dropdown from '../../Dropdown/Dropdown';
 
 import DisplayProfile from '../../../images/profile.png';
 import { connect } from 'react-redux';
+import { getAllTeams } from '../../../Redux/team/teamActions';
+import TimeAgo from 'react-timeago';
 
 
-const Teams = ({ teamName }) => {
+const Teams = ({ teamName , getAllTeams,accountId,teams}) => {
     const createNew = () => { }
+    useEffect(() => {
+       if(accountId) {
+           let {_id} = accountId[0]
+           console.log(_id)
+        getAllTeams(_id)
+       }
+    },[accountId])
 
     // Dropdown Option Values
     let sortBy = [
@@ -20,7 +28,7 @@ const Teams = ({ teamName }) => {
         { rightIcon: '', leftIcon: '', value: 'Last Scene', goToMenu: '' },
         { rightIcon: '', leftIcon: '', value: 'Role', goToMenu: '' }
     ];
-
+console.log(teams)
     return (
         <div className="teams">
             {/* This is Account Page's main tab which include Team Members & Teams */}
@@ -28,9 +36,9 @@ const Teams = ({ teamName }) => {
           
             {/* Team Members Tab Content */}
             <div label="Team Members">
-            <div className = "teamName">
+            {/* <div className = "teamName">
                 {teamName}
-            </div>
+            </div> */}
                 <div className="topBtns">
                     <ButtonSmall text="Manage Collaborators" click={createNew} />
                     <ButtonSmallPrimary text="Invite Users" click={createNew} />
@@ -46,36 +54,27 @@ const Teams = ({ teamName }) => {
                             </thead>
                             <tbody>
                                 <tr className="teamMembersTable__row">
-                                    <th className="teamMembersTable__head"><input type="checkBox" className="checkbox" /></th>
+                                    <th className="teamMembersTable__head">
+                                        {/* <input type="checkBox" className="checkbox" /> */}
+                                        </th>
                                     <th className="teamMembersTable__head">Name</th>
-                                    <th className="teamMembersTable__head">Last Scene</th>
+                                    <th className="teamMembersTable__head">Created At</th>
                                     <th className="teamMembersTable__head">Role</th>
                                 </tr>
                                 {/* This teamMembersTable__row--data will be repeated */}
-                                <tr className="teamMembersTable__row teamMembersTable__row--data">
+                               {teams && teams.map((team) =>  <tr className="teamMembersTable__row teamMembersTable__row--data">
                                     <td className="teamMembersTable__data"><input type="checkBox" className="checkbox" /></td>
                                     <td className="teamMembersTable__data teamMembersTable__data--flex">
-                                        <img src={DisplayProfile} alt="Display Profile" className="teamMembersTable__img" />
+                                        <img src={team.creator_id.images.img_32} alt="Display Profile" className="teamMembersTable__img" />
                                         <div className="teamMembersTable__text">
-                                            <div className="teamMembersTable__text--name">Muhammad Usama Zuberi</div>
-                                            <div className="teamMembersTable__text--email">usama1234@email.com</div>
+                                            <div className="teamMembersTable__text--name">{team.name}</div>
+                                            {/* <div className="teamMembersTable__text--email">usama1234@email.com</div> */}
                                         </div>
                                     </td>
-                                    <td className="teamMembersTable__data">1 hour ago</td>
+                                    <td className="teamMembersTable__data"><TimeAgo date={team.createdAt} minPeriod={10} /></td>
                                     <td className="teamMembersTable__data">Owner</td>
-                                </tr>
-                                <tr className="teamMembersTable__row teamMembersTable__row--data">
-                                    <td className="teamMembersTable__data"><input type="checkBox" className="checkbox" /></td>
-                                    <td className="teamMembersTable__data teamMembersTable__data--flex">
-                                        <img src={DisplayProfile} alt="Display Profile" className="teamMembersTable__img" />
-                                        <div className="teamMembersTable__text">
-                                            <div className="teamMembersTable__text--name">Rizwan Ahmed Siddique</div>
-                                            <div className="teamMembersTable__text--email">rizwan1234@email.com</div>
-                                        </div>
-                                    </td>
-                                    <td className="teamMembersTable__data">39 minutes ago</td>
-                                    <td className="teamMembersTable__data">Regular Member</td>
-                                </tr>
+                                </tr>)}
+                                
 
                             </tbody>
                         </table>
@@ -92,6 +91,12 @@ const Teams = ({ teamName }) => {
     )
 }
 var mapStateToProps = (state) => ({
-    teamName: state.teams && state.teams.teamList && state.teams.teamList.name
+    // teamName: state.teams && state.teams.teamList && state.teams.teamList.name,
+    accountId: state.users && state.users.user && state.users.user.account_id,
+    teams: state.teams && state.teams.teams 
+    
 })
-export default connect(mapStateToProps)(Teams)
+var mapDispatchToProps = {
+    getAllTeams
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Teams)
