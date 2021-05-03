@@ -25,6 +25,7 @@ const AddProjectModal = ({ showModal, setShowModal, modalToggler, teamId, addPro
     // Function to close the Modal whenever Backdrop clicked
     const closeModal = (event) => {
         const backDrop = document.querySelector(".backDrop2");
+        
         const modal = document.querySelector(".modal");
 
         if (backDrop && event.target === backDrop && !event.target !== modal) {

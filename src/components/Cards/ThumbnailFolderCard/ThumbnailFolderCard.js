@@ -11,7 +11,6 @@ const ThumbnailFolderCard = ({ resourceId, getProjectAssets, reviewAssetId, reso
     const [thumbnailsLength, setThumbnailsLength] = useState(0)
 
     let { name, thumbnails, uploaded_at, uploader } = resource
-    console.log(id)
 
     useEffect(() => {
         if (thumbnails) {

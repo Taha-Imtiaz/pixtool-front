@@ -18,9 +18,11 @@ const requestHandler = (request) => {
 const Axios = () => {
     // set the default url part of axios(common part of url in all apis)
     // axios.defaults.baseURL = 'https://pixtool.herokuapp.com/api/';
-    axios.defaults.baseURL = 'http://10.0.3.195:3001/api/';
+    // axios.defaults.baseURL = 'http://10.0.6.197:3001/api/';
     // axios.defaults.baseURL = 'http://localhost:3001/api/';
     // axios.defaults.baseURL = 'http://10.0.5.69:3001/api/';
+    axios.defaults.baseURL = 'http://10.0.3.195:3001/api/';
+
 
 
 

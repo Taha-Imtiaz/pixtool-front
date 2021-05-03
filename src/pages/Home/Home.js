@@ -26,13 +26,13 @@ import ShareModal from "../../components/Modals/ShareModal/ShareModal";
 import ProjectOptionsModal from "../../components/Modals/ProjectOptionsModal/ProjectOptionsModal";
 
 import { Fragment } from "react";
-import { getTeamData } from "../../Redux/team/teamActions";
+import { getTeam } from "../../Redux/team/teamActions";
 import { getProject } from "../../Redux/project/projectActions";
 import AddTeamModal from "../../components/Modals/AddTeamModal/AddTeamModal";
 import { Backdrop, Fade, Modal } from "@material-ui/core";
 
-function Home({ projectId, match: { path }, getTeamData, getProject, location: { pathname }, account }) {
-  console.log(path)
+function Home({ projectId, match: { path }, getTeam, getProject, location: { pathname }, account }) {
+  // console.log(assetId)
   // This state is used to set teamId
   const [teamId, setTeamId] = useState(null);
 
@@ -135,7 +135,7 @@ function Home({ projectId, match: { path }, getTeamData, getProject, location: {
 
       // if (projects) {
 
-      //   getTeamData(_id, projects[0]._id, () => {
+      //   getTeam(_id, projects[0]._id, () => {
 
       //     sessionStorage.getItem("selectedProjectId") && getProject(sessionStorage.getItem("selectedProjectId"));
       //   })
@@ -302,37 +302,9 @@ function Home({ projectId, match: { path }, getTeamData, getProject, location: {
         </Fade>
       </Modal>
 
-      <Modal
-        className="modal"
-        // className={classes.modal}
-        open={showAddProjectModal}
-        onClose={() => setShowAddProjectModal(false)}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={showAddProjectModal}>
-          <div >
-            <AddProjectModal
-              showModal={showAddProjectModal}
-              setShowModal={setShowAddProjectModal}
-              modalToggler={addProjectModalToggle}
-              teamId={teamId}
-            />
-          </div>
+     
 
-        </Fade>
-      </Modal>
-
-      {/* This is AddNewFolderModal */}
-      {/* <AddFolderModal
-        showModal={showAddFolderModal}
-        setShowModal={setShowAddFolderModal}
-        modalToggler={addFolderModalToggle}
-      
-      /> */}
+     
       <Modal
         className="modal"
         // className={classes.modal}
@@ -360,13 +332,35 @@ function Home({ projectId, match: { path }, getTeamData, getProject, location: {
         setShowModal={setShowAddTeamModal}
         modalToggler={addTeamModalToggle}/> */}
 
-      {/* This is ShareModal */}
-      <ShareModal
+     
+      <Modal
+        className="modal"
+        // className={classes.modal}
+        open={showShareModal}
+        onClose={() => setShowShareModal(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={showShareModal}>
+          <div >
+          <ShareModal
         showModal={showShareModal}
         setShowModal={setShowShareModal}
         modalToggler={shareModalToggle}
       />
+          </div>
 
+        </Fade>
+      </Modal>
+       {/* This is ShareModal */}
+      {/* <ShareModal
+        showModal={showShareModal}
+        setShowModal={setShowShareModal}
+        modalToggler={shareModalToggle}
+      /> */}
       {/* This is ProjectOptionsModal */}
       <ProjectOptionsModal
         showModal={showProjectMenu}
@@ -382,7 +376,7 @@ var mapStateToProps = (state) => ({
   account: state.accounts && state.accounts.account,
 });
 var mapDispatchToProps = {
-  getTeamData,
+  getTeam,
   getProject
 }
 
