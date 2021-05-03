@@ -1,4 +1,4 @@
-import { React, useEffect, useState, Fragment } from "react";
+import { React, useEffect, useState } from "react";
 import { withRouter, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getLink, uploadAsset } from "../../Redux/assets/assetActions";
@@ -202,8 +202,11 @@ const Library = ({
     console.log(showShareBar)
 
     if (temp === true) {
-      setShowCheckbox(true);
 
+      setShowCheckbox(true);
+      let ids = project.resources.map(x => x._id)
+      console.log(ids)
+      setShareAssetIds(ids)
     }
     else {
       setShowCheckbox(false);
@@ -244,14 +247,13 @@ const Library = ({
 
 
   return (
-    <Fragment>
       <div className="library">
         <div className="library__head">
           <Filter />
           <div className="library__head-right">
             <div className="avatar__container">
               <div className="avatar">
-                <i className="fas fa-user-plus" onClick = {() => addTeamModalToggle()}></i>
+                <i className="fas fa-user-plus" onClick={() => addTeamModalToggle()}></i>
               </div>
               <Avatar />
               <Avatar />
@@ -300,20 +302,18 @@ const Library = ({
             }
           </div>
         </div>
-      </div>
-
-      {showShareBar ?
-        <div className="shareBar">
-          <div className="shareBar__selectedItems">{shareAssetIds.length} Items Selected</div>
-          <div className="shareBar__btns">
-            <Button text="Cancel" click={shareLibrary} />
-            <Button text="Share" click={shareLink} />
+        {showShareBar ?
+          <div className="shareBar">
+            <div className="shareBar__selectedItems">{shareAssetIds.length} Items Selected</div>
+            <div className="shareBar__btns">
+              <Button text="Cancel" click={shareLibrary} />
+              <Button text="Share" click={shareLink} />
+            </div>
           </div>
-        </div>
-        :
-        null
-      }
-    </Fragment>
+          :
+          null
+        }
+      </div>
   );
 };
 var mapStateToProps = (state) => ({

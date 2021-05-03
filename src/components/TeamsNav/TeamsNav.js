@@ -117,6 +117,7 @@ const TeamsNav = ({
     }
 
   }, [projects])
+  
   const [openModal, setOpen] = useState(false);
 
   // this state is for selected Project
@@ -135,16 +136,13 @@ const TeamsNav = ({
   const handleModalClose = () => {
     setOpen(false);
   };
+
   const highlightSelectedProject = (projectId, index) => {
     console.log(projectId, index)
     setSelectedProjectIndex(index)
     sessionStorage.setItem("selectedProjectId", projectId)
     sessionStorage.setItem("selectedProjectIndex", index)
     history.push(`/home/library/${projectId}`)
-
-    // getProject(projectId)
-
-
   }
 
   return (
@@ -185,7 +183,7 @@ const TeamsNav = ({
                 {index === teamItemIndex && (
                   <div className="teamsNav__item__body">
                     <div>
-                      <div className="project__item" onClick={()=> {setLibrary(!library)}}>
+                      <div className="project__item" onClick={() => { setLibrary(!library) }}>
                         <i className="fas fa-book"></i>
                         <span className="project__item--name">My Library</span>
                         {library ? (
@@ -219,25 +217,6 @@ const TeamsNav = ({
                                 </span>
                               </li>
                             ))}
-                          {/* {tooltipState && ( */}
-                          {/* <ReactTooltip id="happyFace" place="bottom">
-                      {sidebarMenu1.map((sidebarOption) => (
-                        <Fragment>
-                          <div className="teamPopOverMenu">
-                            <div>
-                              {" "}
-                              <i
-                                className={sidebarOption.icon}
-                              ></i>{" "}
-                            </div>
-                            <div>
-                              <p>{sidebarOption.value}</p>
-                            </div>
-                          </div>
-                        </Fragment>
-                      ))}
-                    </ReactTooltip> */}
-                          {/* )} */}
                           <Popover
                             id={id}
                             open={open}
@@ -252,27 +231,10 @@ const TeamsNav = ({
                               horizontal: 'center',
                             }}
                           >
-                            {/* {sidebarMenu1.map((sidebarOption) => (
-                      <Fragment>
-                        <div className="teamPopOverMenu">
-                          <div>
-                            {" "}
-                            <i
-                              className={sidebarOption.icon}
-                            ></i>{" "}
-                          </div>
-                          <div>
-                            <p>{sidebarOption.value}</p>
-                          </div>
-                        </div>
-                      </Fragment>
-                    ))} */}
                             <Typography className={classes.typography}>
-                              {/* <h3  >Add Member</h3> */}
-                              {/* <h3 onClick={() => deleteProject(projectToDelete, () => handleClose())}>Delete</h3> */}
-                              {account.projects.length > 1 ? <h3 onClick={() => handleClickOpen()}>Delete</h3> : null}
-                              <h3>Settings</h3>
-                              <h3>Share</h3>
+                              {account.projects.length > 1 ? <h3 className="contextualMenu__heading" onClick={() => handleClickOpen()}>Delete</h3> : null}
+                              <h3 className="contextualMenu__heading" >Settings</h3>
+                              <h3 className="contextualMenu__heading" >Share</h3>
                             </Typography>
                           </Popover>
                         </ul>

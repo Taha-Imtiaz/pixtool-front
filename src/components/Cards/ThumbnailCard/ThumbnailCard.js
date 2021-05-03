@@ -68,7 +68,7 @@ const ThumbnailCard = ({ resource, key, resourceId, reviewAssetId, history, show
                 <div className="thumbnailCard__bottom">
                     {showCheckbox ?
                         <input type="checkbox" name="share_select_checkBox" id="checkBox"
-                            defaultChecked={shareAssetIds.includes(resource._id)} className="checkbox"
+                            defaultChecked={shareAssetIds.includes(resource._id)} className="checkbox" 
                             onClick={(e) => updateAssetIndex(e, resource._id)} ></input>
                         :
                         null

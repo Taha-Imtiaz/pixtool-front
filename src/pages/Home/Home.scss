@@ -15,3 +15,25 @@
 .tabs {
     grid-column: 2 / 3;
 }
+
+.navLinks {
+    max-height: 3rem;
+    font-size: 1.7rem;
+    font-family: 'Open Sans', 'Segoe UI', sans-serif;
+    padding: .5rem 2rem;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom .3s;
+    
+    &--active {
+        outline: none;
+        border-bottom: 3px solid $color-primary;
+    }
+
+    &__box {
+        position: sticky;
+        top: 10rem;
+
+        height: 3rem;
+        border-bottom: 2px solid rgba($color-white, .6);
+    }
+}

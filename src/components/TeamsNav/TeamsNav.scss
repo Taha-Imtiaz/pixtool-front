@@ -28,7 +28,7 @@
   &__item {
     padding: 0.5rem 0;
 
-   
+
     &__head {
       font-size: 2rem;
       font-weight: 600;
@@ -74,7 +74,7 @@
       color: $color-secondary-dark;
       background-color: rgba($color-secondary-light, 0.8);
     }
-    
+
 
     &:not(:last-child) {
       margin-bottom: 0.5rem;
@@ -97,6 +97,7 @@
       }
     }
   }
+
   &__highlight {
     background-color: $color-primary;
   }
@@ -145,6 +146,7 @@
     }
   }
 }
+
 .teamPopOverMenu {
   width: 15rem;
   height: 4rem;
@@ -154,4 +156,20 @@
   padding-top: 1rem !important;
   border-radius: 0.4rem;
   transition: all 0.3s ease-in-out;
+}
+
+.contextualMenu {
+
+  &__heading {
+    font-size: 1.7rem;
+    padding: .5rem 1rem;
+    transition: color .3s, cursor .3s;
+
+    &:focus,
+    &:hover {
+      outline: none;
+      color: $color-primary;
+      cursor: pointer;
+    }
+  }
 }
