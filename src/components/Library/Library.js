@@ -302,6 +302,7 @@ const Library = ({
             }
           </div>
         </div>
+        
         {showShareBar ?
           <div className="shareBar">
             <div className="shareBar__selectedItems">{shareAssetIds.length} Items Selected</div>
