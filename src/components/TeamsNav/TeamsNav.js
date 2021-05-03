@@ -32,8 +32,11 @@ const TeamsNav = ({
   history,
   setProjectId
 }) => {
+
   // This state is used for toggling Sidebar Team Nav Lists
   const [teamItemIndex, setTeamItemIndex] = useState(null);
+  // This state is used for toggling Sidebar Team Nav My Library
+  const [library, setLibrary] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [projectToDelete, setProjectToDelete] = React.useState(null);
@@ -181,63 +184,44 @@ const TeamsNav = ({
 
                 {index === teamItemIndex && (
                   <div className="teamsNav__item__body">
-                    <ul className="project__list">
-                      {account.projects &&
-                        account.projects.map((project, index) => (
-                          <li key={project._id} className={index === selectedProjectIndex ? "project__item project__highlight" : "project__item"} >
-                            <span
-                              className="project__item--name"
-                              // onClick={() => getProject(project._id)}
-                              onClick={() => highlightSelectedProject(project._id, index)}
-                            >
-                              {project.name}
-                            </span>
-                            <span className="project__item--icon">
-                              <i
-                                data-tip
-                                data-for="happyFace"
-                                className="fas fa-ellipsis-v"
-                                // onClick={() => setToolTipState(!tooltipState)}
-                                // onMouseEnter={() => setToolTipState(false)}
-                                onClick={(e) => handleClick(e, project._id)}
-                              ></i>
-                            </span>
-                          </li>
-                        ))}
-                      {/* {tooltipState && ( */}
-                      {/* <ReactTooltip id="happyFace" place="bottom">
-                        {sidebarMenu1.map((sidebarOption) => (
-                          <Fragment>
-                            <div className="teamPopOverMenu">
-                              <div>
-                                {" "}
-                                <i
-                                  className={sidebarOption.icon}
-                                ></i>{" "}
-                              </div>
-                              <div>
-                                <p>{sidebarOption.value}</p>
-                              </div>
-                            </div>
-                          </Fragment>
-                        ))}
-                      </ReactTooltip> */}
-                      {/* )} */}
-                      <Popover
-                        id={id}
-                        open={open}
-                        anchorEl={anchorEl}
-                        onClose={handleClose}
-                        anchorOrigin={{
-                          vertical: 'bottom',
-                          horizontal: 'center',
-                        }}
-                        transformOrigin={{
-                          vertical: 'top',
-                          horizontal: 'center',
-                        }}
-                      >
-                        {/* {sidebarMenu1.map((sidebarOption) => (
+                    <div>
+                      <div className="project__item" onClick={()=> {setLibrary(!library)}}>
+                        <i className="fas fa-book"></i>
+                        <span className="project__item--name">My Library</span>
+                        {library ? (
+                          <i className="fas fa-chevron-down"></i>
+                        ) : (
+                          <i className="fas fa-chevron-right"></i>
+                        )}
+                      </div>
+
+                      {library ?
+                        <ul className="project__list">
+                          {account.projects &&
+                            account.projects.map((project, index) => (
+                              <li key={project._id} className={index === selectedProjectIndex ? "project__item project__highlight" : "project__item"} >
+                                <span
+                                  className="project__item--name"
+                                  // onClick={() => getProject(project._id)}
+                                  onClick={() => highlightSelectedProject(project._id, index)}
+                                >
+                                  {project.name}
+                                </span>
+                                <span className="project__item--icon">
+                                  <i
+                                    data-tip
+                                    data-for="happyFace"
+                                    className="fas fa-ellipsis-v"
+                                    // onClick={() => setToolTipState(!tooltipState)}
+                                    // onMouseEnter={() => setToolTipState(false)}
+                                    onClick={(e) => handleClick(e, project._id)}
+                                  ></i>
+                                </span>
+                              </li>
+                            ))}
+                          {/* {tooltipState && ( */}
+                          {/* <ReactTooltip id="happyFace" place="bottom">
+                      {sidebarMenu1.map((sidebarOption) => (
                         <Fragment>
                           <div className="teamPopOverMenu">
                             <div>
@@ -251,16 +235,51 @@ const TeamsNav = ({
                             </div>
                           </div>
                         </Fragment>
-                      ))} */}
-                        <Typography className={classes.typography}>
-                          {/* <h3  >Add Member</h3> */}
-                          {/* <h3 onClick={() => deleteProject(projectToDelete, () => handleClose())}>Delete</h3> */}
-                          {account.projects.length > 1 ? <h3 onClick={() => handleClickOpen()}>Delete</h3> : null}
-                          <h3>Settings</h3>
-                          <h3>Share</h3>
-                        </Typography>
-                      </Popover>
-                    </ul>
+                      ))}
+                    </ReactTooltip> */}
+                          {/* )} */}
+                          <Popover
+                            id={id}
+                            open={open}
+                            anchorEl={anchorEl}
+                            onClose={handleClose}
+                            anchorOrigin={{
+                              vertical: 'bottom',
+                              horizontal: 'center',
+                            }}
+                            transformOrigin={{
+                              vertical: 'top',
+                              horizontal: 'center',
+                            }}
+                          >
+                            {/* {sidebarMenu1.map((sidebarOption) => (
+                      <Fragment>
+                        <div className="teamPopOverMenu">
+                          <div>
+                            {" "}
+                            <i
+                              className={sidebarOption.icon}
+                            ></i>{" "}
+                          </div>
+                          <div>
+                            <p>{sidebarOption.value}</p>
+                          </div>
+                        </div>
+                      </Fragment>
+                    ))} */}
+                            <Typography className={classes.typography}>
+                              {/* <h3  >Add Member</h3> */}
+                              {/* <h3 onClick={() => deleteProject(projectToDelete, () => handleClose())}>Delete</h3> */}
+                              {account.projects.length > 1 ? <h3 onClick={() => handleClickOpen()}>Delete</h3> : null}
+                              <h3>Settings</h3>
+                              <h3>Share</h3>
+                            </Typography>
+                          </Popover>
+                        </ul>
+                        :
+                        null
+                      }
+                    </div>
                   </div>
                 )}
               </li>

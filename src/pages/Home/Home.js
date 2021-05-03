@@ -103,7 +103,7 @@ function Home({ projectId, match: { path }, getTeamData, getProject, location: {
 
   /* Arrays To Pass The Sidebar Content In Props */
   let sidebarMenu1 = [
-    { icon: "fas fa-book", value: "My Library" },
+    // { icon: "fas fa-book", value: "My Library" },
     { icon: "far fa-file-alt", value: "Shared with me" },
     { icon: "fas fa-cog", value: "Settings" },
   ];
