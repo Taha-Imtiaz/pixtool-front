@@ -12,8 +12,8 @@
         align-items: center;
         font-size: 2rem;
         font-weight: 600;
-        color: rgba($color-white, .8);
-        background-color: $color-primary;
+        // color: rgba($color-white, .8);
+        // background-color: $color-primary;
     }
 
     &__heading {
@@ -36,7 +36,7 @@
 
     &__body {
         padding: 1.2rem 2rem;
-        border-bottom: 1px solid $color-secondary;
+        // border-bottom: 1px solid $color-secondary;
     }
 
     &__input {
@@ -44,17 +44,19 @@
         &--name {
             width: 100%;
             font-size: 1.7rem;
-            color: rgba($color-secondary, .8);
+            // color: rgba($color-secondary, .8);
             padding: 1rem 1.2rem;
             border-radius: 5px;
-            border: 1px solid $color-primary;
-            transition: box-shadow .3s;
+            // border: 1px solid $color-primary;
+            border: 1px solid $color-secondary-dark;
+
+            // transition: box-shadow .3s;
 
             &:active,
             &:focus,
             &:hover {
                 outline: none;
-                box-shadow: 0px 0px 5px rgba($color-primary, .8);
+                // box-shadow: 0px 0px 5px rgba($color-primary, .8);
             }
 
             &::placeholder {

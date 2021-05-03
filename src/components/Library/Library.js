@@ -26,6 +26,7 @@ const Library = ({
   shareModalToggle,
   getProjectAssets,
   history,
+  addTeamModalToggle,
   location,
   getLink,
   showCheckbox,
@@ -250,7 +251,7 @@ const Library = ({
           <div className="library__head-right">
             <div className="avatar__container">
               <div className="avatar">
-                <i className="fas fa-user-plus"></i>
+                <i className="fas fa-user-plus" onClick = {() => addTeamModalToggle()}></i>
               </div>
               <Avatar />
               <Avatar />

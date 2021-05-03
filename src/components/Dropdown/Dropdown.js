@@ -166,7 +166,8 @@ function DropdownMenu({ menuItems, checkClick }) {
                     :
                     props.upload !== undefined && props.upload.value === false ?
                         <Fragment>
-                            <label htmlFor="folder-upload" className="custom-folder-upload" onClick={() => props.upload.modalToggler()}>
+                            <label htmlFor="folder-upload" className="custom-folder-upload" onClick={() => 
+                                props.upload.modalToggler()}>
                                 {props.children}
                             </label>
                         </Fragment>

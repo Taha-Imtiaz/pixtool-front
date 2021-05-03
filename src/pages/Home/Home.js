@@ -28,6 +28,8 @@ import ProjectOptionsModal from "../../components/Modals/ProjectOptionsModal/Pro
 import { Fragment } from "react";
 import { getTeamData } from "../../Redux/team/teamActions";
 import { getProject } from "../../Redux/project/projectActions";
+import AddTeamModal from "../../components/Modals/AddTeamModal/AddTeamModal";
+import { Backdrop, Fade, Modal } from "@material-ui/core";
 
 function Home({ projectId, match: { path }, getTeamData, getProject, location: { pathname }, account }) {
   // console.log(assetId)
@@ -38,6 +40,10 @@ function Home({ projectId, match: { path }, getTeamData, getProject, location: {
   const [showAddProjectModal, setShowAddProjectModal] = useState(false);
   // This state is used to Show/ Hide the AddFolderModal
   const [showAddFolderModal, setShowAddFolderModal] = useState(false);
+// This state is used to Show/ Hide the AddTeamModal
+const [showAddTeamModal, setShowAddTeamModal] = useState(false);
+
+
   // This state is used to Show/ Hide the ShareModal
   const [showShareModal, setShowShareModal] = useState(false);
   // This state is used to Show/ Hide ProjectOptionsModal
@@ -73,6 +79,18 @@ function Home({ projectId, match: { path }, getTeamData, getProject, location: {
     }
 
     setShowAddFolderModal(!showAddFolderModal);
+  };
+  // This Function is responsible to Show/ Hide the AddFolderModal
+  const addTeamModalToggle = () => {
+    if (showAddTeamModal) {
+      // Allow to scroll when closing the modal
+      document.body.style.removeProperty("overflow");
+    } else {
+      // Disable scrolling on the `body` element when opening a modal
+      document.body.style.overflow = "hidden";
+    }
+
+    setShowAddTeamModal(!showAddTeamModal);
   };
 
   // This Function is responsible to Show/ Hide the ShareModal
@@ -150,91 +168,195 @@ function Home({ projectId, match: { path }, getTeamData, getProject, location: {
           // <Tabs className="tabs">
           // </Tabs>
 
+       
+          <Fragment> 
+              <Link  to ={`${path}/library/${projectId}`}>Library</Link>
+              <Link  to ={`${path}/shows/${projectId}`}>Stages</Link>
+              <Link  to ={`${path}/stages/${projectId}`}>Shows</Link>
 
-          <Fragment>
-            <Link to={`${path}/library/${projectId}`}>Library</Link>
+              <Switch>
+            <Route path={`${path}/`} render={() => <Redirect to={`${path}/library/${projectId}`} />} exact />
+            <Route path={`${path}/library/:projectId/:assetId?`} label="Library" render={(props) =>
+              <Library {...props}
+               addFolderModalToggle={addFolderModalToggle}
+                shareModalToggle={shareModalToggle}
+                addTeamModalToggle = {addTeamModalToggle}
+                showCheckbox={showCheckbox}
+                setShowCheckbox={setShowCheckbox} />} />
+           
+            <Route path={`${path}/shows/${projectId}`} label="Shows">
+              <InnerTabs>
+                {/* Shows - Overview Tab Content */}
+                <div label="Overview">
+                  <Overview />
+                </div>
 
-            <Link to={`${path}/shows/${projectId}`}>Stages</Link>
-            <Link to={`${path}/stages/${projectId}`}>Shows</Link>
+                {/* Shows - Settings Tab Content */}
+                <div label="Settings">
+                  <Settings />
+                </div>
 
-            <Switch>
-              <Route path={`${path}/`} render={() => <Redirect to={`${path}/library/${projectId}`} />} exact />
-              <Route path={`${path}/library/:projectId/:assetId?`} label="Library" render={(props) =>
-                <Library {...props} addFolderModalToggle={addFolderModalToggle}
-                  shareModalToggle={shareModalToggle}
-                  showCheckbox={showCheckbox}
-                  setShowCheckbox={setShowCheckbox} />} />
+                {/*Shows - Media Tab Content */}
+                <div label="Media">
+                  <Media />
+                </div>
 
-              <Route path={`${path}/shows/${projectId}`} label="Shows">
-                <InnerTabs>
-                  {/* Shows - Overview Tab Content */}
-                  <div label="Overview">
-                    <Overview />
-                  </div>
+                {/*Shows -  Preview Tab Content */}
+                <div label="Preview">
+                  <Preview />
+                </div>
 
-                  {/* Shows - Settings Tab Content */}
-                  <div label="Settings">
-                    <Settings />
-                  </div>
+                {/*Shows - Export Tab Content */}
+                <div label="Export">
+                  <Export />
+                </div>
+              </InnerTabs>
+            </Route>
+            <Route path={`${path}/stages/${projectId}`} label="Stages">
+              <InnerTabs>
+                {/* Stages - Surfaces Tab Content */}
+                <div label="Surfaces">
+                  <Surfaces />
+                </div>
 
-                  {/*Shows - Media Tab Content */}
-                  <div label="Media">
-                    <Media />
-                  </div>
+                {/* Stages - Screens Tab Content */}
+                <div label="Screens">
+                  <Screens />
+                </div>
 
-                  {/*Shows -  Preview Tab Content */}
-                  <div label="Preview">
-                    <Preview />
-                  </div>
-
-                  {/*Shows - Export Tab Content */}
-                  <div label="Export">
-                    <Export />
-                  </div>
-                </InnerTabs>
-              </Route>
-              <Route path={`${path}/stages/${projectId}`} label="Stages">
-                <InnerTabs>
-                  {/* Stages - Surfaces Tab Content */}
-                  <div label="Surfaces">
-                    <Surfaces />
-                  </div>
-
-                  {/* Stages - Screens Tab Content */}
-                  <div label="Screens">
-                    <Screens />
-                  </div>
-
-                  {/*Stages - Stages Tab Content */}
-                  <div label="Stages">
-                    <Stages />
-                  </div>
-                </InnerTabs>
-              </Route>
-              
-            </Switch>
-          </Fragment>
-
+                {/*Stages - Stages Tab Content */}
+                <div label="Stages">
+                  <Stages />
+                </div>
+              </InnerTabs>
+            </Route>
+           </Switch>
+           </Fragment>
+          
         )}
       </div>
 
       {/* All The Modal Components Used In Home Page, All It's Tabs & Sidebar*/}
 
       {/* This is AddProjectModal */}
-      <AddProjectModal
+      {/* <AddProjectModal
+        showModal={showAddProjectModal}
+        setShowModal={setShowAddProjectModal}
+        modalToggler={addProjectModalToggle}
+        teamId={teamId}
+      /> */}
+        <Modal
+         className="modal"
+        // className={classes.modal}
+        open={showAddProjectModal}
+        onClose={() => setShowAddProjectModal(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={showAddProjectModal}>
+          <div >
+          <AddProjectModal
         showModal={showAddProjectModal}
         setShowModal={setShowAddProjectModal}
         modalToggler={addProjectModalToggle}
         teamId={teamId}
       />
+          </div>
+       
+        </Fade>
+      </Modal>
 
       {/* This is AddNewFolderModal */}
-      <AddFolderModal
+      {/* <AddFolderModal
         showModal={showAddFolderModal}
         setShowModal={setShowAddFolderModal}
         modalToggler={addFolderModalToggle}
+      
+      /> */}
+        <Modal
+         className="modal"
+        // className={classes.modal}
+        open={showAddFolderModal}
+        onClose={() => setShowAddFolderModal(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={showAddFolderModal}>
+          <div >
+          <AddFolderModal
+        showModal={showAddFolderModal}
+        setShowModal={setShowAddFolderModal}
+        modalToggler={addFolderModalToggle}
+      
+      /> 
+          </div>
 
+        </Fade>
+      </Modal>
+
+      <Modal
+         className="modal"
+        // className={classes.modal}
+        open={showAddProjectModal}
+        onClose={() => setShowAddProjectModal(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={showAddProjectModal}>
+          <div >
+          <AddProjectModal
+        showModal={showAddProjectModal}
+        setShowModal={setShowAddProjectModal}
+        modalToggler={addProjectModalToggle}
+        teamId={teamId}
       />
+          </div>
+       
+        </Fade>
+      </Modal>
+
+      {/* This is AddNewFolderModal */}
+      {/* <AddFolderModal
+        showModal={showAddFolderModal}
+        setShowModal={setShowAddFolderModal}
+        modalToggler={addFolderModalToggle}
+      
+      /> */}
+        <Modal
+         className="modal"
+        // className={classes.modal}
+        open={showAddTeamModal}
+        onClose={() => setShowAddTeamModal(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={showAddTeamModal}>
+          <div >
+          <AddTeamModal
+        showModal={showAddTeamModal}
+        setShowModal={setShowAddTeamModal}
+        modalToggler={addTeamModalToggle}/>
+          </div>
+
+        </Fade>
+      </Modal>
+      
+      {/* <AddTeamModal
+        showModal={showAddTeamModal}
+        setShowModal={setShowAddTeamModal}
+        modalToggler={addTeamModalToggle}/> */}
 
       {/* This is ShareModal */}
       <ShareModal
