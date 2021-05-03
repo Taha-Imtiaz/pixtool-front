@@ -42,6 +42,7 @@ const AddTeamModal = ({showModal,setShowModal, modalToggler,teamId,addNewTeamMem
             teamId:teamId
         }
         addNewTeamMember(newTeamMember)
+        modalToggler()
     }
     return (
         <div className="modal__backDrop backDrop2" style={backDropStyle} >
