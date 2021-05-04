@@ -567,7 +567,6 @@ const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } },
                                         <SignInForm 
                                          setLoginModal = {setLoginModal}/>
                                     </div>
-
                                 </Fade>
                             </Modal>}
                         </div>
