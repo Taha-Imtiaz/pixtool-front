@@ -12,6 +12,9 @@ import Dropdown from '../../Dropdown/Dropdown';
 import { Picker } from 'emoji-mart';
 
 import PlayerControls from '../../../images/player-icons/sprite.svg';
+import { checkUserAuthentication } from '../../../Redux/user/userActions';
+import { Backdrop, Fade, Modal } from '@material-ui/core';
+import SignInForm from '../../SignInForm/SignInForm';
 
 
 const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } }, play, setPlay }) => {
@@ -43,7 +46,8 @@ const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } },
     // State For Emojibox
     const [emojiBox, setEmojiBox] = useState(false);
 
-
+    // loginModal State
+    const [loginModal, setLoginModal] = useState(false)
     /* ---------------------------- FOR VIDEO PLAYER CONTROLS ---------------------------- */
 
 
@@ -379,7 +383,9 @@ const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } },
 
     // Function to post the comment to the backend
     const sendComment = () => {
-        if (textValue !== '') {
+        let checkUserAuth = checkUserAuthentication();
+
+        if (textValue !== '' && checkUserAuth === true) {
             let checkbox = document.getElementById('timespanCheckbox');
             let formData = new FormData();
             let obj = {};
@@ -404,6 +410,9 @@ const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } },
             addComment(formData, asset._id);
             setTextValue('');
         }
+        else {
+            setLoginModal(true)
+        }
     }
 
 
@@ -416,7 +425,7 @@ const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } },
 
     // }, [])
 
-    
+
     /* -------------------------------------------------------------------------------------------- */
 
 
@@ -541,6 +550,26 @@ const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } },
                                 <i className="far fa-laugh"></i>
                             </span>
                             <ButtonSmall text="Send" click={sendComment} />
+
+                         {loginModal &&   <Modal
+                                className="modal"
+                                // className={classes.modal}
+                                open={loginModal}
+                                onClose={() => setLoginModal(false)}
+                                closeAfterTransition
+                                BackdropComponent={Backdrop}
+                                BackdropProps={{
+                                    timeout: 500,
+                                }}
+                            >
+                                <Fade in={loginModal}>
+                                    <div className = "loginModal">
+                                        <SignInForm 
+                                         setLoginModal = {setLoginModal}/>
+                                    </div>
+
+                                </Fade>
+                            </Modal>}
                         </div>
                     </div>
 

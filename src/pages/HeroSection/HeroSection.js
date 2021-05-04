@@ -17,9 +17,9 @@ function HeroSection({ history }) {
             history.push("/home")
         }
 
-        // else {
-        //     history.push("/sign-in")
-        // }
+        else {
+            history.push("/")
+        }
     }, [])
 
     const createNew = () => { }

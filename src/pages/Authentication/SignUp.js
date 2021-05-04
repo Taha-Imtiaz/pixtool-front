@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { signupUser } from '../../Redux/user/userActions';
 
 
-const SignUp = ({ signupUser,history }) => {
+const SignUp = ({ signupUser,history,location:{pathname} }) => {
     const [authFormState, setAuthFormState] = useState({
         full_name: '',
         email: '',
@@ -52,6 +52,7 @@ const SignUp = ({ signupUser,history }) => {
     //form submit handler 
     const handleFormSubmit = (e) => {
         // prevent page from reloading
+
         e.preventDefault();
         let { full_name, email, username, password, confirm_password } = authFormState
         
@@ -60,7 +61,7 @@ const SignUp = ({ signupUser,history }) => {
             var userObj = {
                 full_name, email, username, password,
             }
-            signupUser(userObj, () => history.push(`/home`))
+            signupUser(userObj, () => () => pathname === "/sign-up" ? history.push(`/home`) : history.push(pathname))
         }
         else {
             console.log("Password do not match!")

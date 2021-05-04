@@ -59,9 +59,10 @@ const App = ({
     if (checkUserAuth) {
       store.dispatch(getUserData());
       // history.push("/home")
-    } else {
-      history.push("/");
-    }
+    } 
+    // else {
+    //   history.push("/");
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -129,21 +130,21 @@ const App = ({
       <Switch>
         <ErrorBoundary>
           <Route path="/" component={HeroSection} exact />
-          <Route path="/home" component={Home} />
+         
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
           <Route path="/review/:id/:assetId?" component={Review} exact/>
-          {/* <Route path = "/review/:id/player/:assetId" component = {Player}/> */}
-          {/* <PrivateRoute path="/home/library/:projectId" component={Home} /> */}
-          <PrivateRoute
-            // path="/player/:assetId" 
-        //  path =   {"/player/:assetId" | "/review/player/:assetId" }
-            path={["/player/:assetId", "/review/player/:id/:assetId"]}
+          <Route path= "/review/player/:id/:assetId"
             component={Player} />
+
+           <PrivateRoute path="/home" component={Home} />
+          <PrivateRoute path = "/player/:assetId"  component={Player}/>
+        
+          
           <PrivateRoute path="/accounts" component={Accounts} />
           <PrivateRoute path="/test" component={Test} />
 
-          {/* <Route path="/" component={HeroSection} exact /> */}
+        
           {/* <Redirect to="/" /> */}
         </ErrorBoundary>
       </Switch>
