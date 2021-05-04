@@ -317,6 +317,8 @@ const Library = ({
       </div>
   );
 };
+
+
 var mapStateToProps = (state) => ({
   resources: state.project && state.project.resources,
   teams: state.teams && state.teams.teamList,

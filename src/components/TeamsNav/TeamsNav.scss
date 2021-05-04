@@ -173,3 +173,18 @@
     }
   }
 }
+
+.dialog {
+
+  &__title,
+  &__title h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: $color-secondary;
+  }
+
+  &__text {
+    font-size: 1.7rem !important;
+    color: $color-secondary !important;
+  }
+}

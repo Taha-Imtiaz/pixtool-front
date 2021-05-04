@@ -184,7 +184,9 @@ function Home({ projectId, match: { path }, getTeam, getProject, location: { pat
                   shareModalToggle={shareModalToggle}
                   addTeamModalToggle={addTeamModalToggle}
                   showCheckbox={showCheckbox}
-                  setShowCheckbox={setShowCheckbox} />} />
+                  setShowCheckbox={setShowCheckbox}>
+                </Library>}
+              />
 
               <Route path={`${path}/shows/${projectId}`} label="Shows">
                 <InnerTabs>
@@ -214,6 +216,7 @@ function Home({ projectId, match: { path }, getTeam, getProject, location: { pat
                   </div>
                 </InnerTabs>
               </Route>
+
               <Route path={`${path}/stages/${projectId}`} label="Stages">
                 <InnerTabs>
                   {/* Stages - Surfaces Tab Content */}
@@ -247,9 +250,9 @@ function Home({ projectId, match: { path }, getTeam, getProject, location: { pat
         modalToggler={addProjectModalToggle}
         teamId={teamId}
       /> */}
+
       <Modal
         className="modal"
-        // className={classes.modal}
         open={showAddProjectModal}
         onClose={() => setShowAddProjectModal(false)}
         closeAfterTransition
@@ -267,7 +270,6 @@ function Home({ projectId, match: { path }, getTeam, getProject, location: { pat
               teamId={teamId}
             />
           </div>
-
         </Fade>
       </Modal>
 
@@ -276,11 +278,10 @@ function Home({ projectId, match: { path }, getTeam, getProject, location: { pat
         showModal={showAddFolderModal}
         setShowModal={setShowAddFolderModal}
         modalToggler={addFolderModalToggle}
-      
       /> */}
+
       <Modal
         className="modal"
-        // className={classes.modal}
         open={showAddFolderModal}
         onClose={() => setShowAddFolderModal(false)}
         closeAfterTransition
@@ -298,16 +299,11 @@ function Home({ projectId, match: { path }, getTeam, getProject, location: { pat
 
             />
           </div>
-
         </Fade>
       </Modal>
 
-     
-
-     
       <Modal
         className="modal"
-        // className={classes.modal}
         open={showAddTeamModal}
         onClose={() => setShowAddTeamModal(false)}
         closeAfterTransition
@@ -332,10 +328,8 @@ function Home({ projectId, match: { path }, getTeam, getProject, location: { pat
         setShowModal={setShowAddTeamModal}
         modalToggler={addTeamModalToggle}/> */}
 
-     
       <Modal
         className="modal"
-        // className={classes.modal}
         open={showShareModal}
         onClose={() => setShowShareModal(false)}
         closeAfterTransition
@@ -346,22 +340,23 @@ function Home({ projectId, match: { path }, getTeam, getProject, location: { pat
       >
         <Fade in={showShareModal}>
           <div >
-          <ShareModal
-        showModal={showShareModal}
-        setShowModal={setShowShareModal}
-        modalToggler={shareModalToggle}
-      />
+            <ShareModal
+              showModal={showShareModal}
+              setShowModal={setShowShareModal}
+              modalToggler={shareModalToggle}
+            />
           </div>
-
         </Fade>
       </Modal>
-       {/* This is ShareModal */}
+
+      {/* This is ShareModal */}
       {/* <ShareModal
         showModal={showShareModal}
         setShowModal={setShowShareModal}
         modalToggler={shareModalToggle}
       /> */}
       {/* This is ProjectOptionsModal */}
+
       <ProjectOptionsModal
         showModal={showProjectMenu}
         setShowModal={setShowProjectMenu}

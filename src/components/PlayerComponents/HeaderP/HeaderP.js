@@ -84,7 +84,7 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
                 <div className="headerP__right-box">
                     {asset && asset._id && <Dropdown text={changeStatusCase(asset.status)} menuItems={status} addDescription={addDescription} />}
 
-                    <Dropdown text="---" menuItems={options} setAssetPrivacy={setAssetPrivacy} downloadVideo = {downloadVideo} setShowConfirm={setShowConfirm} />
+                    <Dropdown text="---" menuItems={options} setAssetPrivacy={setAssetPrivacy} downloadVideo={downloadVideo} setShowConfirm={setShowConfirm} />
 
                     <Button text="Share" click={() => shareLink()} />
 
@@ -97,26 +97,24 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
                     <NavIcon toggle={toggle} />
                 </div>
             </div>
+
             <Modal
-        className="modal"
-        // className={classes.modal}
-        open={showConfirm}
-        onClose={() => setShowConfirm(false)}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={showConfirm}>
-          <div >
-          <ConfirmationModal show={showConfirm} setShow={setShowConfirm} confirmFunc={deleteAssetFunc} />
-          </div>
+                className="modal"
+                open={showConfirm}
+                onClose={() => setShowConfirm(false)}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+            >
+                <Fade in={showConfirm}>
+                    <div >
+                        <ConfirmationModal show={showConfirm} setShow={setShowConfirm} itemName="file" confirmFunc={deleteAssetFunc} />
+                    </div>
 
-        </Fade>
-      </Modal>
-
-          
+                </Fade>
+            </Modal>
         </Fragment>
     )
 }

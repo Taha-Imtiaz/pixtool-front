@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import './NavigationTabs.scss';
-
 import Tab from './Tab';
-import { Link } from 'react-router-dom';
+import './NavigationTabs.scss';
 
 class Tabs extends Component {
     static propTypes = {
@@ -15,9 +12,7 @@ class Tabs extends Component {
         super(props);
 
         this.state = {
-            activeTab: this.props && this.props.children && this.props.children.props && this.props.children.props.children[0] && this.props.children.props.children[0].props.label,
-            path: this.props && this.props.children && this.props.children.props && this.props.children.props.children[0] && this.props.children.props.children[0].props.path,
-
+            activeTab: this.props.children[0].props.label,
         };
     }
 
@@ -26,16 +21,17 @@ class Tabs extends Component {
     }
 
     render() {
-     
+
         const {
             onClickTabItem,
             props: {
-                children: { props: { children } },
+                children,
             },
             state: {
                 activeTab,
             }
         } = this;
+
         return (
             <div className="tabs">
                 <ol className="tab-list">
@@ -43,16 +39,12 @@ class Tabs extends Component {
                         const { label, path } = child.props;
 
                         return (
-
-                            <Link to = {path} key ={label}> 
-                             <Tab
+                            <Tab
                                 activeTab={activeTab}
                                 key={label}
                                 label={label}
-                               
-
                                 onClick={onClickTabItem}
-                            /></Link>
+                            />
                         );
                     })}
                 </ol>

@@ -21,6 +21,7 @@ class InnerTabs extends Component {
     }
 
     render() {
+        
         const {
             onClickTabItem,
             props: {
