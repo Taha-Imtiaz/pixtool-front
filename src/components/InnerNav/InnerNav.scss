@@ -22,12 +22,10 @@
     }
 
     &-active,
-    &:focus {
+    &:focus,
+    &:hover {
         outline: none;
         color: $color-primary;
-    }
-
-    &:hover {
         cursor: pointer;
     }
 }

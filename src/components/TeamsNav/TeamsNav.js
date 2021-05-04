@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import { getProject, setProjectId } from "../../Redux/project/projectActions";
 import { deleteProject } from "../../Redux/account/accountActions";
 
 import "./TeamsNav.scss";
-import { Fragment } from "react";
+
+import ConfirmationModal from "../Modals/ConfirmationModal/ConfirmationModal";
+
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { Backdrop, Fade, Modal } from '@material-ui/core';
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
-import { withRouter } from "react-router";
+// import Dialog from '@material-ui/core/Dialog';
+// import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
+// import DialogContentText from '@material-ui/core/DialogContentText';
+// import DialogTitle from '@material-ui/core/DialogTitle';
+// import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   typography: {
@@ -40,6 +43,9 @@ const TeamsNav = ({
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [projectToDelete, setProjectToDelete] = React.useState(null);
+
+  //This state is responsible for toggling Confirmation Modal
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const handleClick = (event, id) => {
     setProjectToDelete(id)
@@ -117,7 +123,7 @@ const TeamsNav = ({
     }
 
   }, [projects])
-  
+
   const [openModal, setOpen] = useState(false);
 
   // this state is for selected Project
@@ -129,7 +135,7 @@ const TeamsNav = ({
   const classes = useStyles();
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setShowConfirm(true);
     handleClose();
   };
 
@@ -248,15 +254,17 @@ const TeamsNav = ({
             ))}
         </ul>
       </div>
-      <Dialog
+
+      {/* <Dialog
         open={openModal}
         onClose={handleModalClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        className="dialog"
       >
-        <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title" className="dialog__title">{"Confirmation"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText id="alert-dialog-description" className="dialog__text">
             Are you sure you want to delete this project?
           </DialogContentText>
         </DialogContent>
@@ -268,10 +276,30 @@ const TeamsNav = ({
             Confirm
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
+
+      <Modal
+        className="modal"
+        open={showConfirm}
+        onClose={() => setShowConfirm(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={showConfirm}>
+          <div >
+            <ConfirmationModal show={showConfirm} setShow={setShowConfirm} itemName="project" confirmFunc={() => deleteProject(projectToDelete, () => handleModalClose())} />
+          </div>
+        </Fade>
+      </Modal>
+
     </Fragment >
   );
 };
+
+
 var mapStateToProps = (state) => ({
   account: state.accounts && state.accounts.account,
   projects: state.accounts && state.accounts.account[0] && state.accounts.account[0].projects

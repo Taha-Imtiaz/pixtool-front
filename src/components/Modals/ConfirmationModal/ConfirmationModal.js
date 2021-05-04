@@ -4,7 +4,7 @@ import './ConfirmationModal.scss';
 
 import ButtonLight from '../../Button/ButtonLight';
 
-function ConfirmationModal({ show, setShow, confirmFunc }) {
+function ConfirmationModal({ show, setShow, itemName, confirmFunc }) {
 
     // Modal Back-drop Styling
     const backDropStyle = {
@@ -67,7 +67,7 @@ function ConfirmationModal({ show, setShow, confirmFunc }) {
                         </div>
                         <div className="confirmationModal__body">
                             <p className="confirmationModal__text">
-                                Are you sure you want to delete this file?
+                                Are you sure you want to delete this {itemName}?
                             </p>
                         </div>
                         <div className="confirmationModal__footer">
