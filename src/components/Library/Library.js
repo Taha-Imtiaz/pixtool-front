@@ -19,6 +19,7 @@ const Library = ({
   resources,
   teams,
   getProject,
+  teamMembers,
 
   uploadAsset,
   project,
@@ -33,7 +34,7 @@ const Library = ({
   setShowCheckbox,
 }) => {
 
-
+console.log(teamMembers)
   // State To Toggle Bottom Share Bar
   const [showShareBar, setShowShareBar] = useState(false)
   const [shareAssetIds, setShareAssetIds] = useState([])
@@ -255,8 +256,13 @@ const Library = ({
               <div className="avatar">
                 <i className="fas fa-user-plus" onClick={() => addTeamModalToggle()}></i>
               </div>
-              <Avatar />
-              <Avatar />
+              {/* <Avatar />
+              <Avatar /> */}
+              {teamMembers.map((member) => {
+                let {images:{img_32}} = member
+                console.log(img_32)
+                return <img src = {img_32} className = "image" alt = ""/>
+              })}
             </div>
 
             <div className="library__head__buttons">
@@ -323,6 +329,7 @@ var mapStateToProps = (state) => ({
   resources: state.project && state.project.resources,
   teams: state.teams && state.teams.teamList,
   project: state.project,
+  teamMembers: state.accounts && state.accounts.account && state.accounts.account[0] && state.accounts.account[0].members
 
 });
 var mapDispatchToProps = {

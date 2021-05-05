@@ -15,6 +15,7 @@ import PlayerControls from '../../../images/player-icons/sprite.svg';
 import { checkUserAuthentication } from '../../../Redux/user/userActions';
 import { Backdrop, Fade, Modal } from '@material-ui/core';
 import SignInForm from '../../SignInForm/SignInForm';
+import SignInModal from '../../Modals/SignInModal/SignInModal';
 
 
 const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } }, play, setPlay }) => {
@@ -551,25 +552,7 @@ const PlayerP = ({ asset, addComment, userImage, match: { params: { assetId } },
                             </span>
                             <ButtonSmall text="Send" click={sendComment} />
 
-                         {loginModal &&   <Modal
-                                className="modal"
-                                // className={classes.modal}
-                                open={loginModal}
-                                onClose={() => setLoginModal(false)}
-                                closeAfterTransition
-                                BackdropComponent={Backdrop}
-                                BackdropProps={{
-                                    timeout: 500,
-                                }}
-                            >
-                                <Fade in={loginModal}>
-                                    <div className = "loginModal">
-                                        <SignInForm 
-                                         setLoginModal = {setLoginModal}/>
-                                    </div>
-
-                                </Fade>
-                            </Modal>}
+                         {loginModal && <SignInModal loginModal = {loginModal} setLoginModal = {setLoginModal}/>  }
                         </div>
                     </div>
 

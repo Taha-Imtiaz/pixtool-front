@@ -8,13 +8,15 @@ import 'emoji-mart/css/emoji-mart.css';
 
 import Avatar from '../../Avatar/Avatar';
 import { Picker } from 'emoji-mart';
+import { checkUserAuthentication } from '../../../Redux/user/userActions';
+import SignInModal from '../../Modals/SignInModal/SignInModal';
 
 function CommentP({ asset, comment, addReply, deleteComments, setPlay }) {
 
 
     /* ---------------------------- ALL STATES FOR COMMENTP COMPONENT---------------------------- */
 
-
+    let userAuth = checkUserAuthentication()
     // State For Toggling Reply TextArea
     const [writeReply, setWriteReply] = useState(false)
 
@@ -27,15 +29,23 @@ function CommentP({ asset, comment, addReply, deleteComments, setPlay }) {
     // State For Emojibox
     const [emojiBox, setEmojiBox] = useState(false);
 
-
+    // loginModal State
+    const [loginModal, setLoginModal] = useState(false)
     /* ---------------------------- ALL FUNCTIONS FOR COMMENTP COMPONENT---------------------------- */
 
 
     // Function For Main Comment Reply TextArea Toggling 
     const reply = () => {
-        setReplyText('');
-        setWriteCommentReply(false);
-        setWriteReply(!writeReply);
+      
+        if (userAuth === true) {
+            setReplyText('');
+            setWriteCommentReply(false);
+            setWriteReply(!writeReply);
+        }
+        else {
+            setLoginModal(true)
+        }
+
     }
 
     // Function For Sub Comment TextArea Reply Toggling
@@ -135,9 +145,9 @@ function CommentP({ asset, comment, addReply, deleteComments, setPlay }) {
                             <TimeAgo date={comment.createdAt} minPeriod={10} />
                         </div>
                     </span>
-                    <span className="comment__check">
+                    {/* <span className="comment__check">
                         <input type="checkBox" className="checkbox" />
-                    </span>
+                    </span> */}
                 </div>
 
                 <div className="comment__main">
@@ -146,14 +156,17 @@ function CommentP({ asset, comment, addReply, deleteComments, setPlay }) {
                 </div>
 
                 <div className="comment__bottom">
+                  {userAuth &&  <Fragment>
                     <div className="comment__bottom--left">
                         <span className="comment__icons" onClick={reply}>Reply</span>
+                        {/* {loginModal && <SignInModal loginModal = {loginModal} setLoginModal = {setLoginModal}/>  } */}
                         <span className="comment__icons"><i className="far fa-thumbs-up"></i></span>
                     </div>
                     <div className="comment__bottom--right">
                         {/* <span className="comment__icons"><i className="far fa-edit"></i></span> */}
                         <span className="comment__icons" onClick={() => deleteComment(comment._id)}><i className="far fa-trash-alt"></i></span>
                     </div>
+                      </Fragment>}
                 </div>
 
                 {writeReply ?

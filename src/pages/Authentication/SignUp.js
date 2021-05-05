@@ -61,7 +61,7 @@ const SignUp = ({ signupUser,history,location:{pathname} }) => {
             var userObj = {
                 full_name, email, username, password,
             }
-            signupUser(userObj, () => () => pathname === "/sign-up" ? history.push(`/home`) : history.push(pathname))
+            signupUser(userObj, () => pathname === "/sign-up" ? history.push(`/home`) : history.push(pathname))
         }
         else {
             console.log("Password do not match!")
