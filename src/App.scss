@@ -1,8 +1,9 @@
-@import "./scss/variables.scss";
+@import "./scss/breakpoints.scss";
 @import "./scss/fonts.scss";
-@import "./scss/scrollbars.scss";
-@import "./scss/range-inputs.scss";
 @import "./scss/progressbar.scss";
+@import "./scss/range-inputs.scss";
+@import "./scss/scrollbars.scss";
+@import "./scss/variables.scss";
 
 *,
 *::before,
@@ -10,11 +11,6 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
-}
-
-html {
-  box-sizing: border-box;
-  font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
 }
 
 a {

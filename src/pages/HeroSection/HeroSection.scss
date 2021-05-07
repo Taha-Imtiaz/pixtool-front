@@ -1,5 +1,6 @@
-@import '../../scss/variables.scss';
+@import '../../scss/breakpoints.scss';
 @import '../../scss/fonts.scss';
+@import '../../scss/variables.scss';
 
 .heroSec {
     display: grid;
@@ -29,11 +30,19 @@
             width: auto;
             max-width: 100%;
             max-height: 70px;
+
+            @include respond(phone) {
+                max-height: 50px;
+            }
         }
     }
 
     &__features {
         padding: 8rem 0;
+
+        @include respond(phone) {
+            padding: 2rem 0;
+        }
     }
 }
 
@@ -43,6 +52,19 @@
         display: flex;
         gap: 3rem;
         list-style: none;
+
+        @include respond(small-desktop) {
+            gap: 1rem;
+        }
+    }
+
+    &__links {
+
+        &--mobile {
+            @include respond(phone) {
+                display: none;
+            }
+        }
     }
 
     &__link {
@@ -84,11 +106,23 @@
     display: grid;
     grid-template-columns: 40% 60%;
 
+    @include respond(phone) {
+        grid-template-columns: 1fr;
+    }
+
     &__left {
         display: flex;
         flex-direction: column;
         align-items: center;
         height: 85vh;
+
+        @include respond(phone) {
+            align-items: flex-start;
+        }
+
+        @include respond(medium-phone) {
+            align-items: center;
+        }
     }
 
     &__text {
@@ -97,10 +131,26 @@
         font-weight: bold;
         font-family: 'Metropolis', 'Open Sans', 'Segoe UI', sans-serif;
         text-transform: capitalize;
-        padding: 1rem;
+        padding: 1rem 1rem 1rem 6rem;
         margin: auto 0;
         display: inline-block;
         width: 50rem;
+
+        @include respond(small-desktop) {
+            font-size: 4.5rem;
+        }
+
+        @include respond(tab-land) {
+            width: auto;
+        }
+
+        @include respond(phone) {
+            width: 60%;
+        }
+
+        @include respond(medium-phone) {
+            width: 80%;
+        }
 
         &--primary {
             color: $color-primary;
@@ -116,6 +166,10 @@
 
     &__img {
         width: 80%;
+
+        @include respond(phone) {
+            display: none;
+        }
     }
 }
 
@@ -126,6 +180,10 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 12rem;
+
+        @include respond(small-desktop) {
+            gap: 6rem;
+        }
     }
 
     &__heading {
@@ -136,6 +194,14 @@
         text-align: center;
         text-transform: uppercase;
         padding: 0 2rem 8rem 2rem;
+
+        @include respond(small-desktop) {
+            font-size: 4.5rem;
+        }
+
+        @include respond(phone) {
+            font-size: 3rem;
+        }
     }
 }
 
@@ -148,11 +214,23 @@
         justify-content: center;
         flex-wrap: wrap;
         gap: 5rem;
+
+        @include respond(small-desktop) {
+            font-size: 3.5rem;
+        }
     }
 
     &__img {
         &--1 {
             max-width: 100%;
+
+            @include respond(small-desktop) {
+                max-width: 80%;
+            }
+
+            @include respond(phone) {
+                max-width: 65%;
+            }
         }
 
         &--2 {
@@ -167,14 +245,23 @@
         font-weight: 500;
         letter-spacing: 1px;
         padding: 1rem 2rem;
-        padding-bottom: 2rem;
+        margin: auto 0;
 
         &--1 {
             max-width: 60rem;
+
+            @include respond(small-desktop) {
+                max-width: 70%;
+            }
         }
 
         &--2 {
             padding: 4rem 20rem 8rem 20rem;
+
+            @include respond(small-desktop) {
+                padding: 1rem 2rem;
+                max-width: 70%;
+            }
         }
     }
 }

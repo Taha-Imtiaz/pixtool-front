@@ -47,10 +47,10 @@ function HeroSection({ history }) {
                 <div className="heroSec__nav">
                     <nav className="navigation">
                         <ul className="navigation__list">
-                            <li className="navigation__links"><a href="./#" className="navigation__link">Home</a></li>
-                            <li className="navigation__links"><a href="./#" className="navigation__link">Partners</a></li>
-                            <li className="navigation__links"><a href="./#" className="navigation__link">Services</a></li>
-                            <li className="navigation__links"><a href="./#" className="navigation__link">About us</a></li>
+                            <li className="navigation__links navigation__links--mobile"><a href="./#" className="navigation__link">Home</a></li>
+                            <li className="navigation__links navigation__links--mobile"><a href="./#" className="navigation__link">Partners</a></li>
+                            <li className="navigation__links navigation__links--mobile"><a href="./#" className="navigation__link">Services</a></li>
+                            <li className="navigation__links navigation__links--mobile"><a href="./#" className="navigation__link">About us</a></li>
                             <li className="navigation__links">
                                 {/* <a href="" className="navigation__link navigation__link--primary">Login</a> */}
                                 <Link to="/sign-in" className="navigation__link navigation__link--primary">Login</Link>
