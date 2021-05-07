@@ -8,6 +8,7 @@ import './SidebarP.scss';
 
 import TabsP from '../NavigationTabsP/TabsP';
 import CommentP from '../../PlayerComponents/CommentP/CommentP';
+import { checkUserAuthentication } from '../../../Redux/user/userActions';
 
 function SidebarP({ asset, comments, open, addDescription, getDescription, assetDescription, match: { params: { assetId } }, setPlay }) {
 
@@ -76,7 +77,7 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
         }
 
     }, [])
-
+let userAuth = checkUserAuthentication()
 
     return (
         <div id="sidebarP" className={open ? 'sidebarP' : 'sidebarP sidebarPCollapse'}>
@@ -99,19 +100,19 @@ function SidebarP({ asset, comments, open, addDescription, getDescription, asset
                         <Fragment>
                             {description === ''
                                 ?
-                                <div className="sidebarP__description--1">
+                             userAuth &&   <div className="sidebarP__description--1">
                                     <span className="sidebarP__description--add" onClick={() => editDescription()}><i className="fas fa-plus-square"></i></span>
                                     <label className="sidebarP__description--add" onClick={() => editDescription()}>Add Description</label>
                                 </div>
                                 :
                                 <div className="sidebarP__description--2">
                                     <div className="description__text">{asset.description}</div>
-                                    <span className="description__edit-icon" onClick={() => editDescription()}><i className="far fa-edit"></i></span>
+                                   {userAuth && <span className="description__edit-icon" onClick={() => editDescription()}><i className="far fa-edit"></i></span>}
                                 </div>
                             }
                         </Fragment>
                         :
-                        <Fragment>
+                       userAuth && <Fragment>
                             <div className="sidebarP__description--3">
                                 <textarea className="description__text-area" name="descriptiontext" onChange={(e) => textAreaChangeHandler(e)} value={tempDescription}></textarea>
                                 <span className="description__buttons">

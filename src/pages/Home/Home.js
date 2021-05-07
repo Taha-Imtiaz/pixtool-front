@@ -126,6 +126,7 @@ function Home({ projectId, match: { path }, getTeam, getProject, location: { pat
     { icon: "fas fa-cog", value: "Settings" },
   ];
   useEffect(() => {
+    console.log(account)
     if (account) {
 
       // get all projects of first team

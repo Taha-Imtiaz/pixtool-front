@@ -13,6 +13,7 @@ import ConfirmationModal from '../../Modals/ConfirmationModal/ConfirmationModal'
 
 import Logo from '../../../images/logo.png';
 import { Backdrop, Fade, Modal } from '@material-ui/core';
+import { checkUserAuthentication } from '../../../Redux/user/userActions';
 // import { ReactComponent as ChevronIcon } from '../../../icons/chevron.svg';
 
 
@@ -68,7 +69,7 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
     //     { rightIcon: '', leftIcon: '', value: asset?.private ? 'Make Public' : 'Make Private', goToMenu: '' },
     //     { rightIcon: '', leftIcon: '', value: 'Reveal in project', goToMenu: '' },
     //     { rightIcon: '', leftIcon: '', value: 'Delete', goToMenu: '' }];
-
+    let userAuth = checkUserAuthentication()
 
     return (
         <Fragment>
@@ -82,18 +83,19 @@ function HeaderP({ toggle, location, asset, history, addDescription, assetStatus
                 </div>
 
                 <div className="headerP__right-box">
-                    {asset && asset._id && <Dropdown text={changeStatusCase(asset.status)} menuItems={status} addDescription={addDescription} />}
+                   { userAuth && <Fragment>
+                        {asset && asset._id && <Dropdown text={changeStatusCase(asset.status)} menuItems={status} addDescription={addDescription} />}
 
-                    <Dropdown text="---" menuItems={options} setAssetPrivacy={setAssetPrivacy} downloadVideo={downloadVideo} setShowConfirm={setShowConfirm} />
+                        <Dropdown text="---" menuItems={options} setAssetPrivacy={setAssetPrivacy} downloadVideo={downloadVideo} setShowConfirm={setShowConfirm} />
 
-                    <Button text="Share" click={() => shareLink()} />
+                        <Button text="Share" click={() => shareLink()} />
 
-                    <span className="headerP__notification"><i className="fas fa-bell"></i> <span className="notificationCount">1</span></span>
+                        <span className="headerP__notification"><i className="fas fa-bell"></i> <span className="notificationCount">1</span></span>
 
-                    <span className="headerP__help-icon">
-                        <a href="./#" className="txt-dec-none"><i className="fas fa-question"></i></a>
-                    </span>
-
+                        <span className="headerP__help-icon">
+                            <a href="./#" className="txt-dec-none"><i className="fas fa-question"></i></a>
+                        </span>
+                    </Fragment>}
                     <NavIcon toggle={toggle} />
                 </div>
             </div>

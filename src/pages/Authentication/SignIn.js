@@ -17,7 +17,7 @@ const SignIn = () => {
             </div>
 
             <div className="auth__main-box" >
-               <SignInForm/>
+               <SignInForm welcomeText = "Welcome!"/>
             </div>
         </div>
     )

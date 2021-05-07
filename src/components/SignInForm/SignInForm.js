@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { loginUser } from '../../Redux/user/userActions';
 import ButtonLarge from "../../components/Button/ButtonLarge"
 
-const SignInForm = ({loginUser, history,setLoginModal, location:{pathname}}) => {
+const SignInForm = ({loginUser, history,setLoginModal, location:{pathname}, welcomeText}) => {
     const [authFormState, setAuthFormState] = useState({
         email: '',
         password: ''
@@ -59,7 +59,7 @@ const SignInForm = ({loginUser, history,setLoginModal, location:{pathname}}) => 
 
         <Fragment>
             <div className="auth__main-box--head">
-                <h1 className="heading-large">Welcome!</h1>
+                <h1 className="heading-large">{welcomeText}</h1>
                 <h2 className="heading-small">Sign In to Video Editing</h2>
             </div>
 
