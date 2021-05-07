@@ -75,6 +75,7 @@ const Player = ({ match: { params: { assetId } }, getAssetDetails, getCommentDet
             <div className="player__sidebar">
                 <SidebarP open={drawer} asset={asset} setPlay={setPlay} />
             </div>
+            
             <div className="player__body">
                 <PlayerP play={play} setPlay={setPlay} />
             </div>
