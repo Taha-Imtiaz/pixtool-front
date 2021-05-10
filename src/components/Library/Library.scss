@@ -76,7 +76,7 @@
 
     min-height: 100%;
 
-    @include respond(small-desktop) {
+    @include respond(tab-port) {
         justify-content: space-evenly;
         gap: 2rem;
     }
