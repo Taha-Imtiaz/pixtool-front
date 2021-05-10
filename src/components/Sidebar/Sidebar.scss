@@ -1,5 +1,6 @@
-@import "../../scss/variables.scss";
 @import "../../scss/animations.scss";
+@import "../../scss/breakpoints.scss";
+@import "../../scss/variables.scss";
 
 a {
     text-decoration: none;
@@ -28,9 +29,13 @@ a {
 
         .logo-img {
             width: auto;
-            max-width: 100%;
+            max-width: 80%;
             height: 64px;
             cursor: pointer;
+
+            @include respond(small-desktop) {
+                max-height: 40px;
+            }
         }
     }
 
@@ -43,7 +48,7 @@ a {
             width: 0;
             height: 0;
             overflow: hidden;
-           
+
         }
     }
 
@@ -62,6 +67,10 @@ a {
         padding: 1rem 0;
         margin: 0 auto;
         transition: cursor .3s, color .3s, background-color .3s;
+
+        @include respond(small-desktop) {
+            font-size: 1.6rem;
+        }
 
         &:hover,
         &:active,
@@ -91,5 +100,6 @@ a {
 // Only For Collapsing The Sidebar
 .sidebarCollapse {
     width: 6vw;
+    min-width: 10rem;
     transition: width .3s ease-in;
 }

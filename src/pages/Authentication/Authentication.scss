@@ -132,9 +132,12 @@
 .authLinks {
     font-size: 1.5rem;
     color: rgba($color-white, .8);
-    padding-left: .5rem;
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
+
+    @include respond(tiny-phone) {
+        padding-left: .5rem;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+    }
 
     &--primary {
         color: $color-primary;

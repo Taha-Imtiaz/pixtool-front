@@ -1,3 +1,4 @@
+@import "../../scss/breakpoints.scss";
 @import "../../scss/variables.scss";
 
 .teamsNav {
@@ -12,6 +13,10 @@
 
     width: 75%;
     margin: 0 auto;
+
+    @include respond(small-desktop) {
+      width: 85%;
+    }
   }
 
   &__addBtn {
@@ -35,6 +40,10 @@
       padding: 1rem 0;
 
       transition: cursor 0.3s, color 0.3s, background-color 0.3s;
+
+      @include respond(small-desktop) {
+        font-size: 1.8rem;
+      }
 
       &:hover,
       &:active,
@@ -66,6 +75,11 @@
     border-radius: 5px;
     background-color: $color-secondary;
     transition: cursor 0.3s, color 0.3s, background-color 0.3s;
+
+    @include respond(small-desktop) {
+      width: 85%;
+      font-size: 1.6rem;
+    }
 
     &:hover,
     &:active,
