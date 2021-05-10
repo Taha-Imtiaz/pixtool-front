@@ -112,7 +112,7 @@ const SignUp = ({ signupUser,history,location:{pathname} }) => {
                         <input type="checkbox" className="checkbox"></input>
                         <span className="authLinks">
                             &nbsp; I, agree with all the
-                            <a href="./#" className="authLinks authLinks--blue">
+                            <a href="./#" className="authLinks authLinks--primary">
                                 <strong>&nbsp;Terms & Conditions</strong>
                             </a>
                         </span>

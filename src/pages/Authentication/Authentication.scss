@@ -114,7 +114,6 @@
 
 .resetSignupTexts {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
 
@@ -133,6 +132,9 @@
 .authLinks {
     font-size: 1.5rem;
     color: rgba($color-white, .8);
+    padding-left: .5rem;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
 
     &--primary {
         color: $color-primary;
