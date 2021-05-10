@@ -6,11 +6,14 @@ import { Link } from 'react-router-dom';
 import { loginUser } from '../../Redux/user/userActions';
 import ButtonLarge from "../../components/Button/ButtonLarge"
 
-const SignInForm = ({loginUser, history,setLoginModal, location:{pathname}, welcomeText}) => {
+const SignInForm = ({ loginUser, history, setLoginModal, location: { pathname }, welcomeText }) => {
+
     const [authFormState, setAuthFormState] = useState({
         email: '',
         password: ''
     });
+
+    // Function To Show/ Hide Password When Clicked On Eye Icons On Input Fields
     const showHidePassword = () => {
         // This can be done simply by toggling a state but here I don't want a redender
 
@@ -39,24 +42,26 @@ const SignInForm = ({loginUser, history,setLoginModal, location:{pathname}, welc
             [name]: value
         })
     }
+
     //form submit handler 
     const handleFormSubmit = (e) => {
         // prevent page from reloading
-        
+
         e.preventDefault();
         let { email, password } = authFormState
         let userObj = {
             email, password
         }
         loginUser(userObj, () => pathname === "/sign-in" ? history.push(`/home`) : history.push(pathname))
-        if(setLoginModal) {
+        if (setLoginModal) {
             setLoginModal(false)
 
         }
-        
-    }
-    return (
 
+    }
+
+
+    return (
         <Fragment>
             <div className="auth__main-box--head">
                 <h1 className="heading-large">{welcomeText}</h1>

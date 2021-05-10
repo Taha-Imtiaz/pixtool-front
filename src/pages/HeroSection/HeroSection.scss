@@ -131,7 +131,7 @@
             padding: 0 6rem;
         }
 
-        @include respond(small-phone) {
+        @include respond(tiny-phone) {
             padding: 0 4rem;
         }
     }
@@ -151,7 +151,7 @@
             font-size: 4.5rem;
         }
 
-        @include respond(small-phone) {
+        @include respond(tiny-phone) {
             font-size: 3.8rem;
         }
 

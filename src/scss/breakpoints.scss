@@ -1,6 +1,7 @@
 //MEDIA QUERY MANAGER
 /*
-0 - 345px:      Small Phone
+0 - 345px:      Tiny Phone
+345 - 400px:      Tiny Phone
 345 - 480px:    Medium Phone
 480 - 600px:    Phone
 600 - 900px:    Tablet portrait
@@ -12,8 +13,9 @@
 
 /*
 $breakpoint arguement choices:
+- tiny-phone
 - small-phone
-- phone-medium
+- medium-phone
 - phone
 - tab-port
 - tab-land
@@ -25,12 +27,20 @@ $breakpoint arguement choices:
 */
 
 @mixin respond($breakpoint) {
-    @if $breakpoint==small-phone {
+    @if $breakpoint==tiny-phone {
         @media only screen and (max-width: 21.56em) {
             @content
         }
 
-        ; //345 = 21.56em
+        ; //345px = 21.56em
+    }
+
+    @if $breakpoint==small-phone {
+        @media only screen and (max-width: 25em) {
+            @content
+        }
+
+        ; //400px = 25em
     }
 
     @if $breakpoint==medium-phone {
@@ -38,7 +48,7 @@ $breakpoint arguement choices:
             @content
         }
 
-        ; //480 = 30em
+        ; //480px = 30em
     }
 
     @if $breakpoint==phone {
