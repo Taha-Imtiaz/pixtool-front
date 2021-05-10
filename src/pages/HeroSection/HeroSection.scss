@@ -8,6 +8,10 @@
 
     background-color: $color-secondary;
 
+    @include respond(phone) {
+        grid-template-rows: 10vh 90vh min-content min-content min-content;
+    }
+
     &__header {
         position: sticky;
         top: 0;
@@ -21,6 +25,10 @@
         & .active {
             background-color: $color-secondary-dark;
         }
+
+        @include respond(phone) {
+            padding: 0 2rem;
+        }
     }
 
     &__logo {
@@ -32,7 +40,7 @@
             max-height: 70px;
 
             @include respond(phone) {
-                max-height: 50px;
+                max-height: 40px;
             }
         }
     }
@@ -113,15 +121,18 @@
     &__left {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        height: 85vh;
+        justify-content: center;
+        padding: 1rem 1rem 1rem 6rem;
+        gap: 4rem;
+        height: 88vh;
 
         @include respond(phone) {
-            align-items: flex-start;
+            height: 90vh;
+            padding: 0 6rem;
         }
 
-        @include respond(medium-phone) {
-            align-items: center;
+        @include respond(small-phone) {
+            padding: 0 4rem;
         }
     }
 
@@ -131,25 +142,17 @@
         font-weight: bold;
         font-family: 'Metropolis', 'Open Sans', 'Segoe UI', sans-serif;
         text-transform: capitalize;
-        padding: 1rem 1rem 1rem 6rem;
-        margin: auto 0;
-        display: inline-block;
-        width: 50rem;
 
         @include respond(small-desktop) {
-            font-size: 4.5rem;
-        }
-
-        @include respond(tab-land) {
-            width: auto;
-        }
-
-        @include respond(phone) {
-            width: 60%;
+            font-size: 5rem;
         }
 
         @include respond(medium-phone) {
-            width: 80%;
+            font-size: 4.5rem;
+        }
+
+        @include respond(small-phone) {
+            font-size: 3.8rem;
         }
 
         &--primary {
@@ -161,15 +164,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 85vh;
-    }
-
-    &__img {
-        width: 80%;
 
         @include respond(phone) {
             display: none;
         }
+    }
+
+    &__img {
+        width: 80%;
     }
 }
 
@@ -183,6 +185,10 @@
 
         @include respond(small-desktop) {
             gap: 6rem;
+        }
+
+        @include respond(phone) {
+            gap: 4rem;
         }
     }
 
@@ -201,13 +207,21 @@
 
         @include respond(phone) {
             font-size: 3rem;
+            padding: 0 2rem 6rem 2rem;
+        }
+
+        @include respond(medium-phone) {
+            font-size: 2.5rem;
         }
     }
 }
 
 .stories {
-    // height: 80vh;
     padding: 8rem 0;
+
+    @include respond(phone) {
+        padding: 4rem 0;
+    }
 
     &__content {
         display: flex;
@@ -215,27 +229,13 @@
         flex-wrap: wrap;
         gap: 5rem;
 
-        @include respond(small-desktop) {
-            font-size: 3.5rem;
+        @include respond(phone) {
+            gap: 2rem;
         }
     }
 
     &__img {
-        &--1 {
-            max-width: 100%;
-
-            @include respond(small-desktop) {
-                max-width: 80%;
-            }
-
-            @include respond(phone) {
-                max-width: 65%;
-            }
-        }
-
-        &--2 {
-            max-width: 65%;
-        }
+        max-width: 80%;
     }
 
     &__text {
@@ -244,24 +244,10 @@
         font-size: 2.5rem;
         font-weight: 500;
         letter-spacing: 1px;
-        padding: 1rem 2rem;
-        margin: auto 0;
+        padding: 1rem 10%;
 
-        &--1 {
-            max-width: 60rem;
-
-            @include respond(small-desktop) {
-                max-width: 70%;
-            }
-        }
-
-        &--2 {
-            padding: 4rem 20rem 8rem 20rem;
-
-            @include respond(small-desktop) {
-                padding: 1rem 2rem;
-                max-width: 70%;
-            }
+        @include respond(phone) {
+            font-size: 2rem;
         }
     }
 }
