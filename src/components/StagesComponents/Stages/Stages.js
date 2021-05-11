@@ -27,45 +27,8 @@ function Stages() {
                                     perPage: 3,
                                     perMove: 1,
                                     rewind: true,
-
                                 }}
                             >
-                                <SplideSlide key={CoderWall.src}>
-                                    <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                                </SplideSlide>
-
-                                <SplideSlide key={CoderWall.src}>
-                                    <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                                </SplideSlide>
-
-                                <SplideSlide key={CoderWall.src}>
-                                    <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                                </SplideSlide>
-
-                                <SplideSlide key={CoderWall.src}>
-                                    <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                                </SplideSlide>
-
-                                <SplideSlide key={CoderWall.src}>
-                                    <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                                </SplideSlide>
-
-                                <SplideSlide key={CoderWall.src}>
-                                    <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                                </SplideSlide>
-
-                                <SplideSlide key={CoderWall.src}>
-                                    <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                                </SplideSlide>
-
-                                <SplideSlide key={CoderWall.src}>
-                                    <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                                </SplideSlide>
-
-                                <SplideSlide key={CoderWall.src}>
-                                    <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                                </SplideSlide>
-
                                 <SplideSlide key={CoderWall.src}>
                                     <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
                                 </SplideSlide>

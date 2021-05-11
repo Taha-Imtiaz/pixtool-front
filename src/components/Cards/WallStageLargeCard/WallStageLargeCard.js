@@ -71,34 +71,6 @@ function WallStageLargeCard(props) {
                         <SplideSlide key={CoderWall.src}>
                             <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
                         </SplideSlide>
-
-                        <SplideSlide key={CoderWall.src}>
-                            <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                        </SplideSlide>
-
-                        <SplideSlide key={CoderWall.src}>
-                            <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                        </SplideSlide>
-
-                        <SplideSlide key={CoderWall.src}>
-                            <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                        </SplideSlide>
-
-                        <SplideSlide key={CoderWall.src}>
-                            <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                        </SplideSlide>
-
-                        <SplideSlide key={CoderWall.src}>
-                            <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                        </SplideSlide>
-
-                        <SplideSlide key={CoderWall.src}>
-                            <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                        </SplideSlide>
-
-                        <SplideSlide key={CoderWall.src}>
-                            <img src={CoderWall} alt="Coder Wall" className="wallStageLargeCard__smallImg" />
-                        </SplideSlide>
                     </Splide>
                 </div>
             </div>

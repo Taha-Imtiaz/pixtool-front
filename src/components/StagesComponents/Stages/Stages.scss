@@ -1,3 +1,4 @@
+@import '../../../scss/breakpoints.scss';
 @import '../../../scss/variables.scss';
 
 .stages {
@@ -11,33 +12,58 @@
         display: grid;
         grid-template-columns: .7fr .3fr;
 
-        min-width: 100rem;
-        min-height: 52rem;
+        width: 80%;
         font-family: 'Segoe UI', 'Open Sans', sans-serif;
         border-radius: 1.2rem;
         background-color: $color-secondary-dark;
         box-shadow: 1px 1px 6px rgba($color-secondary-dark, .8);
 
+        @include respond(tab-land) {
+            grid-template-columns: 1fr;
+            grid-template-rows: min-content 1fr;
+            width: 100%;
+        }
+
         &__left {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: min-content 1fr;
             border-right: 1px solid $color-secondary;
+
+            @include respond(phone) {
+                border-right: none;
+                border-bottom: 1px solid $color-secondary;
+            }
         }
 
         &__heading {
+            grid-row: 1/ span 1;
+
             font-family: inherit;
             font-size: 1.7rem;
             font-weight: 600;
             color: rgba($color-white, .8);
             padding: 2rem;
+
+            @include respond(tab-land) {
+                text-align: center;
+            }
         }
 
         &__mainContent {
+            grid-row: 2/ span 1;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-content: center;
             gap: 2rem;
 
-            height: calc(100% - 8rem);
+            @include respond(tab-land) {
+                padding: 2rem 0;
+                border-bottom: 1px solid $color-secondary;
+
+            }
         }
 
         &__splider {
@@ -48,6 +74,15 @@
         &__splide {
             max-width: 50rem;
             gap: 1rem;
+
+            @include respond(phone) {
+                max-width: 40rem;
+            }
+
+            @include respond(tiny-phone) {
+                max-width: 30rem;
+                gap: .5rem;
+            }
         }
     }
 
@@ -75,7 +110,7 @@
             display: flex;
             flex-direction: column;
             gap: 2rem;
-            
+
             padding: 2rem;
 
         }
