@@ -11,24 +11,48 @@
 
     &__head {
         position: sticky;
-        top: 14rem;
+        top: 11rem;
         z-index: 10;
 
         display: flex;
         justify-content: space-between;
-        height: 8rem;
-        padding: 2rem 5rem 2rem 5rem;
+        padding: 2rem 5rem;
         background-color: $color-secondary;
         box-shadow: 0px 2px 7px rgba($color-secondary-dark, .8);
+
+        @include respond(phone) {
+            flex-direction: row-reverse;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem 0;
+        }
+
+        @include respond(medium-phone) {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
 
         &-right {
             display: flex;
             gap: 2rem;
+
+            @include respond (phone) {
+                gap: 1rem;
+            }
+
+            @include respond(medium-phone) {
+                flex-direction: column-reverse;
+
+            }
         }
 
         &__buttons {
             display: flex;
             gap: 2rem;
+
+            @include respond (phone) {
+                gap: 1rem;
+            }
         }
     }
 
@@ -41,6 +65,10 @@
         border: 2px solid $color-secondary-dark;
         background-color: $color-secondary-dark;
         margin-bottom: 2rem;
+
+        @include respond(medium-phone) {
+            height: calc(100vh - 29.6rem);
+        }
     }
 }
 
@@ -60,15 +88,21 @@
     &__container {
         display: flex;
         justify-content: center;
+
+        @include respond(medium-phone) {
+            justify-content: flex-end;
+        }
     }
 }
+
 .image {
     width: 3.8rem;
     height: 3.8rem;
-  
+
     border-radius: 50%;
     cursor: pointer;
 }
+
 .thumbnail-container {
     display: flex;
     flex-wrap: wrap;
@@ -79,6 +113,11 @@
     @include respond(tab-port) {
         justify-content: space-evenly;
         gap: 2rem;
+    }
+
+    @include respond(medium-phone) {
+        height: auto;
+        min-height: auto;
     }
 }
 
