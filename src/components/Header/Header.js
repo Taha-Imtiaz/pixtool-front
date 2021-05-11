@@ -55,7 +55,7 @@ function Header({
           <i className="fas fa-search search__icon"></i>
           <input
             type="text"
-            className="search__input"
+            className="search__input truncate"
             name="search"
             placeholder="Search"
           ></input>

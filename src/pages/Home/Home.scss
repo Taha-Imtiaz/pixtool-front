@@ -1,3 +1,4 @@
+@import "../../scss/breakpoints.scss";
 @import "../../scss/variables.scss";
 
 .home {
@@ -6,6 +7,10 @@
 
     position: relative;
     background-color: $color-secondary;
+
+    @include respond(phone) {
+        grid-template-columns: 1fr;
+    }
 }
 
 .header {
@@ -23,7 +28,7 @@
     padding: .7rem 2rem;
     border-bottom: 2px solid transparent;
     transition: border-bottom .3s;
-    
+
     &--active {
         outline: none;
         border-bottom: 3px solid $color-primary;
@@ -36,5 +41,9 @@
         height: 3.5rem;
         background-color: $color-secondary;
         border-bottom: 2px solid rgba($color-white, .6);
+
+        @include respond(phone) {
+            top: 8rem;
+        }
     }
 }

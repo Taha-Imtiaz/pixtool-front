@@ -16,8 +16,12 @@ a {
     height: 100vh;
     width: 20vw;
     background-color: $color-secondary-dark;
-    // overflow-y: auto;
     transition: width .3s ease-in;
+
+    @include respond(phone) {
+        // position: absolute;
+        display: none;
+    }
 
     &__top {
         display: flex;
@@ -88,6 +92,10 @@ a {
 
         width: 75%;
         margin: auto;
+
+        @include respond(small-desktop) {
+            width: 85%;
+        }
     }
 
     &__text {

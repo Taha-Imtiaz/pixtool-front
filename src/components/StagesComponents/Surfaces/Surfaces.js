@@ -19,6 +19,7 @@ function Surfaces() {
                         <MainTile1 image={TileImg1} />
                     </div>
                 </div>
+
                 <div className="tileLayout__right">
                     <div className="rightBox">
                         <h3 className="rightBox__heading">Details</h3>
@@ -39,6 +40,7 @@ function Surfaces() {
                             </tbody>
                         </table>
                     </div>
+
                     <div className="rightBox">
                         <h3 className="rightBox__heading">Screen</h3>
                         <table className="rightBox__table">
@@ -61,6 +63,7 @@ function Surfaces() {
                             <ButtonSmallPrimary text="Add" click={createNew} />
                         </div>
                     </div>
+                    
                     <div className="rightBox">
                         <h3 className="rightBox__heading">Stage</h3>
                         <table className="rightBox__table">

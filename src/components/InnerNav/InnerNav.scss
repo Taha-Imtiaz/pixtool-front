@@ -1,3 +1,4 @@
+@import "../../scss/breakpoints.scss";
 @import "../../scss/variables.scss";
 
 .inner-tab-list {
@@ -6,6 +7,10 @@
     font-family: 'Segoe UI', sans-serif;
     background-color: $color-secondary;
     z-index: 100;
+
+    @include respond(phone) {
+        top: 11.5rem;
+    }
 
     &-item {
         display: inline-block;

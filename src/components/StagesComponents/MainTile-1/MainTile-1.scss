@@ -1,19 +1,22 @@
+@import '../../../scss/breakpoints.scss';
 @import '../../../scss/variables.scss';
 
 .mainTile-1 {
     display: grid;
     grid-template-columns: .2fr .8fr;
     grid-template-rows: .8fr .2fr;
-    grid-template-areas: 
-            "height image"
-            "empty width";
+    grid-template-areas:
+        "height image"
+        "empty width";
 
     align-self: center;
-    // min-width: 30rem;
-    // min-height: 30rem;
     font-size: 1.5rem;
     border-radius: 1.2rem;
     background-color: $color-secondary;
+
+    @include respond(phone) {
+        margin: 3rem 0;
+    }
 
     &__heightBox {
         grid-area: height;
@@ -30,9 +33,18 @@
     }
 
     &__img {
-        // max-width: 95%;
         max-height: 22rem;
         max-width: 22rem;
+
+        @include respond(tab-port) {
+            max-height: 18rem;
+            max-width: 18rem;
+        }
+
+        @include respond(phone) {
+            max-height: 15rem;
+            max-width: 15rem;
+        }
     }
 
     &__text {
@@ -40,6 +52,10 @@
         font-weight: 600;
         color: rgba($color-white, .8);
         text-align: center;
+
+        @include respond(tab-port) {
+            font-size: 1.2rem;
+        }
 
         &--primary {
             color: $color-primary;
@@ -61,11 +77,27 @@
             display: inline-block;
             max-width: 2.5rem;
             min-width: 2.5rem;
+
+            @include respond(tab-port) {
+                max-width: 2rem;
+                min-width: 2rem;
+
+                max-height: 20rem;
+            }
+
+            @include respond(phone) {
+                max-height: 17em;
+            }
         }
 
         &--horizontal {
             max-height: 2.5rem;
             min-height: 2.5rem;
+
+            @include respond(tab-port) {
+                max-height: 2rem;
+                min-height: 2rem;
+            }
         }
     }
 }

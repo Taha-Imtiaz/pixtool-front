@@ -166,10 +166,6 @@ function Home({ projectId, match: { path }, getTeam, getProject, location: { pat
 
         {/* This is home's main tab which include Library, Shows & Stages */}
         {projectId && (
-          // <Tabs className="tabs">
-          // </Tabs>
-
-
           <Fragment>
             <div className="navLinks__box">
               <Link to={`${path}/library/${projectId}`} className={`navLinks ${pathname.includes('library') ? "navLinks--active" : ''}`}>Library</Link>
