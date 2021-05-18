@@ -116,7 +116,7 @@ function Surfaces() {
                                          <img src={TileImg2} alt="Tile Thumbnail" />
                                      </td>
                                  </tr>
-                             </tbody>
+                             </tbody> 
                          </table>
                          <div className="rightBox__btn">
                              <ButtonSmallPrimary text="Add" click={createNew} />
