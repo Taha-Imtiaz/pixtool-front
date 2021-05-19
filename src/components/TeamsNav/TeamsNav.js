@@ -126,6 +126,8 @@ const TeamsNav = ({
 
   const [openModal, setOpen] = useState(false);
 
+  const [openNav, setOpenNav] = useState(false);
+
   // this state is for selected Project
   const [selectedProject, setSelectedProject] = useState(false)
 
@@ -154,12 +156,67 @@ const TeamsNav = ({
   return (
     <Fragment>
       <div className="teamsNav">
+        <div className={`teamsNav__head ${openNav ? 'teamsNav__head--active' : ''}`} onClick={() => setOpenNav(!openNav)}>
+          <div className="teamsNav__center" >
+            <span className="teamsNav__icon">
+              {openNav ? <i className="fas fa-chevron-down"></i> : <i className="fas fa-chevron-right"></i>}
+            </span>
+            {account && <span className="teamsNav__text truncate" title="Select Team">{account[0].name}</span>}
+          </div>
+          {openNav ?
+            <div className="teamsNav__body">
+              <ul className="teamsNav__list">
+                {account && account.map((account, index) => (
+                  <li key={index} className="teamsNav__item">{account.name}</li>
+                ))}
+              </ul>
+            </div>
+            : null
+          }
+        </div>
+      </div>
+
+      {/* <div className="teamsNav">
+        <ul className="teamsNav__list">
+          <ul className="project__list">
+            <li className="project__item project__highlight" >
+              <span className="project__item--name">project name</span>
+              <span className="project__item--icon">
+                <i data-tip data-for="happyFace" className="fas fa-ellipsis-v"></i>
+              </span>
+            </li>
+
+            <Popover
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+            >
+              <Typography className={classes.typography}>
+                {account.projects.length > 1 ? <h3 className="contextualMenu__heading" onClick={() => handleClickOpen()}>Delete</h3> : null}
+                <h3 className="contextualMenu__heading" >Settings</h3>
+                <h3 className="contextualMenu__heading" >Share</h3>
+              </Typography>
+            </Popover>
+          </ul>
+        </ul>
+      </div> */}
+
+      {/* <div className="teamsNav">
         <ul className="teamsNav__list">
           {account &&
             account.map((account, index) => (
               <li key={account._id} className="teamsNav__item" >
                 <div
-                  className="teamsNav__item__head"
+                  className="teamsNav__head"
                   onClick={() => toggleTeamNav(index)}
                 >
                   <div className="teamsNav__center" >
@@ -187,7 +244,7 @@ const TeamsNav = ({
                 </div>
 
                 {index === teamItemIndex && (
-                  <div className="teamsNav__item__body">
+                  <div className="teamsNav__body">
                     <div>
                       <div className="project__item" onClick={() => { setLibrary(!library) }}>
                         <i className="fas fa-book"></i>
@@ -253,7 +310,7 @@ const TeamsNav = ({
               </li>
             ))}
         </ul>
-      </div>
+      </div> */}
 
       {/* <Dialog
         open={openModal}

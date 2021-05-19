@@ -30,32 +30,70 @@
     }
   }
 
-  &__item {
-    padding: 0.5rem 0;
+  // &__item {
+  //   padding: 0.5rem 0;
+  // }
 
+  &__head {
+    position: relative;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1rem 0;
+    transition: cursor 0.3s, color 0.3s, background-color 0.3s;
 
-    &__head {
-      font-size: 2rem;
-      font-weight: 600;
-      padding: 1rem 0;
-
-      transition: cursor 0.3s, color 0.3s, background-color 0.3s;
-
-      @include respond(small-desktop) {
-        font-size: 1.8rem;
-      }
-
-      &:hover,
-      &:active,
-      &:focus {
-        cursor: pointer;
-        color: $color-secondary-dark;
-        background-color: rgba($color-secondary-light, 0.8);
-      }
+    @include respond(small-desktop) {
+      font-size: 1.8rem;
     }
 
-    &__body {
-      padding: 1rem 0;
+    &--active,
+    &:hover,
+    &:active,
+    &:focus {
+      cursor: pointer;
+      color: $color-secondary-dark;
+      background-color: rgba($color-secondary-light, 0.8);
+    }
+  }
+
+  &__body {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  // &__body {
+  //   padding: 1rem 0;
+  // }
+
+  &__list {
+    max-height: 10rem;
+    overflow: auto;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid $color-secondary;
+    background-color: $color-secondary;
+  }
+
+  &__item {
+    font-size: 1.7rem;
+    font-size: bold;
+    font-weight: normal;
+    color: $color-secondary-light;
+    padding: .5rem 1rem;
+    transition: cursor .3s, color .3s, border-radius .3s, background-color .3s;
+
+    &:focus,
+    &:hover {
+      outline: none;
+      cursor: pointer;
+      color: $color-secondary;
+      border-radius: .5rem;
+      background-color: $color-secondary-light;
     }
   }
 }
