@@ -48,7 +48,6 @@ const App = ({
     sessionStorage.setItem("currentUrl", location.pathname);
   });
 
-
   // },[])
 
   // the below 2 useeffects loads data only once
@@ -59,7 +58,7 @@ const App = ({
     if (checkUserAuth) {
       store.dispatch(getUserData());
       // history.push("/home")
-    } 
+    }
     // else {
     //   history.push("/");
     // }
@@ -130,21 +129,18 @@ const App = ({
       <Switch>
         <ErrorBoundary>
           <Route path="/" component={HeroSection} exact />
-         
+
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
-          <Route path="/review/:id/:assetId?" component={Review} exact/>
-          <Route path= "/review/player/:id/:assetId"
-            component={Player} />
+          <Route path="/review/:id/:assetId?" component={Review} exact />
+          <Route path="/review/player/:id/:assetId" component={Player} />
 
-           <PrivateRoute path="/home" component={Home} />
-          <PrivateRoute path = "/player/:assetId"  component={Player}/>
-        
-          
+          <PrivateRoute path="/home" component={Home} />
+          <PrivateRoute path="/player/:assetId" component={Player} />
+
           <PrivateRoute path="/accounts" component={Accounts} />
           <PrivateRoute path="/test" component={Test} />
 
-        
           {/* <Redirect to="/" /> */}
         </ErrorBoundary>
       </Switch>
